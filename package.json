@@ -1,0 +1,55 @@
+{
+  "name": "niji",
+  "description": "Niji is a colour palette developed by Scape Agency.",
+  "version": "0.0.1",
+  "config": {
+    "version_short": "0.0"
+  },
+  "keywords": [
+    "niji",
+    "icon",
+    "svg",
+    "icon library",
+    "framework"
+  ],
+  "homepage": "https://www.niji.ink/",
+  "author": "Lars van Vianen",
+  "contributors": [
+    "Scape Agency",
+    "Starling Associates"
+  ],
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/scape-agency/niji.git"
+  },
+  "bugs": {
+    "url": "https://github.com/scape-agency/niji/issues"
+  },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/scape-agency"
+    }
+  ],
+  "main": "niji.js",
+  "module": "niji.esm.js",
+  "sass": "scss/niji.scss",
+  "style": "css/niji.css",
+  "scripts": {},
+  "devDependencies": {
+    "sass": "^1.56.1"
+  },
+  "files": [],
+  "hugo-bin": {
+    "buildTags": "extended"
+  },
+  "jspm": {
+    "registry": "npm",
+    "main": "",
+    "directories": {},
+    "shim": {},
+    "dependencies": {},
+    "peerDependencies": {}
+  }
+}
