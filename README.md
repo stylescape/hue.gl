@@ -60,3 +60,8 @@
 ## Links
 
 #### Colours
+
+
+##### Copic
+- https://github.com/tnsicdr/copic-sass-colors/blob/master/_copic.scss
+- https://www.extremraym.com/en/copic-color-experiments/
