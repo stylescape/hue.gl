@@ -62,6 +62,25 @@
 #### Colours
 
 
+#### Colour Spaces
+
+##### HCL
+
+- https://en.wikipedia.org/wiki/HCL_color_space
+
+
+#### Colour Standards
+
+
+##### RAL 
+- https://www.w3schools.com/colors/colors_ral.asp
+- https://codepen.io/dennissnov/pen/OEQPJy
+
 ##### Copic
 - https://github.com/tnsicdr/copic-sass-colors/blob/master/_copic.scss
 - https://www.extremraym.com/en/copic-color-experiments/
+
+
+#### Packages
+
+- https://colorjs.io/get/
