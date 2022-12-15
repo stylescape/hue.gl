@@ -1,0 +1,217 @@
+//https://www.w3schools.com/colors/colors_ral.asp
+
+$ralcolors : (
+    RAL_1000 : #CCC58F,    	// Green beige
+    RAL_1001 : #D1BC8A,    	// Beige
+    RAL_1002 : #D2B773,    	// Sand yellow
+    RAL_1003 : #F7BA0B,    	// Signal yellow
+    RAL_1004 : #E2B007,    	// Golden yellow
+    RAL_1005 : #C89F04,    	// Honey yellow
+    RAL_1006 : #E1A100,    	// Maize yellow
+    RAL_1007 : #E79C00,    	// Daffodil yellow
+    RAL_1011 : #AF8A54,    	// Brown beige
+    RAL_1012 : #D9C022,    	// Lemon yellow
+    RAL_1013 : #E9E5CE,    	// Oyster white
+    RAL_1014 : #DFCEA1,    	// Ivory
+    RAL_1015 : #EADEBD,    	// Light ivory
+    RAL_1016 : #EAF044,    	// Sulfur yellow
+    RAL_1017 : #F4B752,    	// Saffron yellow
+    RAL_1018 : #F3E03B,    	// Zinc yellow
+    RAL_1019 : #A4957D,    	// Grey beige
+    RAL_1020 : #9A9464,    	// Olive yellow
+    RAL_1021 : #EEC900,    	// Rape yellow
+    RAL_1023 : #F0CA00,    	// traffic yellow
+    RAL_1024 : #B89C50,    	// Ochre yellow
+    RAL_1026 : #F5FF00,    	// Luminous yellow
+    RAL_1027 : #A38C15,    	// Curry
+    RAL_1028 : #FFAB00,    	// Melon yellow
+    RAL_1032 : #DDB20F,    	// Broom yellow
+    RAL_1033 : #FAAB21,    	// Dahlia yellow
+    RAL_1034 : #EDAB56,    	// Pastel yellow
+    RAL_1035 : #A29985,    	// Pearl beige
+    RAL_1036 : #927549,    	// Pearl gold
+    RAL_1037 : #EEA205,    	// Sun yellow
+    RAL_2000 : #DD7907,    	// Yellow orange
+    RAL_2001 : #BE4E20,    	// Red orange
+    RAL_2002 : #C63927,    	// Vermillion
+    RAL_2003 : #FA842B,    	// Pastel orange
+    RAL_2004 : #E75B12,    	// Pure orange
+    RAL_2005 : #FF2300,    	// Luminous orange
+    RAL_2007 : #FFA421,    	// Luminous bright orange
+    RAL_2008 : #F3752C,    	// Bright red orange
+    RAL_2009 : #E15501,    	// traffic orange
+    RAL_2010 : #D4652F,    	// Signal orange
+    RAL_2011 : #EC7C25,    	// Deep orange
+    RAL_2012 : #DB6A50,    	// Salmon orange
+    RAL_2013 : #954527,    	// Pearl orange
+    RAL_3000 : #AB2524,    	// Flame red
+    RAL_3001 : #A02128,    	// Signal red
+    RAL_3002 : #A1232B,    	// Carmine red
+    RAL_3003 : #8D1D2C,    	// Ruby red
+    RAL_3004 : #701F29,    	// Purple red
+    RAL_3005 : #5E2028,    	// Wine red
+    RAL_3007 : #402225,    	// Black red
+    RAL_3009 : #703731,    	// Oxide red
+    RAL_3011 : #7E292C,    	// Brown red
+    RAL_3012 : #CB8D73,    	// Beige red
+    RAL_3013 : #9C322E,    	// Tomato red
+    RAL_3014 : #D47479,    	// Antique pink
+    RAL_3015 : #E1A6AD,    	// Light pink
+    RAL_3016 : #AC4034,    	// Coral red
+    RAL_3017 : #D3545F,    	// Rose
+    RAL_3018 : #D14152,    	// Strawberry red
+    RAL_3020 : #C1121C,    	// traffic red
+    RAL_3022 : #D56D56,    	// Salmon pink
+    RAL_3024 : #F70000,    	// Luminous red
+    RAL_3026 : #FF0000,    	// Luminous bright red
+    RAL_3027 : #B42041,    	// Raspberry red
+    RAL_3028 : #E72512,    	// Pure red
+    RAL_3031 : #AC323B,    	// Orient red
+    RAL_3032 : #711521,    	// Pearl ruby red
+    RAL_3033 : #B24C43,    	// Pearl pink
+    RAL_4001 : #8A5A83,    	// Red lilac
+    RAL_4002 : #933D50,    	// Red violet
+    RAL_4003 : #D15B8F,    	// Heather violet
+    RAL_4004 : #691639,    	// Claret violet
+    RAL_4005 : #83639D,    	// Blue lilac
+    RAL_4006 : #992572,    	// Traffic purple
+    RAL_4007 : #4A203B,    	// Purple violet
+    RAL_4008 : #904684,    	// Signal violet
+    RAL_4009 : #A38995,    	// Pastel violet
+    RAL_4010 : #C63678,    	// Telemagenta
+    RAL_4011 : #8773A1,    	// Pearl violet
+    RAL_4012 : #6B6880,    	// Pearl blackberry
+    RAL_5000 : #384C70,    	// Violet blue
+    RAL_5001 : #1F4764,    	// Green blue
+    RAL_5002 : #2B2C7C,    	// Ultramarine blue
+    RAL_5003 : #2A3756,    	// Sapphire blue
+    RAL_5004 : #1D1F2A,    	// Black blue
+    RAL_5005 : #154889,    	// Signal blue
+    RAL_5007 : #41678D,    	// Brilliant blue
+    RAL_5008 : #313C48,    	// Grey blue
+    RAL_5009 : #2E5978,    	// Azure blue
+    RAL_5010 : #13447C,    	// Gentian blue
+    RAL_5011 : #232C3F,    	// Steel blue
+    RAL_5012 : #3481B8,    	// Light blue
+    RAL_5013 : #232D53,    	// Cobalt blue
+    RAL_5014 : #6C7C98,    	// Pigeon blue
+    RAL_5015 : #2874B2,    	// Sky blue
+    RAL_5017 : #0E518D,    	// Traffic blue
+    RAL_5018 : #21888F,    	// Turquoise blue
+    RAL_5019 : #1A5784,    	// Capri blue
+    RAL_5020 : #0B4151,    	// Ocean blue
+    RAL_5021 : #07737A,    	// Water blue
+    RAL_5022 : #2F2A5A,    	// Night blue
+    RAL_5023 : #4D668E,    	// Distant blue
+    RAL_5024 : #6A93B0,    	// Pastel blue
+    RAL_5025 : #296478,    	// Pearl Gentian blue
+    RAL_5026 : #102C54,    	// Pearl night blue
+    RAL_6000 : #327662,    	// Patina green
+    RAL_6001 : #28713E,    	// Emerald green
+    RAL_6002 : #276235,    	// Leaf green
+    RAL_6003 : #4B573E,    	// Olive Green
+    RAL_6004 : #0E4243,    	// Blue green
+    RAL_6005 : #0F4336,    	// Moss green
+    RAL_6006 : #40433B,    	// Grey olive
+    RAL_6007 : #283424,    	// Bottle green
+    RAL_6008 : #35382E,    	// Brown green
+    RAL_6009 : #26392F,    	// Fir green
+    RAL_6010 : #3E753B,    	// Grass green
+    RAL_6011 : #68825B,    	// Reseda green
+    RAL_6012 : #31403D,    	// Black green
+    RAL_6013 : #797C5A,    	// Reed green
+    RAL_6014 : #444337,    	// Yellow olive
+    RAL_6015 : #3D403A,    	// Black olive
+    RAL_6016 : #026A52,    	// Turquoise green
+    RAL_6017 : #468641,    	// May green
+    RAL_6018 : #48A43F,    	// Yellow green
+    RAL_6019 : #B7D9B1,    	// pastel green
+    RAL_6020 : #354733,    	// Chrome green
+    RAL_6021 : #86A47C,    	// Pale green
+    RAL_6022 : #3E3C32,    	// Brown olive
+    RAL_6024 : #008754,    	// Traffic green
+    RAL_6025 : #53753C,    	// Fern green
+    RAL_6026 : #005D52,    	// Opal green
+    RAL_6027 : #81C0BB,    	// Light green
+    RAL_6028 : #2D5546,    	// Pine green
+    RAL_6029 : #007243,    	// Mint green
+    RAL_6032 : #0F8558,    	// Signal green
+    RAL_6033 : #478A84,    	// Mint turquoise
+    RAL_6034 : #7FB0B2,    	// Pastel turquoise
+    RAL_6035 : #1B542C,    	// Pearl green
+    RAL_6036 : #005D4C,    	// Pearl opal green
+    RAL_6037 : #25E712,    	// Pure green
+    RAL_6038 : #00F700,    	// Luminous green
+    RAL_7000 : #7E8B92,    	// Squirrel grey
+    RAL_7001 : #8F999F,    	// Silver grey
+    RAL_7002 : #817F68,    	// Olive grey
+    RAL_7003 : #7A7B6D,    	// Moss grey
+    RAL_7004 : #9EA0A1,    	// Signal grey
+    RAL_7005 : #6B716F,    	// Mouse grey
+    RAL_7006 : #756F61,    	// Beige grey
+    RAL_7008 : #746643,    	// Khaki grey
+    RAL_7009 : #5B6259,    	// Green grey
+    RAL_7010 : #575D57,    	// Tarpaulin grey
+    RAL_7011 : #555D61,    	// Iron grey
+    RAL_7012 : #596163,    	// Basalt grey
+    RAL_7013 : #555548,    	// Brown-grey also NATO-olive, Stone-grey-olive
+    RAL_7015 : #51565C,    	// Slate grey
+    RAL_7016 : #373F43,    	// Anthracite grey
+    RAL_7021 : #2E3234,    	// Black grey
+    RAL_7022 : #4B4D46,    	// Umbra grey
+    RAL_7023 : #818479,    	// Concrete grey
+    RAL_7024 : #474A50,    	// Graphite grey
+    RAL_7026 : #374447,    	// Granite grey
+    RAL_7030 : #939388,    	// Stone grey
+    RAL_7031 : #5D6970,    	// Blue grey
+    RAL_7032 : #B9B9A8,    	// Pebble grey
+    RAL_7033 : #818979,    	// Cement grey
+    RAL_7034 : #939176,    	// Yellow grey
+    RAL_7035 : #CBD0CC,    	// Light grey
+    RAL_7036 : #9A9697,    	// Platinum grey
+    RAL_7037 : #7C7F7E,    	// Dusty grey
+    RAL_7038 : #B4B8B0,    	// Agate grey
+    RAL_7039 : #6B695F,    	// Quartz grey
+    RAL_7040 : #9DA3A6,    	// Window grey
+    RAL_7042 : #8F9695,    	// Traffic grey A
+    RAL_7043 : #4E5451,    	// Traffic grey B
+    RAL_7044 : #BDBDB2,    	// Silk grey
+    RAL_7045 : #91969A,    	// Telegrey 1
+    RAL_7046 : #82898E,    	// Telegrey 2
+    RAL_7047 : #CFD0CF,    	// Telegrey 4
+    RAL_7048 : #888175,    	// Pearl mouse grey
+    RAL_8000 : #887142,    	// Green brown
+    RAL_8001 : #9C6B30,    	// Ochre brown
+    RAL_8002 : #7B5141,    	// Signal brown
+    RAL_8003 : #80542F,    	// Clay brown
+    RAL_8004 : #8F4E35,    	// Copper brown
+    RAL_8007 : #6F4A2F,    	// Fawn brown
+    RAL_8008 : #6F4F28,    	// Olive brown
+    RAL_8011 : #5A3A29,    	// Nut brown
+    RAL_8012 : #673831,    	// Red brown
+    RAL_8014 : #49392D,    	// Sepia brown
+    RAL_8015 : #633A34,    	// Chestnut brown
+    RAL_8016 : #4C2F26,    	// Mahogany brown
+    RAL_8017 : #44322D,    	// Chocolate brown
+    RAL_8019 : #3F3A3A,    	// Grey brown
+    RAL_8022 : #211F20,    	// Black brown
+    RAL_8023 : #A65E2F,    	// Orange brown
+    RAL_8024 : #79553C,    	// Beige brown
+    RAL_8025 : #755C49,    	// Pale brown
+    RAL_8028 : #4E3B31,    	// Terra brown
+    RAL_8029 : #763C28,    	// Pearl copper
+    RAL_9001 : #FDF4E3,    	// Cream
+    RAL_9002 : #E7EBDA,    	// Grey white
+    RAL_9003 : #F4F4F4,    	// Signal white
+    RAL_9004 : #282828,    	// Signal black
+    RAL_9005 : #0A0A0A,    	// Jet black
+    RAL_9006 : #A5A5A5,    	// White aluminum
+    RAL_9007 : #8F8F8F,    	// Grey aluminum
+    RAL_9010 : #FFFFFF,    	// Pure white
+    RAL_9011 : #1C1C1C,    	// Graphite black
+    RAL_9016 : #F6F6F6,    	// Traffic white
+    RAL_9017 : #1E1E1E,    	// Traffic black
+    RAL_9018 : #D7D7D7,    	// Papyrus white
+    RAL_9022 : #9C9C9C,    	// Pearl light grey
+    RAL_9023 : #828282,    	// Pearl dark grey
+);
