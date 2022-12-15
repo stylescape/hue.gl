@@ -157,19 +157,30 @@ function ConvertRGBtoHex(red, green, blue) {
 
                 let color_hex = ConvertRGBtoHex(color_srgb.srgb.red, color_srgb.srgb.green, color_srgb.srgb.blue);
 
+                const swatch_div = document.createElement("div");
+                swatch_div.style.backgroundColor = color_srgb.toString({precision: 3});
+                swatch_div.style.width = '100%';
+                swatch_div.style.height = '100%';
 
                 const swatch = swatch_row.insertCell();
-                swatch.appendChild(document.createTextNode(` `));
+                //swatch.appendChild(document.createTextNode(` `));
+                swatch.appendChild(swatch_div);
+
                 const label = label_row.insertCell();
 
                 // label.appendChild(document.createTextNode(color_hex));
                 label.appendChild(document.createTextNode('#000000'));
+                label.style.fontSize = '12px';
+
+                //label
+
+
 
 
                 swatch.style.border = '1px solid white';
                 swatch.style.width = '24px';
-                swatch.style.backgroundColor = color_srgb.toString({precision: 3});
-                // swatch.style.backgroundCo    lor = col_css;
+                swatch.style.height = '24px';
+                //swatch.style.backgroundColor = color_srgb.toString({precision: 3});
 
 
             }
