@@ -12,56 +12,45 @@
 </body>
 <script type="module">
 
-    import Color from "https://colorjs.io/dist/color.js";
-    // import Chroma from "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js";
+  import Color from "https://colorjs.io/dist/color.js";
+  // import Chroma from "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js";
    
-    function ColorToHex(color) {
-  var hexadecimal = color.toString(16);
-  return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
-}
+  function ColorToHex(color) {
+    var hexadecimal = color.toString(16);
+    return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
+  }
 
-function ConvertRGBtoHex(red, green, blue) {
-  return "#" + ColorToHex(red) + ColorToHex(green) + ColorToHex(blue);
-}
+  function ConvertRGBtoHex(red, green, blue) {
+    return "#" + ColorToHex(red) + ColorToHex(green) + ColorToHex(blue);
+  }
 
-    function palletteCreate() {
+  function palletteCreate() {
 
+    var l_list  = [];
+    var c_list  = [];
 
-        var l_list  = [];
-        var c_list  = [];
+    var l_min    = 60;
+    var l_step   = -6;
+    var l_count  = 9;
 
+    var c_min   = 36;
+    var c_step  = -3;
+    var c_count  = 9;
 
-        var l_min    = 70;
-        var l_step   = -5;
-        var l_count  = 9;
+    var l_min    = 90;
+    var l_step   = -5;
+    var l_count  = 9;
 
-        var c_min   = 36;
-        var c_step  = -3;
-        var c_count  = 9;
+    var c_min   = 15;
+    var c_step  = +5;
+    var c_count  = 9;
 
-
-
-        var l_min    = 90;
-        var l_step   = -5;
-        var l_count  = 9;
-
-        var c_min   = 15;
-        var c_step  = +5;
-        var c_count  = 9;
-
-
-
-
-
-        for (let i = 0; i < l_count; i ++) {
-        
-            let l_cur = l_min + i * l_step;
-            let c_cur = c_min + i * c_step;
-
-            l_list.push(l_cur);
-            c_list.push(c_cur);
-        
-        };
+    for (let i = 0; i < l_count; i ++) {
+      let l_cur = l_min + i * l_step;
+      let c_cur = c_min + i * c_step;
+      l_list.push(l_cur);
+      c_list.push(c_cur);
+    };
 
 
         // var l_list  = [ 95,  90,  85,  80,  75,  70,  65,  60,  55,  50,  45,  40,  35,  30,  25]
