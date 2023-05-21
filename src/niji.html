@@ -2,16 +2,20 @@
 
 
 <head>
-    <!-- <script src="https://colorjs.io/dist/color.js"></script> -->
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js" integrity="sha512-zInFF17qBFVvvvFpIfeBzo7Tj7+rQxLeTJDmbxjBz5/zIr89YVbTNelNhdTT+/DCrxoVzBeUPVFJsczKbB7sew==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
+    <title>NIJI</title>
+    <link rel="stylesheet" href="niji.css">
 </head>
-<body>
 
+
+<body>
+    <h1>NIJI</h1>
+    <div id="niji_wrapper"></div>
 </body>
+
+
 <script type="module">
 
+<<<<<<< HEAD
   import Color from "https://colorjs.io/dist/color.js";
   // import Chroma from "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js";
    
@@ -23,9 +27,31 @@
   function ConvertRGBtoHex(red, green, blue) {
     return "#" + ColorToHex(red) + ColorToHex(green) + ColorToHex(blue);
   }
+=======
+    // import Color from "/color.js";
+    import Color from "https://colorjs.io/dist/color.js";
+    // import Chroma from "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js";
+   
+    function ColorToHex(color) {
+        var hexadecimal = color.toString(16);
+        return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
+    }
+
+    function ConvertRGBtoHex(red, green, blue) {
+        return "#" + ColorToHex(red) + ColorToHex(green) + ColorToHex(blue);
+    }
+
+    function pad(num, size, char) {
+        num = num.toString();
+        while (num.length < size) num = char + num;
+        return num;
+    }
+
+>>>>>>> dev
 
   function palletteCreate() {
 
+<<<<<<< HEAD
     var l_list  = [];
     var c_list  = [];
 
@@ -40,17 +66,46 @@
     var l_min    = 90;
     var l_step   = -5;
     var l_count  = 9;
+=======
+        var l_list  = [];
+        var c_list  = [];
+
+        var l_min    = 70;
+        var l_step   = -5;
+        var l_count  = 9;
+>>>>>>> dev
 
     var c_min   = 15;
     var c_step  = +5;
     var c_count  = 9;
 
+<<<<<<< HEAD
     for (let i = 0; i < l_count; i ++) {
       let l_cur = l_min + i * l_step;
       let c_cur = c_min + i * c_step;
       l_list.push(l_cur);
       c_list.push(c_cur);
     };
+=======
+        var l_min    = 90;
+        var l_step   = -5;
+        var l_count  = 9;
+
+        var c_min   = 15;
+        var c_step  = +5;
+        var c_count  = 9;
+
+
+        for (let i = 0; i < l_count; i ++) {
+        
+            let l_cur = l_min + i * l_step;
+            let c_cur = c_min + i * c_step;
+
+            l_list.push(l_cur);
+            c_list.push(c_cur);
+        
+        };
+>>>>>>> dev
 
 
         // var l_list  = [ 95,  90,  85,  80,  75,  70,  65,  60,  55,  50,  45,  40,  35,  30,  25]
@@ -75,27 +130,46 @@
 
         var cell_size = 24;
 
-        const body = document.body;
+
+        // Create HTML Elements
+        // ====================================================================
+    
+        // Create Body
+        //const body = document.body;
+
+        // Create Style Element
+        const style = document.createElement('style');
+        style.type = 'text/css';
+        let style_root = '';
+        let style_body = '';
+
+        // Create Palette Table
         const palette = document.createElement('table');
+        palette.classList.add("niji_table");
+
+
+        //var pallette_width = l_list.length * cell_size;
+        // palette.style.width = '240px';
+        //palette.style.width = pallette_width + 'p x';
+        //palette.style.border = '1px solid white';
+
+
+        let niji_prefix = "niji_"
+
+        const header_row = palette.insertRow();
+        header_row.classList.add("niji_row");
         
-            var pallette_width = l_list.length * cell_size;
-            // palette.style.width = '240px';
-            palette.style.width = pallette_width + 'p x';
-            palette.style.border = '1px solid white';
-
-
-
         for (let i = h_min; i <= h_max; i += h_step) {
 
+            let niji_i_pad = pad(i / 10, 2, "0");
+
             const swatch_row = palette.insertRow();
-            swatch_row.style.height = '24px';
-            swatch_row.style.width = '240px';
-            const label_row = palette.insertRow();
-            label_row.style.height = '24px';
-            label_row.style.width = '240px';
+            swatch_row.classList.add("niji_row");
 
             for (let j = 0; j <= l_list.length-1; j ++) {
 
+                let niji_j_pad = pad(j + 1, 1, "0");
+                let niji_identifier = niji_i_pad + niji_j_pad
 
                 // let l = "50%";
                 // let c = "80";
@@ -107,14 +181,11 @@
                 // let col = chroma.lch(l, c, h);
 
 
-
-
                 color.inGamut();
                 color.inGamut("srgb");
                 let color_srgb = color.to("srgb");
                 let color_argb = color.to("a98rgb");
                 color_srgb.inGamut();
-
 
                 // console.log(color_srgb);
                 console.log(color_srgb.inGamut());
@@ -133,86 +204,122 @@
                 }
 
 
-                let col = chroma(l_list[j], c_list[j], i, 'lch');
+                // Color Variables
+                // ------------------------------------------------------------
 
-                console.log(col.rgb());
-
-                let bo = chroma.valid(col.rgb());
+                // Color LCH
+                let color_lch = chroma(l_list[j], c_list[j], i, 'lch');
+                let color_lch_css = color_lch.css();
+                
+                // Color RGB
+                let color_rgb = color_lch.rgb()
+                let bo = chroma.valid(color_rgb);
                 console.log(bo);
 
-                let col_css = col.css();
+                // console.log(color_rgb);
+                let color_rgb_r_string = pad(color_rgb[0], 3, " ");
+                let color_rgb_g_string = pad(color_rgb[1], 3, " ");
+                let color_rgb_b_string = pad(color_rgb[2], 3, " ");
+                let color_rgb_css_string = "rgb(" + color_rgb_r_string + ", " + color_rgb_g_string + ", " + color_rgb_b_string + ")"
 
-
-
+                // Color HEX
                 let color_hex = ConvertRGBtoHex(color_srgb.srgb.red, color_srgb.srgb.green, color_srgb.srgb.blue);
+                console.log(color_hex);
 
+
+
+                // Create styles for swatch
+                // ------------------------------------------------------------
+
+                let swatch_color_code = color_rgb
+                
+                let swatch_base_name = niji_prefix + niji_identifier
+
+                // Root styles
+                let swatch_root_name = "--" + swatch_base_name
+                let swatch_root_string = "  " + swatch_root_name + ": " + color_rgb_css_string + ";" + "\n"
+                style_root += swatch_root_string
+
+                // Class styles
+                let swatch_class_name = swatch_base_name
+                let swatch_class_string = "." + swatch_base_name + " { background-color: var(" + swatch_root_name + "); }" + "\n"
+                style_body += swatch_class_string
+
+
+
+                // Create divs
+                // ============================================================
+
+                // Create swatch div
+                // ------------------------------------------------------------
                 const swatch_div = document.createElement("div");
-                swatch_div.style.backgroundColor = color_srgb.toString({precision: 3});
-                swatch_div.style.width = '100%';
-                swatch_div.style.height = '100%';
-
-                const swatch = swatch_row.insertCell();
-                //swatch.appendChild(document.createTextNode(` `));
-                swatch.appendChild(swatch_div);
-
-                const label = label_row.insertCell();
-
-                // label.appendChild(document.createTextNode(color_hex));
-                label.appendChild(document.createTextNode('#000000'));
-                label.style.fontSize = '12px';
-
-                //label
+                swatch_div.classList.add("niji_swatch_div");
+                swatch_div.classList.add(swatch_class_name);
 
 
+                // Create label div
+                // ------------------------------------------------------------
+                const label_div = document.createElement("div");
+                label_div.classList.add("niji_label_div");
+
+                // Append rgb div to label div
+                const label_div_title = document.createElement("div")
+                label_div_title.appendChild(document.createTextNode(niji_identifier));
+                label_div_title.classList.add("niji_label_div_line")
+                label_div.appendChild(label_div_title);
+
+                // Append rgb div to label div
+                const label_div_rgb = document.createElement("div")
+                label_div_rgb.appendChild(document.createTextNode(color_rgb));
+                label_div_rgb.classList.add("niji_label_div_line")
+                label_div.appendChild(label_div_rgb);
+
+                // Append lch div to label div
+                const label_div_lch = document.createElement("div")
+                label_div_lch.appendChild(document.createTextNode(color_lch));
+                label_div_lch.classList.add("niji_label_div_line")
+                label_div.appendChild(label_div_lch);
+
+                // Append hex div to label div
+                const label_div_hex = document.createElement("div")
+                label_div_hex.appendChild(document.createTextNode(color_hex));
+                label_div_hex.classList.add("niji_label_div_line")
+                label_div.appendChild(label_div_hex);
 
 
-                swatch.style.border = '1px solid white';
-                swatch.style.width = '24px';
-                swatch.style.height = '24px';
-                //swatch.style.backgroundColor = color_srgb.toString({precision: 3});
-
+                // Add swatch and label div to table cell
+                // ------------------------------------------------------------
+                const swatch_cell = swatch_row.insertCell();
+                swatch_cell.appendChild(swatch_div);
+                swatch_cell.appendChild(label_div);
+                swatch_cell.classList.add("niji_cell");
 
             }
 
-            
-        
         }
 
-        body.appendChild(palette);
+        const niji_wrapper = document.getElementById('niji_wrapper')
+        niji_wrapper.appendChild(palette);
 
+
+        // Add Style elements to the HTML head section
+        // ====================================================================
+
+        style.innerHTML += "/* Root Variables */" + "\n"
+        style.innerHTML += ":root {" + "\n"
+        style.innerHTML += style_root
+        style.innerHTML += "}" + "\n"
+
+        style.innerHTML += "/* Classes */" + "\n"
+        style.innerHTML += "" + "\n"
+        style.innerHTML += style_body
+        style.innerHTML += "" + "\n"
+
+        document.getElementsByTagName('head')[0].appendChild(style);
 
     }
 
     palletteCreate();
-
-
-//     function tableCreate() {
-
-//         const body = document.body,
-//         tbl = document.createElement('table');
-//         tbl.style.width = '100px';
-//         tbl.style.border = '1px solid black';
-
-//         for (let i = 0; i < 3; i++) {
-//             const tr = tbl.insertRow();
-
-//             for (let j = 0; j < 2; j++) {
-//                 if (i === 2 && j === 1) {
-//                     break;
-//                 } else {
-//                     const td = tr.insertCell();
-//                     td.appendChild(document.createTextNode(`Cell I${i}/J${j}`));
-//                     td.style.border = '1px solid black';
-//                     if (i === 1 && j === 1) {
-//                     td.setAttribute('rowSpan', '2');
-//                     }
-//                 }
-//             }
-//         }
-//         body.appendChild(tbl);
-//     }
-
-// tableCreate();
 
 </script>
 </html>
