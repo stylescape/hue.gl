@@ -1,0 +1,656 @@
+
+/* Root Variables */
+:root {
+  --niji_101: lch(90 12 10);
+  --niji_201: lch(84 18 10);
+  --niji_301: lch(78 24 10);
+  --niji_401: lch(72 30 10);
+  --niji_501: lch(66 36 10);
+  --niji_601: lch(54 30 10);
+  --niji_701: lch(42 24 10);
+  --niji_801: lch(30 18 10);
+  --niji_901: lch(18 12 10);
+  --niji_102: lch(90 12 20);
+  --niji_202: lch(84 18 20);
+  --niji_302: lch(78 24 20);
+  --niji_402: lch(72 30 20);
+  --niji_502: lch(66 36 20);
+  --niji_602: lch(54 30 20);
+  --niji_702: lch(42 24 20);
+  --niji_802: lch(30 18 20);
+  --niji_902: lch(18 12 20);
+  --niji_103: lch(90 12 30);
+  --niji_203: lch(84 18 30);
+  --niji_303: lch(78 24 30);
+  --niji_403: lch(72 30 30);
+  --niji_503: lch(66 36 30);
+  --niji_603: lch(54 30 30);
+  --niji_703: lch(42 24 30);
+  --niji_803: lch(30 18 30);
+  --niji_903: lch(18 12 30);
+  --niji_104: lch(90 12 40);
+  --niji_204: lch(84 18 40);
+  --niji_304: lch(78 24 40);
+  --niji_404: lch(72 30 40);
+  --niji_504: lch(66 36 40);
+  --niji_604: lch(54 30 40);
+  --niji_704: lch(42 24 40);
+  --niji_804: lch(30 18 40);
+  --niji_904: lch(18 12 40);
+  --niji_105: lch(90 12 50);
+  --niji_205: lch(84 18 50);
+  --niji_305: lch(78 24 50);
+  --niji_405: lch(72 30 50);
+  --niji_505: lch(66 36 50);
+  --niji_605: lch(54 30 50);
+  --niji_705: lch(42 24 50);
+  --niji_805: lch(30 18 50);
+  --niji_905: lch(18 12 50);
+  --niji_106: lch(90 12 60);
+  --niji_206: lch(84 18 60);
+  --niji_306: lch(78 24 60);
+  --niji_406: lch(72 30 60);
+  --niji_506: lch(66 36 60);
+  --niji_606: lch(54 30 60);
+  --niji_706: lch(42 24 60);
+  --niji_806: lch(30 18 60);
+  --niji_906: lch(18 12 60);
+  --niji_107: lch(90 12 70);
+  --niji_207: lch(84 18 70);
+  --niji_307: lch(78 24 70);
+  --niji_407: lch(72 30 70);
+  --niji_507: lch(66 36 70);
+  --niji_607: lch(54 30 70);
+  --niji_707: lch(42 24 70);
+  --niji_807: lch(30 18 70);
+  --niji_907: lch(18 12 70);
+  --niji_108: lch(90 12 80);
+  --niji_208: lch(84 18 80);
+  --niji_308: lch(78 24 80);
+  --niji_408: lch(72 30 80);
+  --niji_508: lch(66 36 80);
+  --niji_608: lch(54 30 80);
+  --niji_708: lch(42 24 80);
+  --niji_808: lch(30 18 80);
+  --niji_908: lch(18 12 80);
+  --niji_109: lch(90 12 90);
+  --niji_209: lch(84 18 90);
+  --niji_309: lch(78 24 90);
+  --niji_409: lch(72 30 90);
+  --niji_509: lch(66 36 90);
+  --niji_609: lch(54 30 90);
+  --niji_709: lch(42 24 90);
+  --niji_809: lch(30 18 90);
+  --niji_909: lch(18 12 90);
+  --niji_110: lch(90 12 100);
+  --niji_210: lch(84 18 100);
+  --niji_310: lch(78 24 100);
+  --niji_410: lch(72 30 100);
+  --niji_510: lch(66 36 100);
+  --niji_610: lch(54 30 100);
+  --niji_710: lch(42 24 100);
+  --niji_810: lch(30 18 100);
+  --niji_910: lch(18 12 100);
+  --niji_111: lch(90 12 110);
+  --niji_211: lch(84 18 110);
+  --niji_311: lch(78 24 110);
+  --niji_411: lch(72 30 110);
+  --niji_511: lch(66 36 110);
+  --niji_611: lch(54 30 110);
+  --niji_711: lch(42 24 110);
+  --niji_811: lch(30 18 110);
+  --niji_911: lch(18 12 110);
+  --niji_112: lch(90 12 120);
+  --niji_212: lch(84 18 120);
+  --niji_312: lch(78 24 120);
+  --niji_412: lch(72 30 120);
+  --niji_512: lch(66 36 120);
+  --niji_612: lch(54 30 120);
+  --niji_712: lch(42 24 120);
+  --niji_812: lch(30 18 120);
+  --niji_912: lch(18 12 120);
+  --niji_113: lch(90 12 130);
+  --niji_213: lch(84 18 130);
+  --niji_313: lch(78 24 130);
+  --niji_413: lch(72 30 130);
+  --niji_513: lch(66 36 130);
+  --niji_613: lch(54 30 130);
+  --niji_713: lch(42 24 130);
+  --niji_813: lch(30 18 130);
+  --niji_913: lch(18 12 130);
+  --niji_114: lch(90 12 140);
+  --niji_214: lch(84 18 140);
+  --niji_314: lch(78 24 140);
+  --niji_414: lch(72 30 140);
+  --niji_514: lch(66 36 140);
+  --niji_614: lch(54 30 140);
+  --niji_714: lch(42 24 140);
+  --niji_814: lch(30 18 140);
+  --niji_914: lch(18 12 140);
+  --niji_115: lch(90 12 150);
+  --niji_215: lch(84 18 150);
+  --niji_315: lch(78 24 150);
+  --niji_415: lch(72 30 150);
+  --niji_515: lch(66 36 150);
+  --niji_615: lch(54 30 150);
+  --niji_715: lch(42 24 150);
+  --niji_815: lch(30 18 150);
+  --niji_915: lch(18 12 150);
+  --niji_116: lch(90 12 160);
+  --niji_216: lch(84 18 160);
+  --niji_316: lch(78 24 160);
+  --niji_416: lch(72 30 160);
+  --niji_516: lch(66 36 160);
+  --niji_616: lch(54 30 160);
+  --niji_716: lch(42 24 160);
+  --niji_816: lch(30 18 160);
+  --niji_916: lch(18 12 160);
+  --niji_117: lch(90 12 170);
+  --niji_217: lch(84 18 170);
+  --niji_317: lch(78 24 170);
+  --niji_417: lch(72 30 170);
+  --niji_517: lch(66 36 170);
+  --niji_617: lch(54 30 170);
+  --niji_717: lch(42 24 170);
+  --niji_817: lch(30 18 170);
+  --niji_917: lch(18 12 170);
+  --niji_118: lch(90 12 180);
+  --niji_218: lch(84 18 180);
+  --niji_318: lch(78 24 180);
+  --niji_418: lch(72 30 180);
+  --niji_518: lch(66 36 180);
+  --niji_618: lch(54 30 180);
+  --niji_718: lch(42 24 180);
+  --niji_818: lch(30 18 180);
+  --niji_918: lch(18 12 180);
+  --niji_119: lch(90 12 190);
+  --niji_219: lch(84 18 190);
+  --niji_319: lch(78 24 190);
+  --niji_419: lch(72 30 190);
+  --niji_519: lch(66 36 190);
+  --niji_619: lch(54 30 190);
+  --niji_719: lch(42 24 190);
+  --niji_819: lch(30 18 190);
+  --niji_919: lch(18 12 190);
+  --niji_120: lch(90 12 200);
+  --niji_220: lch(84 18 200);
+  --niji_320: lch(78 24 200);
+  --niji_420: lch(72 30 200);
+  --niji_520: lch(66 36 200);
+  --niji_620: lch(54 30 200);
+  --niji_720: lch(42 24 200);
+  --niji_820: lch(30 18 200);
+  --niji_920: lch(18 12 200);
+  --niji_121: lch(90 12 210);
+  --niji_221: lch(84 18 210);
+  --niji_321: lch(78 24 210);
+  --niji_421: lch(72 30 210);
+  --niji_521: lch(66 36 210);
+  --niji_621: lch(54 30 210);
+  --niji_721: lch(42 24 210);
+  --niji_821: lch(30 18 210);
+  --niji_921: lch(18 12 210);
+  --niji_122: lch(90 12 220);
+  --niji_222: lch(84 18 220);
+  --niji_322: lch(78 24 220);
+  --niji_422: lch(72 30 220);
+  --niji_522: lch(66 36 220);
+  --niji_622: lch(54 30 220);
+  --niji_722: lch(42 24 220);
+  --niji_822: lch(30 18 220);
+  --niji_922: lch(18 12 220);
+  --niji_123: lch(90 12 230);
+  --niji_223: lch(84 18 230);
+  --niji_323: lch(78 24 230);
+  --niji_423: lch(72 30 230);
+  --niji_523: lch(66 36 230);
+  --niji_623: lch(54 30 230);
+  --niji_723: lch(42 24 230);
+  --niji_823: lch(30 18 230);
+  --niji_923: lch(18 12 230);
+  --niji_124: lch(90 12 240);
+  --niji_224: lch(84 18 240);
+  --niji_324: lch(78 24 240);
+  --niji_424: lch(72 30 240);
+  --niji_524: lch(66 36 240);
+  --niji_624: lch(54 30 240);
+  --niji_724: lch(42 24 240);
+  --niji_824: lch(30 18 240);
+  --niji_924: lch(18 12 240);
+  --niji_125: lch(90 12 250);
+  --niji_225: lch(84 18 250);
+  --niji_325: lch(78 24 250);
+  --niji_425: lch(72 30 250);
+  --niji_525: lch(66 36 250);
+  --niji_625: lch(54 30 250);
+  --niji_725: lch(42 24 250);
+  --niji_825: lch(30 18 250);
+  --niji_925: lch(18 12 250);
+  --niji_126: lch(90 12 260);
+  --niji_226: lch(84 18 260);
+  --niji_326: lch(78 24 260);
+  --niji_426: lch(72 30 260);
+  --niji_526: lch(66 36 260);
+  --niji_626: lch(54 30 260);
+  --niji_726: lch(42 24 260);
+  --niji_826: lch(30 18 260);
+  --niji_926: lch(18 12 260);
+  --niji_127: lch(90 12 270);
+  --niji_227: lch(84 18 270);
+  --niji_327: lch(78 24 270);
+  --niji_427: lch(72 30 270);
+  --niji_527: lch(66 36 270);
+  --niji_627: lch(54 30 270);
+  --niji_727: lch(42 24 270);
+  --niji_827: lch(30 18 270);
+  --niji_927: lch(18 12 270);
+  --niji_128: lch(90 12 280);
+  --niji_228: lch(84 18 280);
+  --niji_328: lch(78 24 280);
+  --niji_428: lch(72 30 280);
+  --niji_528: lch(66 36 280);
+  --niji_628: lch(54 30 280);
+  --niji_728: lch(42 24 280);
+  --niji_828: lch(30 18 280);
+  --niji_928: lch(18 12 280);
+  --niji_129: lch(90 12 290);
+  --niji_229: lch(84 18 290);
+  --niji_329: lch(78 24 290);
+  --niji_429: lch(72 30 290);
+  --niji_529: lch(66 36 290);
+  --niji_629: lch(54 30 290);
+  --niji_729: lch(42 24 290);
+  --niji_829: lch(30 18 290);
+  --niji_929: lch(18 12 290);
+  --niji_130: lch(90 12 300);
+  --niji_230: lch(84 18 300);
+  --niji_330: lch(78 24 300);
+  --niji_430: lch(72 30 300);
+  --niji_530: lch(66 36 300);
+  --niji_630: lch(54 30 300);
+  --niji_730: lch(42 24 300);
+  --niji_830: lch(30 18 300);
+  --niji_930: lch(18 12 300);
+  --niji_131: lch(90 12 310);
+  --niji_231: lch(84 18 310);
+  --niji_331: lch(78 24 310);
+  --niji_431: lch(72 30 310);
+  --niji_531: lch(66 36 310);
+  --niji_631: lch(54 30 310);
+  --niji_731: lch(42 24 310);
+  --niji_831: lch(30 18 310);
+  --niji_931: lch(18 12 310);
+  --niji_132: lch(90 12 320);
+  --niji_232: lch(84 18 320);
+  --niji_332: lch(78 24 320);
+  --niji_432: lch(72 30 320);
+  --niji_532: lch(66 36 320);
+  --niji_632: lch(54 30 320);
+  --niji_732: lch(42 24 320);
+  --niji_832: lch(30 18 320);
+  --niji_932: lch(18 12 320);
+  --niji_133: lch(90 12 330);
+  --niji_233: lch(84 18 330);
+  --niji_333: lch(78 24 330);
+  --niji_433: lch(72 30 330);
+  --niji_533: lch(66 36 330);
+  --niji_633: lch(54 30 330);
+  --niji_733: lch(42 24 330);
+  --niji_833: lch(30 18 330);
+  --niji_933: lch(18 12 330);
+  --niji_134: lch(90 12 340);
+  --niji_234: lch(84 18 340);
+  --niji_334: lch(78 24 340);
+  --niji_434: lch(72 30 340);
+  --niji_534: lch(66 36 340);
+  --niji_634: lch(54 30 340);
+  --niji_734: lch(42 24 340);
+  --niji_834: lch(30 18 340);
+  --niji_934: lch(18 12 340);
+  --niji_135: lch(90 12 350);
+  --niji_235: lch(84 18 350);
+  --niji_335: lch(78 24 350);
+  --niji_435: lch(72 30 350);
+  --niji_535: lch(66 36 350);
+  --niji_635: lch(54 30 350);
+  --niji_735: lch(42 24 350);
+  --niji_835: lch(30 18 350);
+  --niji_935: lch(18 12 350);
+  --niji_136: lch(90 12 360);
+  --niji_236: lch(84 18 360);
+  --niji_336: lch(78 24 360);
+  --niji_436: lch(72 30 360);
+  --niji_536: lch(66 36 360);
+  --niji_636: lch(54 30 360);
+  --niji_736: lch(42 24 360);
+  --niji_836: lch(30 18 360);
+  --niji_936: lch(18 12 360);
+}
+
+
+/* SCSS Variables */
+
+$niji_101 { var(--niji_101); }
+$niji_201 { var(--niji_201); }
+$niji_301 { var(--niji_301); }
+$niji_401 { var(--niji_401); }
+$niji_501 { var(--niji_501); }
+$niji_601 { var(--niji_601); }
+$niji_701 { var(--niji_701); }
+$niji_801 { var(--niji_801); }
+$niji_901 { var(--niji_901); }
+$niji_102 { var(--niji_102); }
+$niji_202 { var(--niji_202); }
+$niji_302 { var(--niji_302); }
+$niji_402 { var(--niji_402); }
+$niji_502 { var(--niji_502); }
+$niji_602 { var(--niji_602); }
+$niji_702 { var(--niji_702); }
+$niji_802 { var(--niji_802); }
+$niji_902 { var(--niji_902); }
+$niji_103 { var(--niji_103); }
+$niji_203 { var(--niji_203); }
+$niji_303 { var(--niji_303); }
+$niji_403 { var(--niji_403); }
+$niji_503 { var(--niji_503); }
+$niji_603 { var(--niji_603); }
+$niji_703 { var(--niji_703); }
+$niji_803 { var(--niji_803); }
+$niji_903 { var(--niji_903); }
+$niji_104 { var(--niji_104); }
+$niji_204 { var(--niji_204); }
+$niji_304 { var(--niji_304); }
+$niji_404 { var(--niji_404); }
+$niji_504 { var(--niji_504); }
+$niji_604 { var(--niji_604); }
+$niji_704 { var(--niji_704); }
+$niji_804 { var(--niji_804); }
+$niji_904 { var(--niji_904); }
+$niji_105 { var(--niji_105); }
+$niji_205 { var(--niji_205); }
+$niji_305 { var(--niji_305); }
+$niji_405 { var(--niji_405); }
+$niji_505 { var(--niji_505); }
+$niji_605 { var(--niji_605); }
+$niji_705 { var(--niji_705); }
+$niji_805 { var(--niji_805); }
+$niji_905 { var(--niji_905); }
+$niji_106 { var(--niji_106); }
+$niji_206 { var(--niji_206); }
+$niji_306 { var(--niji_306); }
+$niji_406 { var(--niji_406); }
+$niji_506 { var(--niji_506); }
+$niji_606 { var(--niji_606); }
+$niji_706 { var(--niji_706); }
+$niji_806 { var(--niji_806); }
+$niji_906 { var(--niji_906); }
+$niji_107 { var(--niji_107); }
+$niji_207 { var(--niji_207); }
+$niji_307 { var(--niji_307); }
+$niji_407 { var(--niji_407); }
+$niji_507 { var(--niji_507); }
+$niji_607 { var(--niji_607); }
+$niji_707 { var(--niji_707); }
+$niji_807 { var(--niji_807); }
+$niji_907 { var(--niji_907); }
+$niji_108 { var(--niji_108); }
+$niji_208 { var(--niji_208); }
+$niji_308 { var(--niji_308); }
+$niji_408 { var(--niji_408); }
+$niji_508 { var(--niji_508); }
+$niji_608 { var(--niji_608); }
+$niji_708 { var(--niji_708); }
+$niji_808 { var(--niji_808); }
+$niji_908 { var(--niji_908); }
+$niji_109 { var(--niji_109); }
+$niji_209 { var(--niji_209); }
+$niji_309 { var(--niji_309); }
+$niji_409 { var(--niji_409); }
+$niji_509 { var(--niji_509); }
+$niji_609 { var(--niji_609); }
+$niji_709 { var(--niji_709); }
+$niji_809 { var(--niji_809); }
+$niji_909 { var(--niji_909); }
+$niji_110 { var(--niji_110); }
+$niji_210 { var(--niji_210); }
+$niji_310 { var(--niji_310); }
+$niji_410 { var(--niji_410); }
+$niji_510 { var(--niji_510); }
+$niji_610 { var(--niji_610); }
+$niji_710 { var(--niji_710); }
+$niji_810 { var(--niji_810); }
+$niji_910 { var(--niji_910); }
+$niji_111 { var(--niji_111); }
+$niji_211 { var(--niji_211); }
+$niji_311 { var(--niji_311); }
+$niji_411 { var(--niji_411); }
+$niji_511 { var(--niji_511); }
+$niji_611 { var(--niji_611); }
+$niji_711 { var(--niji_711); }
+$niji_811 { var(--niji_811); }
+$niji_911 { var(--niji_911); }
+$niji_112 { var(--niji_112); }
+$niji_212 { var(--niji_212); }
+$niji_312 { var(--niji_312); }
+$niji_412 { var(--niji_412); }
+$niji_512 { var(--niji_512); }
+$niji_612 { var(--niji_612); }
+$niji_712 { var(--niji_712); }
+$niji_812 { var(--niji_812); }
+$niji_912 { var(--niji_912); }
+$niji_113 { var(--niji_113); }
+$niji_213 { var(--niji_213); }
+$niji_313 { var(--niji_313); }
+$niji_413 { var(--niji_413); }
+$niji_513 { var(--niji_513); }
+$niji_613 { var(--niji_613); }
+$niji_713 { var(--niji_713); }
+$niji_813 { var(--niji_813); }
+$niji_913 { var(--niji_913); }
+$niji_114 { var(--niji_114); }
+$niji_214 { var(--niji_214); }
+$niji_314 { var(--niji_314); }
+$niji_414 { var(--niji_414); }
+$niji_514 { var(--niji_514); }
+$niji_614 { var(--niji_614); }
+$niji_714 { var(--niji_714); }
+$niji_814 { var(--niji_814); }
+$niji_914 { var(--niji_914); }
+$niji_115 { var(--niji_115); }
+$niji_215 { var(--niji_215); }
+$niji_315 { var(--niji_315); }
+$niji_415 { var(--niji_415); }
+$niji_515 { var(--niji_515); }
+$niji_615 { var(--niji_615); }
+$niji_715 { var(--niji_715); }
+$niji_815 { var(--niji_815); }
+$niji_915 { var(--niji_915); }
+$niji_116 { var(--niji_116); }
+$niji_216 { var(--niji_216); }
+$niji_316 { var(--niji_316); }
+$niji_416 { var(--niji_416); }
+$niji_516 { var(--niji_516); }
+$niji_616 { var(--niji_616); }
+$niji_716 { var(--niji_716); }
+$niji_816 { var(--niji_816); }
+$niji_916 { var(--niji_916); }
+$niji_117 { var(--niji_117); }
+$niji_217 { var(--niji_217); }
+$niji_317 { var(--niji_317); }
+$niji_417 { var(--niji_417); }
+$niji_517 { var(--niji_517); }
+$niji_617 { var(--niji_617); }
+$niji_717 { var(--niji_717); }
+$niji_817 { var(--niji_817); }
+$niji_917 { var(--niji_917); }
+$niji_118 { var(--niji_118); }
+$niji_218 { var(--niji_218); }
+$niji_318 { var(--niji_318); }
+$niji_418 { var(--niji_418); }
+$niji_518 { var(--niji_518); }
+$niji_618 { var(--niji_618); }
+$niji_718 { var(--niji_718); }
+$niji_818 { var(--niji_818); }
+$niji_918 { var(--niji_918); }
+$niji_119 { var(--niji_119); }
+$niji_219 { var(--niji_219); }
+$niji_319 { var(--niji_319); }
+$niji_419 { var(--niji_419); }
+$niji_519 { var(--niji_519); }
+$niji_619 { var(--niji_619); }
+$niji_719 { var(--niji_719); }
+$niji_819 { var(--niji_819); }
+$niji_919 { var(--niji_919); }
+$niji_120 { var(--niji_120); }
+$niji_220 { var(--niji_220); }
+$niji_320 { var(--niji_320); }
+$niji_420 { var(--niji_420); }
+$niji_520 { var(--niji_520); }
+$niji_620 { var(--niji_620); }
+$niji_720 { var(--niji_720); }
+$niji_820 { var(--niji_820); }
+$niji_920 { var(--niji_920); }
+$niji_121 { var(--niji_121); }
+$niji_221 { var(--niji_221); }
+$niji_321 { var(--niji_321); }
+$niji_421 { var(--niji_421); }
+$niji_521 { var(--niji_521); }
+$niji_621 { var(--niji_621); }
+$niji_721 { var(--niji_721); }
+$niji_821 { var(--niji_821); }
+$niji_921 { var(--niji_921); }
+$niji_122 { var(--niji_122); }
+$niji_222 { var(--niji_222); }
+$niji_322 { var(--niji_322); }
+$niji_422 { var(--niji_422); }
+$niji_522 { var(--niji_522); }
+$niji_622 { var(--niji_622); }
+$niji_722 { var(--niji_722); }
+$niji_822 { var(--niji_822); }
+$niji_922 { var(--niji_922); }
+$niji_123 { var(--niji_123); }
+$niji_223 { var(--niji_223); }
+$niji_323 { var(--niji_323); }
+$niji_423 { var(--niji_423); }
+$niji_523 { var(--niji_523); }
+$niji_623 { var(--niji_623); }
+$niji_723 { var(--niji_723); }
+$niji_823 { var(--niji_823); }
+$niji_923 { var(--niji_923); }
+$niji_124 { var(--niji_124); }
+$niji_224 { var(--niji_224); }
+$niji_324 { var(--niji_324); }
+$niji_424 { var(--niji_424); }
+$niji_524 { var(--niji_524); }
+$niji_624 { var(--niji_624); }
+$niji_724 { var(--niji_724); }
+$niji_824 { var(--niji_824); }
+$niji_924 { var(--niji_924); }
+$niji_125 { var(--niji_125); }
+$niji_225 { var(--niji_225); }
+$niji_325 { var(--niji_325); }
+$niji_425 { var(--niji_425); }
+$niji_525 { var(--niji_525); }
+$niji_625 { var(--niji_625); }
+$niji_725 { var(--niji_725); }
+$niji_825 { var(--niji_825); }
+$niji_925 { var(--niji_925); }
+$niji_126 { var(--niji_126); }
+$niji_226 { var(--niji_226); }
+$niji_326 { var(--niji_326); }
+$niji_426 { var(--niji_426); }
+$niji_526 { var(--niji_526); }
+$niji_626 { var(--niji_626); }
+$niji_726 { var(--niji_726); }
+$niji_826 { var(--niji_826); }
+$niji_926 { var(--niji_926); }
+$niji_127 { var(--niji_127); }
+$niji_227 { var(--niji_227); }
+$niji_327 { var(--niji_327); }
+$niji_427 { var(--niji_427); }
+$niji_527 { var(--niji_527); }
+$niji_627 { var(--niji_627); }
+$niji_727 { var(--niji_727); }
+$niji_827 { var(--niji_827); }
+$niji_927 { var(--niji_927); }
+$niji_128 { var(--niji_128); }
+$niji_228 { var(--niji_228); }
+$niji_328 { var(--niji_328); }
+$niji_428 { var(--niji_428); }
+$niji_528 { var(--niji_528); }
+$niji_628 { var(--niji_628); }
+$niji_728 { var(--niji_728); }
+$niji_828 { var(--niji_828); }
+$niji_928 { var(--niji_928); }
+$niji_129 { var(--niji_129); }
+$niji_229 { var(--niji_229); }
+$niji_329 { var(--niji_329); }
+$niji_429 { var(--niji_429); }
+$niji_529 { var(--niji_529); }
+$niji_629 { var(--niji_629); }
+$niji_729 { var(--niji_729); }
+$niji_829 { var(--niji_829); }
+$niji_929 { var(--niji_929); }
+$niji_130 { var(--niji_130); }
+$niji_230 { var(--niji_230); }
+$niji_330 { var(--niji_330); }
+$niji_430 { var(--niji_430); }
+$niji_530 { var(--niji_530); }
+$niji_630 { var(--niji_630); }
+$niji_730 { var(--niji_730); }
+$niji_830 { var(--niji_830); }
+$niji_930 { var(--niji_930); }
+$niji_131 { var(--niji_131); }
+$niji_231 { var(--niji_231); }
+$niji_331 { var(--niji_331); }
+$niji_431 { var(--niji_431); }
+$niji_531 { var(--niji_531); }
+$niji_631 { var(--niji_631); }
+$niji_731 { var(--niji_731); }
+$niji_831 { var(--niji_831); }
+$niji_931 { var(--niji_931); }
+$niji_132 { var(--niji_132); }
+$niji_232 { var(--niji_232); }
+$niji_332 { var(--niji_332); }
+$niji_432 { var(--niji_432); }
+$niji_532 { var(--niji_532); }
+$niji_632 { var(--niji_632); }
+$niji_732 { var(--niji_732); }
+$niji_832 { var(--niji_832); }
+$niji_932 { var(--niji_932); }
+$niji_133 { var(--niji_133); }
+$niji_233 { var(--niji_233); }
+$niji_333 { var(--niji_333); }
+$niji_433 { var(--niji_433); }
+$niji_533 { var(--niji_533); }
+$niji_633 { var(--niji_633); }
+$niji_733 { var(--niji_733); }
+$niji_833 { var(--niji_833); }
+$niji_933 { var(--niji_933); }
+$niji_134 { var(--niji_134); }
+$niji_234 { var(--niji_234); }
+$niji_334 { var(--niji_334); }
+$niji_434 { var(--niji_434); }
+$niji_534 { var(--niji_534); }
+$niji_634 { var(--niji_634); }
+$niji_734 { var(--niji_734); }
+$niji_834 { var(--niji_834); }
+$niji_934 { var(--niji_934); }
+$niji_135 { var(--niji_135); }
+$niji_235 { var(--niji_235); }
+$niji_335 { var(--niji_335); }
+$niji_435 { var(--niji_435); }
+$niji_535 { var(--niji_535); }
+$niji_635 { var(--niji_635); }
+$niji_735 { var(--niji_735); }
+$niji_835 { var(--niji_835); }
+$niji_935 { var(--niji_935); }
+$niji_136 { var(--niji_136); }
+$niji_236 { var(--niji_236); }
+$niji_336 { var(--niji_336); }
+$niji_436 { var(--niji_436); }
+$niji_536 { var(--niji_536); }
+$niji_636 { var(--niji_636); }
+$niji_736 { var(--niji_736); }
+$niji_836 { var(--niji_836); }
+$niji_936 { var(--niji_936); }
