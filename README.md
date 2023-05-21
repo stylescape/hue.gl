@@ -25,7 +25,35 @@
 
 
 
+NIJI is ...
+- a color sysrem
+- based on HCL ...
+- Compatible with RGB web color space
+- Compatible with CMYK print color space
+
+
+Specification
+- 36 Hues
+- 9 Chromas per Hue
+- 324 Colors in total per scheme
+- 2 schemes
+
+
+
+Schemes
+- Dark Scheme
+- Light Scheme
+
+
+
+
+
+
+
+
 ### Scape Style
+
+NIJI is a staging development for Scape Style.
 
 <p align="center">
     <a href="https://github.com/scape-agency/kyu">
