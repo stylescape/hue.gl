@@ -31,6 +31,12 @@ NIJI is ...
 - Compatible with RGB web color space
 - Compatible with CMYK print color space
 
+- CSS Colors Module 4
+- implementable as SCSS functions
+
+
+A little recent history: the CSS Color Module Level 4 specification become a candidate recommendation on July 5, 2022.
+https://www.w3.org/TR/css-color-4/
 
 Specification
 - 36 Hues
@@ -45,11 +51,36 @@ Schemes
 - Light Scheme
 
 
+https://github.com/vinaypillai/ac-colors
+https://colorjs.io/
+
+https://www.w3.org/TR/css-color-4/#color-conversion-code
+
+The okay versions of lab and lch come with additional improvements. You can learn more about it Chris Lilley's presentation “Better than Lab? Gamut reduction CIE Lab & OKLab”.
+https://www.youtube.com/watch?v=dOsp6u4bIwI
+
+https://bottosson.github.io/posts/oklab/
+
+https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklch
+https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklab
+
+
+### LCH lch
+LCH is the polar form of Lab. Instead of juggling a and b, you specify a Hue angle (starting from the positive a axis) and a Chroma, or colorfulness, which is zero for neutral greys and increases as a color becomes more intensely colorful.
 
 
 
+The benefits of OKLCH:
 
+Unlike rgb() or hex (#ca0000), OKLCH is human readable. You can easily understand what color an OKLCH value represents simply by looking at the numbers. It works like HSL, but OKLCH encodes lightness better than HSL.
+Unlike hsl(), OKLCH is better for color modifications. It uses perceptual lightness. No more unexpected results, like we had with darken() in Sass.
+Further, with its predictable lightness, OKLCH has better a11y. Especially for palette generation in design systems.
+OKLCH can be used for wide-gamut P3 colors. For instance, new devices (like those from Apple) can display more colors than old sRGB monitors, and we can use OKLCH to specify these new colors.
 
+But, that being said, alongside OKLCH comes two challenges:
+
+With OKLCH and LCH, not all combinations of L, C, and H will result in colors that are supported by every monitor. Although browsers will try to find the closest supported color, it’s still safer to check colors using our color picker.
+OKLCH is a new color space. At least for now, at the time of this writing in 2022, its ecosystem is still limited. But we already have oklch() polyfill, palette generator, color picker, and many converters.
 
 ### Scape Style
 

@@ -8,20 +8,7 @@
 
     <body>
         <div id="niji_wrapper">
-            <header class="niji_header">
-                <h1>NIJI</h1>
-                <br>
-                <h3>version 1.0</h3>
-                <br>
-                <p><b>Scape Style</b> Color System by <a href="https://www.scape.agency">Scape Agency</a></p>
-            </header>
-            <br>
-            <div id="niji_container"></div>
-            <br>
-            <footer class="niji_footer">
-                <a href="https://www.scape.agency">Scape Agency</a>
-            </footer>
-            <br>
+            <header class="niji_header"><h1>NIJI</h1></header><br>
         </div>
     </body>
 
@@ -42,36 +29,6 @@
 
         // Functions
         // ========================================================================
-
-        var rgb2cmyk = function(r, g, b, normalized){
-            var c = 1 - (r / 255);
-            var m = 1 - (g / 255);
-            var y = 1 - (b / 255);
-            var k = Math.min(c, Math.min(m, y));
-            
-            c = (c - k) / (1 - k);
-            m = (m - k) / (1 - k);
-            y = (y - k) / (1 - k);
-            
-            if(!normalized){
-                c = Math.round(c * 10000) / 100;
-                m = Math.round(m * 10000) / 100;
-                y = Math.round(y * 10000) / 100;
-                k = Math.round(k * 10000) / 100;
-            }
-            
-            c = isNaN(c) ? 0 : c;
-            m = isNaN(m) ? 0 : m;
-            y = isNaN(y) ? 0 : y;
-            k = isNaN(k) ? 0 : k;
-            
-            return {
-                c: c,
-                m: m,
-                y: y,
-                k: k
-            }
-        }
 
         function colorToHex(color) {
             var hexadecimal = color.toString(16);
@@ -98,22 +55,15 @@
             // Color Variables
             // ----------------------------------------------------------------
 
-            const p_count   =  9;
-            const l_count   =  Math.ceil(p_count / 2);
-            const d_count   =  Math.floor(p_count / 2);
-
             // L Variables
-            const l_l_min     =  90;
-            const l_l_step    =  -6;
-            const d_l_step    =  -12;
-            const d_l_min     =  l_l_min + (l_l_step * (l_count-1));
-            console.log(d_l_min)
+            const l_min     =  90;
+            const l_step    =  -3;
+            const l_count   =   9;
 
             // C Variables
-            const l_c_min     =  12;
-            const l_c_step    =  +6;
-            const d_c_step    =  -6;
-            const d_c_min     =  l_c_min + (l_c_step * (l_count-1));
+            const c_min     =  12;
+            const c_step    =  +3;
+            const c_count   =   9;
 
             // H Variables
             const h_min     =  10;
@@ -126,18 +76,12 @@
             var l_list  = [];
             var c_list  = [];
             for (let i = 0; i < l_count; i ++) {
-                let l_cur = l_l_min + i * l_l_step;
-                let c_cur = l_c_min + i * l_c_step;
+                let l_cur = l_min + i * l_step;
+                let c_cur = c_min + i * c_step;
                 l_list.push(l_cur);
                 c_list.push(c_cur);
             };
-            for (let i = 0; i < d_count; i ++) {
-                let l_cur = d_l_min + d_l_step + i * d_l_step;
-                let c_cur = d_c_min + d_c_step + i * d_c_step;
-                l_list.push(l_cur);
-                c_list.push(c_cur);
-            };
-            
+
 
             // Create HTML Elements
             // ================================================================
@@ -215,6 +159,7 @@
                     const niji_identifier =  niji_j_pad + niji_i_pad
 
 
+
                     // Color Variables
                     // ========================================================
 
@@ -288,20 +233,19 @@
                     // --------------------------------------------------------
                     let color_css = color_object
 
-                    let color_string_rgb = color_srgb.toString({precision: 3, format: "rgb"});
-                    let color_string_rgba = color_srgb.toString({precision: 3, format: "rgba"});
-                    let color_string_hex = color_srgb.toString({precision: 3, format: "hex"});
-                    let color_string_color = color_srgb.toString({precision: 3, format: "color"});
-
-
-                    // CMYK
-                    // --------------------------------------------------------
-                    let cmyk = rgb2cmyk(
-                        color_srgb.coords[0],
-                        color_srgb.coords[1],
-                        color_srgb.coords[2]
+                    let color_hex = convertRGBtoHex(
+                        color_srgb.srgb.red,
+                        color_srgb.srgb.green,
+                        color_srgb.srgb.blue
                     );
-                    
+                    // console.log(color_hex);
+
+                    // console.log(color_rgb);
+                    // let color_rgb_r_string = pad(color_rgb[0], 3, " ");
+                    // let color_rgb_g_string = pad(color_rgb[1], 3, " ");
+                    // let color_rgb_b_string = pad(color_rgb[2], 3, " ");
+                    // let color_rgb_css_string = "rgb(" + color_rgb_r_string + ", " + color_rgb_g_string + ", " + color_rgb_b_string + ")"
+
 
                     // Create styles for swatch
                     // ========================================================
@@ -334,42 +278,24 @@
                     const label_div = document.createElement("div");
                     label_div.classList.add("niji_label_div");
                     if (in_gamut) {
-
                         // Append rgb div to label div
                         const label_div_title = document.createElement("div")
                         label_div_title.appendChild(document.createTextNode(niji_identifier));
                         label_div_title.classList.add("niji_label_div_line_title")
                         label_div.appendChild(label_div_title);
-
-                        // Append lch div to label div
-                        const label_div_lch = document.createElement("div")
-                        //label_div_lch.appendChild(document.createTextNode("LCH: " + color_lch));
-                        label_div_lch.appendChild(document.createTextNode(color_lch));
-                        label_div_lch.classList.add("niji_label_div_line")
-                        label_div.appendChild(label_div_lch);
-
                         // Append rgb div to label div
                         const label_div_rgb = document.createElement("div")
-                        // label_div_rgb.appendChild(document.createTextNode("RGB: " + color_string_rgb));
-                        label_div_rgb.appendChild(document.createTextNode(color_string_rgb));
+                        label_div_rgb.appendChild(document.createTextNode("RGB: " + color_srgb));
                         label_div_rgb.classList.add("niji_label_div_line")
                         label_div.appendChild(label_div_rgb);
-
-                        // Append CMYK div to label div
-                        const label_div_cmyk = document.createElement("div")
-                        label_div_cmyk.appendChild(document.createTextNode("CMYK: "));
-                        label_div_cmyk.appendChild(document.createTextNode(cmyk.c + " "));
-                        label_div_cmyk.appendChild(document.createTextNode(cmyk.m + " "));
-                        label_div_cmyk.appendChild(document.createTextNode(cmyk.y + " "));
-                        label_div_cmyk.appendChild(document.createTextNode(cmyk.k + " "));
-                        label_div_cmyk.classList.add("niji_label_div_line")
-                        label_div.appendChild(label_div_cmyk);
-
-
+                        // Append lch div to label div
+                        const label_div_lch = document.createElement("div")
+                        label_div_lch.appendChild(document.createTextNode("LCH: " + color_lch));
+                        label_div_lch.classList.add("niji_label_div_line")
+                        label_div.appendChild(label_div_lch);
                         // Append hex div to label div
                         const label_div_hex = document.createElement("div")
-                        //label_div_hex.appendChild(document.createTextNode("HEX: " + color_string_hex));
-                        label_div_hex.appendChild(document.createTextNode(color_string_hex));
+                        label_div_hex.appendChild(document.createTextNode("HEX: " + color_hex));
                         label_div_hex.classList.add("niji_label_div_line")
                         label_div.appendChild(label_div_hex);                    
                     }
@@ -388,7 +314,7 @@
             // Add elements to HTML
             // ================================================================
 
-            const niji_wrapper = document.getElementById('niji_container')
+            const niji_wrapper = document.getElementById('niji_wrapper')
             niji_wrapper.appendChild(palette);
 
             // Add Style elements to the HTML head section
