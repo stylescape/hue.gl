@@ -37,6 +37,7 @@
                 <br>
                 <br>
                 <hr>
+                <br>
             </header>
             <br>
             <div id="niji_container"></div>
@@ -46,7 +47,7 @@
             <br>
             <!-- <footer class="niji_footer">
                 <a href="https://www.scape.agency">Scape Agency</a>
-            </footer> -->
+            </footer> --->
             <br>
         </div>
     </body>
@@ -256,23 +257,65 @@
             const palette = document.createElement('table');
             palette.classList.add("niji_table");
 
-            //const header_row_day = palette.insertRow();
-            //header_row_day.classList.add("niji_row");
-            //let header_cell_day = header_row_day.insertCell();
-            //header_cell_day.classList.add("niji_cell_header");
-            //header_cell_day.appendChild(document.createTextNode( "Day" ));
-            //header_row_day.appendChild(header_cell_day);
+
 
 
 
             // Create Palette Table
+
+            const header_row_day = palette.insertRow();
+            header_row_day.classList.add("niji_row");
+            for (let j = 0; j <= l_list.length; j ++) {
+                let header_cell_day = header_row_day.insertCell();
+                header_cell_day.classList.add("niji_cell_header_day");
+
+                let header_cell_div_day = document.createElement("div");
+                header_cell_div_day.classList.add("niji_cell_header_div_day");
+                header_cell_day.appendChild(header_cell_div_day);
+
+                let day_text = "\n"
+                if (j == 1) { day_text = "<--"} 
+                if (j == 3) { day_text = "AM"} 
+                if (j == 5) { day_text = "-->  <--"} 
+                if (j == 7) { day_text = "PM"} 
+                if (j == 9) { day_text = "-->"} 
+
+                header_cell_div_day.appendChild(document.createTextNode( day_text ));
+                header_row_day.appendChild(header_cell_day);
+            }
+
+            const header_row_day2 = palette.insertRow();
+            header_row_day2.classList.add("niji_row");
+            for (let j = 0; j <= l_list.length; j ++) {
+                let header_cell_day = header_row_day2.insertCell();
+                header_cell_day.classList.add("niji_cell_header_day");
+
+                let header_cell_div_day = document.createElement("div");
+                header_cell_div_day.classList.add("niji_cell_header_div_day");
+                header_cell_day.appendChild(header_cell_div_day);
+
+                let day_text = "\n"
+                if (j == 1) { day_text = "<--"} 
+                if (j == 2) { day_text = "DAWN"} 
+                if (j == 3) { day_text = "-->"} 
+                if (j == 4) { day_text = "<--"} 
+                if (j == 5) { day_text = "DAY"} 
+                if (j == 6) { day_text = "-->"} 
+                if (j == 7) { day_text = "<--"} 
+                if (j == 8) { day_text = "DUSK"} 
+                if (j == 9) { day_text = "-->"} 
+
+                //else {let day_text = "\n"} 
+                header_cell_div_day.appendChild(document.createTextNode( day_text ));
+                header_row_day2.appendChild(header_cell_day);
+            }
+
             const header_row = palette.insertRow();
             header_row.classList.add("niji_row");
 
             let header_cell = header_row.insertCell();
             header_cell.classList.add("niji_cell_header");
             let header_cell_div = document.createElement("div");
-            //header_cell_div.appendChild(document.createTextNode( pad(j + 1, 1, "0") ));
             header_cell_div.classList.add("niji_cell_header_div");
             header_cell.appendChild(header_cell_div);
 
