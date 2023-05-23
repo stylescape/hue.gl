@@ -4,7 +4,7 @@
         <title>NIJI</title>
         <link rel="stylesheet" href="niji.css">
         <script src="chroma.min.js"></script>
-        <script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="https://d3js.org/d3.v7.min.js"></script>
     </head>
 
     <body>
@@ -12,12 +12,13 @@
             <header class="niji_header">
                 <h1>NIJI</h1>
                 <br>
-                <h3><b>Perceptual Color System</b></h3><br>
+                <h3><b>Perceptual Color Spectrum</b></h3><br>
                 <h4>Version 2.0</h4>
                 <p>May 2023</p>
                 <br>
+                
                 <p>
-                    Staging Project for 
+                    Staging System for 
                     <a href="https://www.scape.style">Scape Style</a>
                      by <a href="https://www.scape.agency">Scape Agency</a>
                      <sup>&reg;</sup>
@@ -25,10 +26,17 @@
                 <br>
                 <br>
                 <br>
+                <hr>
+                <br>
+                <br>
+                <br>
                 <div id='color_wheel'></div>
                 <br>
                 <div id='buttons'></div>
                 <br>
+                <br>
+                <br>
+                <hr>
             </header>
             <br>
             <div id="niji_container"></div>
@@ -522,8 +530,8 @@
             
             // D3 Variables
 
-            const SIZE         = 600;
-            const SIZE_INNER   = 100;
+            const SIZE         = 720;
+            const SIZE_INNER   = 240;
             const BANDS        = 9;
             const BAND_WIDTH   = (SIZE - SIZE_INNER) / BANDS;
             const MIN_OPACITY  = 0.1;
@@ -544,7 +552,7 @@ for (let j = 0; j <= l_list.length-1; j++) {
         .outerRadius((SIZE - j*BAND_WIDTH) / 2)
         .innerRadius((SIZE - (j+1)*BAND_WIDTH) / 2)
         .startAngle(0)
-        .endAngle((2*Math.PI) / (COUNT+4));
+        .endAngle((2*Math.PI) / (COUNT+4));//something wrong here
         //.endAngle((i*(360/(h_max))));
     //console.log(((2*Math.PI) / COUNT));
     for (let i = h_min; i <= h_max; i += h_step) {
