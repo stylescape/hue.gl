@@ -16,6 +16,13 @@ body {
     max-height: 100vh;
 }
 
+button {
+    margin: 20px;
+    padding: 10px;
+    background-color: black;
+    color: white;
+}
+
 #niji_wrapper {
     position: relative;
     width: 100%;
