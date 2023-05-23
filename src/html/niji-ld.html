@@ -167,44 +167,47 @@
             // Color Variables
             // ----------------------------------------------------------------
 
+            const p_count   =  9;
+            const l_count   =  Math.ceil(p_count / 2);
+            const d_count   =  Math.floor(p_count / 2);
+
             // L Variables
-            const l_min     =  90;
-            const l_step    =  -3;
-            const l_count   =   9;
+            const l_l_min     =  90;
+            const l_l_step    =  -6;
+            const d_l_step    =  -12;
+            const d_l_min     =  l_l_min + (l_l_step * (l_count-1));
+            console.log(d_l_min)
 
             // C Variables
-            const c_min     =  10;
-            const c_step    =  +3;
-            const c_count   =   9;
+            const l_c_min     =  12;
+            const l_c_step    =  +6;
+            const d_c_step    =  -6;
+            const d_c_min     =  l_c_min + (l_c_step * (l_count-1));
 
             // H Variables
-            const h_min     =  10;
             const h_max     = 360;
             const h_step    =  10;
+            const h_min     =  h_step;
+
 
             // Create LC lists
             // ----------------------------------------------------------------
-            const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946];
-            const padovan =  [1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, 37, 49, 65, 86, 114, 151, 200];
-            const lucas = [1, 3, 4, 7, 11, 18, 29, 47, 76];
-            const leonardo = [1, 1, 3, 5, 9, 15, 25, 41, 67, 109, 177, 287, 465, 753, 1219, 1973, 3193, 5167, 8361];
-            const daylight = [0, 10, 25, 40, 50, 40, 25, 10, 0];
-            const day = [0, 10, 25, 40, 50];
-
-
             var l_list  = [];
             var c_list  = [];
-
-            //l_list.push(l_min);
-            //c_list.push(c_min);
             for (let i = 0; i < l_count; i ++) {
-                let l_cur = 90 - fibonacci[2+i];
-                let c_cur = c_min + daylight[i];
+                let l_cur = l_l_min + i * l_l_step;
+                let c_cur = l_c_min + i * l_c_step;
                 l_list.push(l_cur);
                 c_list.push(c_cur);
             };
-
+            for (let i = 0; i < d_count; i ++) {
+                let l_cur = d_l_min + d_l_step + i * d_l_step;
+                let c_cur = d_c_min + d_c_step + i * d_c_step;
+                l_list.push(l_cur);
+                c_list.push(c_cur);
+            };
             
+
             // Create HTML Elements
             // ================================================================
         

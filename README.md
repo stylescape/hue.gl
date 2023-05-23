@@ -51,6 +51,16 @@ Schemes
 - Light Scheme
 
 
+
+
+
+## Hues
+
+We use 
+
+
+
+
 https://github.com/vinaypillai/ac-colors
 https://colorjs.io/
 
@@ -67,6 +77,9 @@ https://developer.mozilla.org/en-US/docs/Web/CSS/color_value/oklab
 
 https://www.learnui.design/blog/the-hsb-color-system-practicioners-primer.html
 
+
+
+https://observablehq.com/@d3/working-with-color
 ### LCH lch
 LCH is the polar form of Lab. Instead of juggling a and b, you specify a Hue angle (starting from the positive a axis) and a Chroma, or colorfulness, which is zero for neutral greys and increases as a color becomes more intensely colorful.
 
