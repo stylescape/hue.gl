@@ -11,16 +11,24 @@
             <header class="niji_header">
                 <h1>NIJI</h1>
                 <br>
-                <h3>version 1.0</h3>
+                <h3><b>Perceptual Color System</b></h3><br>
+                <h4>Version 2.0</h4>
+                <p>May 2023</p>
                 <br>
-                <p><b>Scape Style</b> Color System by <a href="https://www.scape.agency">Scape Agency</a></p>
+                <p>
+                    Staging Project for 
+                    <a href="https://www.scape.style">Scape Style</a>
+                     by <a href="https://www.scape.agency">Scape Agency</a>
+                     <sup>&reg;</sup>
+                </p>
+                <br>
             </header>
             <br>
             <div id="niji_container"></div>
             <br>
-            <footer class="niji_footer">
+            <!-- <footer class="niji_footer">
                 <a href="https://www.scape.agency">Scape Agency</a>
-            </footer>
+            </footer> -->
             <br>
         </div>
     </body>
@@ -37,76 +45,77 @@
         // Globals
         // ========================================================================
 
-        const niji_prefix = "niji_"
+        //const niji_prefix = "niji_"
+        const niji_prefix = "N"
 
 
 
 
 
         const color_names_10 = {
-            "010": "",
-            "020": "",
+            "010": " ",
+            "020": " ",
             "030": "Orange",
-            "040": "",
-            "050": "",
+            "040": " ",
+            "050": " ",
             "060": "Yellow",
-            "070": "",
-            "080": "",
-            "090": "",
-            "100": "",
-            "110": "",
+            "070": " ",
+            "080": " ",
+            "090": " ",
+            "100": " ",
+            "110": " ",
             "120": "Green",
-            "130": "",
-            "140": "",
-            "150": "",
-            "160": "",
-            "170": "",
+            "130": " ",
+            "140": " ",
+            "150": " ",
+            "160": " ",
+            "170": " ",
             "180": "Cyan",
-            "190": "",
+            "190": " ",
             "200": "Azure",
-            "210": "",
-            "220": "",
-            "230": "",
+            "210": " ",
+            "220": " ",
+            "230": " ",
             "240": "Blue",
-            "250": "",
-            "260": "",
+            "250": " ",
+            "260": " ",
             "270": "Violet",
-            "280": "",
-            "290": "",
+            "280": " ",
+            "290": " ",
             "300": "Magenta",
-            "310": "",
+            "310": " ",
             "320": "Pink",
-            "330": "",
-            "340": "",
-            "350": "",
+            "330": " ",
+            "340": " ",
+            "350": " ",
             "360": "Red"
           };
 
           const color_names_15 = {
-            "015": "",
+            "015": "Vermillion",
             "030": "Orange",
-            "045": "",
-            "060": "Yellow",
-            "075": "",
-            "090": "",
-            "105": "",
-            "120": "Green",
-            "135": "",
-            "150": "",
-            "165": "",
-            "180": "Cyan",
-            "195": "",
-            "210": "",
-            "225": "",
-            "240": "Blue",
-            "255": "",
+            "045": "Amber",
+            "060": "Yellow",        // Fixed
+            "075": "Lime",
+            "090": "Ecru",
+            "105": "Olive",
+            "120": "Green",         // Fixed
+            "135": "Forest",
+            "150": "Jade",
+            "165": "Mint",
+            "180": "Cyan",          // Fixed
+            "195": "Teal",
+            "210": "Capri",
+            "225": "Cerulean",
+            "240": "Blue",          // Fixed
+            "255": "Azure",
             "270": "Violet",
-            "285": "",
-            "300": "Magenta",
-            "315": "",
-            "330": "",
-            "345": "",
-            "360": "Red"
+            "285": "Purple",
+            "300": "Magenta",       // Fixed
+            "315": "Cerise",
+            "330": "Rose",
+            "345": "Pink",
+            "360": "Red"            // Fixed
           };
 
         // Functions
@@ -167,41 +176,46 @@
             // Color Variables
             // ----------------------------------------------------------------
 
+            const p_count   =  9;
+            const l_count   =  Math.ceil(p_count / 2);
+            const d_count   =  Math.floor(p_count / 2);
+
             // L Variables
-            const l_min     =  90;
-            const l_step    =  -3;
-            const l_count   =   9;
+            const l_l_min     =  96;
+            const l_l_step    =  -6;
+            const d_l_step    =  -6;
+            const d_l_min     =  l_l_min + (l_l_step * (l_count-1));
+            console.log(d_l_min)
 
             // C Variables
-            const c_min     =  10;
-            const c_step    =  +3;
-            const c_count   =   9;
+            const l_c_min     =  12;
+            const l_c_step    =  +6;
+            const d_c_step    =  -6;
+            const d_c_min     =  l_c_min + (l_c_step * (l_count-1));
 
             // H Variables
-            const h_min     =  10;
             const h_max     = 360;
-            const h_step    =  10;
+            const h_step    =  15;
+            const h_min     =  h_step;
+
+
+
 
             // Create LC lists
             // ----------------------------------------------------------------
-            const fibonacci = [0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610, 987, 1597, 2584, 4181, 6765, 10946];
-            const padovan =  [1, 1, 1, 2, 2, 3, 4, 5, 7, 9, 12, 16, 21, 28, 37, 49, 65, 86, 114, 151, 200];
-            const lucas = [1, 3, 4, 7, 11, 18, 29, 47, 76];
-            const leonardo = [1, 1, 3, 5, 9, 15, 25, 41, 67, 109, 177, 287, 465, 753, 1219, 1973, 3193, 5167, 8361];
-            const daylight = [0, 10, 25, 40, 50, 40, 25, 10, 0];
-            const day = [0, 10, 25, 40, 50];
-
-
             var l_list  = [];
             var c_list  = [];
-
-            //l_list.push(l_min);
-            //c_list.push(c_min);
             for (let i = 0; i < l_count; i ++) {
-                let l_cur = 90 - fibonacci[2+i];
-                let c_cur = c_min + daylight[i];
-                l_list.push(l_cur);
+                let c_cur = l_c_min + i * l_c_step;
                 c_list.push(c_cur);
+            };
+            for (let i = 0; i < d_count; i ++) {
+                let c_cur = d_c_min + d_c_step + i * d_c_step;
+                c_list.push(c_cur);
+            };
+            for (let i = 0; i < p_count; i ++) {
+                let l_cur = l_l_min + l_l_step + i * l_l_step -2*i;
+                l_list.push(l_cur);
             };
 
             
@@ -220,6 +234,15 @@
             // Create Palette Table
             const palette = document.createElement('table');
             palette.classList.add("niji_table");
+
+            //const header_row_day = palette.insertRow();
+            //header_row_day.classList.add("niji_row");
+            //let header_cell_day = header_row_day.insertCell();
+            //header_cell_day.classList.add("niji_cell_header");
+            //header_cell_day.appendChild(document.createTextNode( "Day" ));
+            //header_row_day.appendChild(header_cell_day);
+
+
 
             // Create Palette Table
             const header_row = palette.insertRow();
@@ -256,7 +279,7 @@
             // ================================================================
             for (let i = h_min; i <= h_max; i += h_step) {
 
-                const niji_i_pad = pad(i / 10, 2, "0");
+                const niji_i_pad = pad(i / 1, 3, "0");
                 const swatch_row = palette.insertRow();
                 swatch_row.classList.add("niji_row");
 
@@ -264,13 +287,22 @@
                 header_cell.classList.add("niji_cell_header");
                 let header_cell_div = document.createElement("div");
 
-                header_cell_div.appendChild(document.createTextNode( pad(i / 10, 2, "0") ));
+                let header_cell_div_name = document.createElement("div");
+                header_cell_div_name.appendChild(document.createTextNode(color_names_15[niji_i_pad] ));
+                header_cell.appendChild(header_cell_div_name);
+
+                header_cell_div.appendChild(document.createTextNode( pad(i / 1, 3, "0") ));
                 header_cell_div.classList.add("niji_cell_header_div");
                 header_cell.appendChild(header_cell_div);
 
                 let header_cell_div_h = document.createElement("div");
                 header_cell_div_h.appendChild(document.createTextNode( "H: " + i));
                 header_cell.appendChild(header_cell_div_h);
+
+
+                                // CSS Headers
+                                let css_header = "\n" + "  /* " + color_names_15[niji_i_pad] + " */"+ "\n" +"  /* ----------------------------------------------------------------------- */"+ "\n"
+                                style_root += css_header
 
 
                 // Loop over Luminosity levels
@@ -369,14 +401,14 @@
                     );
                     
 
-                    // Create styles for swatch
+                    // Create css styles for swatch
                     // ========================================================
                     
                     let swatch_base_name = niji_prefix + niji_identifier
 
                     // Root styles
                     let swatch_root_name = "--" + swatch_base_name
-                    let swatch_root_string = "  " + swatch_root_name + ": " + color_css + ";" + "\n"
+                    let swatch_root_string = "  " + swatch_root_name + ": " + color_string_rgb + ";" + "\n"
                     style_root += swatch_root_string
 
                     // Class styles
@@ -403,7 +435,7 @@
 
                         // Append rgb div to label div
                         const label_div_title = document.createElement("div")
-                        label_div_title.appendChild(document.createTextNode(niji_identifier));
+                        label_div_title.appendChild(document.createTextNode(niji_prefix+niji_identifier));
                         label_div_title.classList.add("niji_label_div_line_title")
                         label_div.appendChild(label_div_title);
 
