@@ -4,6 +4,7 @@
         <title>NIJI</title>
         <link rel="stylesheet" href="niji.css">
         <script src="chroma.min.js"></script>
+        <script src="https://d3js.org/d3.v4.min.js"></script>
     </head>
 
     <body>
@@ -21,6 +22,12 @@
                      by <a href="https://www.scape.agency">Scape Agency</a>
                      <sup>&reg;</sup>
                 </p>
+                <br>
+                <br>
+                <br>
+                <div id='color_wheel'></div>
+                <br>
+                <div id='buttons'></div>
                 <br>
             </header>
             <br>
@@ -197,6 +204,9 @@
             const h_max     = 360;
             const h_step    =  15;
             const h_min     =  h_step;
+
+
+
 
 
 
@@ -503,6 +513,82 @@
             style.innerHTML += "" + "\n"
 
             document.getElementsByTagName('head')[0].appendChild(style);
+
+
+
+
+
+
+            
+            // D3 Variables
+
+            const SIZE         = 600;
+            const SIZE_INNER   = 100;
+            const BANDS        = 9;
+            const BAND_WIDTH   = (SIZE - SIZE_INNER) / BANDS;
+            const MIN_OPACITY  = 0.1;
+            const OPACITY_STEP = (1 - MIN_OPACITY) / BANDS;
+            const COUNT        = 20;
+            const COLORS       = d3.range(COUNT).map( (d, i) => d3.interpolateRainbow(i/COUNT) );
+            const svg = d3.select('#color_wheel').append('svg')
+                .attr('width', SIZE)
+                .attr('height', SIZE)
+                .append('g')
+                .attr('transform', 'translate(' + (SIZE/2) + ',' + (SIZE/2) + ')');
+        
+                
+
+for (let j = 0; j <= l_list.length-1; j++) {
+
+    const arc = d3.arc()
+        .outerRadius((SIZE - j*BAND_WIDTH) / 2)
+        .innerRadius((SIZE - (j+1)*BAND_WIDTH) / 2)
+        .startAngle(0)
+        .endAngle((2*Math.PI) / (COUNT+4));
+        //.endAngle((i*(360/(h_max))));
+    //console.log(((2*Math.PI) / COUNT));
+    for (let i = h_min; i <= h_max; i += h_step) {
+
+        let d3_l = l_list[j];
+        let d3_c = c_list[j];
+        let d3_h = i;
+        let d3_color = d3.hcl(d3_h, d3_c, d3_l).toString()
+        //console.log((i*(360/(h_max))));
+        svg.append('g')
+            .attr('class', 'band')
+            //.selectAll('path').data(COLORS)
+            //.enter()
+            .append('path')
+            .attr('fill',d3_color)
+            //.attr("transform", 'rotate(' + ( i *((2*Math.PI) / COUNT)) + ')')
+            .attr("transform", 'rotate(' + (i*(360/(h_max))) + ')')
+
+
+            .attr('stroke', '#fff')
+            .attr('stroke-width', 2)
+            //.attr('transform', (d, i) => 'rotate(' + (i*(360/COUNT)) + ')')
+            .attr('d', arc());
+        }
+
+    }
+  
+
+d3.select('#buttons').append('button')
+.text('Scramble')
+.on('click', () => {
+  svg.selectAll('.band')
+    .transition().duration(1000)
+    .attr('transform', () =>
+      'rotate(' + (360/h_max)*Math.floor(h_max * Math.random()) + ')'
+    );
+});
+d3.select('#buttons').append('button')
+.text('Restore')
+.on('click', () => {
+  svg.selectAll('.band')
+    .transition().duration(1000)
+    .attr('transform', 'rotate(0)');
+});
 
         }
 
