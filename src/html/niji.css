@@ -115,6 +115,14 @@ table, th, td {
     font-size: 16px;
 }
 
+.niji_cell_header_div_day {
+    text-align: center;
+    vertical-align: middle;
+    font-weight: 600;
+    font-size: 16px;
+    margin: 20px;
+    opacity: 0.5;
+}
 
 
 .niji_label_div {
