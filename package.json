@@ -43,7 +43,9 @@
     "sass": "^1.56.2",
     "typescript": "^4.9.4"
   },
-  "files": [],
+  "files": [
+    
+  ],
   "hugo-bin": {
     "buildTags": "extended"
   },
