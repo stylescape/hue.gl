@@ -1,18 +1,18 @@
 {
-  "name": "niji",
-  "description": "Niji is a colour palette developed by Scape Agency.",
+  "name": "hue.gl",
+  "description": "hue.gl is a colour palette developed by Scape Agency.",
   "version": "0.0.1",
   "config": {
     "version_short": "0.0"
   },
   "keywords": [
-    "niji",
+    "hue.gl",
     "icon",
     "svg",
     "icon library",
     "framework"
   ],
-  "homepage": "https://www.niji.ink/",
+  "homepage": "https://www.hue.gl/",
   "author": "Lars van Vianen",
   "contributors": [
     "Scape Agency",
@@ -21,10 +21,10 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/scape-agency/niji.git"
+    "url": "git+https://github.com/scape-agency/hue.gl.git"
   },
   "bugs": {
-    "url": "https://github.com/scape-agency/niji/issues"
+    "url": "https://github.com/scape-agency/hue.gl/issues"
   },
   "funding": [
     {
@@ -32,10 +32,10 @@
       "url": "https://github.com/sponsors/scape-agency"
     }
   ],
-  "main": "niji.js",
-  "module": "niji.esm.js",
-  "sass": "scss/niji.scss",
-  "style": "css/niji.css",
+  "main": "hue.gl.js",
+  "module": "hue.gl.esm.js",
+  "sass": "scss/hue.gl.scss",
+  "style": "css/hue.gl.css",
   "scripts": {},
   "devDependencies": {
     "del": "^7.0.0",
