@@ -15,7 +15,7 @@
 
 ---
 
-<img align="right" width="75%" src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/res/hue.gl.webp"  alt="hue.gl">
+<img align="right" width="75%" src="/res/hue.gl.webp"  alt="hue.gl">
 
 ### Contents
 
