@@ -1,0 +1,295 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE palette PUBLIC "-//Kreative//DTD ResplendentColor 1.0//EN" "http://www.kreativekorp.com/dtd/rcpx.dtd">
+<!-- hue.gl, version: 0.0.1 - https://www.hue.gl/ -->
+<palette name="Open Color"
+         orientation="square"
+         hwidth="241" hheight= "85"
+         swidth="121" sheight="157"
+         vwidth= "85" vheight="241">
+  <colors ordered="ordered">
+<rgb r="" g="" b="" name="N0151"/>
+<rgb r="" g="" b="" name="N0152"/>
+<rgb r="" g="" b="" name="N0153"/>
+<rgb r="" g="" b="" name="N0154"/>
+<rgb r="" g="" b="" name="N0155"/>
+<rgb r="" g="" b="" name="N0156"/>
+<rgb r="" g="" b="" name="N0157"/>
+<rgb r="" g="" b="" name="N0158"/>
+<rgb r="" g="" b="" name="N0159"/>
+
+<rgb r="" g="" b="" name="N0301"/>
+<rgb r="" g="" b="" name="N0302"/>
+<rgb r="" g="" b="" name="N0303"/>
+<rgb r="" g="" b="" name="N0304"/>
+<rgb r="" g="" b="" name="N0305"/>
+<rgb r="" g="" b="" name="N0306"/>
+<rgb r="" g="" b="" name="N0307"/>
+<rgb r="" g="" b="" name="N0308"/>
+<rgb r="" g="" b="" name="N0309"/>
+
+<rgb r="" g="" b="" name="N0451"/>
+<rgb r="" g="" b="" name="N0452"/>
+<rgb r="" g="" b="" name="N0453"/>
+<rgb r="" g="" b="" name="N0454"/>
+<rgb r="" g="" b="" name="N0455"/>
+<rgb r="" g="" b="" name="N0456"/>
+<rgb r="" g="" b="" name="N0457"/>
+<rgb r="" g="" b="" name="N0458"/>
+<rgb r="" g="" b="" name="N0459"/>
+
+<rgb r="" g="" b="" name="N0601"/>
+<rgb r="" g="" b="" name="N0602"/>
+<rgb r="" g="" b="" name="N0603"/>
+<rgb r="" g="" b="" name="N0604"/>
+<rgb r="" g="" b="" name="N0605"/>
+<rgb r="" g="" b="" name="N0606"/>
+<rgb r="" g="" b="" name="N0607"/>
+<rgb r="" g="" b="" name="N0608"/>
+<rgb r="" g="" b="" name="N0609"/>
+
+<rgb r="" g="" b="" name="N0751"/>
+<rgb r="" g="" b="" name="N0752"/>
+<rgb r="" g="" b="" name="N0753"/>
+<rgb r="" g="" b="" name="N0754"/>
+<rgb r="" g="" b="" name="N0755"/>
+<rgb r="" g="" b="" name="N0756"/>
+<rgb r="" g="" b="" name="N0757"/>
+<rgb r="" g="" b="" name="N0758"/>
+<rgb r="" g="" b="" name="N0759"/>
+
+<rgb r="" g="" b="" name="N0901"/>
+<rgb r="" g="" b="" name="N0902"/>
+<rgb r="" g="" b="" name="N0903"/>
+<rgb r="" g="" b="" name="N0904"/>
+<rgb r="" g="" b="" name="N0905"/>
+<rgb r="" g="" b="" name="N0906"/>
+<rgb r="" g="" b="" name="N0907"/>
+<rgb r="" g="" b="" name="N0908"/>
+<rgb r="" g="" b="" name="N0909"/>
+
+<rgb r="" g="" b="" name="N1051"/>
+<rgb r="" g="" b="" name="N1052"/>
+<rgb r="" g="" b="" name="N1053"/>
+<rgb r="" g="" b="" name="N1054"/>
+<rgb r="" g="" b="" name="N1055"/>
+<rgb r="" g="" b="" name="N1056"/>
+<rgb r="" g="" b="" name="N1057"/>
+<rgb r="" g="" b="" name="N1058"/>
+<rgb r="" g="" b="" name="N1059"/>
+
+<rgb r="" g="" b="" name="N1201"/>
+<rgb r="" g="" b="" name="N1202"/>
+<rgb r="" g="" b="" name="N1203"/>
+<rgb r="" g="" b="" name="N1204"/>
+<rgb r="" g="" b="" name="N1205"/>
+<rgb r="" g="" b="" name="N1206"/>
+<rgb r="" g="" b="" name="N1207"/>
+<rgb r="" g="" b="" name="N1208"/>
+<rgb r="" g="" b="" name="N1209"/>
+
+<rgb r="" g="" b="" name="N1351"/>
+<rgb r="" g="" b="" name="N1352"/>
+<rgb r="" g="" b="" name="N1353"/>
+<rgb r="" g="" b="" name="N1354"/>
+<rgb r="" g="" b="" name="N1355"/>
+<rgb r="" g="" b="" name="N1356"/>
+<rgb r="" g="" b="" name="N1357"/>
+<rgb r="" g="" b="" name="N1358"/>
+<rgb r="" g="" b="" name="N1359"/>
+
+<rgb r="" g="" b="" name="N1501"/>
+<rgb r="" g="" b="" name="N1502"/>
+<rgb r="" g="" b="" name="N1503"/>
+<rgb r="" g="" b="" name="N1504"/>
+<rgb r="" g="" b="" name="N1505"/>
+<rgb r="" g="" b="" name="N1506"/>
+<rgb r="" g="" b="" name="N1507"/>
+<rgb r="" g="" b="" name="N1508"/>
+<rgb r="" g="" b="" name="N1509"/>
+
+<rgb r="" g="" b="" name="N1651"/>
+<rgb r="" g="" b="" name="N1652"/>
+<rgb r="" g="" b="" name="N1653"/>
+<rgb r="" g="" b="" name="N1654"/>
+<rgb r="" g="" b="" name="N1655"/>
+<rgb r="" g="" b="" name="N1656"/>
+<rgb r="" g="" b="" name="N1657"/>
+<rgb r="" g="" b="" name="N1658"/>
+<rgb r="" g="" b="" name="N1659"/>
+
+<rgb r="" g="" b="" name="N1801"/>
+<rgb r="" g="" b="" name="N1802"/>
+<rgb r="" g="" b="" name="N1803"/>
+<rgb r="" g="" b="" name="N1804"/>
+<rgb r="" g="" b="" name="N1805"/>
+<rgb r="" g="" b="" name="N1806"/>
+<rgb r="" g="" b="" name="N1807"/>
+<rgb r="" g="" b="" name="N1808"/>
+<rgb r="" g="" b="" name="N1809"/>
+
+<rgb r="" g="" b="" name="N1951"/>
+<rgb r="" g="" b="" name="N1952"/>
+<rgb r="" g="" b="" name="N1953"/>
+<rgb r="" g="" b="" name="N1954"/>
+<rgb r="" g="" b="" name="N1955"/>
+<rgb r="" g="" b="" name="N1956"/>
+<rgb r="" g="" b="" name="N1957"/>
+<rgb r="" g="" b="" name="N1958"/>
+<rgb r="" g="" b="" name="N1959"/>
+
+<rgb r="" g="" b="" name="N2101"/>
+<rgb r="" g="" b="" name="N2102"/>
+<rgb r="" g="" b="" name="N2103"/>
+<rgb r="" g="" b="" name="N2104"/>
+<rgb r="" g="" b="" name="N2105"/>
+<rgb r="" g="" b="" name="N2106"/>
+<rgb r="" g="" b="" name="N2107"/>
+<rgb r="" g="" b="" name="N2108"/>
+<rgb r="" g="" b="" name="N2109"/>
+
+<rgb r="" g="" b="" name="N2251"/>
+<rgb r="" g="" b="" name="N2252"/>
+<rgb r="" g="" b="" name="N2253"/>
+<rgb r="" g="" b="" name="N2254"/>
+<rgb r="" g="" b="" name="N2255"/>
+<rgb r="" g="" b="" name="N2256"/>
+<rgb r="" g="" b="" name="N2257"/>
+<rgb r="" g="" b="" name="N2258"/>
+<rgb r="" g="" b="" name="N2259"/>
+
+<rgb r="" g="" b="" name="N2401"/>
+<rgb r="" g="" b="" name="N2402"/>
+<rgb r="" g="" b="" name="N2403"/>
+<rgb r="" g="" b="" name="N2404"/>
+<rgb r="" g="" b="" name="N2405"/>
+<rgb r="" g="" b="" name="N2406"/>
+<rgb r="" g="" b="" name="N2407"/>
+<rgb r="" g="" b="" name="N2408"/>
+<rgb r="" g="" b="" name="N2409"/>
+
+<rgb r="" g="" b="" name="N2551"/>
+<rgb r="" g="" b="" name="N2552"/>
+<rgb r="" g="" b="" name="N2553"/>
+<rgb r="" g="" b="" name="N2554"/>
+<rgb r="" g="" b="" name="N2555"/>
+<rgb r="" g="" b="" name="N2556"/>
+<rgb r="" g="" b="" name="N2557"/>
+<rgb r="" g="" b="" name="N2558"/>
+<rgb r="" g="" b="" name="N2559"/>
+
+<rgb r="" g="" b="" name="N2701"/>
+<rgb r="" g="" b="" name="N2702"/>
+<rgb r="" g="" b="" name="N2703"/>
+<rgb r="" g="" b="" name="N2704"/>
+<rgb r="" g="" b="" name="N2705"/>
+<rgb r="" g="" b="" name="N2706"/>
+<rgb r="" g="" b="" name="N2707"/>
+<rgb r="" g="" b="" name="N2708"/>
+<rgb r="" g="" b="" name="N2709"/>
+
+<rgb r="" g="" b="" name="N2851"/>
+<rgb r="" g="" b="" name="N2852"/>
+<rgb r="" g="" b="" name="N2853"/>
+<rgb r="" g="" b="" name="N2854"/>
+<rgb r="" g="" b="" name="N2855"/>
+<rgb r="" g="" b="" name="N2856"/>
+<rgb r="" g="" b="" name="N2857"/>
+<rgb r="" g="" b="" name="N2858"/>
+<rgb r="" g="" b="" name="N2859"/>
+
+<rgb r="" g="" b="" name="N3001"/>
+<rgb r="" g="" b="" name="N3002"/>
+<rgb r="" g="" b="" name="N3003"/>
+<rgb r="" g="" b="" name="N3004"/>
+<rgb r="" g="" b="" name="N3005"/>
+<rgb r="" g="" b="" name="N3006"/>
+<rgb r="" g="" b="" name="N3007"/>
+<rgb r="" g="" b="" name="N3008"/>
+<rgb r="" g="" b="" name="N3009"/>
+
+<rgb r="" g="" b="" name="N3151"/>
+<rgb r="" g="" b="" name="N3152"/>
+<rgb r="" g="" b="" name="N3153"/>
+<rgb r="" g="" b="" name="N3154"/>
+<rgb r="" g="" b="" name="N3155"/>
+<rgb r="" g="" b="" name="N3156"/>
+<rgb r="" g="" b="" name="N3157"/>
+<rgb r="" g="" b="" name="N3158"/>
+<rgb r="" g="" b="" name="N3159"/>
+
+<rgb r="" g="" b="" name="N3301"/>
+<rgb r="" g="" b="" name="N3302"/>
+<rgb r="" g="" b="" name="N3303"/>
+<rgb r="" g="" b="" name="N3304"/>
+<rgb r="" g="" b="" name="N3305"/>
+<rgb r="" g="" b="" name="N3306"/>
+<rgb r="" g="" b="" name="N3307"/>
+<rgb r="" g="" b="" name="N3308"/>
+<rgb r="" g="" b="" name="N3309"/>
+
+<rgb r="" g="" b="" name="N3451"/>
+<rgb r="" g="" b="" name="N3452"/>
+<rgb r="" g="" b="" name="N3453"/>
+<rgb r="" g="" b="" name="N3454"/>
+<rgb r="" g="" b="" name="N3455"/>
+<rgb r="" g="" b="" name="N3456"/>
+<rgb r="" g="" b="" name="N3457"/>
+<rgb r="" g="" b="" name="N3458"/>
+<rgb r="" g="" b="" name="N3459"/>
+
+<rgb r="" g="" b="" name="N3601"/>
+<rgb r="" g="" b="" name="N3602"/>
+<rgb r="" g="" b="" name="N3603"/>
+<rgb r="" g="" b="" name="N3604"/>
+<rgb r="" g="" b="" name="N3605"/>
+<rgb r="" g="" b="" name="N3606"/>
+<rgb r="" g="" b="" name="N3607"/>
+<rgb r="" g="" b="" name="N3608"/>
+<rgb r="" g="" b="" name="N3609"/>
+
+
+  </colors>
+  <layout>
+    <oriented>
+      <horizontal>
+        <column>
+          <row><range start=  "0" end= "10"/></row>
+          <row><range start= "10" end= "20"/><range start= "70" end= "80"/></row>
+          <row><range start= "20" end= "30"/><range start= "80" end= "90"/></row>
+          <row><range start= "30" end= "40"/><range start= "90" end="100"/></row>
+          <row><range start= "40" end= "50"/><range start="100" end="110"/></row>
+          <row><range start= "50" end= "60"/><range start="110" end="120"/></row>
+          <row><range start= "60" end= "70"/><range start="120" end="130"/></row>
+        </column>
+      </horizontal>
+      <square>
+        <column>
+          <row><range start=  "0" end= "10"/></row>
+          <row><range start= "10" end= "20"/></row>
+          <row><range start= "20" end= "30"/></row>
+          <row><range start= "30" end= "40"/></row>
+          <row><range start= "40" end= "50"/></row>
+          <row><range start= "50" end= "60"/></row>
+          <row><range start= "60" end= "70"/></row>
+          <row><range start= "70" end= "80"/></row>
+          <row><range start= "80" end= "90"/></row>
+          <row><range start= "90" end="100"/></row>
+          <row><range start="100" end="110"/></row>
+          <row><range start="110" end="120"/></row>
+          <row><range start="120" end="130"/></row>
+        </column>
+      </square>
+      <vertical>
+        <row>
+          <column><range start=  "0" end= "10"/></column>
+          <column><range start= "10" end= "20"/><range start= "70" end= "80"/></column>
+          <column><range start= "20" end= "30"/><range start= "80" end= "90"/></column>
+          <column><range start= "30" end= "40"/><range start= "90" end="100"/></column>
+          <column><range start= "40" end= "50"/><range start="100" end="110"/></column>
+          <column><range start= "50" end= "60"/><range start="110" end="120"/></column>
+          <column><range start= "60" end= "70"/><range start="120" end="130"/></column>
+        </row>
+      </vertical>
+    </oriented>
+  </layout>
+</palette>

@@ -1,11 +1,5 @@
-
-// Globals
-// ========================================================================
-
-//const niji_prefix = "niji_"
-const niji_prefix = "N"
-
-
+"use strict";
+const niji_prefix = "N";
 const color_names_10 = {
     "010": " ",
     "020": " ",
@@ -44,31 +38,30 @@ const color_names_10 = {
     "350": " ",
     "360": "Red"
 };
-
 const color_names_15 = {
     "015": "Salmon",
     "030": "Orange",
     "045": "Amber",
-    "060": "Yellow",        // Fixed
+    "060": "Yellow",
     "075": "Lime",
     "090": "Ecru",
     "105": "Olive",
-    "120": "Green",         // Fixed
+    "120": "Green",
     "135": "Forest",
     "150": "Jade",
     "165": "Mint",
-    "180": "Cyan",          // Fixed
+    "180": "Cyan",
     "195": "Teal",
     "210": "Capri",
     "225": "Sky",
-    "240": "Blue",          // Fixed
+    "240": "Blue",
     "255": "Azure",
     "270": "Indigo",
     "285": "Violet",
-    "300": "Magenta",       // Fixed
+    "300": "Magenta",
     "315": "Purple",
     "330": "Rose",
     "345": "Pink",
-    "360": "Red"            // Fixed
+    "360": "Red"
 };
-
+//# sourceMappingURL=globals.js.map

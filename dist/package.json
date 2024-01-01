@@ -1,0 +1,28 @@
+{
+  "name": "hue.gl",
+  "version": "0.0.1",
+  "description": "hue.gl is a colour palette developed by Scape Agency.",
+  "keywords": [
+    "hue.gl",
+    "stylescape",
+    "niji",
+    "color",
+    "colour",
+    "colour system",
+    "colour framework",
+    "colour library",
+    "framework"
+  ],
+  "license": "MIT",
+  "homepage": "https://www.hue.gl/",
+  "main": "index.js",
+  "files": [
+    "svg/**/*.{svg}",
+    "js/**/*.{js,map}",
+    "ts/**/*.ts",
+    "css/**/*.{css,map}",
+    "scss/**/*.{scss}",
+    "font/**/*.{eot,otf,ttf,woff,woff2}",
+    "!.DS_Store"
+  ]
+}

@@ -8,16 +8,13 @@ class DirectoryCopier {
                 const resolvedSrcDir = path.resolve(srcDir);
                 const resolvedDestDir = path.resolve(destDir);
                 const files = fs.readdirSync(resolvedSrcDir);
-                console.log("FILES:", files);
                 files.forEach(file => {
                     const srcFile = path.join(resolvedSrcDir, file);
                     const destFile = path.join(resolvedDestDir, file);
                     if (fs.statSync(srcFile).isFile()) {
-                        console.log("Copying file:", srcFile);
                         fs.copyFileSync(srcFile, destFile);
                     }
                 });
-                console.log(`Files copied from ${resolvedSrcDir} to ${resolvedDestDir}`);
             }
             catch (error) {
                 console.error('Error copying files:', error);

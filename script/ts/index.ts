@@ -34,6 +34,8 @@ import DirectoryCopier from './class/DirectoryCopier.js';
 import DirectoryCleaner from './class/DirectoryCleaner.js'; // Adjust the path as needed
 import TypeScriptCompiler from './class/TypeScriptCompiler.js';
 import JavaScriptMinifier from './class/JavaScriptMinifier.js';
+import ColorScheme from './hue/ColorScheme.js';
+import ColorTemplater from './hue/ColorTemplater.js';
 
 // Import necessary configurations
 import { CONFIG } from './config/config.js';
@@ -41,6 +43,8 @@ import svgspriteConfig from "./config/svgsprite.config.js";
 import packageConfig from "./config/package.config.js"
 import tsConfig from "./config/ts.config.js"
 import tensorConfig from "./config/terser.config.js"
+import hueConfig from "./hue/hue.config.js"
+import hueNames from "./hue/hue.names.js"
 
 
 // ============================================================================
@@ -63,6 +67,8 @@ const directoryCopier = new DirectoryCopier();
 const directoryCleaner = new DirectoryCleaner();
 const directoryCreator = new DirectoryCreator();
 
+const colorScheme = new ColorScheme(hueConfig, hueNames);
+
 
 // ============================================================================
 // Functions
@@ -77,27 +83,44 @@ async function main() {
 
     try {
 
+        const color_list = colorScheme.getColorList();
+        const color_dict = colorScheme.getColorDict();
+        console.log(color_dict);
 
-
-
+        // const templater = new ColorTemplater(color_list, "../jinja");
+        const templater = new ColorTemplater(packageConfig, color_dict, CONFIG.path.jinja_input);
+        templater.generateToFile('hue.gl.code-snippets.jinja',  path.join(CONFIG.path.dist, 'hue.gl.code-snippets'));
+        templater.generateToFile('hue.gl.css.jinja',            path.join(CONFIG.path.dist, 'hue.gl.css'));
+        templater.generateToFile('hue.gl.d.ts.jinja',           path.join(CONFIG.path.dist, 'hue.gl.d.ts'));
+        templater.generateToFile('hue.gl.inkscape.jinja',       path.join(CONFIG.path.dist, 'hue.gl.inkscape'));
+        templater.generateToFile('hue.gl.js.jinja',             path.join(CONFIG.path.dist, 'hue.gl.js'));
+        templater.generateToFile('hue.gl.less.jinja',           path.join(CONFIG.path.dist, 'hue.gl.less'));
+        templater.generateToFile('hue.gl.oco.jinja',            path.join(CONFIG.path.dist, 'hue.gl.oco'));
+        templater.generateToFile('hue.gl.py.jinja',             path.join(CONFIG.path.dist, 'hue.gl.py'));
+        templater.generateToFile('hue.gl.rcpx.jinja',           path.join(CONFIG.path.dist, 'hue.gl.rcpx'));
+        templater.generateToFile('hue.gl.scss.jinja',           path.join(CONFIG.path.dist, 'hue.gl.scss'));
+        templater.generateToFile('hue.gl.sketchpalette.jinja',  path.join(CONFIG.path.dist, 'hue.gl.sketchpalette'));
+        templater.generateToFile('hue.gl.styl.jinja',           path.join(CONFIG.path.dist, 'hue.gl.styl'));
+        templater.generateToFile('hue.gl.svg.jinja',            path.join(CONFIG.path.dist, 'hue.gl.svg'));
+        templater.generateToFile('hue.gl.tex.jinja',            path.join(CONFIG.path.dist, 'hue.gl.tex'));
 
         
 
         // Dirs Clean
         // --------------------------------------------------------------------
         directoryCleaner.cleanDirectory(CONFIG.path.dist);
-        console.log(`Directory cleaned: ${CONFIG.path.dist}`);
+        // console.log(`Directory cleaned: ${CONFIG.path.dist}`);
 
         // Dirs Create
         // --------------------------------------------------------------------
-        console.log('Starting Directory creation...');
+        // console.log('Starting Directory creation...');
         // Assuming the base path is the current directory
         await directoryCreator.createDirectories('.', directories);
 
 
         // SASS
         // --------------------------------------------------------------------
-        console.log('Processing SASS...');
+        // console.log('Processing SASS...');
         // Process with expanded style
         await styleProcessor.processStyles(
             path.join(CONFIG.path.scss_input, 'index.scss'),
@@ -110,7 +133,7 @@ async function main() {
             path.join(CONFIG.path.css_output, 'hue.gl.min.css'),
             'compressed'
         );
-        console.log('SASS Processing completed.');
+        // console.log('SASS Processing completed.');
 
 
         // Copy Files
@@ -136,18 +159,18 @@ async function main() {
                 CONFIG.path.ts_input,
                 CONFIG.path.ts_output,
             );
-            console.log('Files copied successfully.');
+            // console.log('Files copied successfully.');
         } catch (error) {
-            console.error('Error while copying files:', error);
+            // console.error('Error while copying files:', error);
         }
         try {
             await directoryCopier.copyFiles(
                 CONFIG.path.scss_input,
                 CONFIG.path.scss_output,
             );
-            console.log('Files copied successfully.');
+            // console.log('Files copied successfully.');
         } catch (error) {
-            console.error('Error while copying files:', error);
+            // console.error('Error while copying files:', error);
         }
 
         // Version
@@ -176,9 +199,9 @@ async function main() {
             ]; // Replace with actual file paths
             const outputDir = './dist/js';
             
-            console.log('Starting TypeScript compilation...');
+            // console.log('Starting TypeScript compilation...');
             tsCompiler.compile(tsFiles, outputDir);
-            console.log('TypeScript compilation completed.');
+            // console.log('TypeScript compilation completed.');
     
         } catch (error) {
             console.error('An error occurred:', error);

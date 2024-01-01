@@ -8,10 +8,8 @@ class DirectoryCreator {
                 const dirPath = path.join(basePath, dir);
                 if (!fs.existsSync(dirPath)) {
                     fs.mkdirSync(dirPath, { recursive: true });
-                    console.log(`Directory created: ${dirPath}`);
                 }
                 else {
-                    console.log(`Directory already exists: ${dirPath}`);
                 }
             });
         });
