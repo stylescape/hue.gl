@@ -78,6 +78,11 @@ async function main() {
     try {
 
 
+
+
+
+        
+
         // Dirs Clean
         // --------------------------------------------------------------------
         directoryCleaner.cleanDirectory(CONFIG.path.dist);
@@ -161,7 +166,6 @@ async function main() {
 
 
         try {
-            // Other code...
     
             // TypeScript compilation
             const tsFiles = [
@@ -176,7 +180,6 @@ async function main() {
             tsCompiler.compile(tsFiles, outputDir);
             console.log('TypeScript compilation completed.');
     
-            // Other code...
         } catch (error) {
             console.error('An error occurred:', error);
         }
