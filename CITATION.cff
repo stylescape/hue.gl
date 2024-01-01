@@ -1,10 +1,10 @@
 cff-version: 1.2.0
-title: Niji
+title: hue.gl
 version: 0.0.1
 date-released: 2022-12-01
-url: "https://github.com/scape-agency/niji"
+url: "https://github.com/scape-agency/hue.gl"
 message: >-
-  Niji is a colour palette developed by Scape Agency.
+  hue.gl is a colour palette developed by Scape Agency.
 type: software
 authors:
   - given-names: Lars Bastiaan
