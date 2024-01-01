@@ -8,14 +8,14 @@
 ---
 
 <div>
-    <img align="right" src="https://raw.githubusercontent.com/scape-agency/brand/master/src/logo/hue.gl.png" width="96" alt="Scape Agency Logo">
+    <img align="right" src="https://raw.githubusercontent.com/scape-agency/brand/master/src/logo/hue.gl.png" width="96" alt="hue.gl Logo">
     <h1 align="left">hue.gl</h1>
     <h3 align="left">Natural Colour Spectrum</h3>
 </div>
 
 ---
 
-<img align="right" width="75%" src="https://raw.githubusercontent.com/scape-agency/hue.gl/master/res/hue.gl.webp"  alt="hue.gl">
+<img align="right" width="75%" src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/res/hue.gl.webp"  alt="hue.gl">
 
 ### Contents
 
