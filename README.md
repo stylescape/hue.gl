@@ -61,6 +61,64 @@ npm i hue.gl
 - [Website](https://www.hue.gl)
 - [NPM](https://www.npmjs.com/package/hue.gl)
 
+
+## Supported Formats
+
+#### Style Sheet Languages
+
+|                   |                           |
+| ----------------- | ------------------------- |
+| `.css`            | CSS                       |
+| `.scss`           | Sass                      |
+| `.less`           | Less                      |
+| `.stylus`         | Stylus                    |
+|                   | Tailwind                  |
+
+#### Programming Language Environments
+
+| ----------------- | ------------------------- |
+| `.go`             | Go                        |
+| `.jl`             | Julia                     |
+| `.py`             | Python                    |
+| `.d.ts`           | TypeScript                |
+| `.js`             | JavaScript                |
+| `.tex`            | LaTex                     |
+
+#### Data-interchange Formats
+
+| ----------------- | ------------------------- |
+| `.csv`            |                           |
+| `.json`           | JSON                      |
+
+#### Image Formats
+
+| `.svg`            | SVG                       |
+
+#### Desktop Applications
+
+| ----------------- | ------------------------------- |
+| `.oco`            | Open Color Tools                |
+| `.ptc`            | PANTONE Color File              |
+| `.ase`            | Adobe Swatch Exchange           |
+| `.aco`            | Adobe Photoshop                 |
+| `.acb`            | Adobe Photoshop Color Book      |
+| `.grd`            | Adobe Photoshop Gradient        |
+| `.clr`            | Adobe Animate Color Set         |
+| `.inx`            | Adobe InDesign Interchange      |
+| `.acbl`           | Adobe Color Book Legacy         |
+| `.sketchpalette`  | Sketch                          |
+| `.gpl`            | GIMP Palette, Inkscape          |
+| `.ggr`            | GIMP Gradient File              |
+| `.rcpx`           | PowerPaint                      |
+| `.ctb`            | AutoCAD Color-Based Plot Style  |
+| `.colorpicker`    | Apple Color Picker              |
+| `.bcp`            | BlackMagic Custom Palette       |
+| `.mgk`            | ImageMagick Configuration        |
+| `.cs`             | ColorSchemer Studio             |
+| `.style`          | Trimble SketchUp Style          |
+| `.gdiagramstyle`  | OmniGraffle Diagram Style        |
+| `.pal`            | Painter Custom Palettes         |
+
 ---
 
 ## Colophon
