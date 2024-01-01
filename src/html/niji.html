@@ -12,14 +12,14 @@
             <header class="niji_header">
                 <h1>NIJI</h1>
                 <br>
-                <h3><b>Perceptual Color Spectrum</b></h3><br>
+                <h3><b>Perceptual Color System</b></h3><br>
                 <h4>Version 2.0</h4>
                 <p>May 2023</p>
                 <br>
                 
                 <p>
                     Staging System for 
-                    <a href="https://www.scape.style">Scape Style</a>
+                    <a href="https://www.scape.style">Stylescape</a>
                      by <a href="https://www.scape.agency">Scape Agency</a>
                      <sup>&reg;</sup>
                 </p>
@@ -52,6 +52,9 @@
         </div>
     </body>
 
+
+
+
     <script type="module">
 
         // Imports
@@ -66,9 +69,6 @@
 
         //const niji_prefix = "niji_"
         const niji_prefix = "N"
-
-
-
 
 
         const color_names_10 = {
@@ -627,22 +627,26 @@ for (let j = 0; j <= l_list.length-1; j++) {
     }
   
 
-d3.select('#buttons').append('button')
-.text('Scramble')
-.on('click', () => {
-  svg.selectAll('.band')
-    .transition().duration(1000)
-    .attr('transform', () =>
-      'rotate(' + (360/h_max)*Math.floor(h_max * Math.random()) + ')'
-    );
-});
-d3.select('#buttons').append('button')
-.text('Restore')
-.on('click', () => {
-  svg.selectAll('.band')
-    .transition().duration(1000)
-    .attr('transform', 'rotate(0)');
-});
+
+
+
+
+            d3.select('#buttons').append('button')
+            .text('Scramble')
+            .on('click', () => {
+            svg.selectAll('.band')
+                .transition().duration(1000)
+                .attr('transform', () =>
+                'rotate(' + (360/h_max)*Math.floor(h_max * Math.random()) + ')'
+                );
+            });
+            d3.select('#buttons').append('button')
+            .text('Restore')
+            .on('click', () => {
+            svg.selectAll('.band')
+                .transition().duration(1000)
+                .attr('transform', 'rotate(0)');
+            });
 
         }
 
