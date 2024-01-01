@@ -15,7 +15,7 @@
 
 ---
 
-<img align="right" width="75%" src="https://raw.githubusercontent.com/scape-agency/brand/master/src/image/repository_cover/block_foundation-structure-03-accent.jpg"  alt="Scape Agency Brand">
+<img align="right" width="75%" src="https://raw.githubusercontent.com/scape-agency/hue.gl/master/res/hue.gl.webp"  alt="hue.gl">
 
 ### Contents
 
