@@ -1,0 +1,266 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+
+// ============================================================================
+// AS 2700 Colors
+// ============================================================================
+// Australian Independent Colour Standard AS 2700
+
+$color_as2700_hex: (
+
+    // Blue Colors
+    // ------------------------------------------------------------------------
+
+    b11: #2b3770,    // Rich Blue
+    b12: #2c3563,    // Royal Blue
+    b13: #28304d,    // Navy Blue
+    b14: #28426b,    // Saphhire
+    b15: #144b6f,    // Mid Blue
+    b21: #2c5098,    // Ultramarine
+    b22: #215097,    // Homebush Blue
+    b23: #174f90,    // Bright Blue
+    b24: #1c6293,    // Harbour Blue
+    b25: #5097ac,    // Aqua
+    b32: #b7c8db,    // Powder Blue
+    b33: #e0e6e2,    // Mist Blue
+    b34: #3499ba,    // Paradise Blue
+    b35: #cde4e2,    // Pale Blue
+    b41: #5b94d1,    // Bluebell
+    b42: #5e7899,    // Purple Blue
+    b43: #627c8d,    // Grey Blue
+    b44: #c0c0c1,    // Light Grey Blue
+    b45: #7db7c7,    // Sky Blue
+    b51: #3871ac,    // Periwinkle
+    b53: #4f6572,    // Dark Grey Blue
+    b55: #3f7c94,    // Storm Blue
+    b61: #2b3873,    // Coral Sea
+    b62: #292a34,    // Midnight Blue
+    b64: #363e45,    // Charcoal
+
+
+    // Green Colors
+    // ------------------------------------------------------------------------
+
+    g11: #253a32,    // Bottle Green
+    g12: #21432d,    // Holly
+    g13: #195f35,    // Emerald
+    g14: #33572d,    // Moss Green
+    g15: #3d492d,    // Rainforest Green
+    g16: #305442,    // Traffic Green
+    g17: #006b45,    // Mint Green
+    g21: #127453,    // Jade
+    g22: #78a681,    // Serpentine
+    g23: #336634,    // Shamrock
+    g24: #477036,    // Fern Tree
+    g25: #595b2a,    // Olive
+    g26: #4e9843,    // Apple Green
+    g27: #017f4d,    // Homebush Green
+    g31: #468a65,    // Vertigris
+    g32: #afcbb8,    // Opaline
+    g33: #7b9954,    // Lettuce
+    g34: #757c4c,    // Avocado
+    g35: #89922e,    // Lime Green
+    g36: #95b43b,    // Kikuyu
+    g37: #45a56a,    // Beanstalk
+    g41: #0d875d,    // Lawn Green
+    g42: #d5e1d2,    // Glacier
+    g43: #c8c8a7,    // Surf Green
+    g44: #99b179,    // Palm Green
+    g45: #c7c98d,    // Chartreuse
+    g46: #bfc83e,    // Citronella
+    g47: #adcca8,    // Crystal Green
+    g51: #05674f,    // Spruce
+    g52: #66755b,    // Eucalyptus
+    g53: #929479,    // Banksia
+    g54: #7a836d,    // Mist Green
+    g55: #a7a98c,    // Lichen
+    g56: #677249,    // Sage Green
+    g61: #283533,    // Dark Green
+    g62: #617061,    // Rivergum
+    g63: #333334,    // Deep Bronze Green
+    g64: #5e6153,    // Slate
+    g65: #5d5f4e,    // Ti-Tree
+    g66: #484c3f,    // Environment Green
+    g67: #2e443a,    // Zucchini
+
+
+    // Neutral Colors
+    // ------------------------------------------------------------------------
+
+    n11: #d8d3c7,    // Pearl Grey
+    n12: #cccccc,    // Pastel Grey
+    n14: #ffffff,    // White
+    n15: #a29b93,    // Homebush Grey
+    n22: #c4c1b9,    // Cloud Grey
+    n23: #cccccc,    // Neutral Grey
+    n24: #bdc7c5,    // Silver Grey
+    n25: #aba498,    // Birch Grey
+    n32: #8e9282,    // Green Grey
+    n33: #acadad,    // Lightbox Grey
+    n35: #a6a7a1,    // Light Grey
+    n41: #998f78,    // Oyster
+    n42: #858f88,    // Storm Grey
+    n43: #999999,    // Pipeline Grey
+    n44: #767779,    // Bridge Grey
+    n45: #928f88,    // Koala Grey
+    n52: #727a77,    // Mid Grey
+    n53: #7c8588,    // Blue Grey
+    n54: #585c63,    // Basalt
+    n55: #5e5c58,    // Lead Grey
+    n61: #2a2a2c,    // Black
+    n63: #596064,    // Pewter
+    n64: #4b5259,    // Dark Grey
+    n65: #45474a,    // Graphite Grey
+
+
+    // Purple Colors
+    // ------------------------------------------------------------------------
+
+    p11: #7b2b48,    // Magenta
+    p12: #85467b,    // Purple
+    p13: #5d3a61,    // Violet
+    p14: #4c4176,    // Blueberry
+    p21: #e3bbbd,    // Sunset Pink
+    p22: #83597d,    // Cyclamen
+    p23: #a69fb1,    // Lilac
+    p24: #795f91,    // Jackaranda
+    p31: #dbbebc,    // Dusty Pink
+    p33: #d1bcc9,    // Ribbon Pink
+    p41: #c55a83,    // Erica Pink
+    p42: #a06574,    // Mulberry
+    p43: #756d91,    // Wisteria
+    p52: #6e3d4b,    // Plum
+
+
+    // Red Colors
+    // ------------------------------------------------------------------------
+
+    r11: #ce482a,    // International Orange
+    r12: #cd392a,    // Scarlet
+    r13: #ba312b,    // Signal Red
+    r14: #aa2429,    // Waratah
+    r15: #9e2429,    // Crimson
+    r21: #e96957,    // Tangerine
+    r22: #d83a2d,    // Homebush Red
+    r23: #cc5058,    // Lollipop
+    r24: #b4292a,    // Strawberry
+    r25: #e8919c,    // Rose Pink
+    r32: #f2e1d8,    // Apple Blossom
+    r33: #e8dad4,    // Ghost Gum
+    r34: #d7c0b6,    // Mushroom
+    r35: #cd6d71,    // Deep Rose
+    r41: #f9d9bb,    // Shell Pink
+    r42: #d99679,    // Salmon Pink
+    r43: #d0674f,    // Red Dust
+    r44: #a18881,    // Possum
+    r45: #8f3e5c,    // Ruby
+    r51: #e19b8e,    // Burnt Pink
+    r52: #a04c36,    // Terracotta
+    r53: #8d4338,    // Red Gum
+    r54: #852f31,    // Raspberry
+    r55: #67292d,    // Claret
+    r62: #77372b,    // Venetian Red
+    r63: #663334,    // Red Oxide
+    r64: #542e2b,    // Deep Indian Red
+    r65: #3f2b3c,    // Maroon
+
+    // Blue /Green Colors
+    // ------------------------------------------------------------------------
+
+    t11: #006698,    // Tropical Blue
+    t12: #006c74,    // Diamantia
+    t14: #105154,    // Malachite
+    t15: #098587,    // Turquoise
+    t22: #358792,    // Oriental Blue
+    t24: #427f7e,    // Blue Jade
+    t32: #72b3b1,    // Huon Green
+    t33: #9eb6b2,    // Smoke Blue
+    t35: #78aea2,    // Green Ice
+    t44: #6a8a88,    // Blue Gum
+    t45: #759e91,    // Cootamundra
+    t51: #295668,    // Mountain Blue
+    t53: #245764,    // Peacock Blue
+    t63: #183f4e,    // Teal
+
+    // Yellow / Red Colors
+    // ------------------------------------------------------------------------
+
+    x11: #d38f43,    // Butterscotch
+    x12: #dd7e1a,    // Pumpkin
+    x13: #ed7f15,    // Marigold
+    x14: #e45427,    // Mandarin
+    x15: #e36c2b,    // Orange
+    x21: #daa45f,    // Pale Ochre
+    x22: #f6aa51,    // Saffron
+    x23: #feb56d,    // Apricot
+    x24: #f6894b,    // Rockmelon
+    x31: #ebc695,    // Raffia
+    x32: #f1debe,    // Magnolia
+    x33: #f3e7d4,    // Warm White
+    x34: #d5c4ae,    // Driftwood
+    x41: #c28a44,    // Buff
+    x42: #deba92,    // Biscuit
+    x43: #c9aa8c,    // Beige
+    x45: #ac826d,    // Cinnamon
+    x51: #8f5f32,    // Tan
+    x52: #ad7948,    // Coffee
+    x53: #925629,    // Golden Tan
+    x54: #68452c,    // Brown
+    x55: #764832,    // Nut Brown
+    x61: #6e5d52,    // Wombat
+    x62: #6e5d52,    // Dark Earth
+    x63: #443b36,    // Ironbark
+    x64: #4a3b31,    // Chocolate
+    x65: #4f372d,    // Dark Brown
+
+    // Yellow Colors
+    // ------------------------------------------------------------------------
+
+    y11: #e7bd11,    // Canary
+    y12: #e8af01,    // Wattle
+    y13: #fcae01,    // Vivid Yellow
+    y14: #f5a601,    // Golden Yellow
+    y15: #ffa709,    // Sunflower
+    y16: #df8c19,    // Inca Gold
+    y21: #f5cf5b,    // Primrose
+    y22: #efd25c,    // Custard
+    y23: #e0cd41,    // Buttercup
+    y24: #e3c882,    // Straw
+    y25: #f3c968,    // Deep Cream
+    y26: #fcc51a,    // Homebush Gold
+    y31: #e3e3cd,    // Lily Green
+    y32: #e6df9e,    // Flummery
+    y33: #f5f3ce,    // Pale Primrose
+    y34: #efe3be,    // Cream
+    y35: #f1e9d5,    // Off White
+    y41: #8e7426,    // Olive Yellow
+    y42: #c4a32e,    // Mustard
+    y43: #d4c9a3,    // Parchment
+    y44: #dcc18b,    // Sand
+    y45: #e5d0a7,    // Manilla
+    y51: #695d3e,    // Bronze Olive
+    y52: #bea873,    // Chamois
+    y53: #d5bf8e,    // Sandstone
+    y54: #caae82,    // Oatmeal
+    y55: #bc9969,    // Deep Stone
+    y56: #c9b79e,    // Merino
+    y61: #47473b,    // Black Olive
+    y62: #bca55c,    // Sugar Cane
+    y63: #826843,    // Khaki
+    y65: #a39281,    // Mushroom
+    y66: #574e45,    // Mudstone
+
+)
