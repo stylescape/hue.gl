@@ -15,7 +15,7 @@
 
 ---
 
-<img align="right" width="50%" src="/res/hue.gl.webp"  alt="hue.gl">
+<img align="right" width="50%" src="/res/hue.gl.png"  alt="hue.gl">
 
 ### Contents
 
