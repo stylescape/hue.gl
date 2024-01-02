@@ -21,33 +21,33 @@
 
 import fs from 'fs/promises'; // Use fs promises for async operations
 import nunjucks from 'nunjucks';
-import Color from './ColorSwatch'; // Assuming this is the path to your Color class
+import Color from '../color/ColorSwatch';
 import path from 'path';
+import BaseWriter from './BaseWriter.js';
+import { PackageJson, ColorScheme } from '../types';
 
 // ============================================================================
 // Classes
 // ============================================================================
 
-class ColorTemplater {
-
-    private packageJson: any;
-    private colors: Record<string, Record<string, Color>>;
+class TemplateWriter extends BaseWriter {
 
     /**
-     * Constructs a ColorTemplater instance.
+     * Constructs a TemplateWriter instance.
      * @param {any} packageJson - The content to be written into package.json.
      * @param colors - Color objects.
      * @param templatesDir - Directory for Nunjucks templates.
      * @param enableCache - Enable or disable caching for Nunjucks.
      */
      constructor(
-        packageJson: any,
-        colors: Record<string, Record<string, Color>>,
+        packageJson: PackageJson,
+        colors: ColorScheme,
         templatesDir: string,
         enableCache: boolean = false
     ) {
-        this.packageJson = packageJson;
-        this.colors = colors;
+        // this.packageJson = packageJson;
+        // this.colors = colors;
+        super(packageJson, colors);
         nunjucks.configure(templatesDir, { 
             autoescape: true,
             noCache: !enableCache
@@ -55,40 +55,30 @@ class ColorTemplater {
     }
 
     /**
-     * Formats the colors for the template.
-     * @returns Array of color records.
-     */
-    //  formatColorsForTemplate(): Record<string, string>[] {
-    //     return this.colors.map(color => ({
-    //         name: color.getName() ?? 'unnamed',
-    //         color: color.toString()
-    //     }));
-    // }
-
-    /**
      * Generates a template using the provided template file.
      * @param template - The template file name.
      * @returns The rendered template as a string.
      */
-         async generateTemplate(template: string): Promise<string> {
-            try {
-                // const formattedColors = this.formatColorsForTemplate();
-                // return nunjucks.render(template, { colors: formattedColors });
-                return nunjucks.render(
-                    template,
-                    {
-                        colors: this.colors,
-                        name: this.packageJson["name"],
-                        version: this.packageJson["version"],
-                        website: this.packageJson["homepage"],
-                    }
-                );
+    async generateTemplate(template: string): Promise<string> {
+        try {
+            // const formattedColors = this.formatColorsForTemplate();
+            // return nunjucks.render(template, { colors: formattedColors });
+            return nunjucks.render(
+                template,
+                {
+                    colors: this.colors,
+                    name: this.packageJson["name"],
+                    version: this.packageJson["version"],
+                    website: this.packageJson["homepage"],
+                }
+            );
+        } catch (error) {
+            console.error(`Error generating template: ${error}`);
+            // throw error;
+            throw new Error('Template generation failed');
 
-            } catch (error) {
-                console.error(`Error generating template: ${error}`);
-                throw error;
-            }
         }
+    }
 
     /**
      * Writes the rendered template content to a file.
@@ -101,7 +91,9 @@ class ColorTemplater {
             await fs.writeFile(outputFile, content, 'utf-8');
         } catch (error) {
             console.error(`Error writing to file: ${error}`);
-            throw error;
+            // throw error;
+            throw new Error('File writing failed');
+
         }
     }
 
@@ -112,4 +104,4 @@ class ColorTemplater {
 // Export
 // ============================================================================
 
-export default ColorTemplater;
+export default TemplateWriter;

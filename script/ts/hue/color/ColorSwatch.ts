@@ -19,9 +19,8 @@
 // Import
 // ============================================================================
 
-// import * as ColorJS from 'color.js';
 import Color from 'colorjs.io';
-import { rgb2cmyk, convertRGBtoHex } from './util.js';
+import { rgb2cmyk, convertRGBtoHex } from '../util.js';
 
 
 // ============================================================================

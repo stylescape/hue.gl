@@ -34,8 +34,8 @@ import DirectoryCopier from './class/DirectoryCopier.js';
 import DirectoryCleaner from './class/DirectoryCleaner.js'; // Adjust the path as needed
 import TypeScriptCompiler from './class/TypeScriptCompiler.js';
 import JavaScriptMinifier from './class/JavaScriptMinifier.js';
-import ColorScheme from './hue/ColorScheme.js';
-import ColorTemplater from './hue/ColorTemplater.js';
+import ColorScheme from './hue/color/ColorScheme.js';
+import TemplateWriter from './hue/writers/TemplateWriter.js';
 
 // Import necessary configurations
 import { CONFIG } from './config/config.js';
@@ -43,8 +43,8 @@ import svgspriteConfig from "./config/svgsprite.config.js";
 import packageConfig from "./config/package.config.js"
 import tsConfig from "./config/ts.config.js"
 import tensorConfig from "./config/terser.config.js"
-import hueConfig from "./hue/hue.config.js"
-import hueNames from "./hue/hue.names.js"
+import hueConfig from "./hue/config/hue.config.js"
+import hueNames from "./hue/config/hue.names.js"
 
 
 // ============================================================================
@@ -87,8 +87,8 @@ async function main() {
         const color_dict = colorScheme.getColorDict();
         console.log(color_dict);
 
-        // const templater = new ColorTemplater(color_list, "../jinja");
-        const templater = new ColorTemplater(packageConfig, color_dict, CONFIG.path.jinja_input);
+        // const templater = new TemplateWriter(color_list, "../jinja");
+        const templater = new TemplateWriter(packageConfig, color_dict, CONFIG.path.jinja_input);
         templater.generateToFile('hue.gl.code-snippets.jinja',  path.join(CONFIG.path.dist, 'hue.gl.code-snippets'));
         templater.generateToFile('hue.gl.css.jinja',            path.join(CONFIG.path.dist, 'hue.gl.css'));
         templater.generateToFile('hue.gl.d.ts.jinja',           path.join(CONFIG.path.dist, 'hue.gl.d.ts'));
