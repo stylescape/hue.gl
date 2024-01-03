@@ -87,8 +87,8 @@ function main() {
             yield styleProcessor.processStyles(path.join(CONFIG.path.scss_input, 'index.scss'), path.join(CONFIG.path.css_output, `${packageConfig.name}.min.css`), 'compressed');
             logger.body('SASS Processing completed.');
             const directoryCopier = new DirectoryCopier();
-            yield directoryCopier.copyFiles(CONFIG.path.ts_input, CONFIG.path.ts_output);
-            yield directoryCopier.copyFiles(CONFIG.path.scss_input, CONFIG.path.scss_output);
+            yield directoryCopier.recursiveCopy(CONFIG.path.ts_input, CONFIG.path.ts_output);
+            yield directoryCopier.recursiveCopy(CONFIG.path.scss_input, CONFIG.path.scss_output);
             const fileCopier = new FileCopier();
             fileCopier.copyFileToDirectory(path.join('.', 'README.md'), CONFIG.path.dist);
             fileCopier.copyFileToDirectory(path.join('.', 'LICENSE'), CONFIG.path.dist);

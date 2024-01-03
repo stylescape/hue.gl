@@ -1,9 +1,7 @@
 |      | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
 {% for group_name, group in colors -%}
-| {{ group_name }} |
-{%- for color_name, color in group %}  <img src="/dist/png/swatch/{{ color_name }}.png" alt="{{ color_name }}"> {{ color_name }} |{% endfor %}
+| **{{ group_name }}** |
+{%- for color_name, color in group %}  <img src="/dist/png/swatch/{{ color_name }}.png" alt="{{ color_name }}"><small>{{ color_name }}</small> |{% endfor %}
 
 {% endfor %}
-
-{# .slice(1, -1) #}

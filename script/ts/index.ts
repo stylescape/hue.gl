@@ -207,11 +207,11 @@ async function main() {
         // --------------------------------------------------------------------
 
         const directoryCopier = new DirectoryCopier();
-        await directoryCopier.copyFiles(
+        await directoryCopier.recursiveCopy(
             CONFIG.path.ts_input,
             CONFIG.path.ts_output,
         );
-        await directoryCopier.copyFiles(
+        await directoryCopier.recursiveCopy(
             CONFIG.path.scss_input,
             CONFIG.path.scss_output,
         );
