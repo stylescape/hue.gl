@@ -19,9 +19,15 @@
 // Import
 // ============================================================================
 
-import fs from 'fs/promises'; // Use fs promises for async operations
+// import fs from 'fs/promises'; // Use fs promises for async operations
+// import nunjucks from 'nunjucks';
+// import Color from '../color/ColorSwatch';
+// import path from 'path';
+// import BaseWriter from './BaseWriter.js';
+// import { PackageJson, ColorScheme } from '../types';
+
+import fs from 'fs/promises';
 import nunjucks from 'nunjucks';
-import Color from '../color/ColorSwatch';
 import path from 'path';
 import BaseWriter from './BaseWriter.js';
 import { PackageJson, ColorScheme } from '../types';
@@ -85,17 +91,21 @@ class TemplateWriter extends BaseWriter {
      * @param template - The template file name.
      * @param outputFile - The output file path.
      */
-    async generateToFile(template: string, outputFile: string): Promise<void> {
-        try {
-            const content = await this.generateTemplate(template);
-            await fs.writeFile(outputFile, content, 'utf-8');
-        } catch (error) {
-            console.error(`Error writing to file: ${error}`);
-            // throw error;
-            throw new Error('File writing failed');
-
+         async generateToFile(template: string, outputFile: string): Promise<void> {
+            try {
+                const content = await this.generateTemplate(template);
+                const dir = path.dirname(outputFile);
+    
+                // Check if the directory exists, and create it if it does not
+                await fs.mkdir(dir, { recursive: true });
+    
+                // Write the file
+                await fs.writeFile(outputFile, content, 'utf-8');
+            } catch (error) {
+                console.error(`Error writing to file: ${error}`);
+                throw new Error('File writing failed');
+            }
         }
-    }
 
 }
 

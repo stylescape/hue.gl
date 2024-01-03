@@ -48,9 +48,7 @@ class ColorScheme {
 
     private config: ColorSchemeConfig | any;
     private names: any;
-    // private config: ColorSchemeConfig;
     private colorList: ColorSwatch[];
-    // private colorDict: Record<string, Color>;
     private colorDict: Record<string, Record<string, ColorSwatch>>;
 
     constructor(config: ColorSchemeConfig, names: any) {
@@ -99,11 +97,9 @@ class ColorScheme {
                 let l_cur = l_list[i];
                 let c_cur = c_list[i];
                 let name = this.config.prefix + pad(h.toString(), 3, "0") + (i + 1).toString();
-
                 let color = new ColorSwatch(h, c_cur, l_cur, name)
                 this.colorList.push(color);
                 h_group[name] = color;
-
             };
 
             this.colorDict[h_group_name] = h_group;
@@ -118,6 +114,7 @@ class ColorScheme {
     public getColorDict(): Record<string, Record<string, ColorSwatch>> {
         return this.colorDict;
     }
+
 }
 
 

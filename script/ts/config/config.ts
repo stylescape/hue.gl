@@ -15,7 +15,7 @@ export const CONFIG = {
         ts_output_icons:    './src/ts/icons',
         js_output:          './dist/js',
 
-        jinja_input:          './script/jinja',
+        jinja_input:          './src/jinja',
         // jinja_output:         './dist/js',
 
 

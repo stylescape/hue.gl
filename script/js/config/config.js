@@ -12,7 +12,7 @@ export const CONFIG = {
         ts_output: './dist/ts',
         ts_output_icons: './src/ts/icons',
         js_output: './dist/js',
-        jinja_input: './script/jinja',
+        jinja_input: './src/jinja',
     },
 };
 //# sourceMappingURL=config.js.map

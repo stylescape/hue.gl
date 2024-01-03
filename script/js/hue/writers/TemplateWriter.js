@@ -1,6 +1,7 @@
 import { __awaiter } from "tslib";
 import fs from 'fs/promises';
 import nunjucks from 'nunjucks';
+import path from 'path';
 import BaseWriter from './BaseWriter.js';
 class TemplateWriter extends BaseWriter {
     constructor(packageJson, colors, templatesDir, enableCache = false) {
@@ -30,6 +31,8 @@ class TemplateWriter extends BaseWriter {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 const content = yield this.generateTemplate(template);
+                const dir = path.dirname(outputFile);
+                yield fs.mkdir(dir, { recursive: true });
                 yield fs.writeFile(outputFile, content, 'utf-8');
             }
             catch (error) {
