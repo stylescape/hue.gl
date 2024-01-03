@@ -33,15 +33,14 @@ class SvgToPngConverter {
     }
 }
 import path from 'path';
-import { DirectoryCleaner, DirectoryCopier, StyleProcessor, PackageCreator, VersionWriter, TypeScriptCompiler, JavaScriptMinifier, gl_installer, StylizedLogger, TemplateWriter, } from 'pack.gl';
+import { DirectoryCleaner, DirectoryCopier, StyleProcessor, PackageCreator, VersionWriter, TypeScriptCompiler, JavaScriptMinifier, StylizedLogger, TemplateWriter, } from 'pack.gl';
 import ColorScheme from './hue/color/ColorScheme.js';
 import { CONFIG } from './config/config.js';
 import packageConfig from "./config/package.config.js";
-import tsConfig from "./config/ts.config.js";
 import tensorConfig from "./config/terser.config.js";
 import hueConfig from "./hue/config/hue.config.js";
 import hueNames from "./hue/config/hue.names.js";
-const tsCompiler = new TypeScriptCompiler(tsConfig);
+const tsCompiler = new TypeScriptCompiler();
 const jsMinifier = new JavaScriptMinifier(tensorConfig);
 const packageCreator = new PackageCreator(packageConfig);
 const styleProcessor = new StyleProcessor();
@@ -52,7 +51,6 @@ const converter = new SvgToPngConverter();
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            yield gl_installer();
             const directoryCleaner = new DirectoryCleaner();
             logger.header('Clean Directories');
             directoryCleaner.cleanDirectory(CONFIG.path.dist);
@@ -82,6 +80,7 @@ function main() {
             yield templater.generateToFile('hue.gl.styl.jinja', path.join(CONFIG.path.dist, 'styl', 'hue.gl.styl'));
             yield templater.generateToFile('hue.gl.svg.jinja', path.join(CONFIG.path.dist, 'svg', 'hue.gl.svg'));
             yield templater.generateToFile('hue.gl.tex.jinja', path.join(CONFIG.path.dist, 'tex', 'hue.gl.tex'));
+            yield templater.generateToFile('hue.gl.md.jinja', path.join(CONFIG.path.dist, 'md', 'hue.gl.md'));
             for (const groupName in color_dict) {
                 if (color_dict.hasOwnProperty(groupName)) {
                     console.log(`Group: ${groupName}`);
@@ -89,9 +88,7 @@ function main() {
                         if (color_dict[groupName].hasOwnProperty(colorName)) {
                             const colorSwatch = color_dict[groupName][colorName];
                             console.log(`Color Name: ${colorName}`);
-                            const svg_template_context = {
-                                color: colorSwatch,
-                            };
+                            const svg_template_context = { color: colorSwatch, };
                             const svg_templater = new TemplateWriter(CONFIG.path.jinja_input, svg_template_context);
                             let svg_output_path = path.join(CONFIG.path.dist, 'svg', 'swatch', `${colorName}.svg`);
                             yield svg_templater.generateToFile('square.svg.jinja', svg_output_path);

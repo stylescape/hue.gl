@@ -86,8 +86,9 @@ import ColorScheme from './hue/color/ColorScheme.js';
 // Import necessary configurations
 import { CONFIG } from './config/config.js';
 import packageConfig from "./config/package.config.js"
-import tsConfig from "./config/ts.config.js"
+// import tsConfig from "./config/ts.config.js"
 import tensorConfig from "./config/terser.config.js"
+
 import hueConfig from "./hue/config/hue.config.js"
 import hueNames from "./hue/config/hue.names.js"
 
@@ -97,7 +98,7 @@ import hueNames from "./hue/config/hue.names.js"
 // ============================================================================
 
 // Initialize instances of necessary classes
-const tsCompiler = new TypeScriptCompiler(tsConfig);
+const tsCompiler = new TypeScriptCompiler();
 const jsMinifier = new JavaScriptMinifier(tensorConfig);
 const packageCreator = new PackageCreator(packageConfig);
 const styleProcessor = new StyleProcessor();
@@ -125,7 +126,7 @@ async function main() {
         // --------------------------------------------------------------------
 
         // logger.header('Install .gl libraries');
-        await gl_installer();
+        // await gl_installer();
 
 
         // Dirs Clean
@@ -168,8 +169,12 @@ async function main() {
         await templater.generateToFile('hue.gl.styl.jinja',           path.join(CONFIG.path.dist, 'styl',           'hue.gl.styl'));
         await templater.generateToFile('hue.gl.svg.jinja',            path.join(CONFIG.path.dist, 'svg',            'hue.gl.svg'));
         await templater.generateToFile('hue.gl.tex.jinja',            path.join(CONFIG.path.dist, 'tex',            'hue.gl.tex'));
+        await templater.generateToFile('hue.gl.md.jinja',            path.join(CONFIG.path.dist, 'md',            'hue.gl.md'));
 
-    
+
+        // Create Swatches
+        // --------------------------------------------------------------------
+
         for (const groupName in color_dict) {
             if (color_dict.hasOwnProperty(groupName)) {
                 console.log(`Group: ${groupName}`);
@@ -180,39 +185,22 @@ async function main() {
                         const colorSwatch = color_dict[groupName][colorName];
                         
                         // Process each color swatch here
-                        // console.log(`Color Name: ${colorName}, H: ${colorSwatch.h}, C: ${colorSwatch.c}, L: ${colorSwatch.l}`);
                         console.log(`Color Name: ${colorName}`);
 
-                        const svg_template_context = {
-                            color: colorSwatch,
-                        }
-                        
+                        const svg_template_context = {color: colorSwatch,}
                         const svg_templater = new TemplateWriter(CONFIG.path.jinja_input, svg_template_context);
                         let svg_output_path = path.join(CONFIG.path.dist, 'svg', 'swatch',`${colorName}.svg`)
                         await svg_templater.generateToFile('square.svg.jinja', svg_output_path);
 
-
-
-                        // const svgContent = `<svg>...</svg>`; // Your SVG content here
                         const svgContent = await svg_templater.generateTemplate('square.svg.jinja');
-
                         let png_output_path = path.join(CONFIG.path.dist, 'png', 'swatch',`${colorName}.png`)
-
-
                         await converter.convert(svgContent, png_output_path, 500, 500)
                             .then(() => console.log('Conversion successful'))
                             .catch(error => console.error('Conversion failed:', error));
-
-
-
-                        // colorName
-                        // Example processing - you can replace this with your actual logic
-                        // ...
                     }
                 }
             }
         }
-
 
 
         // SASS
