@@ -20,20 +20,39 @@
 // ============================================================================
 
 // Import necessary modules and classes
+
 import path from 'path';
-import FontGenerator from './class/FontGenerator.js';
-import SvgPackager from "./class/SvgPackager.js";
-import StyleProcessor from "./class/StyleProcessor.js";
-import SvgSpriteGenerator from "./class/SvgSpriteGenerator.js";
-import PackageCreator from './class/PackageCreator.js';
-import VersionWriter from './class/VersionWriter.js';
-import FileCopier from './class/FileCopier.js'; 
-import FileRenamer from './class/FileRenamer.js'; 
-import DirectoryCreator from './class/DirectoryCreator.js';
-import DirectoryCopier from './class/DirectoryCopier.js';
-import DirectoryCleaner from './class/DirectoryCleaner.js'; // Adjust the path as needed
-import TypeScriptCompiler from './class/TypeScriptCompiler.js';
-import JavaScriptMinifier from './class/JavaScriptMinifier.js';
+
+import {
+    DirectoryCleaner,
+    DirectoryCopier,
+    DirectoryCreator,
+    FileCopier,
+    FileRenamer,
+    FontGenerator,
+    StyleProcessor,
+    SvgPackager,
+    SvgSpriteGenerator,
+    PackageCreator,
+    VersionWriter,
+    TypeScriptCompiler,
+    JavaScriptMinifier
+} from 'pack.gl';
+
+
+// import FontGenerator from './class/FontGenerator.js';
+// import SvgPackager from "./class/SvgPackager.js";
+// import StyleProcessor from "./class/StyleProcessor.js";
+// import SvgSpriteGenerator from "./class/SvgSpriteGenerator.js";
+// import PackageCreator from './class/PackageCreator.js';
+// import VersionWriter from './class/VersionWriter.js';
+// import FileCopier from './class/FileCopier.js'; 
+// import FileRenamer from './class/FileRenamer.js'; 
+// import DirectoryCreator from './class/DirectoryCreator.js';
+// import DirectoryCopier from './class/DirectoryCopier.js';
+// import DirectoryCleaner from './class/DirectoryCleaner.js'; // Adjust the path as needed
+// import TypeScriptCompiler from './class/TypeScriptCompiler.js';
+// import JavaScriptMinifier from './class/JavaScriptMinifier.js';
 import ColorScheme from './hue/color/ColorScheme.js';
 import TemplateWriter from './hue/writers/TemplateWriter.js';
 
@@ -53,15 +72,15 @@ import hueNames from "./hue/config/hue.names.js"
 
 // Initialize instances of necessary classes
 const directories = Object.values(CONFIG.path);
-const spriteGenerator = new SvgSpriteGenerator(svgspriteConfig);
+// const spriteGenerator = new SvgSpriteGenerator(svgspriteConfig);
 const tsCompiler = new TypeScriptCompiler(tsConfig);
 const jsMinifier = new JavaScriptMinifier(tensorConfig);
 const packageCreator = new PackageCreator(packageConfig);
-const svgPackager = new SvgPackager();
-const fontGenerator = new FontGenerator();
+// const svgPackager = new SvgPackager();
+// const fontGenerator = new FontGenerator();
 const styleProcessor = new StyleProcessor();
 const versionWriter = new VersionWriter();
-const fileCopier = new FileCopier();
+// const fileCopier = new FileCopier();
 const fileRenamer = new FileRenamer();
 const directoryCopier = new DirectoryCopier();
 const directoryCleaner = new DirectoryCleaner();
@@ -83,28 +102,7 @@ async function main() {
 
     try {
 
-        const color_list = colorScheme.getColorList();
-        const color_dict = colorScheme.getColorDict();
-        console.log(color_dict);
 
-        // const templater = new TemplateWriter(color_list, "../jinja");
-        const templater = new TemplateWriter(packageConfig, color_dict, CONFIG.path.jinja_input);
-        templater.generateToFile('hue.gl.code-snippets.jinja',  path.join(CONFIG.path.dist, 'hue.gl.code-snippets'));
-        templater.generateToFile('hue.gl.css.jinja',            path.join(CONFIG.path.dist, 'hue.gl.css'));
-        templater.generateToFile('hue.gl.d.ts.jinja',           path.join(CONFIG.path.dist, 'hue.gl.d.ts'));
-        templater.generateToFile('hue.gl.inkscape.jinja',       path.join(CONFIG.path.dist, 'hue.gl.inkscape'));
-        templater.generateToFile('hue.gl.js.jinja',             path.join(CONFIG.path.dist, 'hue.gl.js'));
-        templater.generateToFile('hue.gl.less.jinja',           path.join(CONFIG.path.dist, 'hue.gl.less'));
-        templater.generateToFile('hue.gl.oco.jinja',            path.join(CONFIG.path.dist, 'hue.gl.oco'));
-        templater.generateToFile('hue.gl.py.jinja',             path.join(CONFIG.path.dist, 'hue.gl.py'));
-        templater.generateToFile('hue.gl.rcpx.jinja',           path.join(CONFIG.path.dist, 'hue.gl.rcpx'));
-        templater.generateToFile('hue.gl.scss.jinja',           path.join(CONFIG.path.dist, 'hue.gl.scss'));
-        templater.generateToFile('hue.gl.sketchpalette.jinja',  path.join(CONFIG.path.dist, 'hue.gl.sketchpalette'));
-        templater.generateToFile('hue.gl.styl.jinja',           path.join(CONFIG.path.dist, 'hue.gl.styl'));
-        templater.generateToFile('hue.gl.svg.jinja',            path.join(CONFIG.path.dist, 'hue.gl.svg'));
-        templater.generateToFile('hue.gl.tex.jinja',            path.join(CONFIG.path.dist, 'hue.gl.tex'));
-
-        
 
         // Dirs Clean
         // --------------------------------------------------------------------
@@ -117,6 +115,30 @@ async function main() {
         // Assuming the base path is the current directory
         await directoryCreator.createDirectories('.', directories);
 
+
+
+        const color_list = colorScheme.getColorList();
+        const color_dict = colorScheme.getColorDict();
+        console.log(color_dict);
+
+        // const templater = new TemplateWriter(color_list, "../jinja");
+        const templater = new TemplateWriter(packageConfig, color_dict, CONFIG.path.jinja_input);
+        await templater.generateToFile('hue.gl.code-snippets.jinja',  path.join(CONFIG.path.dist, 'hue.gl.code-snippets'));
+        await templater.generateToFile('hue.gl.css.jinja',            path.join(CONFIG.path.dist, 'hue.gl.css'));
+        await templater.generateToFile('hue.gl.d.ts.jinja',           path.join(CONFIG.path.dist, 'hue.gl.d.ts'));
+        await templater.generateToFile('hue.gl.inkscape.jinja',       path.join(CONFIG.path.dist, 'hue.gl.inkscape'));
+        await templater.generateToFile('hue.gl.js.jinja',             path.join(CONFIG.path.dist, 'hue.gl.js'));
+        await templater.generateToFile('hue.gl.less.jinja',           path.join(CONFIG.path.dist, 'hue.gl.less'));
+        await templater.generateToFile('hue.gl.oco.jinja',            path.join(CONFIG.path.dist, 'hue.gl.oco'));
+        await templater.generateToFile('hue.gl.py.jinja',             path.join(CONFIG.path.dist, 'hue.gl.py'));
+        await templater.generateToFile('hue.gl.rcpx.jinja',           path.join(CONFIG.path.dist, 'hue.gl.rcpx'));
+        await templater.generateToFile('hue.gl.scss.jinja',           path.join(CONFIG.path.dist, 'hue.gl.scss'));
+        await templater.generateToFile('hue.gl.sketchpalette.jinja',  path.join(CONFIG.path.dist, 'hue.gl.sketchpalette'));
+        await templater.generateToFile('hue.gl.styl.jinja',           path.join(CONFIG.path.dist, 'hue.gl.styl'));
+        await templater.generateToFile('hue.gl.svg.jinja',            path.join(CONFIG.path.dist, 'hue.gl.svg'));
+        await templater.generateToFile('hue.gl.tex.jinja',            path.join(CONFIG.path.dist, 'hue.gl.tex'));
+
+        
 
         // SASS
         // --------------------------------------------------------------------

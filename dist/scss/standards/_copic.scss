@@ -1,0 +1,463 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+
+// ============================================================================
+// Copic Colors
+// ============================================================================
+
+
+// Source:     http://blog.paigeedraw.com/2012/07/copic_marker-color-rgb-hex-conversion.html
+
+
+
+$color_copic_hex: (
+
+    copic_colorless:                #ffffff,  // 0
+    copic_black:                    #312b2b,  // 100
+    copic_special-black:            #030708,  // 110
+
+
+
+    // Copic | B
+    // ------------------------------------------------------------------------
+
+    copic_pale-celestine:           #f0f9fe,  // b0000
+    copic_pale-porcelain-blue:      #e6f4f5,  // b000
+    copic_frost-blue:               #ddf0f4,  // b00
+    copic_mint-blue:                #d6eef2,  // b01
+    copic_robins-egg-blue:          #b3e3f1,  // b02
+    copic_tahitian-blue:            #73cfe6,  // b04
+    copic_process-blue:             #40c5e6,  // b05
+    copic_peacock-blue:             #00b3e6,  // b06
+    copic_ice-blue:                 #c8e6f0,  // b12
+    copic_light-blue:               #71cfeb,  // b14
+    copic_cyanine-blue:             #00bcea,  // b16
+    copic_lapis-lazuli:             #1d8acb,  // b18
+    copic_baby-blue:                #dbedf9,  // b21
+    copic_phthalo-blue:             #92c2e8,  // b23
+
+    copic_b24:          #8acef3,
+    copic_b26:          #65b3e3,
+    copic_b28:          #196db6,
+    copic_b29:          #0177c1,
+    copic_b32:          #e2eff7,
+    copic_b34:          #82c3ed,
+    copic_b37:          #156fa4,
+    copic_b39:          #2b64a9,
+    copic_b41:          #e2f0fb,
+    copic_b45:          #75c0ea,
+    copic_b52:          #adcddc,
+    copic_b60:          #dae1f3,
+    copic_b63:          #a7bbe0,
+    copic_b66:          #6888c5,
+    copic_b69:          #2165ae,
+    copic_b79:          #3b479d,
+    copic_b91:          #d5e2eb,
+    copic_b93:          #95c1da,
+    copic_b95:          #60c5cf,
+    copic_b97:          #457a9a,
+    copic_b99:          #0f547e,
+
+
+    // Copic | BG
+    // ------------------------------------------------------------------------
+
+    copic_bg0000:       #eff8f3,
+    copic_bg000:        #e5f4ed,
+    copic_bg01:         #c7e6fa,
+    copic_bg02:         #c6e8ea,
+    copic_bg05:         #1db8ce,
+    copic_bg07:         #1db8ce,
+    copic_bg09:         #dcf0ef,
+    copic_bg10:         #dcf0ef,
+    copic_bg11:         #ceebf1,
+    copic_bg13:         #c4e7e9,
+    copic_bg15:         #a0d9d2,
+    copic_bg18:         #37c0b0,
+    copic_bg23:         #bde5dd,
+    copic_bg32:         #bce2d7,
+    copic_bg34:         #a3dad7,
+    copic_bg45:         #afdfdf,
+    copic_bg49:         #00b6b9,
+    copic_bg53:         #accfd1,
+    copic_bg57:         #64bebe,
+    copic_bg70:         #daecee,
+    copic_bg72:         #74b8bb,
+    copic_bg75:         #59918e,
+    copic_bg78:         #49706b,
+    copic_bg90:         #bac1b9,
+    copic_bg93:         #bac1b9,
+    copic_bg96:         #81a291,
+    copic_bg99:         #6e9b87,
+
+
+    // Copic | BV
+    // ------------------------------------------------------------------------
+
+    copic_bv0000:       #eae7f2,
+    copic_bv000:        #eae7f2,
+    copic_bv00:         #e0dced,
+    copic_bv01:         #c4c9e6,
+    copic_bv02:         #aab8db,
+    copic_bv04:         #7c97ce,
+    copic_bv08:         #eae7f2,
+    copic_bv11:         #d4d2e8,
+    copic_bv13:         #8491c8,
+    copic_bv17:         #6e84bd,
+    copic_bv20:         #cfdbf1,
+    copic_bv23:         #b1c0dd,
+    copic_bv25:         #8184a7,
+    copic_bv29:         #384558,
+    copic_bv31:         #eae7f2,
+    copic_bv34:         #9fa7bc,
+
+
+    // Copic | C
+    // ------------------------------------------------------------------------
+
+    copic_c00:          #e0e7ed,
+    copic_c0:           #e0e7ed,
+    copic_c1:           #dae3e8,
+    copic_c2:           #ccd7dd,
+    copic_c3:           #c1ccd2,
+    copic_c4:           #92a0ab,
+    copic_c5:           #92a0ab,
+    copic_c6:           #637079,
+    copic_c7:           #637079,
+    copic_c8:           #535d66,
+    copic_c9:           #3c474d,
+    copic_c10:          #202b31,
+
+
+    // Copic | E
+    // ------------------------------------------------------------------------
+
+    copic_e0000:        #fffaf4,
+    copic_e000:         #fef5ee,
+    copic_e00:          #fdf3ea,
+    copic_e01:          #ffeee4,
+    copic_e02:          #feece0,
+    copic_e04:          #e4bcc4,
+    copic_e07:          #cc816a,
+    copic_e08:          #ca6553,
+    copic_e09:          #d96a4f,
+    copic_e11:          #fee9d6,
+    copic_e13:          #e9c5af,
+    copic_e15:          #fbbb8d,
+    copic_e17:          #b85f57,
+    copic_e18:          #88534d,
+    copic_e19:          #c45238,
+    copic_e21:          #fde2c7,
+    copic_e23:          #eccab1,
+    copic_e25:          #d2a482,
+    copic_e27:          #997663,
+    copic_e29:          #884636,
+    copic_e30:          #f7f0d6,
+    copic_e31:          #f2e6ce,
+    copic_e33:          #f3d2b1,
+    copic_e34:          #f0caa6,
+    copic_e35:          #e6c3a3,
+    copic_e37:          #cc9159,
+    copic_e39:          #c5743f,
+    copic_e40:          #f2e8dc,
+    copic_e41:          #fef1e1,
+    copic_e42:          #f3ead9,
+    copic_e43:          #e8dabd,
+    copic_e44:          #8a6e59,
+    copic_e47:          #8a6e59,
+    copic_e49:          #634c3c,
+    copic_e50:          #f4ebf0,
+    copic_e51:          #feecd6,
+    copic_e53:          #f1dfb9,
+    copic_e55:          #f1dfb9,
+    copic_e57:          #b18558,
+    copic_e59:          #9a7f6c,
+    copic_e70:          #efeae6,
+    copic_e71:          #a1847c,
+    copic_e74:          #a1847c,
+    copic_e77:          #7f604e,
+    copic_e79:          #4a2c22,
+    copic_e81:          #f0e6c2,
+    copic_e84:          #ae9f80,
+    copic_e87:          #6f604d,
+    copic_e89:          #5a4939,
+    copic_e93:          #fed2b9,
+    copic_e95:          #fcbc7e,
+    copic_e97:          #b46034,
+    copic_e99:          #b46034,
+
+
+    // Copic | F
+    // ------------------------------------------------------------------------
+
+    copic_frv1:         #f5a3c7,
+    copic_fv2:          #7f74b6,
+    copic_fy1:          #fff697,
+    copic_fyr1:         #fecc99,
+
+
+    // Copic | G
+    // ------------------------------------------------------------------------
+
+    copic_g0000:        #f1f7f3,
+    copic_g000:         #eaf5ed,
+    copic_g00:          #e3f2ed,
+    copic_g02:          #cfe8d3,
+    copic_g03:          #b6da9c,
+    copic_g05:          #69c07b,
+    copic_g07:          #7bc576,
+    copic_g09:          #7ac465,
+    copic_g12:          #d2e8c4,
+    copic_g14:          #97cf90,
+    copic_g16:          #60c198,
+    copic_g17:          #14b37d,
+    copic_g19:          #2db98a,
+    copic_g20:          #edf6db,
+    copic_g21:          #c4e4cd,
+    copic_g24:          #c3e0b4,
+    copic_g28:          #119462,
+    copic_g29:          #197c5d,
+    copic_g40:          #e4f1df,
+    copic_g43:          #d7e7a8,
+    copic_g46:          #589F75,
+    copic_g82:          #ccdab9,
+    copic_g85:          #9dc3aa,
+    copic_g94:          #98a786,
+    copic_g99:          #5f7e3a,
+
+
+    // Copic | N
+    // ------------------------------------------------------------------------
+
+    copic_n0:           #eceeed,
+    copic_n1:           #e2e3e5,
+    copic_n2:           #dadbdd,
+    copic_n3:           #d1d2d4,
+    copic_n4:           #bcbdc1,
+    copic_n5:           #a8a9ad,
+    copic_n6:           #949599,
+    copic_n7:           #77787c,
+    copic_n8:           #636466,
+    copic_n9:           #4c4d4f,
+    copic_n10:          #312f30,
+
+
+    // Copic | R
+    // ------------------------------------------------------------------------
+
+    copic_r0000:        #fef3ef,
+    copic_r000:         #fef0e7,
+    copic_r00:          #feeae1,
+    copic_r01:          #fde0d8,
+    copic_r02:          #fdd3c7,
+    copic_r05:          #f6917b,
+    copic_r07:          #f26f39,
+    copic_r08:          #f26754,
+    copic_r11:          #fde1d5,
+    copic_r12:          #fcd3c1,
+    copic_r14:          #f59b92,
+    copic_r17:          #f4846c,
+    copic_r20:          #fcd7cf,
+    copic_r21:          #fac1b6,
+    copic_r22:          #f8b7b1,
+    copic_r24:          #f27579,
+    copic_r27:          #f15062,
+    copic_r29:          #ed174b,
+    copic_r30:          #fce3df,
+    copic_r32:          #fac1ba,
+    copic_r35:          #f27185,
+    copic_r37:          #e86c74,
+    copic_r39:          #cb487a,
+    copic_r43:          #ee848e,
+    copic_r46:          #e04d69,
+    copic_r56:          #d27c95,
+    copic_r59:          #b74f70,
+    copic_r81:          #f1c8d6,
+    copic_r83:          #f19cb9,
+    copic_r85:          #d36a93,
+    copic_r89:          #7d2b42,
+
+
+    // Copic | RV
+    // ------------------------------------------------------------------------
+
+    copic_rv0000:       #f2eaf5,
+    copic_rv000:        #f4e2ee,
+    copic_rv00:         #f1daea,
+    copic_rv02:         #fad5e6,
+    copic_rv04:         #f6a3bf,
+    copic_rv06:         #f386af,
+    copic_rv10:         #fdecf4,
+    copic_rv11:         #fbd6dd,
+    copic_rv13:         #f9c9d7,
+    copic_rv14:         #f495b7,
+    copic_rv17:         #db7eb3,
+    copic_rv19:         #d268aa,
+    copic_rv21:         #fde8e7,
+    copic_rv23:         #f8bac9,
+    copic_rv25:         #f493be,
+    copic_rv29:         #ef4880,
+    copic_rv32:         #fad3ce,
+    copic_rv34:         #f9afae,
+    copic_rv42:         #f8bbb6,
+    copic_rv52:         #f9cade,
+    copic_rv55:         #e9a5ca,
+    copic_rv63:         #d09dae,
+    copic_rv66:         #b86a84,
+    copic_rv69:         #8b576e,
+    copic_rv95:         #b684a1,
+    copic_rv99:         #5a4858,
+
+
+    // Copic | T
+    // ------------------------------------------------------------------------
+
+    copic_t0:           #eceeed,
+    copic_t1:           #eaeae8,
+    copic_t2:           #e0e0de,
+    copic_t3:           #d1d2cc,
+    copic_t4:           #bcbbb9,
+    copic_t5:           #a8a7a3,
+    copic_t6:           #949590,
+    copic_t7:           #777674,
+    copic_t8:           #63645f,
+    copic_t9:           #4c4b49,
+    copic_t10:          #322e2d,
+
+    copic_tg13:         #d4e59f,
+    copic_tr000:        #feecd8,
+
+
+    // Copic | V
+    // ------------------------------------------------------------------------
+
+    copic_v0000:        #f0edf6,
+    copic_v000:         #e9e5f3,
+    copic_v01:          #e4c1d9,
+    copic_v04:          #e6aace,
+    copic_v05:          #e2a6ca,
+    copic_v06:          #ce95c2,
+    copic_v09:          #8754a1,
+    copic_v12:          #eed7e9,
+    copic_v15:          #d3a6cd,
+    copic_v17:          #a092c7,
+    copic_v20:          #e2e0ed,
+    copic_v22:          #b2b1d0,
+    copic_v25:          #857fad,
+    copic_v28:          #6b668e,
+    copic_v91:          #e8c4d0,
+    copic_v93:          #e5c1db,
+    copic_v95:          #b77ca8,
+    copic_v99:          #524358,
+
+
+    // Copic | W
+    // ------------------------------------------------------------------------
+
+    copic_w00:          #f3f3eb,
+    copic_w0:           #ecece4,
+    copic_w10:          #302f2b,
+    copic_w1:           #e7e7df,
+    copic_w2:           #ddddd5,
+    copic_w3:           #d2d2ca,
+    copic_w4:           #bcbdb7,
+    copic_w5:           #a8a9a4,
+    copic_w6:           #94958f,
+    copic_w7:           #777873,
+    copic_w8:           #63645f,
+    copic_w9:           #4c4d48,
+
+
+    // Copic | Y
+    // ------------------------------------------------------------------------
+
+    copic_y0000:        #fefef4,
+    copic_y000:         #fffce9,
+    copic_y00:          #fefddf,
+    copic_y02:          #f6f396,
+    copic_y04:          #ede556,
+    copic_y06:          #fef56c,
+    copic_y08:          #fef200,
+    copic_y11:          #fffbcc,
+    copic_y13:          #fbf7ae,
+    copic_y15:          #fee96c,
+    copic_y17:          #ffe455,
+    copic_y18:          #feed55,
+    copic_y19:          #ffe93e,
+    copic_y21:          #ffeec2,
+    copic_y23:          #fbe3b3,
+    copic_y26:          #f0dd67,
+    copic_y28:          #caa869,
+    copic_y32:          #f9dec0,
+    copic_y35:          #ffd879,
+    copic_y38:          #ffd274,
+
+
+    // Copic | YG
+    // ------------------------------------------------------------------------
+
+    copic_yg0000:       #f2f7e0,
+    copic_yg00:         #e6e69e,
+    copic_yg01:         #e2ebb2,
+    copic_yg03:         #deeaaa,
+    copic_yg05:         #d6e592,
+    copic_yg06:         #c4df92,
+    copic_yg07:         #a5cf4f,
+    copic_yg09:         #82c566,
+    copic_yg11:         #e5f0d0,
+    copic_yg17:         #72c156,
+    copic_yg21:         #f7f6be,
+    copic_yg23:         #e6eb8f,
+    copic_yg25:         #d0e17b,
+    copic_yg41:         #d5ebd4,
+    copic_yg45:         #b4dcb7,
+    copic_yg61:         #d6e9d6,
+    copic_yg63:         #a0caa2,
+    copic_yg67:         #81bf8c,
+    copic_yg91:         #dad7ae,
+    copic_yg93:         #d2d29c,
+    copic_yg95:         #cbc65e,
+    copic_yg97:         #958f03,
+    copic_yg99:         #4e6a15,
+
+
+    // Copic | YR
+    // ------------------------------------------------------------------------
+
+    copic_yr0000:       #fff3e5,
+    copic_yr00:         #fed6bd,
+    copic_yr01:         #fedac2,
+    copic_yr02:         #fcdcc5,
+    copic_yr04:         #fec369,
+    copic_yr07:         #f26f39,
+    copic_yr09:         #f15524,
+    copic_yr12:         #ffe2a6,
+    copic_yr14:         #fec84e,
+    copic_yr15:         #fbb884,
+    copic_yr16:         #feb729,
+    copic_yr18:         #f26b3c,
+    copic_yr20:         #ffe1bf,
+    copic_yr21:         #f5ddb1,
+    copic_yr23:         #eccf8b,
+    copic_yr24:         #f0cf64,
+    copic_yr30:         #fef2da,
+    copic_yr31:         #ffdea8,
+    copic_yr61:         #fddac4,
+    copic_yr65:         #faae60,
+    copic_yr68:         #f37022,
+    copic_yr82:         #fdc68d,
+
+)
