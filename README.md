@@ -40,7 +40,14 @@
 
 ## Introduction
 
-Natural Colour Spectrum
+`hue.gl` is a comprehensive color scheme generator and management tool designed to create and handle color swatches effectively. It provides a range of functionalities including generating color schemes based on various parameters, encoding them into different formats like ASE (Adobe Swatch Exchange), and more.
+
+## Features
+
+- Generate color schemes with configurable parameters.
+- Support for multiple color models such as RGB, HSL, CMYK, etc.
+- Export color schemes in different formats, including ASE.
+- Intuitive and user-friendly interface for easy color scheme customization.
 
 ## Installation
 
@@ -76,6 +83,7 @@ npm i hue.gl
 
 #### Programming Language Environments
 
+|                   |                           |
 | ----------------- | ------------------------- |
 | `.go`             | Go                        |
 | `.jl`             | Julia                     |
@@ -86,16 +94,20 @@ npm i hue.gl
 
 #### Data-interchange Formats
 
+|                   |                           |
 | ----------------- | ------------------------- |
 | `.csv`            |                           |
 | `.json`           | JSON                      |
 
 #### Image Formats
 
+|                   |                           |
+| ----------------- | ------------------------- |
 | `.svg`            | SVG                       |
 
 #### Desktop Applications
 
+|                   |                                 |
 | ----------------- | ------------------------------- |
 | `.oco`            | Open Color Tools                |
 | `.ptc`            | PANTONE Color File              |
@@ -127,7 +139,7 @@ npm i hue.gl
 
 **hue.gl** is an open-source project by **[Scape Agency](https://www.scape.agency "Scape Agency website")**.
 
-##### Scape Agency
+#### Scape Agency
 
 Scape Agency is a spatial innovation collective that dreams, discovers and designs the everyday of tomorrow. We blend design thinking with emerging technologies to create a brighter perspective for people and planet. Our products and services naturalise technology in liveable and sustainable –scapes that spark the imagination and inspire future generations.
 
