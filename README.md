@@ -10,7 +10,7 @@
 <div>
     <img align="right" src="https://raw.githubusercontent.com/scape-agency/brand/master/src/logo/hue.gl.png" width="96" alt="hue.gl logo">
     <h1 align="left">hue.gl</h1>
-    <h3 align="left">Natural Colour Spectrum</h3>
+    <h3 align="left">Perceptual Colour System</h3>
 </div>
 
 ---
@@ -36,13 +36,19 @@
 
 </div>
 
-**Natural Colour Spectrum.**
+**Welcome to hue.gl - a Perceptual Colour System designed for the modern age. At its core, hue.gl transcends traditional color systems by focusing on how we perceive colors, ensuring that every hue, shade, and tone is as visually intuitive as it is scientifically precise.**
 
 ## Introduction
 
-`hue.gl` is a comprehensive color scheme generator and management tool designed to create and handle color swatches effectively. It provides a range of functionalities including generating color schemes based on various parameters, encoding them into different formats like ASE (Adobe Swatch Exchange), and more.
+In a world where colors are more than just aesthetic choices, hue.gl stands out by delivering a color system that aligns with human visual perception. This system is meticulously calibrated to reflect how our eyes and brains understand color, making it an invaluable tool for designers, artists, and anyone looking to communicate with color more effectively.
+
+hue.gl offers a comprehensive suite of tools and features that cater to a wide range of needs - from generating harmonious color schemes to providing a vast palette of perceptually uniform colors. Whether you're designing a user interface, branding materials, or simply exploring the world of colors, hue.gl is your go-to solution for colors that resonate and communicate clearly.
+
+Join us in exploring the vivid and perceptually-optimized world of hue.gl, where every color is more than just a hue - it's an experience.
 
 ## Features
+
+`hue.gl` features a comprehensive color scheme generator and management tool designed to create and handle color swatches effectively. It provides a range of functionalities including generating color schemes based on various parameters, encoding them into different formats like ASE (Adobe Swatch Exchange), and more.
 
 - Generate color schemes with configurable parameters.
 - Support for multiple color models such as RGB, HSL, CMYK, etc.
@@ -65,8 +71,9 @@ npm i hue.gl
 
 ## Colours
 
-Here's a glimpse of the colors available:
+Explore a glimpse of the vibrant and diverse color palette offered by `hue.gl`. Each color has been carefully crafted to provide a wide range of hues and shades, suitable for various design needs.
 
+<center>
 
 |      | 1    | 2    | 3    | 4    | 5    | 6    | 7    | 8    | 9    |
 | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- | ---- |
@@ -96,9 +103,7 @@ Here's a glimpse of the colors available:
 | **Pink** |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3451.png" alt="N3451"><small>N3451</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3452.png" alt="N3452"><small>N3452</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3453.png" alt="N3453"><small>N3453</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3454.png" alt="N3454"><small>N3454</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3455.png" alt="N3455"><small>N3455</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3456.png" alt="N3456"><small>N3456</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3457.png" alt="N3457"><small>N3457</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3458.png" alt="N3458"><small>N3458</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3459.png" alt="N3459"><small>N3459</small> |
 | **Red** |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3601.png" alt="N3601"><small>N3601</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3602.png" alt="N3602"><small>N3602</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3603.png" alt="N3603"><small>N3603</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3604.png" alt="N3604"><small>N3604</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3605.png" alt="N3605"><small>N3605</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3606.png" alt="N3606"><small>N3606</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3607.png" alt="N3607"><small>N3607</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3608.png" alt="N3608"><small>N3608</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3609.png" alt="N3609"><small>N3609</small> |
 
-
-
-
+</center>
 
 ## Links
 
@@ -107,65 +112,66 @@ Here's a glimpse of the colors available:
 
 ## Supported Formats
 
-#### Style Sheet Languages
+### Style Sheet Languages
 
-|                   |                           |
-| ----------------- | ------------------------- |
-| `.css`            | CSS                       |
-| `.scss`           | Sass                      |
-| `.less`           | Less                      |
-| `.stylus`         | Stylus                    |
-|                   | Tailwind                  |
+| Extension | Description               |
+| --------- | ------------------------- |
+| `.css`    | CSS Style Sheets          |
+| `.scss`   | Sass Style Sheets         |
+| `.less`   | LESS Style Sheets         |
+| `.stylus` | Stylus Style Sheets       |
+|           | Tailwind CSS Framework    |
 
-#### Programming Language Environments
+### Programming Language Environments
 
-|                   |                           |
-| ----------------- | ------------------------- |
-| `.go`             | Go                        |
-| `.jl`             | Julia                     |
-| `.py`             | Python                    |
-| `.d.ts`           | TypeScript                |
-| `.js`             | JavaScript                |
-| `.tex`            | LaTex                     |
+| Extension | Description               |
+| --------- | ------------------------- |
+| `.go`     | Go Language Environment   |
+| `.jl`     | Julia Language Environment|
+| `.py`     | Python Scripts            |
+| `.d.ts`   | TypeScript Definitions    |
+| `.js`     | JavaScript Files          |
+| `.tex`    | LaTeX Documents           |
 
-#### Data-interchange Formats
+### Data-interchange Formats
 
-|                   |                           |
-| ----------------- | ------------------------- |
-| `.csv`            |                           |
-| `.json`           | JSON                      |
+| Extension | Description               |
+| --------- | ------------------------- |
+| `.csv`    | Comma-Separated Values    |
+| `.json`   | JSON Data Format          |
 
-#### Image Formats
+### Image Formats
 
-|                   |                           |
-| ----------------- | ------------------------- |
-| `.svg`            | SVG                       |
+| Extension | Description               |
+| --------- | ------------------------- |
+| `.svg`    | Scalable Vector Graphics  |
 
-#### Desktop Applications
+### Desktop Applications
 
-|                   |                                 |
-| ----------------- | ------------------------------- |
-| `.oco`            | Open Color Tools                |
-| `.ptc`            | PANTONE Color File              |
-| `.ase`            | Adobe Swatch Exchange           |
-| `.aco`            | Adobe Photoshop                 |
-| `.acb`            | Adobe Photoshop Color Book      |
-| `.grd`            | Adobe Photoshop Gradient        |
-| `.clr`            | Adobe Animate Color Set         |
-| `.inx`            | Adobe InDesign Interchange      |
-| `.acbl`           | Adobe Color Book Legacy         |
-| `.sketchpalette`  | Sketch                          |
-| `.gpl`            | GIMP Palette, Inkscape          |
-| `.ggr`            | GIMP Gradient File              |
-| `.rcpx`           | PowerPaint                      |
-| `.ctb`            | AutoCAD Color-Based Plot Style  |
-| `.colorpicker`    | Apple Color Picker              |
-| `.bcp`            | BlackMagic Custom Palette       |
-| `.mgk`            | ImageMagick Configuration        |
-| `.cs`             | ColorSchemer Studio             |
-| `.style`          | Trimble SketchUp Style          |
-| `.gdiagramstyle`  | OmniGraffle Diagram Style        |
-| `.pal`            | Painter Custom Palettes         |
+| Extension         | Description                         |
+| ----------------- | ----------------------------------- |
+| `.oco`            | Open Color Tools                    |
+| `.ptc`            | PANTONE Color File                  |
+| `.ase`            | Adobe Swatch Exchange Format        |
+| `.aco`            | Adobe Photoshop Color Swatches      |
+| `.acb`            | Adobe Photoshop Color Book          |
+| `.grd`            | Adobe Photoshop Gradient File       |
+| `.clr`            | Adobe Animate Color Set             |
+| `.inx`            | Adobe InDesign Interchange Format   |
+| `.acbl`           | Adobe Color Book Legacy             |
+| `.sketchpalette`  | Sketch Palette File                 |
+| `.gpl`            | GIMP and Inkscape Palette File      |
+| `.ggr`            | GIMP Gradient File                  |
+| `.rcpx`           | PowerPaint Palette File             |
+| `.ctb`            | AutoCAD Color-Based Plot Style File |
+| `.colorpicker`    | Apple Color Picker File             |
+| `.bcp`            | BlackMagic Custom Palette           |
+| `.mgk`            | ImageMagick Configuration File      |
+| `.cs`             | ColorSchemer Studio File            |
+| `.style`          | Trimble SketchUp Style File         |
+| `.gdiagramstyle`  | OmniGraffle Diagram Style File      |
+| `.pal`            | Painter Custom Palettes File        |
+
 
 ## Other Standards
 
