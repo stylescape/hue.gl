@@ -41,9 +41,6 @@ class ColorSwatch {
     getName() {
         return this.name;
     }
-    HCL() {
-        return [this.h, this.c, this.l];
-    }
     getRGB() {
         return [0, 0, 0];
     }
@@ -163,6 +160,14 @@ class ColorSwatch {
         let color = this.srgb();
         let hex = convertRGBtoHex(Math.round(color.coords[0] * 255), Math.round(color.coords[1] * 255), Math.round(color.coords[2] * 255));
         return hex;
+    }
+    hcl() {
+        let hcl = {
+            "h": this.h,
+            "c": this.c,
+            "l": this.l,
+        };
+        return hcl;
     }
     rgb() {
         let color = this.srgb();

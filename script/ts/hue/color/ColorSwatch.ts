@@ -83,9 +83,9 @@ class ColorSwatch {
         return this.name;
     }
 
-    HCL(): [number, number, number] {
-        return [this.h, this.c, this.l];
-    }
+    // HCL(): [number, number, number] {
+    //     return [this.h, this.c, this.l];
+    // }
 
     getRGB(): [number, number, number] {
         // const color_constant = new Color("lch", [l, c, h]);
@@ -252,6 +252,17 @@ class ColorSwatch {
 
     }
 
+    hcl() {
+        
+        let hcl = {
+            "h": this.h,
+            "c": this.c,
+            "l": this.l,
+        }
+        return hcl;
+
+
+    }
     // rgb() {
     //     let color = this.srgb();
 

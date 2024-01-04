@@ -1,0 +1,182 @@
+// Copyright 2023 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+// Color Getter Function: This function will retrieve a color value based on a
+// given color name. It's useful when you want to access a color from the
+// $hue map.
+
+@function hue-color($color-name) {
+    @if map-has-key($hue, $color-name) {
+        @return map-get($hue, $color-name);
+    } @else {
+        @warn "Unknown `#{$color-name}` in `$hue`.";
+        @return null;
+    }
+}
+
+
+// Contrast Function (Optional): A function to determine if you need a light
+// or dark text color on a specific background for readability.
+
+@function contrast-color($background-color) {
+    @if (lightness($background-color) > 50%) {
+        @return black; // Dark text on light background
+    } @else {
+        @return white; // Light text on dark background
+    }
+}
+
+// Contrast Checker: A function to calculate the contrast ratio between two colors, which is useful for accessibility considerations.
+@function hue-contrast($color1-name, $color2-name) {
+    $color1: hue-color($color1-name);
+    $color2: hue-color($color2-name);
+    @return contrast-ratio($color1, $color2);
+  }
+
+
+//   Dynamic Text Color: A function to dynamically determine whether to use light or dark text based on the background color for better readability.
+  @function dynamic-text-color($background-color-name) {
+    $background-color: hue-color($background-color-name);
+    @if (hue-contrast($background-color, black) > 4.5) {
+      @return black;
+    } @else {
+      @return white;
+    }
+  }
+
+
+// Complementary Color Function
+// ----------------------------------------------------------------------------
+// A function to find the complementary color on the color wheel, useful for
+// creating color schemes.
+@function complementary-color($color-name) {
+    $base-color: hue-color($color-name);
+    @return adjust-hue($base-color, 180deg);
+  }
+  
+// Opacity Variants: Create a function to generate color variants with different opacities.
+
+@function hue-color-opacity($color-name, $opacity: 1) {
+    $color: hue-color($color-name);
+    @if $color != null {
+      @return rgba($color, $opacity);
+    } @else {
+      @return null;
+    }
+  }
+  
+//   Color Shades and Tints: Create functions to lighten and darken colors. This is useful for hover states, disabled states, or gradients.
+  @function hue-shade($color-name, $amount: 10%) {
+    $color: hue-color($color-name);
+    @return darken($color, $amount);
+  }
+  
+  @function hue-tint($color-name, $amount: 10%) {
+    $color: hue-color($color-name);
+    @return lighten($color, $amount);
+  }
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+// Mixins for Text and Background Colors: These mixins can be used to apply 
+// text and background colors throughout your stylesheets.
+// They make it easy to maintain consistency and make changes later if needed.
+
+@mixin text-color($color-name) {
+    color: hue-color($color-name);
+}
+  
+@mixin bg-color($color-name) {
+    background-color: hue-color($color-name);
+}
+
+@mixin border-color($color-name) {
+    border-color: hue-color($color-name);
+  }
+
+
+//   Accessibility Mixin: A mixin to ensure text color contrasts well with its background for accessibility.
+  @mixin accessible-text-color($background-color-name) {
+    $background-color: hue-color($background-color-name);
+    color: contrast-color($background-color);
+  }
+  
+//  Gradient Mixin: Create a mixin for generating gradients with your color palette.
+
+
+  @mixin gradient-bg($start-color-name, $end-color-name) {
+    background: linear-gradient(hue-color($start-color-name), hue-color($end-color-name));
+  }
+
+//   Themed Components: Create a set of mixins for theming components. This can include buttons, links, etc.
+@mixin button-theme($bg-color-name, $text-color-name: null) {
+    @include bg-color($bg-color-name);
+    @if $text-color-name != null {
+      @include text-color($text-color-name);
+    } @else {
+      @include accessible-text-color($bg-color-name);
+    }
+    // Add more button styles here
+  }
+
+//  Color Blending Mixin: A mixin to blend two colors from your color map.
+
+
+  @mixin blend-colors($color1-name, $color2-name, $percentage: 50%) {
+    $color1: hue-color($color1-name);
+    $color2: hue-color($color2-name);
+    background-color: mix($color1, $color2, $percentage);
+  }
+  
+// ============================================================================
+// Classes
+// ============================================================================
+
+  // Utility Classes Generation: This step involves creating utility classes
+  // for each color in your map. It generates classes like .text-N0001,
+  // .bg-N0001, etc., for quick and easy styling in HTML.
+
+  @each $color-name, $color-value in $hue {
+
+    .text-#{$color-name} {
+        @include text-color($color-name);
+    }
+  
+    .bg-#{$color-name} {
+      @include bg-color($color-name);
+    }
+
+    .border-#{$color-name} {
+        @include border-color($color-name);
+      }
+
+}
+
+// CSS Variables Generator: If you prefer using CSS variables, create a mixin to generate them from your SCSS map.
+
+:root {
+    @each $color-name, $color-value in $hue {
+      --color-#{$color-name}: #{$color-value};
+    }
+  }
+  

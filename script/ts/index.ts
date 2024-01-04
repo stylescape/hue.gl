@@ -143,10 +143,17 @@ async function main() {
         await templater.generateToFile('hue.gl.styl.jinja',           path.join(CONFIG.path.dist, 'styl',           'hue.gl.styl'));
         await templater.generateToFile('hue.gl.tex.jinja',            path.join(CONFIG.path.dist, 'tex',            'hue.gl.tex'));
 
-        await templater.generateToFile('hue.gl.scss.jinja',           path.join(CONFIG.path.dist, 'scss',           'hue.gl.scss'));
+        await templater.generateToFile('hue.gl-rgb-map.scss.jinja',   path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-rgb-map.scss'));
+        await templater.generateToFile('hue.gl-rgb-var.scss.jinja',   path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-rgb-var.scss'));
+        await templater.generateToFile('hue.gl-hcl-map.scss.jinja',   path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-hcl-map.scss'));
+        await templater.generateToFile('hue.gl-hcl-var.scss.jinja',   path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-hcl-var.scss'));
+        await templater.generateToFile('hue.gl-hex-map.scss.jinja',   path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-hex-map.scss'));
+        await templater.generateToFile('hue.gl-hex-var.scss.jinja',   path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-hex-var.scss'));
+
+
         await templater.generateToFile('hue.gl.d.ts.jinja',           path.join(CONFIG.path.dist, 'ts',             'hue.gl.d.ts'));
 
-        await templater.generateToFile('hue.gl.css.jinja',            path.join(CONFIG.path.dist, 'css',            'hue.gl.css'));
+        // await templater.generateToFile('hue.gl.css.jinja',            path.join(CONFIG.path.dist, 'css',            'hue.gl.css'));
         await templater.generateToFile('hue.gl.js.jinja',             path.join(CONFIG.path.dist, 'js',             'hue.gl.js'));
         // await templater.generateToFile('hue.gl.svg.jinja',            path.join(CONFIG.path.dist, 'svg',            'hue.gl.svg'));
 

@@ -55,9 +55,13 @@ function main() {
             yield templater.generateToFile('hue.gl.sketchpalette.jinja', path.join(CONFIG.path.dist, 'sketchpalette', 'hue.gl.sketchpalette'));
             yield templater.generateToFile('hue.gl.styl.jinja', path.join(CONFIG.path.dist, 'styl', 'hue.gl.styl'));
             yield templater.generateToFile('hue.gl.tex.jinja', path.join(CONFIG.path.dist, 'tex', 'hue.gl.tex'));
-            yield templater.generateToFile('hue.gl.scss.jinja', path.join(CONFIG.path.dist, 'scss', 'hue.gl.scss'));
+            yield templater.generateToFile('hue.gl-rgb-map.scss.jinja', path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-rgb-map.scss'));
+            yield templater.generateToFile('hue.gl-rgb-var.scss.jinja', path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-rgb-var.scss'));
+            yield templater.generateToFile('hue.gl-hcl-map.scss.jinja', path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-hcl-map.scss'));
+            yield templater.generateToFile('hue.gl-hcl-var.scss.jinja', path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-hcl-var.scss'));
+            yield templater.generateToFile('hue.gl-hex-map.scss.jinja', path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-hex-map.scss'));
+            yield templater.generateToFile('hue.gl-hex-var.scss.jinja', path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-hex-var.scss'));
             yield templater.generateToFile('hue.gl.d.ts.jinja', path.join(CONFIG.path.dist, 'ts', 'hue.gl.d.ts'));
-            yield templater.generateToFile('hue.gl.css.jinja', path.join(CONFIG.path.dist, 'css', 'hue.gl.css'));
             yield templater.generateToFile('hue.gl.js.jinja', path.join(CONFIG.path.dist, 'js', 'hue.gl.js'));
             for (const groupName in color_dict) {
                 if (color_dict.hasOwnProperty(groupName)) {
