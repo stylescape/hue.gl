@@ -229,10 +229,6 @@ async function main() {
             path.join('.', 'LICENSE'),
             CONFIG.path.dist,
         )
-        fileCopier.copyFileToDirectory(
-            path.join('.', 'LICENSE-CODE'),
-            CONFIG.path.dist,
-        )
 
 
         // Version
@@ -252,15 +248,6 @@ async function main() {
         // console.log('Starting TypeScript compilation...');
         await tsCompiler.compile(tsFiles, outputDir);
         // console.log('TypeScript compilation completed.');
-    
-
-        // Rename Ts
-        // --------------------------------------------------------------------
-
-        // await fileRenamer.renameFile(
-        //     path.join(CONFIG.path.js_output, 'index.js'),
-        //     path.join(CONFIG.path.js_output, `${packageConfig.name}.js`),
-        // )
 
 
         // Minify JavaScript

@@ -92,7 +92,6 @@ function main() {
             const fileCopier = new FileCopier();
             fileCopier.copyFileToDirectory(path.join('.', 'README.md'), CONFIG.path.dist);
             fileCopier.copyFileToDirectory(path.join('.', 'LICENSE'), CONFIG.path.dist);
-            fileCopier.copyFileToDirectory(path.join('.', 'LICENSE-CODE'), CONFIG.path.dist);
             const versionWriter = new VersionWriter();
             yield versionWriter.writeVersionToFile('VERSION', packageConfig.version);
             const tsCompiler = new TypeScriptCompiler();
