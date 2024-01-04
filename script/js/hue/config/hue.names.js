@@ -1,4 +1,5 @@
 const hueNames = {
+    0: "Grey",
     15: "Salmon",
     30: "Orange",
     45: "Amber",

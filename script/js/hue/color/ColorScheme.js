@@ -30,13 +30,17 @@ class ColorScheme {
             c_list.push(c_cur);
         }
         ;
-        for (let h = this.config.h_step; h <= 360; h += this.config.h_step) {
+        for (let h = 0; h <= 360; h += this.config.h_step) {
             let h_group = {};
             let h_group_name = this.names[h];
             ;
             for (let i = 0; i < this.config.p_count; i++) {
                 let l_cur = l_list[i];
                 let c_cur = c_list[i];
+                if (h == 0) {
+                    c_cur = 0;
+                }
+                ;
                 let name = this.config.prefix + pad(h.toString(), 3, "0") + (i + 1).toString();
                 let color = new ColorSwatch(h, c_cur, l_cur, name);
                 this.colorList.push(color);

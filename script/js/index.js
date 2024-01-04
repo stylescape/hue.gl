@@ -1,6 +1,6 @@
 import { __awaiter } from "tslib";
 import path from 'path';
-import { DirectoryCleaner, DirectoryCopier, FileCopier, StyleProcessor, PackageCreator, VersionWriter, TypeScriptCompiler, JavaScriptMinifier, StylizedLogger, TemplateWriter, SvgToPngConverter, gl_installer, readPackageJson, } from 'pack.gl';
+import { DirectoryCleaner, DirectoryCopier, FileCopier, StyleProcessor, PackageCreator, VersionWriter, TypeScriptCompiler, JavaScriptMinifier, StylizedLogger, TemplateWriter, SvgToPngConverter, readPackageJson, } from 'pack.gl';
 import ColorScheme from './hue/color/ColorScheme.js';
 import hueConfig from "./hue/config/hue.config.js";
 import hueNames from "./hue/config/hue.names.js";
@@ -26,7 +26,6 @@ function main() {
         try {
             const logger = new StylizedLogger();
             logger.header('Install .gl libraries');
-            yield gl_installer();
             const directoryCleaner = new DirectoryCleaner();
             logger.header('Clean Directories');
             directoryCleaner.cleanDirectory(CONFIG.path.dist);
