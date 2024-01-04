@@ -142,6 +142,24 @@ npm i hue.gl
 
 ### Accessing Colors
 
+```scss
+.element {
+  background-color: #c6727d; // Using the 'Salmon' color
+}
+```
+
+```scss
+.element {
+  background-color: $N0155; // Using the 'Salmon' color
+}
+```
+
+```scss
+.element {
+  background-color: hue(N0155); // Using the 'Salmon' color
+}
+```
+
 Using the `hue-color` function to apply a specific color from the hue.gl color map:
 
 ```scss
