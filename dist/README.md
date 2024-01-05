@@ -20,6 +20,10 @@
 ### Contents
 
 - [Introduction](#introduction)
+- [Colours](#colours)
+- [Features](#features)
+- [Installation](#installation)
+- [Examples](#examples)
 - [Colophon](#colophon)
 
 <br clear="both"/>
@@ -45,29 +49,6 @@ In a world where colors are more than just aesthetic choices, hue.gl stands out 
 hue.gl offers a comprehensive suite of tools and features that cater to a wide range of needs - from generating harmonious color schemes to providing a vast palette of perceptually uniform colors. Whether you're designing a user interface, branding materials, or simply exploring the world of colors, hue.gl is your go-to solution for colors that resonate and communicate clearly.
 
 Join us in exploring the vivid and perceptually-optimized world of hue.gl, where every color is more than just a hue - it's an experience.
-
-## Features
-
-`hue.gl` features a comprehensive color scheme generator and management tool designed to create and handle color swatches effectively. It provides a range of functionalities including generating color schemes based on various parameters, encoding them into different formats like ASE (Adobe Swatch Exchange), and more.
-
-- Generate color schemes with configurable parameters.
-- Support for multiple color models such as RGB, HSL, CMYK, etc.
-- Export color schemes in different formats, including ASE.
-- Intuitive and user-friendly interface for easy color scheme customization.
-
-## Installation
-
-### HTML Script Tag
-
-``` html
-<script src="https://unpkg.com/hue.gl@latest/dist.min.js"></script>
-```
-
-### NPM Module
-
-``` bash
-npm i hue.gl
-```
 
 ## Colours
 
@@ -104,6 +85,197 @@ Explore a glimpse of the vibrant and diverse color palette offered by `hue.gl`. 
 | **Red** |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3601.png" alt="N3601"><small>N3601</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3602.png" alt="N3602"><small>N3602</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3603.png" alt="N3603"><small>N3603</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3604.png" alt="N3604"><small>N3604</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3605.png" alt="N3605"><small>N3605</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3606.png" alt="N3606"><small>N3606</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3607.png" alt="N3607"><small>N3607</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3608.png" alt="N3608"><small>N3608</small> |  <img src="https://raw.githubusercontent.com/scape-agency/hue.gl/main/dist/png/swatch/N3609.png" alt="N3609"><small>N3609</small> |
 
 </center>
+
+## Features
+
+`hue.gl` is not just a color palette – it's a comprehensive Perceptual Colour System, offering an array of features tailored for designers, artists, and anyone with a passion for color. `hue.gl` features a comprehensive color scheme generator and management tool designed to create and handle color swatches effectively. It provides a range of functionalities including generating color schemes based on various parameters, encoding them into different formats like ASE (Adobe Swatch Exchange), and more.
+
+Here's what sets hue.gl apart:
+
+### Perceptual Color Mapping
+
+- **Intuitive Color Perception:** Colors in hue.gl are mapped based on human visual perception, ensuring the hues you pick are naturally harmonious and visually effective.
+- **Wide Gamut of Colors:** A vast array of colors spanning across different shades and tones, each meticulously calibrated for perceptual uniformity.
+
+### Advanced Color Scheme Generator
+
+- **Versatile Scheme Creation:** Generate color schemes with a variety of parameters, such as complementary, analogous, monochromatic, and more.
+- **Multiple Color Models Support:** Seamlessly work with various color models including RGB, HSL, CMYK, and others, ensuring compatibility across different platforms and applications.
+
+### Export and Integration Flexibility
+
+- **Multiple Export Formats:** Export your color schemes in popular formats like ASE (Adobe Swatch Exchange), ensuring easy integration with design tools.
+- **Integrates with Design Software:** Compatible with major design software, allowing you to bring hue.gl's colors directly into your creative workflow.
+
+### Accessibility and Readability Tools
+
+- **Contrast Checker:** Ensure your color combinations meet accessibility standards with the built-in contrast checker.
+- **Readable Color Selection:** Dynamic functions to determine readable text colors over any background, enhancing user experience and accessibility.
+
+### Customizable for Your Needs
+
+- **SCSS and CSS Integration:** Easily integrate hue.gl colors into your web projects with SCSS functions and mixins, or use CSS variables for straightforward application.
+- **Utility Classes and Mixins:** A comprehensive set of utility classes and mixins for text, background, and border colors, making HTML and CSS styling more efficient.
+
+### Open Source and Evolving
+
+- **Community-Driven Development:** As an open-source project, hue.gl is constantly evolving with contributions from a global community of developers and color enthusiasts.
+- **Regular Updates and Improvements:** Stay up-to-date with regular updates that bring new features, color options, and enhancements.
+
+Embrace the full potential of colors with `hue.gl` – your comprehensive tool for perceptual color design, ensuring that your projects stand out with visually appealing and accessible color schemes.
+
+## Installation
+
+### HTML Script Tag
+
+``` html
+<script src="https://unpkg.com/hue.gl@latest/dist.min.js"></script>
+```
+
+### NPM Module
+
+``` bash
+npm i hue.gl
+```
+
+## Examples
+
+### Accessing Colors
+
+```scss
+.element {
+  background-color: #c6727d; // Using the 'Salmon' color
+}
+```
+
+```scss
+.element {
+  background-color: $N0155; // Using the 'Salmon' color
+}
+```
+
+```scss
+.element {
+  background-color: hue(N0155); // Using the 'Salmon' color
+}
+```
+
+Using the `hue-color` function to apply a specific color from the hue.gl color map:
+
+```scss
+.element {
+  background-color: hue-color(N1201); // Using the 'Green' color
+}
+```
+
+### Dynamic Text Color for Readability
+
+Applying dynamic text color for better readability based on the background color:
+
+```scss
+.element {
+  background-color: hue-color(N2551); // Azure color
+  color: dynamic-text-color(N2551); // Text color for best contrast
+}
+```
+
+### Complementary Colors
+
+Generating a complementary color for design harmony:
+
+```scss
+.element {
+  background-color: hue-color(N3001); // Magenta color
+  border-color: complementary-color(N3001); // Complementary color to Magenta
+}
+```
+
+### Opacity Variants
+
+Creating color variants with different opacities:
+
+```scss
+.element {
+  background-color: hue-color-opacity(N1951, 0.5); // 50% opacity Teal color
+}
+```
+
+### Color Shades and Tints
+
+Applying shades and tints for hover states, disabled states, or gradients:
+
+```scss
+.element {
+  background-color: hue-shade(N0751, 15%); // Darker Lime color
+}
+.hover-element:hover {
+  background-color: hue-tint(N0751, 15%); // Lighter Lime color
+}
+```
+
+### Accessible Text Color
+
+Ensuring text color contrasts well with its background:
+
+```scss
+.element {
+  @include accessible-text-color(N2701); // Accessible text color based on Indigo background
+}
+```
+
+### Gradient Backgrounds
+
+Creating a linear gradient background:
+
+```scss
+.element {
+  @include gradient-bg(N2251, N2401); // Gradient from Sky to Blue
+}
+```
+
+### Theming Components
+
+Applying themes to components like buttons:
+
+```scss
+.button {
+  @include button-theme(N3601, N0001); // Red background with Grey text
+}
+```
+
+### Blending Colors
+
+Blending two colors for a unique background:
+
+```scss
+.element {
+  @include blend-colors(N0151, N3001, 50%); // Blend of Salmon and Magenta
+}
+```
+
+### Utility Classes in HTML
+
+Using generated utility classes for quick styling:
+
+```html
+<div class="text-N1201 bg-N3301"> // Green text on Rose background
+  Sample Text
+</div>
+```
+
+### Using CSS Variables
+
+Applying CSS variables in your HTML:
+
+```html
+<div style="color: var(--color-N1201); background-color: var(--color-N3301);">
+  Sample Text
+</div>
+```
+
+---
+
+These examples will provide your users with practical ways to implement the features of your SCSS toolkit, enhancing their understanding and ease of use.
 
 ## Links
 
@@ -171,7 +343,6 @@ Explore a glimpse of the vibrant and diverse color palette offered by `hue.gl`. 
 | `.style`          | Trimble SketchUp Style File         |
 | `.gdiagramstyle`  | OmniGraffle Diagram Style File      |
 | `.pal`            | Painter Custom Palettes File        |
-
 
 ## Other Standards
 

@@ -15,6 +15,12 @@
   ],
   "license": "MIT",
   "homepage": "https://www.hue.gl/",
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/scape-agency"
+    }
+  ],
   "type": "module",
   "main": "js/index",
   "types": "js/index",
@@ -47,11 +53,5 @@
   "repository": {
     "type": "git",
     "url": "git+https://github.com/scape-agency/hue.gl.git"
-  },
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/scape-agency"
-    }
-  ]
+  }
 }
