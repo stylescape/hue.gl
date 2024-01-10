@@ -23,6 +23,7 @@
 // ----------------------------------------------------------------------------
 // This function will retrieve a color value based on a given color name. 
 // It's useful when you want to access a color from the $hue map.
+// ----------------------------------------------------------------------------
 
 @function hue_color($color_name) {
     @if map-has-key($hue, $color_name) {
@@ -38,9 +39,21 @@
 // CSS Variables Generator
 // ----------------------------------------------------------------------------
 // A mixin to generate CSS variables from your SCSS map.
+// ----------------------------------------------------------------------------
 
 :root {
     @each $color_name, $color-value in $hue {
     --color-#{$color_name}: #{$color-value};
     }
+}
+
+
+// Random Color Generator
+// ----------------------------------------------------------------------------
+// Generates a random color within a specified hue and luminance range.
+// ----------------------------------------------------------------------------
+
+@function hue_random_color($hue_min: 0, $hue_max: 360, $luminance: 50%) {
+    $hue: random($hue_max - $hue_min) + $hue_min;
+    @return hsl($hue, 100%, $luminance);
 }

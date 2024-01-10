@@ -20,30 +20,153 @@
 
 
 // Opacity Variants
-// Create a function to generate color variants with different opacities.
+// Generates color variants with different opacities based on the
+// provided color name.
 // ----------------------------------------------------------------------------
 
 @function hue_color_opacity($color_name, $opacity: 1) {
     $color: hue_color($color_name);
-    @if $color != null {
-        @return rgba($color, $opacity);
-    } @else {
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
         @return null;
     }
+
+    @return rgba($color, $opacity);
 }
 
 
-// Color Shades and Tints
+// Color Transparency Function
+// Adjusts the transparency of a color to a specified alpha value.
 // ----------------------------------------------------------------------------
-// Create functions to lighten and darken colors. This is useful for hover
+
+@function hue_alpha($color_name, $alpha: 0.5) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return rgba($color, $alpha);
+}
+
+
+
+// Color Shades and Tints
+// Generates lighter and darker shades of a given color, useful for hover
 // states, disabled states, or gradients.
+// ----------------------------------------------------------------------------
 
 @function hue_shade($color_name, $amount: 10%) {
     $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
     @return darken($color, $amount);
 }
 
 @function hue_tint($color_name, $amount: 10%) {
     $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
     @return lighten($color, $amount);
+}
+
+
+// Tint and Shade Function
+// Generates tints (lighter versions) and shades (darker versions) of
+// a given color.
+// ----------------------------------------------------------------------------
+
+@function hue_tint_shade($color_name, $amount: 10%, $is_tint: true) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @if $is_tint {
+        @return lighten($color, $amount);
+    } @else {
+        @return darken($color, $amount);
+    }
+}
+
+
+// Saturated Color Variant
+// Increases the saturation of a given color by a specified amount.
+// ----------------------------------------------------------------------------
+
+@function hue_saturate($color_name, $amount: 20%) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return saturate($color, $amount);
+}
+
+
+// Desaturated Color Variant
+// Decreases the saturation of a given color by a specified amount.
+// ----------------------------------------------------------------------------
+
+@function hue_desaturate($color_name, $amount: 20%) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return desaturate($color, $amount);
+}
+
+
+// Adjust Color Brightness
+// ----------------------------------------------------------------------------
+
+@function hue_adjust_brightness($color_name, $percentage: 10%) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @if lightness($color) > 50% {
+        @return darken($color, $percentage);
+    } @else {
+        @return lighten($color, $percentage);
+    }
+}
+
+
+// Color To Grayscale Function
+// Converts a color to its grayscale equivalent based on a specific method
+// (e.g., average, luminosity).
+// ----------------------------------------------------------------------------
+
+@function hue_to_grayscale($color_name, $method: 'luminosity') {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    // Implement grayscale conversion based on the chosen method
+    // Placeholder for actual implementation
+    @return 'Grayscale Conversion Placeholder for ' + $method;
 }

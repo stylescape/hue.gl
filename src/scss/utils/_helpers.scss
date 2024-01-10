@@ -75,3 +75,34 @@
     }
 
 }
+
+
+// Semi-Transparent Border Color
+// Generates a semi-transparent version of a color, suitable for borders.
+// ----------------------------------------------------------------------------
+
+@function hue_border_color($color_name, $opacity: 0.5) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return rgba($color, $opacity);
+}
+
+
+// Box Shadow Generator
+// Creates a box shadow with adjustable properties.
+
+// @function hue_box_shadow($color_name, $opacity: 0.5, $x: 0px, $y: 2px, $blur: 4px) {
+//     $color: hue_color($color_name);
+
+//     @if type-of($color) != 'color' {
+//         @warn "The specified color `#{$color_name}` could not be found.";
+//         @return null;
+//     }
+
+//     @return box-shadow: $x $y $blur rgba($color, $opacity);
+// }

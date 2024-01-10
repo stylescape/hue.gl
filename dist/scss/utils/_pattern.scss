@@ -12,13 +12,29 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
 // ============================================================================
-//
-// hue.gl
-// 0.0.10
-//
+// Utilities | Pattern
 // ============================================================================
 
 
-// General
-// ============================================================================
+// Striped Background Generator
+// Creates a striped background pattern with two colors.
+
+@function hue_striped_background($color_name1, $color_name2, $stripe_width: 10px) {
+    $color1: hue_color($color_name1);
+    $color2: hue_color($color_name2);
+
+    @if type-of($color1) != 'color' or type-of($color2) != 'color' {
+        @warn "One or both specified colors could not be found.";
+        @return null;
+    }
+
+    @return repeating-linear-gradient(
+        45deg,
+        $color1,
+        $color1 $stripe_width,
+        $color2 $stripe_width,
+        $color2 $stripe_width * 2
+    );
+}
