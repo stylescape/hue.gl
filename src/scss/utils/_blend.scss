@@ -14,12 +14,30 @@
 
 
 // ============================================================================
-// Colour Utilities
+// Utilities | Blend
 // ============================================================================
 
-@import "_base.scss";
-@import "_contrast.scss";
-@import "_variants.scss";
-@import "_blend.scss";
-@import "_scheme.scss";
-@import "_helpers.scss";
+
+// Gradient Mixin
+// ----------------------------------------------------------------------------
+// Create a mixin for generating gradients with your color palette.
+
+@mixin gradient_bg($start_color_name, $end_color_name) {
+    background: linear-gradient(
+        hue_color($start_color_name),
+        hue_color($end_color_name)
+    );
+}
+
+
+// Color Blending Mixin
+// ----------------------------------------------------------------------------
+// A mixin to blend two colors from your color map.
+
+@mixin blend_colors($color1_name, $color2_name, $percentage: 50%) {
+    $color1: hue_color($color1_name);
+    $color2: hue_color($color2_name);
+    background-color: mix($color1, $color2, $percentage);
+}
+
+

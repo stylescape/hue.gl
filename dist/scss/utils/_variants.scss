@@ -15,32 +15,35 @@
 
 
 // ============================================================================
-// Utilities | Base
+// Utilities | Variants
 // ============================================================================
 
 
-// Color Getter Function
+// Opacity Variants
+// Create a function to generate color variants with different opacities.
 // ----------------------------------------------------------------------------
-// This function will retrieve a color value based on a given color name. 
-// It's useful when you want to access a color from the $hue map.
 
-@function hue_color($color_name) {
-    @if map-has-key($hue, $color_name) {
-        @return map-get($hue, $color_name);
+@function hue_color_opacity($color_name, $opacity: 1) {
+    $color: hue_color($color_name);
+    @if $color != null {
+        @return rgba($color, $opacity);
     } @else {
-        @warn "Unknown `#{$color_name}` in `$hue`.";
         @return null;
     }
 }
 
 
-
-// CSS Variables Generator
+// Color Shades and Tints
 // ----------------------------------------------------------------------------
-// A mixin to generate CSS variables from your SCSS map.
+// Create functions to lighten and darken colors. This is useful for hover
+// states, disabled states, or gradients.
 
-:root {
-    @each $color_name, $color-value in $hue {
-    --color-#{$color_name}: #{$color-value};
-    }
+@function hue_shade($color_name, $amount: 10%) {
+    $color: hue_color($color_name);
+    @return darken($color, $amount);
+}
+
+@function hue_tint($color_name, $amount: 10%) {
+    $color: hue_color($color_name);
+    @return lighten($color, $amount);
 }

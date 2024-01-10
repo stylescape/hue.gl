@@ -1,5 +1,3 @@
-// hue/config/hue.config.ts
-
 // Copyright 2023 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -16,26 +14,30 @@
 
 
 // ============================================================================
-// Constants
+// Utilities | Blend
 // ============================================================================
 
-const hueConfig = {
 
-    prefix:     "N",
-    h_step:     15,
-    p_count:     9,
-    l_l_min:    96,
-    l_l_step:   -6,
-    d_l_step:   -6,
-    l_c_min:    12,
-    l_c_step:    6,
-    d_c_step:   -6,
+// Gradient Mixin
+// ----------------------------------------------------------------------------
+// Create a mixin for generating gradients with your color palette.
 
-};
+@mixin gradient_bg($start_color_name, $end_color_name) {
+    background: linear-gradient(
+        hue_color($start_color_name),
+        hue_color($end_color_name)
+    );
+}
 
 
-// ============================================================================
-// Export
-// ============================================================================
+// Color Blending Mixin
+// ----------------------------------------------------------------------------
+// A mixin to blend two colors from your color map.
 
-export default hueConfig;
+@mixin blend_colors($color1_name, $color2_name, $percentage: 50%) {
+    $color1: hue_color($color1_name);
+    $color2: hue_color($color2_name);
+    background-color: mix($color1, $color2, $percentage);
+}
+
+

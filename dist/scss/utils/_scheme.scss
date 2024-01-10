@@ -12,23 +12,18 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-@charset "utf-8";
-
-/**
-* hue.gl
-*
-* @description     Color System
-* @author          Scape Agency (https://www.scape.agency)
-* @version         v0.1.0
-* @copyright       2020-2023 Scape Agency (https://www.scape.agency)
-* @website         https://www.hue.gl/
-* @repository      https://github.com/scape-agency/hue.gl/
-* @license         MIT License (https://github.com/scape-agency/hue.gl/blob/main/LICENSE.md)
-*/
-
-@use "sass:math";
 
 
-@import "hue/_hue.gl-hex-map.scss";
-@import "hue/_hue.gl-hex-var.scss";
-@import "utils/utils.scss";
+// ============================================================================
+// Utilities | Scheme
+// ============================================================================
+
+// Complementary Color Function
+// ----------------------------------------------------------------------------
+// A function to find the complementary color on the color wheel, useful for
+// creating color schemes.
+
+@function complementary_color($color_name) {
+    $base-color: hue_color($color_name);
+    @return adjust-hue($base-color, 180deg);
+}
