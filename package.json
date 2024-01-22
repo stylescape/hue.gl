@@ -79,7 +79,7 @@
         "grid.gl": "^0.0.1",
         "html-webpack-plugin": "^5.6.0",
         "hue.gl": "^0.0.8",
-        "icon.gl": "^0.0.9",
+        "icon.gl": "^0.0.13",
         "loop.gl": "^0.0.1",
         "mini-css-extract-plugin": "^2.7.6",
         "pack.gl": "^0.0.39",
