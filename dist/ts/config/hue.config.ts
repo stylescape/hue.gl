@@ -1,3 +1,5 @@
+// hue/config/hue.config.ts
+
 // Copyright 2023 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
@@ -12,13 +14,22 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+
 // ============================================================================
-//
-// hue.gl
-// 0.0.10
-//
+// Constants
 // ============================================================================
 
+export const hueConfig = {
 
-// General
-// ============================================================================
+    prefix:     "N",
+    h_step:     15,
+    p_count:     9,
+    l_l_min:    96,
+    l_l_step:   -6,
+    d_l_step:   -6,
+    l_c_min:    12,
+    l_c_step:    6,
+    d_c_step:   -6,
+
+};
+

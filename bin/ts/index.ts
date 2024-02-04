@@ -151,7 +151,12 @@ async function main() {
         await templater.generateToFile('hue.gl-hex-var.scss.jinja',   path.join(CONFIG.path.src, 'scss', 'hue', '_hue.gl-hex-var.scss'));
 
 
-        await templater.generateToFile('hue.gl.d.ts.jinja',           path.join(CONFIG.path.dist, 'ts',             'hue.gl.d.ts'));
+        // await templater.generateToFile('hue.gl.d.ts.jinja',           path.join(CONFIG.path.dist, 'ts',             'hue.gl.d.ts'));
+        await templater.generateToFile('hue.gl-hcl-enum.ts.jinja',   path.join(CONFIG.path.ts_input, 'constants', 'hue_hcl.ts'));
+        await templater.generateToFile('hue.gl-hex-enum.ts.jinja',   path.join(CONFIG.path.ts_input, 'constants', 'hue_hex.ts'));
+        await templater.generateToFile('hue.gl-rgb-enum.ts.jinja',   path.join(CONFIG.path.ts_input, 'constants', 'hue_rgb.ts'));
+
+
 
         // await templater.generateToFile('hue.gl.css.jinja',            path.join(CONFIG.path.dist, 'css',            'hue.gl.css'));
         await templater.generateToFile('hue.gl.js.jinja',             path.join(CONFIG.path.dist, 'js',             'hue.gl.js'));

@@ -1,0 +1,27 @@
+export declare const hueNames: {
+    0: string;
+    15: string;
+    30: string;
+    45: string;
+    60: string;
+    75: string;
+    90: string;
+    105: string;
+    120: string;
+    135: string;
+    150: string;
+    165: string;
+    180: string;
+    195: string;
+    210: string;
+    225: string;
+    240: string;
+    255: string;
+    270: string;
+    285: string;
+    300: string;
+    315: string;
+    330: string;
+    345: string;
+    360: string;
+};

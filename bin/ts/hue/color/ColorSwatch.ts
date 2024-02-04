@@ -1,4 +1,3 @@
-// script/class/class/DirectoryCleaner.ts
 
 // Copyright 2023 Scape Agency BV
 

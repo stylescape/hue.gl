@@ -1,4 +1,4 @@
-// Copyright 2020 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,4 +13,21 @@
 // limitations under the License.
 
 
-export {};
+export {
+    ColorPicker,
+    ColorScheme,
+    ColorSwatch,
+} from './color';
+
+
+export {
+    hueConfig,
+    hueNames,
+} from './config';
+
+
+export {
+    hue_hex,
+    hue_hcl,
+    hue_rgb,
+} from './constants';
