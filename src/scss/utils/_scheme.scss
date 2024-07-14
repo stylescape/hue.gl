@@ -26,6 +26,7 @@
 
 
 // Complementary Color
+// ----------------------------------------------------------------------------
 // Generates the complementary color for a given color.
 // ----------------------------------------------------------------------------
 
@@ -41,8 +42,8 @@
 }
 
 
-
 // Color Inversion Function
+// ----------------------------------------------------------------------------
 // Inverts a color for high-contrast themes or effects.
 // ----------------------------------------------------------------------------
 
@@ -59,6 +60,7 @@
 
 
 // Color Rotation Function
+// ----------------------------------------------------------------------------
 // Rotates the hue of a color by a given degree, useful for creating color
 // variations.
 // ----------------------------------------------------------------------------
@@ -76,6 +78,7 @@
 
 
 // Monochromatic Color Scheme Generator
+// ----------------------------------------------------------------------------
 // Generates a list of monochromatic colors based on a base color.
 // ----------------------------------------------------------------------------
 
@@ -97,6 +100,7 @@
 
 
 // Color Scale Generator
+// ----------------------------------------------------------------------------
 // Creates a scale of colors ranging from light to dark based on a base color.
 // ----------------------------------------------------------------------------
 
@@ -119,7 +123,9 @@
 
 
 // Hue Rotation Scale
+// ----------------------------------------------------------------------------
 // Generates a scale of hues by rotating the base color.
+// ----------------------------------------------------------------------------
 
 @function hue_rotation_scale($base_color_name, $steps: 5, $rotation_amount: 20deg) {
     $base_color: hue_color($base_color_name);
@@ -138,8 +144,8 @@
 }
 
 
-
 // Opacity Scale Generator
+// ----------------------------------------------------------------------------
 // Generates a set of opacities for a given color.
 // ----------------------------------------------------------------------------
 
