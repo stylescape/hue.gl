@@ -18,8 +18,8 @@
 // ============================================================================
 
 
-
 // Gradient Color
+// ----------------------------------------------------------------------------
 // Generates a gradient from one color to another.
 // ----------------------------------------------------------------------------
 
@@ -36,6 +36,7 @@
 }
 
 // Gradient Mixin
+// ----------------------------------------------------------------------------
 // Create a mixin for generating gradients with your color palette.
 // ----------------------------------------------------------------------------
 
@@ -48,6 +49,7 @@
 
 
 // Color Blending Function
+// ----------------------------------------------------------------------------
 // Blends two colors together based on a specified weight.
 // ----------------------------------------------------------------------------
 
@@ -67,6 +69,7 @@
 // Color Blending Mixin
 // ----------------------------------------------------------------------------
 // A mixin to blend two colors from your color map.
+// ----------------------------------------------------------------------------
 
 @mixin blend_colors($color1_name, $color2_name, $percentage: 50%) {
     $color1: hue_color($color1_name);
@@ -75,9 +78,8 @@
 }
 
 
-
-
 // Grayscale Color Variant
+// ----------------------------------------------------------------------------
 // Converts a color to its grayscale equivalent.
 // ----------------------------------------------------------------------------
 
@@ -92,7 +94,9 @@
     @return grayscale($color);
 }
 
+
 // Blend Colors
+// ----------------------------------------------------------------------------
 // Mixes two colors together in a specified ratio.
 // ----------------------------------------------------------------------------
 
@@ -109,9 +113,10 @@
 }
 
 
-
 // Background Gradient with Direction
+// ----------------------------------------------------------------------------
 // Generates a background gradient with a specified direction.
+// ----------------------------------------------------------------------------
 
 // @function hue_background_gradient($start_color_name, $end_color_name, $direction: to bottom) {
 //     $start_color: hue_color($start_color_name);
