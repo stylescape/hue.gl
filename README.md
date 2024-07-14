@@ -277,51 +277,51 @@ These examples will provide your users with practical ways to implement the feat
 
 ## Supported Formats and Environments
 
-| Category                    | Extension         | Description                               |
-| :-------------------------- |-------------------|-------------------------------------------|
-| **Style Sheet Languages**   | `.css`            | CSS Style Sheets                          |
-|                             | `.scss`           | Sass Style Sheets                         |
-|                             | `.less`           | LESS Style Sheets                         |
-|                             | `.stylus`         | Stylus Style Sheets                       |
-|                             |                   | Tailwind CSS Framework                    |
-| **Programming Languages**   | `.go`             | Go Language Environment                   |
-|                             | `.jl`             | Julia Language Environment                |
-|                             | `.py`             | Python Scripts                            |
-|                             | `.d.ts`           | TypeScript Definitions                    |
-|                             | `.js`             | JavaScript Files                          |
-|                             | `.tex`            | LaTeX Documents                           |
-| **Data Interchange**        | `.csv`            | Comma-Separated Values                    |
-|                             | `.json`           | JavaScript Object Notation (JSON)         |
-| **Image Formats**           | `.svg`            | Scalable Vector Graphics                  |
-| **Desktop Applications**    | `.oco`            | Open Color Tools                          |
-|                             | `.ptc`            | PANTONE Color File                        |
-|                             | `.ase`            | Adobe Swatch Exchange Format              |
-|                             | `.aco`            | Adobe Photoshop Color Swatches            |
-|                             | `.acb`            | Adobe Photoshop Color Book                |
-|                             | `.grd`            | Adobe Photoshop Gradient File             |
-|                             | `.clr`            | Adobe Animate Color Set                   |
-|                             | `.inx`            | Adobe InDesign Interchange Format         |
-|                             | `.acbl`           | Adobe Color Book Legacy                   |
-|                             | `.sketchpalette`  | Sketch Palette File                       |
-|                             | `.gpl`            | GIMP and Inkscape Palette File            |
-|                             | `.ggr`            | GIMP Gradient File                        |
-|                             | `.rcpx`           | PowerPaint Palette File                   |
-|                             | `.ctb`            | AutoCAD Color-Based Plot Style File       |
-|                             | `.colorpicker`    | Apple Color Picker File                   |
-|                             | `.bcp`            | BlackMagic Custom Palette                 |
-|                             | `.mgk`            | ImageMagick Configuration File            |
-|                             | `.cs`             | ColorSchemer Studio File                  |
-|                             | `.style`          | Trimble SketchUp Style File               |
-|                             | `.gdiagramstyle`  | OmniGraffle Diagram Style File            |
-|                             | `.pal`            | Painter Custom Palettes File              |
-
+| Category                    | Extension         | Description                               | Status         |
+| :-------------------------- | :---------------- | :---------------------------------------- | :------------- |
+| **Style Sheet Languages**   | `.css`            | CSS Style Sheets                          | Supported      |
+|                             | `.scss`           | Sass Style Sheets                         | Supported      |
+|                             | `.less`           | LESS Style Sheets                         | Supported      |
+|                             | `.stylus`         | Stylus Style Sheets                       | Supported      |
+|                             |                   | Tailwind CSS Framework                    | Supported      |
+| **Programming Languages**   | `.go`             | Go Language Environment                   | Supported      |
+|                             | `.jl`             | Julia Language Environment                | Supported      |
+|                             | `.py`             | Python Scripts                            | Supported      |
+|                             | `.d.ts`           | TypeScript Definitions                    | Supported      |
+|                             | `.js`             | JavaScript Files                          | Supported      |
+|                             | `.tex`            | LaTeX Documents                           | Supported      |
+| **Data Interchange**        | `.csv`            | Comma-Separated Values                    | Supported      |
+|                             | `.json`           | JavaScript Object Notation (JSON)         | Supported      |
+| **Image Formats**           | `.svg`            | Scalable Vector Graphics                  | Supported      |
+| **Desktop Applications**    | `.oco`            | Open Color Tools                          | Supported      |
+|                             | `.ptc`            | PANTONE Color File                        | Supported      |
+|                             | `.ase`            | Adobe Swatch Exchange Format              | Supported      |
+|                             | `.aco`            | Adobe Photoshop Color Swatches            | Supported      |
+|                             | `.acb`            | Adobe Photoshop Color Book                | Supported      |
+|                             | `.grd`            | Adobe Photoshop Gradient File             | Supported      |
+|                             | `.clr`            | Adobe Animate Color Set                   | Supported      |
+|                             | `.inx`            | Adobe InDesign Interchange Format         | Supported      |
+|                             | `.acbl`           | Adobe Color Book Legacy                   | Supported      |
+|                             | `.sketchpalette`  | Sketch Palette File                       | Supported      |
+|                             | `.gh`             | Rhino Grasshopper File                    | Supported      |
+|                             | `.gpl`            | GIMP and Inkscape Palette File            | Supported      |
+|                             | `.ggr`            | GIMP Gradient File                        | Supported      |
+|                             | `.rcpx`           | PowerPaint Palette File                   | Supported      |
+|                             | `.ctb`            | AutoCAD Color-Based Plot Style File       | Supported      |
+|                             | `.colorpicker`    | Apple Color Picker File                   | Supported      |
+|                             | `.bcp`            | BlackMagic Custom Palette                 | Supported      |
+|                             | `.mgk`            | ImageMagick Configuration File            | Supported      |
+|                             | `.cs`             | ColorSchemer Studio File                  | Supported      |
+|                             | `.style`          | Trimble SketchUp Style File               | Supported      |
+|                             | `.gdiagramstyle`  | OmniGraffle Diagram Style File            | Supported      |
+|                             | `.pal`            | Painter Custom Palettes File              | Supported      |
 
 ## Reference Standards
 
 `hue.gl` includes a variety of additional color standards for reference purposes. Below is a list of these standards along with their corresponding SCSS map files:
 
 | Standard               | SCSS Map File                           | Description |
-| ---------------------- | --------------------------------------- | ----------- |
+| :--------------------- | :-------------------------------------- | :---------- |
 | **AS2700**             | `_as2700_hex_map.scss`                  | Australian Standard for Colors |
 | **BS381**              | `_bs381_hex_map.scss`                   | British Standard 381C for Colours for Specific Purposes |
 | **Copic**              | `_copic_hex_map.scss`                   | Copic marker color system |
