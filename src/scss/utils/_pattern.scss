@@ -19,7 +19,9 @@
 
 
 // Striped Background Generator
+// ----------------------------------------------------------------------------
 // Creates a striped background pattern with two colors.
+// ----------------------------------------------------------------------------
 
 @function hue_striped_background($color_name1, $color_name2, $stripe_width: 10px) {
     $color1: hue_color($color_name1);
