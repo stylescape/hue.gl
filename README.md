@@ -275,90 +275,64 @@ Applying CSS variables in your HTML:
 
 These examples will provide your users with practical ways to implement the features of your SCSS toolkit, enhancing their understanding and ease of use.
 
-## Links
+## Supported Formats and Environments
 
-- [Website](https://www.hue.gl)
-- [NPM](https://www.npmjs.com/package/hue.gl)
+| Category                    | Extension         | Description                               |
+| :-------------------------- |-------------------|-------------------------------------------|
+| **Style Sheet Languages**   | `.css`            | CSS Style Sheets                          |
+|                             | `.scss`           | Sass Style Sheets                         |
+|                             | `.less`           | LESS Style Sheets                         |
+|                             | `.stylus`         | Stylus Style Sheets                       |
+|                             |                   | Tailwind CSS Framework                    |
+| **Programming Languages**   | `.go`             | Go Language Environment                   |
+|                             | `.jl`             | Julia Language Environment                |
+|                             | `.py`             | Python Scripts                            |
+|                             | `.d.ts`           | TypeScript Definitions                    |
+|                             | `.js`             | JavaScript Files                          |
+|                             | `.tex`            | LaTeX Documents                           |
+| **Data Interchange**        | `.csv`            | Comma-Separated Values                    |
+|                             | `.json`           | JavaScript Object Notation (JSON)         |
+| **Image Formats**           | `.svg`            | Scalable Vector Graphics                  |
+| **Desktop Applications**    | `.oco`            | Open Color Tools                          |
+|                             | `.ptc`            | PANTONE Color File                        |
+|                             | `.ase`            | Adobe Swatch Exchange Format              |
+|                             | `.aco`            | Adobe Photoshop Color Swatches            |
+|                             | `.acb`            | Adobe Photoshop Color Book                |
+|                             | `.grd`            | Adobe Photoshop Gradient File             |
+|                             | `.clr`            | Adobe Animate Color Set                   |
+|                             | `.inx`            | Adobe InDesign Interchange Format         |
+|                             | `.acbl`           | Adobe Color Book Legacy                   |
+|                             | `.sketchpalette`  | Sketch Palette File                       |
+|                             | `.gpl`            | GIMP and Inkscape Palette File            |
+|                             | `.ggr`            | GIMP Gradient File                        |
+|                             | `.rcpx`           | PowerPaint Palette File                   |
+|                             | `.ctb`            | AutoCAD Color-Based Plot Style File       |
+|                             | `.colorpicker`    | Apple Color Picker File                   |
+|                             | `.bcp`            | BlackMagic Custom Palette                 |
+|                             | `.mgk`            | ImageMagick Configuration File            |
+|                             | `.cs`             | ColorSchemer Studio File                  |
+|                             | `.style`          | Trimble SketchUp Style File               |
+|                             | `.gdiagramstyle`  | OmniGraffle Diagram Style File            |
+|                             | `.pal`            | Painter Custom Palettes File              |
 
-## Supported Formats
 
-### Style Sheet Languages
+## Reference Standards
 
-| Extension | Description               |
-| --------- | ------------------------- |
-| `.css`    | CSS Style Sheets          |
-| `.scss`   | Sass Style Sheets         |
-| `.less`   | LESS Style Sheets         |
-| `.stylus` | Stylus Style Sheets       |
-|           | Tailwind CSS Framework    |
+`hue.gl` includes a variety of additional color standards for reference purposes. Below is a list of these standards along with their corresponding SCSS map files:
 
-### Programming Language Environments
-
-| Extension | Description               |
-| --------- | ------------------------- |
-| `.go`     | Go Language Environment   |
-| `.jl`     | Julia Language Environment|
-| `.py`     | Python Scripts            |
-| `.d.ts`   | TypeScript Definitions    |
-| `.js`     | JavaScript Files          |
-| `.tex`    | LaTeX Documents           |
-
-### Data-interchange Formats
-
-| Extension | Description               |
-| --------- | ------------------------- |
-| `.csv`    | Comma-Separated Values    |
-| `.json`   | JSON Data Format          |
-
-### Image Formats
-
-| Extension | Description               |
-| --------- | ------------------------- |
-| `.svg`    | Scalable Vector Graphics  |
-
-### Desktop Applications
-
-| Extension         | Description                         |
-| ----------------- | ----------------------------------- |
-| `.oco`            | Open Color Tools                    |
-| `.ptc`            | PANTONE Color File                  |
-| `.ase`            | Adobe Swatch Exchange Format        |
-| `.aco`            | Adobe Photoshop Color Swatches      |
-| `.acb`            | Adobe Photoshop Color Book          |
-| `.grd`            | Adobe Photoshop Gradient File       |
-| `.clr`            | Adobe Animate Color Set             |
-| `.inx`            | Adobe InDesign Interchange Format   |
-| `.acbl`           | Adobe Color Book Legacy             |
-| `.sketchpalette`  | Sketch Palette File                 |
-| `.gpl`            | GIMP and Inkscape Palette File      |
-| `.ggr`            | GIMP Gradient File                  |
-| `.rcpx`           | PowerPaint Palette File             |
-| `.ctb`            | AutoCAD Color-Based Plot Style File |
-| `.colorpicker`    | Apple Color Picker File             |
-| `.bcp`            | BlackMagic Custom Palette           |
-| `.mgk`            | ImageMagick Configuration File      |
-| `.cs`             | ColorSchemer Studio File            |
-| `.style`          | Trimble SketchUp Style File         |
-| `.gdiagramstyle`  | OmniGraffle Diagram Style File      |
-| `.pal`            | Painter Custom Palettes File        |
-
-## Other Standards
-
-`hue.gl` supports a variety of color standards. Below is a list of these standards along with their corresponding SCSS map files:
-
-| Standard           | SCSS Map File                           | Description |
-| ------------------ | --------------------------------------- | ----------- |
-| AS2700             | `_as2700_hex_map.scss`                  | Australian Standard for Colors |
-| BS381              | `_bs381_hex_map.scss`                   | British Standard 381C for Colours for Specific Purposes |
-| Copic              | `_copic_hex_map.scss`                   | Copic marker color system |
-| Flat Design        | `_flat_design_hex_map.scss`             | Popular color palette for flat UI design |
-| FS595              | `_fs595_hex_map.scss`                   | Federal Standard 595 color system used by the US government |
-| Material Design    | `_material_design_hex_map.scss`         | Google's Material Design color palette |
-| NBS                | `_nbs_hex_map.scss`                     | National Bureau of Standards color names |
-| NCS                | `_ncs_hex_map.scss`                     | Natural Color System, a perceptual color model |
-| RAL                | `_ral_hex_map.scss`                     | RAL classic color system used in Europe |
-| Tailwind           | `_tailwind_hex_map.scss`                | Tailwind CSS framework's color palette |
-| X11                | `_x11_hex_map.scss`                     | X11 color names used in web colors |
+| Standard               | SCSS Map File                           | Description |
+| ---------------------- | --------------------------------------- | ----------- |
+| **AS2700**             | `_as2700_hex_map.scss`                  | Australian Standard for Colors |
+| **BS381**              | `_bs381_hex_map.scss`                   | British Standard 381C for Colours for Specific Purposes |
+| **Copic**              | `_copic_hex_map.scss`                   | Copic marker color system |
+| **Flat Design**        | `_flat_design_hex_map.scss`             | Popular color palette for flat UI design |
+| **FS595**              | `_fs595_hex_map.scss`                   | Federal Standard 595 color system used by the US government |
+| **Material Design**    | `_material_design_hex_map.scss`         | Google's Material Design color palette |
+| **NBS**                | `_nbs_hex_map.scss`                     | National Bureau of Standards color names |
+| **NCS**                | `_ncs_hex_map.scss`                     | Natural Color System, a perceptual color model |
+| **RAL**                | `_ral_hex_map.scss`                     | RAL classic color system used in Europe |
+| **Tailwind**           | `_tailwind_hex_map.scss`                | Tailwind CSS framework's color palette |
+| **X11**                | `_x11_hex_map.scss`                     | X11 color names used in web colors |
 
 ### Sample Usage
 
@@ -387,6 +361,11 @@ Scape Agency is a spatial innovation collective that dreams, discovers and desig
 
 - website: [scape.agency](https://www.scape.agency "Scape Agency website")
 - github: [github.com/scape-agency](https://github.com/scape-agency "Scape Agency GitHub")
+
+### Links
+
+- [Website](https://www.hue.gl)
+- [NPM](https://www.npmjs.com/package/hue.gl)
 
 ### Development Resources
 
