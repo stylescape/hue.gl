@@ -14,9 +14,10 @@
 
 
 
-
 // Color Filter Function
+// ----------------------------------------------------------------------------
 // Applies a filter effect to a color (e.g., sepia, brightness).
+// ----------------------------------------------------------------------------
 
 @function hue_apply_filter($color_name, $filter: 'sepia') {
     $color: hue_color($color_name);
