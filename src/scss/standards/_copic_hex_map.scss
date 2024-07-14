@@ -1,4 +1,4 @@
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -18,12 +18,18 @@
 // Copic Colors
 // ============================================================================
 
-
-// Source:     http://blog.paigeedraw.com/2012/07/copic_marker-color-rgb-hex-conversion.html
+// Comprehensive hexadecimal values for Copic markers.
+// These values are meant for digital applications that require precise color
+// replication.
+// Source: http://blog.paigeedraw.com/2012/07/copic_marker-color-rgb-hex-conversion.html
 
 
 
 $color_copic_hex: (
+
+
+    // Basic Colors
+    // ------------------------------------------------------------------------
 
     copic_colorless:                #ffffff,  // 0
     copic_black:                    #312b2b,  // 100
@@ -31,7 +37,7 @@ $color_copic_hex: (
 
 
 
-    // Copic | B
+    // Blue (B) Colors
     // ------------------------------------------------------------------------
 
     copic_pale-celestine:           #f0f9fe,  // b0000
