@@ -20,10 +20,10 @@
 
 // Component Helpers
 // ----------------------------------------------------------------------------
-
 // Mixins for Text and Background Colors: These mixins can be used to apply 
 // text and background colors throughout your stylesheets.
 // They make it easy to maintain consistency and make changes later if needed.
+// ----------------------------------------------------------------------------
 
 @mixin text_color($color_name) {
     color: hue_color($color_name);
@@ -42,6 +42,7 @@
 // ----------------------------------------------------------------------------
 // Create a set of mixins for theming components.
 // This can include buttons, links, etc.
+// ----------------------------------------------------------------------------
 
 @mixin button_theme($bg_color_name, $text_color_name: null) {
     @include bg_color($bg_color_name);
@@ -59,6 +60,7 @@
 // This step involves creating utility classes
 // for each color in your map. It generates classes like .text-N0001,
 // .bg-N0001, etc., for quick and easy styling in HTML.
+// ----------------------------------------------------------------------------
 
 @each $color_name, $color-value in $hue {
 
@@ -78,6 +80,7 @@
 
 
 // Semi-Transparent Border Color
+// ----------------------------------------------------------------------------
 // Generates a semi-transparent version of a color, suitable for borders.
 // ----------------------------------------------------------------------------
 
@@ -94,7 +97,9 @@
 
 
 // Box Shadow Generator
+// ----------------------------------------------------------------------------
 // Creates a box shadow with adjustable properties.
+// ----------------------------------------------------------------------------
 
 // @function hue_box_shadow($color_name, $opacity: 0.5, $x: 0px, $y: 2px, $blur: 4px) {
 //     $color: hue_color($color_name);
