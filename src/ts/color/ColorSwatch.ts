@@ -1,5 +1,5 @@
 
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -75,8 +75,6 @@ export class ColorSwatch {
         }
         return in_gamut;
     }
-
-
 
     getName(): string | undefined {
         return this.name;
@@ -325,3 +323,9 @@ export class ColorSwatch {
 
     // Static methods for creating Color from other formats can be added here
 }
+
+
+
+// ============================================================================
+// Example
+// ============================================================================
