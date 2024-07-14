@@ -40,15 +40,13 @@
 
 </div>
 
-**Welcome to hue.gl - a Perceptual Colour System designed for the modern age. At its core, hue.gl transcends traditional color systems by focusing on how we perceive colors, ensuring that every hue, shade, and tone is as visually intuitive as it is scientifically precise.**
+**`hue.gl` is a Perceptual Colour System designed for the modern age. At its core, `hue.gl` transcends traditional color systems by focusing on how we perceive colors, ensuring that every hue, shade, and tone is as visually intuitive as it is scientifically precise.**
 
 ## Introduction
 
 In a world where colors are more than just aesthetic choices, hue.gl stands out by delivering a color system that aligns with human visual perception. This system is meticulously calibrated to reflect how our eyes and brains understand color, making it an invaluable tool for designers, artists, and anyone looking to communicate with color more effectively.
 
 hue.gl offers a comprehensive suite of tools and features that cater to a wide range of needs - from generating harmonious color schemes to providing a vast palette of perceptually uniform colors. Whether you're designing a user interface, branding materials, or simply exploring the world of colors, hue.gl is your go-to solution for colors that resonate and communicate clearly.
-
-Join us in exploring the vivid and perceptually-optimized world of hue.gl, where every color is more than just a hue - it's an experience.
 
 ## Colours
 
