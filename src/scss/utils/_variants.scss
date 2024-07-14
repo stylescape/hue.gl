@@ -20,11 +20,16 @@
 
 
 // Opacity Variants
+// ----------------------------------------------------------------------------
 // Generates color variants with different opacities based on the
 // provided color name.
 // ----------------------------------------------------------------------------
 
-@function hue_color_opacity($color_name, $opacity: 1) {
+@function hue_color_opacity(
+    $color_name,
+    $opacity: 1
+) {
+
     $color: hue_color($color_name);
 
     @if type-of($color) != 'color' {
@@ -33,10 +38,12 @@
     }
 
     @return rgba($color, $opacity);
+
 }
 
 
 // Color Transparency Function
+// ----------------------------------------------------------------------------
 // Adjusts the transparency of a color to a specified alpha value.
 // ----------------------------------------------------------------------------
 
@@ -54,6 +61,7 @@
 
 
 // Color Shades and Tints
+// ----------------------------------------------------------------------------
 // Generates lighter and darker shades of a given color, useful for hover
 // states, disabled states, or gradients.
 // ----------------------------------------------------------------------------
@@ -82,6 +90,7 @@
 
 
 // Tint and Shade Function
+// ----------------------------------------------------------------------------
 // Generates tints (lighter versions) and shades (darker versions) of
 // a given color.
 // ----------------------------------------------------------------------------
@@ -103,6 +112,7 @@
 
 
 // Saturated Color Variant
+// ----------------------------------------------------------------------------
 // Increases the saturation of a given color by a specified amount.
 // ----------------------------------------------------------------------------
 
@@ -119,6 +129,7 @@
 
 
 // Desaturated Color Variant
+// ----------------------------------------------------------------------------
 // Decreases the saturation of a given color by a specified amount.
 // ----------------------------------------------------------------------------
 
@@ -154,6 +165,7 @@
 
 
 // Color To Grayscale Function
+// ----------------------------------------------------------------------------
 // Converts a color to its grayscale equivalent based on a specific method
 // (e.g., average, luminosity).
 // ----------------------------------------------------------------------------
