@@ -1,6 +1,6 @@
 // script/class/class/DirectoryCleaner.ts
 
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -27,29 +27,42 @@ import { pad } from '../util.js';
 // Types
 // ============================================================================
 
-type ColorSchemeConfig = {
-    prefix?: string;
-    h_step?: number;
-    p_count?: number;
-    l_l_min?: number;
-    l_l_step?: number;
-    d_l_step?: number;
-    l_c_min?: number;
-    l_c_step?: number;
-    d_c_step?: number;
+/**
+ * Configuration for generating a color scheme, including steps and bounds for
+ * color values.
+ */
+ type ColorSchemeConfig = {
+    prefix?: string;   // Optional prefix for color names.
+    h_step?: number;   // Step increment for hue values.
+    p_count?: number;  // Total count of colors to generate.
+    l_l_min?: number;  // Minimum lightness value for light colors.
+    l_l_step?: number; // Step increment for lightness values of light colors.
+    d_l_step?: number; // Step increment for lightness values of dark colors.
+    l_c_min?: number;  // Minimum chroma value for light colors.
+    l_c_step?: number; // Step increment for chroma values of light colors.
+    d_c_step?: number; // Step increment for chroma values of dark colors.
 };
 
 // ============================================================================
 // Classes
 // ============================================================================
 
+/**
+ * A class for creating a customizable color scheme based on provided
+ * configurations.
+ */
 export class ColorScheme {
 
     public config: ColorSchemeConfig | any;
-    public names: any;
-    public colorList: ColorSwatch[];
-    public colorDict: Record<string, Record<string, ColorSwatch>>;
+    public names: any;  // Naming convention or dictionary for color names.
+    public colorList: ColorSwatch[];  // List of generated ColorSwatch objects.
+    public colorDict: Record<string, Record<string, ColorSwatch>>;  // Dictionary organized by hues and color names.
 
+    /**
+     * Initializes a new color scheme with the given configuration and naming conventions.
+     * @param config Configuration for the color scheme generation.
+     * @param names Dictionary for naming colors based on their hue value.
+     */
     constructor(config: ColorSchemeConfig, names: any) {
         // Initialize colorList and other properties based on config
         this.config = config;
@@ -59,6 +72,10 @@ export class ColorScheme {
         this.initializeColors();
     }
 
+    /**
+     * Populates `colorList` and `colorDict` with `ColorSwatch` objects based
+     * on the current configuration.
+     */
     private initializeColors(): void {
         // Logic to initialize colorList based on the provided configuration
 
@@ -95,8 +112,6 @@ export class ColorScheme {
             // let h_group_name = h.toString();
             let h_group_name = this.names[h];;
 
-
-
             for (let i = 0; i < this.config.p_count; i ++) {
                 let l_cur = l_list[i];
                 let c_cur = c_list[i];
@@ -115,12 +130,29 @@ export class ColorScheme {
         }
     }
 
+    /**
+     * Returns the list of all generated color swatches.
+     * @returns An array of ColorSwatch objects.
+     */
     public getColorList(): ColorSwatch[] {
         return this.colorList;
     }
 
+    /**
+     * Returns a dictionary of color swatches organized by hue groups.
+     * @returns A dictionary with hue values as keys and another dictionary of
+     * ColorSwatch objects as values.
+     */
     public getColorDict(): Record<string, Record<string, ColorSwatch>> {
         return this.colorDict;
     }
 
 }
+
+
+// ============================================================================
+// Example
+// ============================================================================
+
+// Example usage can be shown here, demonstrating how to create a color
+// scheme and access its colors.
