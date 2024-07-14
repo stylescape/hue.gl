@@ -22,6 +22,7 @@
 // ----------------------------------------------------------------------------
 // A function to determine if you need a light or dark text color
 // on a specific background for readability.
+// ----------------------------------------------------------------------------
 
 @function color_contrast($background-color) {
     @if (lightness($background-color) > 50%) {
@@ -33,6 +34,7 @@
 
 
 // Contrast Checker
+// ----------------------------------------------------------------------------
 // A function to calculate the contrast ratio between two colors, which is
 // useful for accessibility considerations.
 // ----------------------------------------------------------------------------
@@ -43,9 +45,11 @@
     @return contrast-ratio($color1, $color2);
 }
 
+
 // Color Contrast Ratio
+// ----------------------------------------------------------------------------
 // Calculates the contrast ratio between two colors, useful for accessibility
-//  checks.
+// checks.
 // ----------------------------------------------------------------------------
 
 @function hue_contrast_ratio($color_name1, $color_name2) {
@@ -67,6 +71,7 @@
 // ----------------------------------------------------------------------------
 // A function to dynamically determine whether to use light or dark text
 // based on the background color for better readability.
+// ----------------------------------------------------------------------------
 
 @function color_contrast_dynamic($background-color_name) {
     $background-color: hue-color($background-color_name);
@@ -78,8 +83,8 @@
 }
 
 
-
 // Contrast Text Color
+// ----------------------------------------------------------------------------
 // Generates a contrasting text color (black or white) based on the background color.
 // ----------------------------------------------------------------------------
 
@@ -98,10 +103,12 @@
     }
 }
 
+
 // Accessibility Mixin
 // ----------------------------------------------------------------------------
 // A mixin to ensure text color contrasts well with its background for
 // accessibility.
+// ----------------------------------------------------------------------------
 
 @mixin accessible_text_color($background_color_name) {
     $background-color: hue_color($background_color_name);
@@ -113,6 +120,7 @@
 // ----------------------------------------------------------------------------
 // Determines a readable color (light or dark) for text overlays on any
 // background.
+// ----------------------------------------------------------------------------
 
 @function hue_readable_overlay($background_color_name) {
     $background_color: hue_color($background_color_name);
