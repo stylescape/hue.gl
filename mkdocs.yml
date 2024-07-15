@@ -99,7 +99,7 @@ extra:
   generator: false
   analytics:
     provider: google
-    property: G-QC1W520T96
+    property: G-W6030YQ9ZS
   social:
     - icon: fontawesome/solid/globe 
       link: https://www.scape.agency
