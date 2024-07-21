@@ -122,7 +122,7 @@ extra_css:
   - assets/style/extra.css
 extra_javascript:
   - assets/script/extra.js
-extra_templates:
+# extra_templates:
 
 
 # Extensions
@@ -172,6 +172,7 @@ nav:
   - Quick Start: 'quick_start.md'
   - Palette: 'palette.md'
   - Specifications:
+      - 'Features': 'specifications/features.md'
       - 'Formats': 'specifications/formats.md'
       - 'Standards': 'specifications/standards.md'
   - Resources:
