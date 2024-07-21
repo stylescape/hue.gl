@@ -13,6 +13,5 @@ Designed for artists, designers, and anyone passionate about color, hue.gl provi
 
 With hue.gl, you gain access to a vast palette of colors meticulously crafted for visual harmony and clarity. Our features include a comprehensive color scheme generator, detailed perceptual mappings, and accessibility tools, ensuring that your designs are not only beautiful but also accessible to all users.
 
-Join us at hue.gl to start your journey into the world of color, where innovation meets creativity in every shade.
 
 **hue.gl** is an open-source project by [Scape Agency](https://www.scape.agency "Scape Agency website").
