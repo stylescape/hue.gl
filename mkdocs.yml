@@ -99,7 +99,7 @@ extra:
   generator: false
   analytics:
     provider: google
-    property: G-W6030YQ9ZS
+    property: G-1RGH6K680C
   social:
     - icon: fontawesome/solid/globe 
       link: https://www.scape.agency
@@ -171,6 +171,9 @@ nav:
   - Introduction: 'index.md'
   - Quick Start: 'quick_start.md'
   - Palette: 'palette.md'
+  - Specifications:
+      - 'Formats': 'specifications/formats.md'
+      - 'Standards': 'specifications/standards.md'
   - Resources:
       - 'Glossary': 'resources/glossary.md'
       - 'Links': 'resources/links.md'
