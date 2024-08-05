@@ -82,7 +82,7 @@
         "icon.gl": "^0.0.20",
         "loop.gl": "^0.0.1",
         "mini-css-extract-plugin": "^2.7.6",
-        "pack.gl": "^0.0.39",
+        "pack.gl": "^0.0.40",
         "page.gl": "^0.0.3",
         "postcss-loader": "^7.3.4",
         "postcss-preset-env": "^9.3.0",
