@@ -24,15 +24,15 @@
     "license": "MIT",
     "repository": {
         "type": "git",
-        "url": "git+https://github.com/scape-agency/hue.gl.git"
+        "url": "git+https://github.com/stylescape/hue.gl.git"
     },
     "bugs": {
-        "url": "https://github.com/scape-agency/hue.gl/issues"
+        "url": "https://github.com/stylescape/hue.gl/issues"
     },
     "funding": [
         {
             "type": "github",
-            "url": "https://github.com/sponsors/scape-agency"
+            "url": "https://github.com/sponsors/stylescape"
         }
     ],
     "main": "src/ts/index.ts",
