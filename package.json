@@ -66,7 +66,7 @@
         "babel-loader": "^9.1.3",
         "block.gl": "^0.0.1",
         "clean-webpack-plugin": "^4.0.0",
-        "colorjs.io": "^0.4.5",
+        "colorjs.io": "^0.5.2",
         "copy-webpack-plugin": "^12.0.2",
         "css-loader": "^6.9.0",
         "css-minimizer-webpack-plugin": "^7.0.0",
