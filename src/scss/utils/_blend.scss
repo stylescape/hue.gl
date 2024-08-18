@@ -23,6 +23,15 @@
 // Generates a gradient from one color to another.
 // ----------------------------------------------------------------------------
 
+/// Generates a CSS linear gradient from one color to another using color names from the `$hue` map.
+/// @function hue_gradient
+/// @param {String} $start_color_name - Name of the start color.
+/// @param {String} $end_color_name - Name of the end color.
+/// @return {String} - CSS linear-gradient string if both colors are found, otherwise null.
+/// @example scss - Usage
+///   .gradient-background {
+///     background: hue_gradient('red', 'blue');
+///   }
 @function hue_gradient($start_color_name, $end_color_name) {
     $start_color: hue_color($start_color_name);
     $end_color: hue_color($end_color_name);
@@ -40,6 +49,14 @@
 // Create a mixin for generating gradients with your color palette.
 // ----------------------------------------------------------------------------
 
+/// Mixin to create a CSS background gradient using color names from the `$hue` map.
+/// @mixin gradient_bg
+/// @param {String} $start_color_name - Name of the start color.
+/// @param {String} $end_color_name - Name of the end color.
+/// @example scss - Usage
+///   .element {
+///     @include gradient_bg('primary', 'secondary');
+///   }
 @mixin gradient_bg($start_color_name, $end_color_name) {
     background: linear-gradient(
         hue_color($start_color_name),
@@ -53,6 +70,16 @@
 // Blends two colors together based on a specified weight.
 // ----------------------------------------------------------------------------
 
+/// Function to blend two colors based on a given weight percentage.
+/// @function hue_blend_colors
+/// @param {String} $color_name1 - First color name.
+/// @param {String} $color_name2 - Second color name.
+/// @param {Number} $weight [50%] - Percentage of the first color to blend.
+/// @return {Color} - The blended color, or null if one of the colors is not found.
+/// @example scss - Usage
+///   .mixed-color {
+///     color: hue_blend_colors('red', 'blue', 25%);
+///   }
 @function hue_blend_colors($color_name1, $color_name2, $weight: 50%) {
     $color1: hue_color($color_name1);
     $color2: hue_color($color_name2);
@@ -71,6 +98,15 @@
 // A mixin to blend two colors from your color map.
 // ----------------------------------------------------------------------------
 
+/// Mixin to apply a blended background color using two color names from the `$hue` map.
+/// @mixin blend_colors
+/// @param {String} $color1_name - First color name.
+/// @param {String} $color2_name - Second color name.
+/// @param {Number} $percentage [50%] - Blend ratio of the first color.
+/// @example scss - Usage
+///   .element {
+///     @include blend_colors('red', 'blue', 30%);
+///   }
 @mixin blend_colors($color1_name, $color2_name, $percentage: 50%) {
     $color1: hue_color($color1_name);
     $color2: hue_color($color2_name);
@@ -83,6 +119,14 @@
 // Converts a color to its grayscale equivalent.
 // ----------------------------------------------------------------------------
 
+/// Converts a specified color to grayscale using its name from the `$hue` map.
+/// @function hue_grayscale
+/// @param {String} $color_name - Name of the color to convert.
+/// @return {Color} - Grayscale color, or null if the color is not found.
+/// @example scss - Usage
+///   .gray-element {
+///     color: hue_grayscale('vibrant');
+///   }
 @function hue_grayscale($color_name) {
     $color: hue_color($color_name);
 
