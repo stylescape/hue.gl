@@ -1,25 +1,31 @@
-// ============================================================================
-// Color Filter Function
-// ============================================================================
-
-/// Applies a CSS filter effect to a color. Supported filters include 'sepia' and 'brightness'.
-/// @function hue_apply_filter
+/// 
+/// Color Filter Function
+/// ---------------------------------------------------------------------------
+/// 
+/// Applies a CSS filter effect to a color. Supported filters include 'sepia'
+/// and 'brightness'.
+/// 
+/// @name hue_apply_filter
 /// @param {String} $color_name - The name of the color in the color map.
 /// @param {String} $filter - The type of filter to apply ('sepia' or 'brightness').
 /// @return {Color} - The color with the filter effect applied, or the original color if the filter is unsupported.
 /// @throws - If the color name does not exist in the map, or if the filter type is unsupported.
+/// 
 /// @example scss - Applying a sepia filter
 ///   .image-sepia {
 ///     color: hue_apply_filter('oceanblue', 'sepia');
 ///   }
+/// 
 /// @example scss - Applying a brightness filter
 ///   .image-bright {
 ///     color: hue_apply_filter('skyblue', 'brightness');
 ///   }
+/// 
 /// @example scss - Using an unsupported filter
 ///   .image-unsupported {
 ///     color: hue_apply_filter('forestgreen', 'blur');
 ///   }
+///
 @function hue_apply_filter($color_name, $filter: 'sepia') {
     $color: hue_color($color_name);
 
@@ -33,7 +39,7 @@
     } @else if $filter == 'brightness' {
         // Assumes brightness function accepts a color and a percentage
         @return brightness($color, 150%);
-    } else {
+    } @else {
         @warn "The specified filter `#{$filter}` is not supported.";
         @return $color;
     }
