@@ -23,6 +23,16 @@
 // Creates a striped background pattern with two colors.
 // ----------------------------------------------------------------------------
 
+/// Generates a striped background pattern using two colors from the color map.
+/// @function hue_striped_background
+/// @param {String} $color_name1 - The name of the first color.
+/// @param {String} $color_name2 - The name of the second color.
+/// @param {Number} [$stripe_width=10px] - Width of each stripe.
+/// @return {Gradient} - A CSS gradient representing the striped pattern.
+/// @example scss - Using striped background generator
+///   .element {
+///     background-image: hue_striped_background('primary', 'secondary');
+///   }
 @function hue_striped_background($color_name1, $color_name2, $stripe_width: 10px) {
     $color1: hue_color($color_name1);
     $color2: hue_color($color_name2);
