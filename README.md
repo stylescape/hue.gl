@@ -5,26 +5,11 @@
 
 </div>
 
----
-
-<div>
-    <img align="right" src="https://raw.githubusercontent.com/stylescape/brand/master/src/logo/hue.gl.png" width="96" alt="hue.gl logo">
-    <h1 align="left">hue.gl</h1>
-    <h3 align="left">Perceptual Colour System</h3>
-</div>
-
----
-
-<img align="right" width="50%" src="https://raw.githubusercontent.com/stylescape/hue.gl/main/res/hue.gl.png" alt="hue.gl cover">
-
-### Contents
-
-- [Introduction](#introduction)
-- [Colours](#colours)
-- [Features](#features)
-- [Installation](#installation)
-- [Examples](#examples)
-- [Colophon](#colophon)
+<p align="center">
+    <img src="https://raw.githubusercontent.com/stylescape/brand/master/src/logo/logo-transparant.png" width="20%" height="20%" alt="Stylescape Logo">
+</p>
+<h1 align="center" style='border-bottom: none;'>hue.gl</h1>
+<h3 align="center">Perceptual Colour System</h3>
 
 <br clear="both"/>
 
