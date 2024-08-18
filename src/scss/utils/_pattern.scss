@@ -1,39 +1,30 @@
-// Copyright 2023 Scape Agency BV
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 
 // ============================================================================
 // Utilities | Pattern
 // ============================================================================
 
 
-// Striped Background Generator
-// ----------------------------------------------------------------------------
-// Creates a striped background pattern with two colors.
-// ----------------------------------------------------------------------------
-
+/// 
+/// Striped Background Generator
+/// ---------------------------------------------------------------------------
+/// 
 /// Generates a striped background pattern using two colors from the color map.
-/// @function hue_striped_background
+/// @name hue_striped_background
 /// @param {String} $color_name1 - The name of the first color.
 /// @param {String} $color_name2 - The name of the second color.
-/// @param {Number} [$stripe_width=10px] - Width of each stripe.
+/// @param {Number} $stripe_width [10px] - Width of each stripe.
 /// @return {Gradient} - A CSS gradient representing the striped pattern.
+/// 
 /// @example scss - Using striped background generator
 ///   .element {
 ///     background-image: hue_striped_background('primary', 'secondary');
 ///   }
-@function hue_striped_background($color_name1, $color_name2, $stripe_width: 10px) {
+///
+@function hue_striped_background(
+    $color_name1,
+    $color_name2,
+    $stripe_width: 10px
+) {
     $color1: hue_color($color_name1);
     $color2: hue_color($color_name2);
 
