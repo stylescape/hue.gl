@@ -1,16 +1,4 @@
-// Copyright 2023 Scape Agency BV
 
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 
 
 // ============================================================================
@@ -18,19 +6,22 @@
 // ============================================================================
 
 
-// Contrast Function
-// ----------------------------------------------------------------------------
-// A function to determine if you need a light or dark text color
-// on a specific background for readability.
-// ----------------------------------------------------------------------------
-
-/// Function to determine the ideal text color (light or dark) for optimal readability against a specified background color.
-/// @function color_contrast
+/// Contrast Function
+/// ---------------------------------------------------------------------------
+/// 
+/// Function to determine the ideal text color (light or dark) for optimal
+/// readability against a specified background color.
+/// 
+/// @name color_contrast
 /// @param {Color} $background-color - The background color to analyze.
 /// @return {Color} - Returns `black` for light backgrounds and `white` for dark backgrounds.
+/// 
 /// @example scss - Usage
 ///   color: color_contrast(#fff); // Returns 'black'
-@function color_contrast($background-color) {
+///
+@function color_contrast(
+    $background-color
+) {
     @if (lightness($background-color) > 50%) {
         @return black; // Dark text on light background
     } @else {
@@ -38,39 +29,50 @@
     }
 }
 
-// Contrast Checker
-// ----------------------------------------------------------------------------
-// A function to calculate the contrast ratio between two colors, which is
-// useful for accessibility considerations.
-// ----------------------------------------------------------------------------
 
-/// Calculates the contrast ratio between two colors to ensure they meet accessibility guidelines.
-/// @function color_contrast_checker
-/// @param {String} $color1-name - The name of the first color.
-/// @param {String} $color2-name - The name of the second color.
+/// 
+/// Contrast Checker
+/// ---------------------------------------------------------------------------
+/// 
+/// Calculates the contrast ratio between two colors to ensure they meet
+/// accessibility guidelines.
+/// 
+/// @name color_contrast_checker
+/// @param {String} $color1_name - The name of the first color.
+/// @param {String} $color2_name - The name of the second color.
 /// @return {Number} - The contrast ratio between the two colors.
+/// 
 /// @example scss - Usage
 ///   $contrast: color_contrast_checker('blue', 'white');
-@function color_contrast_checker($color1-name, $color2-name) {
-    $color1: hue-color($color1-name);
-    $color2: hue-color($color2-name);
+///
+@function color_contrast_checker(
+    $color1_name,
+    $color2_name
+) {
+    $color1: hue-color($color1_name);
+    $color2: hue-color($color2_name);
     @return contrast-ratio($color1, $color2);
 }
 
 
-// Color Contrast Ratio
-// ----------------------------------------------------------------------------
-// Calculates the contrast ratio between two colors, useful for accessibility
-// checks.
-// ----------------------------------------------------------------------------
-
-/// Generates a dynamic text color (black or white) based on the given background color to enhance readability.
-/// @function color_contrast_dynamic
-/// @param {String} $background-color_name - The name of the background color.
+///
+///  Color Contrast Ratio
+/// ---------------------------------------------------------------------------
+/// 
+/// Generates a dynamic text color (black or white) based on the given
+/// background color to enhance readability.
+/// 
+/// @name color_contrast_dynamic
+/// @param {String} $background_color_name - The name of the background color.
 /// @return {Color} - Optimal text color for the given background.
+/// 
 /// @example scss - Usage
 ///   color: color_contrast_dynamic('darkblue');
-@function hue_contrast_ratio($color_name1, $color_name2) {
+///
+@function hue_contrast_ratio(
+    $color_name1,
+    $color_name2
+) {
     $color1: hue_color($color_name1);
     $color2: hue_color($color_name2);
 
@@ -85,20 +87,21 @@
 }
 
 
-// Dynamic Text Color
-// ----------------------------------------------------------------------------
-// A function to dynamically determine whether to use light or dark text
-// based on the background color for better readability.
-// ----------------------------------------------------------------------------
-
-/// Generates a dynamic text color (black or white) based on the given background color to enhance readability.
-/// @function color_contrast_dynamic
-/// @param {String} $background-color_name - The name of the background color.
+/// 
+/// Dynamic Text Color
+/// ---------------------------------------------------------------------------
+/// 
+/// Generates a dynamic text color (black or white) based on the given
+/// background color to enhance readability.
+/// 
+/// @name color_contrast_dynamic
+/// @param {String} $background_color_name - The name of the background color.
 /// @return {Color} - Optimal text color for the given background.
 /// @example scss - Usage
 ///   color: color_contrast_dynamic('darkblue');
-@function color_contrast_dynamic($background-color_name) {
-    $background-color: hue-color($background-color_name);
+///
+@function color_contrast_dynamic($background_color_name) {
+    $background-color: hue-color($background_color_name);
     @if (hue-contrast($background-color, black) > 4.5) {
         @return black;
     } @else {
@@ -107,18 +110,23 @@
 }
 
 
-// Contrast Text Color
-// ----------------------------------------------------------------------------
-// Generates a contrasting text color (black or white) based on the background color.
-// ----------------------------------------------------------------------------
-
-/// Returns a high-contrast text color (black or white) based on the specified background color.
-/// @function hue_contrast_text_color
+///
+/// Contrast Text Color
+/// ---------------------------------------------------------------------------
+/// Returns a high-contrast text color (black or white) based on the specified
+/// background color.
+/// 
+/// @name hue_contrast_text_color
 /// @param {String} $background_color_name - The name of the background color from the color map.
 /// @return {Color} - Either black or white, depending on which has higher contrast against the background.
+/// 
 /// @example scss - Usage
 ///   color: hue_contrast_text_color('lightgrey'); // Returns 'black'
-@function hue_contrast_text_color($background_color_name) {
+///
+/// 
+@function hue_contrast_text_color(
+    $background_color_name
+) {
     $background_color: hue_color($background_color_name);
 
     @if type-of($background_color) != 'color' {
@@ -134,35 +142,38 @@
 }
 
 
-// Accessibility Mixin
-// ----------------------------------------------------------------------------
-// A mixin to ensure text color contrasts well with its background for
-// accessibility.
-// ----------------------------------------------------------------------------
-
-/// Mixin to apply text color that ensures sufficient contrast for accessibility based on the background color.
-/// @mixin accessible_text_color
+/// 
+/// Accessibility Mixin
+/// ---------------------------------------------------------------------------
+/// 
+/// Mixin to apply text color that ensures sufficient contrast for
+/// accessibility based on the background color.
+/// 
+/// @name accessible_text_color
 /// @param {String} $background_color_name - The name of the background color from the color map.
+/// 
 /// @example scss - Usage
 ///   .text { @include accessible_text_color('navyblue'); }
+///
 @mixin accessible_text_color($background_color_name) {
     $background-color: hue_color($background_color_name);
     color: color_contrast_checker($background-color);
 }
 
 
-// Readable Overlay Text Color
-// ----------------------------------------------------------------------------
-// Determines a readable color (light or dark) for text overlays on any
-// background.
-// ----------------------------------------------------------------------------
-
-/// Determines an overlay text color that is readable over any background by adjusting opacity.
-/// @function hue_readable_overlay
+///
+/// Readable Overlay Text Color
+/// ---------------------------------------------------------------------------
+/// Determines an overlay text color that is readable over any background by
+/// adjusting opacity.
+/// 
+/// @name hue_readable_overlay
 /// @param {String} $background_color_name - The name of the background color.
 /// @return {Color} - A semi-transparent black or white color for text overlays.
+/// 
 /// @example scss - Usage
 ///   background-color: hue_readable_overlay('limegreen');
+///
 @function hue_readable_overlay($background_color_name) {
     $background_color: hue_color($background_color_name);
 
