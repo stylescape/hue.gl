@@ -1,35 +1,25 @@
-// Copyright 2023 Scape Agency BV
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-
 
 // ============================================================================
 // Utilities | Scheme
 // ============================================================================
 
-// Complementary Color Function
-// ----------------------------------------------------------------------------
-// A function to find the complementary color on the color wheel, useful for
-// creating color schemes.
 
 
-
-// Complementary Color
-// ----------------------------------------------------------------------------
-// Generates the complementary color for a given color.
-// ----------------------------------------------------------------------------
-
+/// Complementary Color Function
+/// ---------------------------------------------------------------------------
+/// 
+/// A function to find the complementary color on the color wheel, useful for
+/// creating color schemes.
+/// 
+/// @name hue_complementary
+/// @param {String} $color_name - The name of the color.
+/// @return {Color} - The complementary color.
+/// 
+/// @example scss - Using the complementary color function
+///   .element {
+///     background-color: hue_complementary('primary');
+///   }
+/// 
 @function hue_complementary($color_name) {
     $color: hue_color($color_name);
 
@@ -47,6 +37,14 @@
 // Inverts a color for high-contrast themes or effects.
 // ----------------------------------------------------------------------------
 
+/// Inverts a specified color for contrast effects.
+/// @name hue_invert
+/// @param {String} $color_name - The name of the color to invert.
+/// @return {Color} - The inverted color.
+/// @example scss - Using the color inversion function
+///   .element {
+///     color: hue_invert('primary');
+///   }
 @function hue_invert($color_name) {
     $color: hue_color($color_name);
 
@@ -65,6 +63,15 @@
 // variations.
 // ----------------------------------------------------------------------------
 
+/// Rotates the hue of a color by a given degree.
+/// @name hue_rotate
+/// @param {String} $color_name - The name of the color to rotate.
+/// @param {Number} [$degrees=15deg] - The degrees to rotate the hue.
+/// @return {Color} - The hue-rotated color.
+/// @example scss - Using the hue rotation function
+///   .element {
+///     background-color: hue_rotate('primary', 90deg);
+///   }
 @function hue_rotate($color_name, $degrees: 15deg) {
     $color: hue_color($color_name);
 
@@ -82,6 +89,17 @@
 // Generates a list of monochromatic colors based on a base color.
 // ----------------------------------------------------------------------------
 
+/// Generates a list of monochromatic colors based on a base color.
+/// @name hue_monochromatic_scheme
+/// @param {String} $base_color_name - The base color name.
+/// @param {Number} [$variation=5%] - The variation in lightness between each color.
+/// @param {Number} [$amount=4] - The number of colors to generate.
+/// @return {List} - A list of monochromatic colors.
+/// @example scss - Generating a monochromatic color scheme
+///   $monochrome: hue_monochromatic_scheme('primary', 10%, 5);
+///   .element {
+///     background-color: nth($monochrome, 1);
+///   }
 @function hue_monochromatic_scheme($base_color_name, $variation: 5%, $amount: 4) {
     $base_color: hue_color($base_color_name);
     $color_scheme: ();
@@ -104,6 +122,16 @@
 // Creates a scale of colors ranging from light to dark based on a base color.
 // ----------------------------------------------------------------------------
 
+/// Creates a scale of colors ranging from light to dark based on a base color.
+/// @name hue_color_scale
+/// @param {String} $base_color_name - The base color name.
+/// @param {Number} [$steps=5] - The number of steps in the scale.
+/// @return {List} - A scale of colors from light to dark.
+/// @example scss - Generating a color scale
+///   $color_scale: hue_color_scale('primary', 10);
+///   .element {
+///     background: linear-gradient(to bottom, nth($color_scale, 1), nth($color_scale, 10));
+///   }
 @function hue_color_scale($base_color_name, $steps: 5) {
     $base_color: hue_color($base_color_name);
     $scale: ();
@@ -127,6 +155,17 @@
 // Generates a scale of hues by rotating the base color.
 // ----------------------------------------------------------------------------
 
+/// Generates a scale of hues by rotating the base color.
+/// @name hue_rotation_scale
+/// @param {String} $base_color_name - The base color name.
+/// @param {Number} [$steps=5] - The number of colors to generate.
+/// @param {Number} [$rotation_amount=20deg] - The amount of hue rotation per step.
+/// @return {List} - A list of hues generated by rotating the base color.
+/// @example scss - Generating a hue rotation scale
+///   $hue_scale: hue_rotation_scale('primary', 5, 30deg);
+///   .element {
+///     color: nth($hue_scale, 1);
+///   }
 @function hue_rotation_scale($base_color_name, $steps: 5, $rotation_amount: 20deg) {
     $base_color: hue_color($base_color_name);
     $rotation_scale: ();
@@ -149,6 +188,17 @@
 // Generates a set of opacities for a given color.
 // ----------------------------------------------------------------------------
 
+/// Generates a set of opacities for a given color.
+/// @name hue_opacity_scale
+/// @param {String} $color_name - The name of the color.
+/// @param {Number} [$steps=5] - The number of opacity levels to generate.
+/// @param {Number} [$max_opacity=1] - The maximum opacity value.
+/// @return {List} - A list of colors with varying opacities.
+/// @example scss - Generating an opacity scale
+///   $opacity_scale: hue_opacity_scale('primary', 5, 0.8);
+///   .element {
+///     background-color: nth($opacity_scale, 1);
+///   }
 @function hue_opacity_scale($color_name, $steps: 5, $max_opacity: 1) {
     $color: hue_color($color_name);
     $opacity_scale: ();
