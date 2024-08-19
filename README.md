@@ -12,8 +12,6 @@
 <h1 align="center" style='border-bottom: none;'>hue.gl</h1>
 <h3 align="center">Perceptual Colour System</h3>
 
-<br clear="both"/>
-
 ---
 
 <div align="right">
@@ -25,6 +23,8 @@
 [![Start a Discussion](https://img.shields.io/badge/Start%20a%20Discussion-GitHub?style=flat-square&&logoColor=%23FFFFFF&color=%23E1E4E5)](https://github.com/stylescape/hue.gl/issues/new?assignees=&labels=Needs%3A+Triage+%3Amag%3A%2Ctype%3Abug-suspected&projects=&template=discussion.yml)
 
 </div>
+
+<br clear="both"/>
 
 **`hue.gl` is a Perceptual Colour System designed for the modern age. At its core, `hue.gl` transcends traditional color systems by focusing on how we perceive colors, ensuring that every hue, shade, and tone is as visually intuitive as it is scientifically precise.**
 
