@@ -1,0 +1,191 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Helper Functions Module
+/// ===========================================================================
+/// 
+/// 
+/// @group Helper
+/// @author Scape Agency
+/// @link https://hue.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:math";
+
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+
+///
+/// Component Helpers
+/// ---------------------------------------------------------------------------
+/// Mixins for Text and Background Colors: These mixins can be used to apply 
+/// text and background colors throughout your stylesheets.
+/// They make it easy to maintain consistency and make changes later if needed.
+/// ---------------------------------------------------------------------------
+
+
+///
+/// Applies the designated text color from the color map.
+/// 
+/// @name text_color
+/// @param {String} $color_name - The name of the color in the color map.
+/// 
+/// @example scss - Applying text color
+///   .header {
+///     @include text_color('primary');
+///   }
+/// 
+@mixin text_color($color_name) {
+    color: hue_color($color_name);
+}
+
+
+/// 
+/// Sets the background color using a named color from the color map.
+/// 
+/// @name bg_color
+/// @param {String} $color_name - The name of the color in the color map.
+/// 
+/// @example scss - Setting background color
+///   .highlight {
+///     @include bg_color('secondary');
+///   }
+///
+@mixin bg_color($color_name) {
+    background-color: hue_color($color_name);
+}
+
+
+/// 
+/// Defines border color using a named color from the color map.
+/// 
+/// @name border-color
+/// @param {String} $color_name - The name of the color.
+/// 
+/// @example scss - Adding a border color
+///   .featured {
+///     @include border-color('accent');
+///   }
+/// 
+@mixin border-color($color_name) {
+    border-color: hue_color($color_name);
+}
+
+
+/// 
+/// Creates a button with a theme using colors from the color map.
+/// 
+/// @name button_theme
+/// @param {String} $bg_color_name - The background color name.
+/// @param {String} $text_color_name [null] - The text color name, optional.
+/// 
+/// @example scss - Theming a button
+///   .button {
+///     @include button_theme('primary', 'onPrimary');
+///   }
+/// 
+@mixin button_theme(
+    $bg_color_name,
+    $text_color_name: null
+) {
+    @include bg_color($bg_color_name);
+    @if $text_color_name != null {
+        @include text_color($text_color_name);
+    } @else {
+        @include accessible_text_color($bg_color_name);
+    }
+    // Add more button styles here
+}
+
+
+/// 
+/// Generates CSS utility classes for text and background colors.
+/// 
+/// @example scss - Generating utility classes
+///   // Automatically created by iterating over the $hue color map
+///
+@each $color_name, $color_value in $hue {
+
+    .text-#{$color_name} {
+        @include text_color($color_name);
+    }
+
+    .bg-#{$color_name} {
+    @include bg_color($color_name);
+    }
+
+    .border-#{$color_name} {
+        @include border-color($color_name);
+    }
+
+}
+
+
+/// 
+/// Semi-Transparent Border Color
+/// ---------------------------------------------------------------------------
+/// 
+/// Generates a semi-transparent version of a color, suitable for borders.
+/// 
+/// @name hue_border_color
+/// @param {String} $color_name - The name of the color.
+/// @param {Number} $opacity [0.5] - Opacity of the border color.
+/// @return {Color} - The RGBA color value.
+/// 
+/// @example scss - Getting a semi-transparent border color
+///   .fancy-border {
+///     border-color: hue_border_color('primary', 0.75);
+///   }
+///
+@function hue_border_color(
+    $color_name,
+    $opacity: 0.5
+) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return rgba($color, $opacity);
+}
+
+
+/// 
+/// Box Shadow Generator
+/// ---------------------------------------------------------------------------
+/// 
+/// Creates a box shadow with adjustable properties.
+///
+// @function hue_box_shadow(
+//     $color_name,
+//     $opacity: 0.5,
+//     $x: 0px,
+//     $y: 2px,
+//     $blur: 4px
+// ) {
+//     $color: hue_color($color_name);
+
+//     @if type-of($color) != 'color' {
+//         @warn "The specified color `#{$color_name}` could not be found.";
+//         @return null;
+//     }
+
+//     @return box-shadow: $x $y $blur rgba($color, $opacity);
+// }
