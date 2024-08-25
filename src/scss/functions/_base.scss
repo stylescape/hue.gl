@@ -1,0 +1,88 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Base Functions Module
+/// ===========================================================================
+/// 
+/// 
+/// @group Base
+/// @author Scape Agency
+/// @link https://hue.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:math";
+
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+
+///
+/// Color Getter Function
+/// ---------------------------------------------------------------------------
+/// 
+/// Retrieves a color value based on a given color name from the `$hue` map.
+/// This function ensures that only defined colors are accessed, preventing
+/// errors in color application.
+/// 
+/// @name hue_color
+/// @param {String} $color_name - The name of the color to retrieve.
+/// @return {Color} - Returns the color value from the map or `null` if not found.
+/// 
+/// @example scss - Usage
+///     .element {
+///         // color: hue_color('primary');
+///     }
+///
+@function hue_color(
+    $color_name
+) {
+    @if map-has-key($hue, $color_name) {
+        @return map-get($hue, $color_name);
+    } @else {
+        @warn "Unknown `#{$color_name}` in `$hue`.";
+        @return null;
+    }
+}
+
+
+/// 
+/// Random Color Generator
+/// ---------------------------------------------------------------------------
+/// 
+/// Generates a random color within specified hue and luminance ranges.
+/// This function can be used to produce vibrant backgrounds, borders, or
+/// for dynamic color themes.
+/// 
+/// @name hue_random_color
+/// @param {Number} $hue_min [0] - The minimum hue value.
+/// @param {Number} $hue_max [360] - The maximum hue value.
+/// @param {Number} $luminance [50%] - The luminance of the color.
+/// @return {Color} - Returns a random HSL color.
+/// 
+/// @example scss - Usage
+///   .random-bg {
+///     background-color: hue_random_color(100, 200, 40%);
+///   }
+///
+@function hue_random_color(
+    $hue_min: 0,
+    $hue_max: 360,
+    $luminance: 50%
+) {
+    $hue: random($hue_max - $hue_min) + $hue_min;
+    @return hsl($hue, 100%, $luminance);
+}
