@@ -1,0 +1,49 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Contrast Mixins Module
+/// ===========================================================================
+/// 
+/// 
+/// @group Contrast
+/// @author Scape Agency
+/// @link https://hue.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../functions" as *;
+
+
+// ============================================================================
+// Mixins
+// ============================================================================
+
+
+/// 
+/// Accessibility Mixin
+/// ---------------------------------------------------------------------------
+/// 
+/// Mixin to apply text color that ensures sufficient contrast for
+/// accessibility based on the background color.
+/// 
+/// @name accessible_text_color
+/// @param {String} $background_color_name - The name of the background color from the color map.
+/// 
+/// @example scss - Usage
+///   .text { @include accessible_text_color('navyblue'); }
+///
+@mixin accessible_text_color($background_color_name) {
+    $background-color: hue_color($background_color_name);
+    color: color_contrast_checker($background-color);
+}
