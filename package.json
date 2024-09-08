@@ -1,7 +1,7 @@
 {
     "name": "hue.gl",
     "description": "hue.gl is a colour palette developed by Scape Agency.",
-    "version": "0.0.11",
+    "version": "0.0.21",
     "config": {
         "version_short": "0.0"
     },
@@ -74,7 +74,7 @@
         "eslint-config-prettier": "^9.1.0",
         "html-webpack-plugin": "^5.6.0",
         "mini-css-extract-plugin": "^2.7.6",
-        "pack.gl": "^0.0.40",
+        "pack.gl": "^0.0.61",
         "postcss-loader": "^8.1.1",
         "postcss-preset-env": "^10.0.0",
         "prettier": "^3.1.1",
@@ -92,5 +92,11 @@
     "files": [
         "src/**",
         "dist/**"
-    ]
+    ],
+    "exports": {
+        ".": {
+            "sass": "./scss/index.scss",
+            "typescript": "./ts/index.scss"
+        }
+    }
 }
