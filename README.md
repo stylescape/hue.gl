@@ -4,7 +4,6 @@
 <h1 align="center" style='border-bottom: none;'>hue.gl</h1>
 <h3 align="center">Perceptual Colour System</h3>
 
-
 <br/>
 
 <div align="center">
@@ -29,9 +28,6 @@
 </div>
 
 ---
-
-<br/>
-
 
 <br clear="both"/>
 
@@ -137,3 +133,9 @@ Also see [LICENSE](https://github.com/stylescape/community/blob/master/src/LICEN
 #### Disclaimer
 
 **THIS SOFTWARE IS PROVIDED AS IS WITHOUT WARRANTY OF ANY KIND, EITHER EXPRESS OR IMPLIED, INCLUDING ANY IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, MERCHANTABILITY, OR NON-INFRINGEMENT.**
+
+---
+
+<p align="center">
+    <b>Made with ❤️ by <a href="https://www.scape.agency" target="_blank">Scape Agency</a></b>
+</p>
