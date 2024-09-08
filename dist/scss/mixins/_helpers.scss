@@ -7,6 +7,14 @@
 /// They make it easy to maintain consistency and make changes later if needed.
 /// ---------------------------------------------------------------------------
 
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "../functions" as *;
+@use "../variables" as *;
+@use "../maps" as *;
+
 
 ///
 /// Applies the designated text color from the color map.
