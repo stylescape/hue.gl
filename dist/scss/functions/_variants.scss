@@ -1,0 +1,306 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Variant Functions Module
+/// ===========================================================================
+/// 
+/// 
+/// @group Variant
+/// @author Scape Agency
+/// @link https://hue.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:math";
+
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+
+/// 
+/// Opacity Variants
+/// ---------------------------------------------------------------------------
+/// 
+/// Generates color variants with different opacities based on the
+/// provided color name.
+/// 
+/// @name hue_color_opacity
+/// @param {String} $color_name - The name of the color.
+/// @param {Number} $opacity [1] - The opacity value (0-1).
+/// @return {Color} - The rgba color with applied opacity.
+/// 
+/// @example scss - Using the hue_color_opacity function
+///     .element {
+///         // background-color: hue_color_opacity('primary', 0.5);
+///     }
+///
+@function hue_color_opacity(
+    $color_name,
+    $opacity: 1
+) {
+
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return rgba($color, $opacity);
+
+}
+
+
+/// 
+/// Color Transparency Function
+/// ---------------------------------------------------------------------------
+///
+/// Adjusts the transparency of a color to a specified alpha value.
+/// 
+/// @name hue_alpha
+/// @param {String} $color_name - The name of the color.
+/// @param {Number} $alpha [0.5] - The alpha value for transparency.
+/// @return {Color} - The color with adjusted transparency.
+/// 
+/// @example scss - Using hue_alpha to adjust transparency
+///   .element {
+///     color: hue_alpha('primary', 0.3);
+///   }
+///
+@function hue_alpha(
+    $color_name,
+    $alpha: 0.5
+) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return rgba($color, $alpha);
+}
+
+
+///
+/// Color Shades and Tints
+/// ---------------------------------------------------------------------------
+/// 
+/// Generates lighter and darker shades of a given color, useful for hover
+/// states, disabled states, or gradients.
+/// 
+/// @name hue_shade
+/// @param {String} $color_name - The color name.
+/// @param {Number} $amount [10%] - The amount to darken the color.
+/// @return {Color} - The darker shade.
+/// 
+/// @example scss - Using hue_shade to create a darker color
+///   .element {
+///     background-color: hue_shade('primary', 15%);
+///   }
+///
+@function hue_shade(
+    $color_name,
+    $amount: 10%
+) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return darken($color, $amount);
+}
+
+/// 
+/// Generates lighter tints of a given color.
+/// 
+/// @name hue_tint
+/// @param {String} $color_name - The color name.
+/// @param {Number} $amount [10%] - The amount to lighten the color.
+/// @return {Color} - The lighter tint.
+/// 
+/// @example scss - Using hue_tint to create a lighter color
+///   .element {
+///     background-color: hue_tint('primary', 15%);
+///   }
+///
+@function hue_tint(
+    $color_name,
+    $amount: 10%
+) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return lighten($color, $amount);
+}
+
+
+/// 
+/// Tint and Shade Function
+/// ---------------------------------------------------------------------------
+/// 
+/// Generates tints (lighter versions) and shades (darker versions) of
+/// a given color.
+///
+@function hue_tint_shade($color_name, $amount: 10%, $is_tint: true) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @if $is_tint {
+        @return lighten($color, $amount);
+    } @else {
+        @return darken($color, $amount);
+    }
+}
+
+
+/// 
+/// Saturated Color Variant
+/// ---------------------------------------------------------------------------
+/// Increases the saturation of a color by a specified amount.
+/// 
+/// @name hue_saturate
+/// @param {String} $color_name - The color name.
+/// @param {Number} $amount [20%] - The percentage to increase saturation.
+/// @return {Color} - The saturated color.
+/// 
+/// @example scss - Using hue_saturate to increase saturation
+///   .element {
+///     color: hue_saturate('primary', 30%);
+///   }
+///
+@function hue_saturate(
+    $color_name,
+    $amount: 20%
+) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return saturate($color, $amount);
+}
+
+
+///
+/// Desaturated Color Variant
+/// ---------------------------------------------------------------------------
+/// Decreases the saturation of a given color by a specified amount.
+/// 
+/// @name hue_desaturate
+/// @param {String} $color_name - The color name.
+/// @param {Number} $amount [20%] - The percentage to decrease saturation.
+/// @return {Color} - The desaturated color.
+/// 
+/// @example scss - Using hue_desaturate to decrease saturation
+///   .element {
+///     color: hue_desaturate('primary', 30%);
+///   }
+///
+@function hue_desaturate(
+    $color_name,
+    $amount: 20%
+) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return desaturate($color, $amount);
+}
+
+
+/// 
+/// Adjust Color Brightness
+/// ---------------------------------------------------------------------------
+/// 
+/// Adjusts the brightness of a color based on its lightness.
+/// 
+/// @name hue_adjust_brightness
+/// @param {String} $color_name - The color name.
+/// @param {Number} $percentage [10%] - The percentage to adjust brightness.
+/// @return {Color} - The adjusted color.
+/// 
+/// @example scss - Adjusting brightness based on lightness
+///   .element {
+///     background-color: hue_adjust_brightness('primary', 20%);
+///   }
+///
+@function hue_adjust_brightness(
+    $color_name,
+    $percentage: 10%
+) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @if lightness($color) > 50% {
+        @return darken($color, $percentage);
+    } @else {
+        @return lighten($color, $percentage);
+    }
+}
+
+
+/// 
+/// Color To Grayscale Function
+/// ---------------------------------------------------------------------------
+/// 
+/// Converts a color to its grayscale equivalent based on a specific method
+/// (e.g., average, luminosity).
+/// 
+/// @name hue_to_grayscale
+/// @param {String} $color_name - The color name.
+/// @param {String} $method [‘luminosity’] - The method for grayscale conversion.
+/// @return {Color} - The grayscale color.
+/// 
+/// @example scss - Converting to grayscale using luminosity method
+///   .element {
+///     color: hue_to_grayscale(‘primary’, ‘average’);
+///   }
+///
+@function hue_to_grayscale(
+    $color_name,
+    $method: 'luminosity'
+) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    // Implement grayscale conversion based on the chosen method
+    // Placeholder for actual implementation
+    @return 'Grayscale Conversion Placeholder for ' + $method;
+}

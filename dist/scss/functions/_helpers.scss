@@ -1,0 +1,85 @@
+// ============================================================================
+// Poster
+// ============================================================================
+
+////
+/// 
+/// Helper Functions Module
+/// ===========================================================================
+/// 
+/// 
+/// @group Helper
+/// @author Scape Agency
+/// @link https://hue.gl
+/// @since 0.1.0 initial release
+/// @todo None
+/// @access public
+/// 
+////
+
+
+// ============================================================================
+// Use
+// ============================================================================
+
+@use "sass:math";
+
+
+// ============================================================================
+// Functions
+// ============================================================================
+
+
+/// 
+/// Semi-Transparent Border Color
+/// ---------------------------------------------------------------------------
+/// 
+/// Generates a semi-transparent version of a color, suitable for borders.
+/// 
+/// @name hue_border_color
+/// @param {String} $color_name - The name of the color.
+/// @param {Number} $opacity [0.5] - Opacity of the border color.
+/// @return {Color} - The RGBA color value.
+/// 
+/// @example scss - Getting a semi-transparent border color
+///   .fancy-border {
+///     border-color: hue_border_color('primary', 0.75);
+///   }
+///
+@function hue_border_color(
+    $color_name,
+    $opacity: 0.5
+) {
+    $color: hue_color($color_name);
+
+    @if type-of($color) != 'color' {
+        @warn "The specified color `#{$color_name}` could not be found.";
+        @return null;
+    }
+
+    @return rgba($color, $opacity);
+}
+
+
+/// 
+/// Box Shadow Generator
+/// ---------------------------------------------------------------------------
+/// 
+/// Creates a box shadow with adjustable properties.
+///
+// @function hue_box_shadow(
+//     $color_name,
+//     $opacity: 0.5,
+//     $x: 0px,
+//     $y: 2px,
+//     $blur: 4px
+// ) {
+//     $color: hue_color($color_name);
+
+//     @if type-of($color) != 'color' {
+//         @warn "The specified color `#{$color_name}` could not be found.";
+//         @return null;
+//     }
+
+//     @return box-shadow: $x $y $blur rgba($color, $opacity);
+// }

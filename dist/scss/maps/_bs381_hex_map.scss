@@ -1,0 +1,206 @@
+// Copyright 2024 Scape Agency BV
+
+// Licensed under the Apache License, Version 2.0 (the "License");
+// you may not use this file except in compliance with the License.
+// You may obtain a copy of the License at
+
+// http://www.apache.org/licenses/LICENSE-2.0
+
+// Unless requiRed by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+
+
+// ============================================================================
+// BS381 Colors
+// ============================================================================
+
+// Color definitions based on the British Standard BS381, primarily used in identification,
+// coding, and marking in industrial applications. Defined here as hexadecimal values for digital use.
+
+
+$color_bs381_hex: (
+
+    // Blue Tones
+    // ------------------------------------------------------------------------
+
+    381_101: #94bfac,    // Sky Blue
+    381_102: #5b9291,    // Turquoise Blue
+    381_103: #3b6879,    // Peacock Blue
+    381_104: #264d7e,    // Azure Blue
+    381_105: #1f3057,    // Oxford Blue
+    381_106: #2a283d,    // Royal Blue
+    381_107: #3a73a9,    // Strong Blue
+    381_108: #173679,    // Aircraft Blue
+    381_109: #1c5680,    // Middle Blue / Anchusa
+    381_110: #2c3e75,    // Roundel Blue
+    381_111: #8cc5bb,    // Pale Blue
+    381_112: #78adc2,    // Arctic Blue / Fiesta Blue
+    381_113: #3f687d,    // Deep saxe Blue
+    381_114: #1f4b61,    // Rail Blue
+    381_115: #5f88c1,    // Cobalt Blue
+    381_166: #2458af,    // French Blue
+    381_169: #135b75,    // Traffic Blue
+    381_172: #a7c6eb,    // Pale roundel Blue
+    381_174: #64a0aa,    // Orient Blue
+    381_175: #4f81c5,    // Light French Blue
+
+
+    // Green Tones
+    // ------------------------------------------------------------------------
+
+    381_210: #bbc9a5,    // Sky
+    381_216: #bcd890,    // Eau de Nil
+    381_217: #96bf65,    // Sea Green
+    381_218: #698b47,    // Grass Green
+    381_219: #757639,    // Sage Green
+    381_220: #4b5729,    // Olive Green
+    381_221: #507d3a,    // Brilliant Green
+    381_222: #6a7031,    // Light Bronze Green
+    381_223: #49523a,    // Middle Bronze Green
+    381_224: #3e4630,    // Deep Bronze Green
+    381_225: #406a28,    // Light Brunswick Green
+    381_226: #33533b,    // Mid Brunswick Green
+    381_227: #254432,    // Deep Brunswick Green
+    381_228: #428b64,    // Emerald Green / Viridian
+    381_241: #4f5241,    // Dark Green
+    381_262: #44945e,    // Bold Green
+    381_267: #476a4c,    // Deep chrome Green / Traffic Green
+    381_275: #8fc693,    // Opaline Green
+    381_276: #2e4c1e,    // Lincon Green
+    381_277: #364a20,    // Cypress Green
+    381_278: #87965a,    // Light Olive Green
+    381_279: #3b3629,    // Steel Furniture Green
+    381_280: #68ab77,    // Verdigris Green
+    381_282: #506b52,    // Forest Green
+    381_283: #7e8f6e,    // Aircraft Grey Green
+    381_284: #6b6f5a,    // Spruce Green
+    381_285: #5f5c4b,    // NATO Green
+    381_298: #4f5138,    // Olive drab
+
+
+    // Yellow Tones
+    // ------------------------------------------------------------------------
+
+    381_309: #feec04,    // Canary yellow
+    381_310: #fef963,    // Primrose
+    381_315: #fef96a,    // Grapefruit
+    381_320: #9e7339,    // Light Brown
+    381_337: #4c4a3c,    // Very Dark drab
+    381_350: #7b6b4f,    // Dark earth
+    381_352: #fced96,    // Pale cream
+    381_353: #fdf07a,    // Deep cream
+    381_354: #e9bb43,    // Primrose
+    381_355: #fdd906,    // Lemon
+    381_356: #fcc808,    // Golden yellow
+    381_358: #f6c870,    // Light buff
+    381_359: #dbac50,    // Middle buff
+    381_361: #d4b97d,    // Light Stone
+    381_362: #ac7c42,    // Middle Stone
+    381_363: #fde706,    // Bold yellow
+    381_364: #cec093,    // Portland Stone
+    381_365: #f4f0bd,    // Vellum
+    381_366: #f5e7a1,    // Light beige
+    381_367: #fef6bf,    // Manilla
+    381_368: #dd7b00,    // Traffic Yellow
+    381_369: #feeba8,    // Biscuit
+    381_380: #bba38a,    // Camouflage desert sand
+    381_384: #eedfa5,    // Light straw
+    381_385: #e8c88f,    // Light biscuit
+    381_386: #e6c18d,    // Champagne
+    381_387: #cfb48a,    // Sunrise / Sunshine
+    381_388: #e4cf93,    // Beige
+    381_389: #b2a788,    // Camouflage beige
+    381_397: #f3d163,    // Jasmine Yellow
+
+
+    // Brown Tones
+    // ------------------------------------------------------------------------
+
+    381_410: #93612b,    // Light Brown
+    381_411: #74542f,    // Middle Brown
+    381_412: #5c422e,    // Dark Brown
+    381_413: #402d21,    // Nut Brown
+    381_414: #a86c29,    // Golden Brown
+    381_415: #61361e,    // Imperial Brown
+    381_420: #a89177,    // Dark Camouflage Desert Sand
+    381_435: #845b4d,    // Camouflage Red
+    381_436: #564b47,    // Dark Camouflage Brown
+    381_437: #464334,    // Very Dark drab
+    381_439: #753b1e,    // Orange Brown
+    381_443: #c98a71,    // Salmon
+    381_444: #a65341,    // Terracotta
+    381_445: #83422b,    // Venetian Red
+    381_446: #774430,    // Red Oxide
+    381_447: #f3b28b,    // Salmon Pink
+    381_448: #67403a,    // Deep Indian Red
+    381_449: #693b3f,    // Light purple Brown
+    381_450: #745f46,    // Dark Earth
+    381_452: #613339,    // Dark Crimson
+    381_453: #fbded6,    // Shell Pink
+    381_454: #e8a1a2,    // Pale Roundel Red
+    381_460: #bd8f56,    // Deep Buff
+    381_473: #793932,    // Gulf Red
+    381_489: #8d5b41,    // Leaf Brown
+    381_490: #573320,    // Beech Brown
+    381_499: #59493e,    // Service Brown
+
+
+    // Red Tones
+    // ------------------------------------------------------------------------
+
+    381_536: #bb3016,    // Poppy
+    381_537: #dd3420,    // Signal Red
+    381_538: #c41c22,    // Post office Red / Cherry
+    381_539: #d21e2b,    // Currant Red
+    381_540: #8b1a32,    // Crimson
+    381_541: #471b21,    // Maroon
+    381_542: #982d57,    // Ruby
+    381_557: #ef841e,    // Light Orange
+    381_564: #dd3524,    // Bold Red
+    381_568: #fb9c06,    // Apricot
+    381_570: #a83c19,    // Traffic Red
+    381_591: #d04e09,    // Deep Orange
+    381_592: #e45523,    // International Orange
+    381_593: #f24816,    // Rail Red / Azo Orange
+
+
+    // Grey Tones
+    // ------------------------------------------------------------------------
+
+    381_626: #a0a9aa,    // Camouflage Grey
+    381_627: #bec0b8,    // Light Aircraft Grey
+    381_628: #9d9d7e,    // Silver Grey
+    381_629: #7a838b,    // Dark camouflage Grey
+    381_630: #a5ad98,    // French Grey
+    381_631: #9aaa9f,    // Light Grey
+    381_632: #6b7477,    // Dark admiralty Grey
+    381_633: #424c53,    // RAF Blue-Grey
+    381_634: #6f7264,    // Slate
+    381_635: #525b55,    // Lead
+    381_636: #5f7682,    // PRU Blue
+    381_637: #8e9b9c,    // Medium Sea Grey
+    381_638: #6c7377,    // Dark Sea Grey
+    381_639: #667563,    // Light Slate Grey
+    381_640: #566164,    // Extra Dark Sea Grey
+    381_641: #484837,    // Dark Green
+    381_642: #282b2f,    // Night
+    381_671: #4e5355,    // Middle Graphite
+    381_676: #a9b7b9,    // Light Weatherwork Grey
+    381_677: #676f76,    // Dark Weatherwork Grey
+    381_692: #7b93a3,    // Smoke Grey
+    381_693: #88918d,    // Aircraft Grey
+    381_694: #909a92,    // Dove Grey
+    381_697: #b6d3cc,    // Light admiralty Grey
+
+
+    // Violet Tones
+    // ------------------------------------------------------------------------
+
+    381_796: #6e4a75,    // Dark violet
+    381_797: #c9a8ce,    // Light violet
+
+)

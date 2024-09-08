@@ -1,4 +1,4 @@
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -13,18 +13,19 @@
 // limitations under the License.
 
 
+
 // ============================================================================
-// Color Standards
+// FS595 Colors
 // ============================================================================
 
-@import "_as2700_hex_map.scss";
-@import "_bs381_hex_map.scss";
-@import "_copic_hex_map.scss";
-@import "_flat_design_hex_map.scss";
-@import "_fs595_hex_map.scss";
-@import "_material_design_hex_map.scss";
-@import "_nbs_hex_map.scss";
-@import "_ncs_hex_map.scss";
-@import "_ral_hex_map.scss";
-@import "_tailwind_hex_map.scss";
-@import "_x11_hex_map.scss";
+$color_fs595_hex: (
+
+    fs_10055: #633517,      // Highway Brown
+    fs_11086: #a6001a,      // Highway Red
+    fs_12243: #e06000,      // Highway Orange
+    fs_13415: #ee9600,      // Highway Schoolbus
+    fs_13507: #ffab00,      // Highway Yellow
+    fs_14066: #004d33,      // Highway Green
+    fs_15065: #00477e,      // Highway Blue
+
+)

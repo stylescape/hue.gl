@@ -2,7 +2,7 @@
 // hue/config/hue.config.ts
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hueConfig = void 0;
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -24,5 +24,5 @@ exports.hueConfig = {
     d_l_step: -6,
     l_c_min: 12,
     l_c_step: 6,
-    d_c_step: -6
+    d_c_step: -6,
 };

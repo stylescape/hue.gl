@@ -1,0 +1,22 @@
+
+
+///
+/// CSS Variables Generator
+/// ---------------------------------------------------------------------------
+/// 
+/// Generates CSS variables for all colors in the `$hue` map.
+/// This mixin outputs CSS custom properties for each color defined in the map,
+/// making them accessible for use in CSS.
+/// 
+/// @name generate-css-variables
+/// 
+/// @example scss - Usage
+///   :root {
+///     @include generate-css-variables;
+///   }
+///
+:root {
+    @each $color_name, $color-value in $hue {
+    --color-#{$color_name}: #{$color-value};
+    }
+}

@@ -1,5 +1,5 @@
 "use strict";
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
@@ -17,8 +17,8 @@ exports.ColorSwatch = void 0;
 // ============================================================================
 // Import
 // ============================================================================
-var colorjs_io_1 = __importDefault(require("colorjs.io"));
-var util_js_1 = require("../util.js");
+const colorjs_io_1 = __importDefault(require("colorjs.io"));
+const util_js_1 = require("../util.js");
 // ============================================================================
 // Classes
 // ============================================================================
@@ -202,7 +202,7 @@ class ColorSwatch {
         let hcl = {
             "h": this.h,
             "c": this.c,
-            "l": this.l
+            "l": this.l,
         };
         return hcl;
     }
@@ -251,8 +251,11 @@ class ColorSwatch {
             name: this.name,
             hcl_h: this.h,
             hcl_c: this.c,
-            hcl_l: this.l
+            hcl_l: this.l,
         };
     }
 }
 exports.ColorSwatch = ColorSwatch;
+// ============================================================================
+// Example
+// ============================================================================

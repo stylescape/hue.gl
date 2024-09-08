@@ -2,7 +2,7 @@
 // hue/config/hue.names.ts
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hueNames = void 0;
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -40,5 +40,5 @@ exports.hueNames = {
     315: "Purple",
     330: "Rose",
     345: "Pink",
-    360: "Red"
+    360: "Red", // Fixed
 };

@@ -2,7 +2,7 @@
 // script/class/class/DirectoryCleaner.ts
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ColorScheme = void 0;
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
@@ -15,12 +15,21 @@ exports.ColorScheme = void 0;
 // ============================================================================
 // Import
 // ============================================================================
-var ColorSwatch_js_1 = require("./ColorSwatch.js");
-var util_js_1 = require("../util.js");
+const ColorSwatch_js_1 = require("./ColorSwatch.js");
+const util_js_1 = require("../util.js");
 // ============================================================================
 // Classes
 // ============================================================================
+/**
+ * A class for creating a customizable color scheme based on provided
+ * configurations.
+ */
 class ColorScheme {
+    /**
+     * Initializes a new color scheme with the given configuration and naming conventions.
+     * @param config Configuration for the color scheme generation.
+     * @param names Dictionary for naming colors based on their hue value.
+     */
     constructor(config, names) {
         // Initialize colorList and other properties based on config
         this.config = config;
@@ -29,6 +38,10 @@ class ColorScheme {
         this.colorDict = {};
         this.initializeColors();
     }
+    /**
+     * Populates `colorList` and `colorDict` with `ColorSwatch` objects based
+     * on the current configuration.
+     */
     initializeColors() {
         // Logic to initialize colorList based on the provided configuration
         const l_count = Math.ceil(this.config.p_count / 2);
@@ -80,11 +93,25 @@ class ColorScheme {
             this.colorDict[h_group_name] = h_group;
         }
     }
+    /**
+     * Returns the list of all generated color swatches.
+     * @returns An array of ColorSwatch objects.
+     */
     getColorList() {
         return this.colorList;
     }
+    /**
+     * Returns a dictionary of color swatches organized by hue groups.
+     * @returns A dictionary with hue values as keys and another dictionary of
+     * ColorSwatch objects as values.
+     */
     getColorDict() {
         return this.colorDict;
     }
 }
 exports.ColorScheme = ColorScheme;
+// ============================================================================
+// Example
+// ============================================================================
+// Example usage can be shown here, demonstrating how to create a color
+// scheme and access its colors.

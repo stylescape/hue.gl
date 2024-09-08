@@ -2,7 +2,10 @@
 // import Color from "https://colorjs.io/dist/color.js";
 // import Chroma from "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.pad = exports.convertRGBtoHex = exports.colorToHex = exports.rgb2cmyk = void 0;
+exports.rgb2cmyk = rgb2cmyk;
+exports.colorToHex = colorToHex;
+exports.convertRGBtoHex = convertRGBtoHex;
+exports.pad = pad;
 function rgb2cmyk(r, g, b, normalized) {
     var c = 1 - (r / 255);
     var m = 1 - (g / 255);
@@ -28,20 +31,16 @@ function rgb2cmyk(r, g, b, normalized) {
         k: k
     };
 }
-exports.rgb2cmyk = rgb2cmyk;
 function colorToHex(color) {
     var hexadecimal = color.toString(16);
     return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
 }
-exports.colorToHex = colorToHex;
 function convertRGBtoHex(red, green, blue) {
     return "#" + colorToHex(red) + colorToHex(green) + colorToHex(blue);
 }
-exports.convertRGBtoHex = convertRGBtoHex;
 function pad(num, size, char) {
     num = num.toString();
     while (num.length < size)
         num = char + num;
     return num;
 }
-exports.pad = pad;

@@ -1,6 +1,6 @@
 // script/class/class/DirectoryCleaner.ts
 
-// Copyright 2023 Scape Agency BV
+// Copyright 2024 Scape Agency BV
 
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -30,6 +30,9 @@ import {
 // Types
 // ============================================================================
 
+/**
+ * Enumerates the types of color models that are supported by the ColorPicker.
+ */
 type ColorEnum = 'RGB' | 'HSL' | 'HCL' | 'HEX';
 
 
@@ -37,13 +40,21 @@ type ColorEnum = 'RGB' | 'HSL' | 'HCL' | 'HEX';
 // Classes
 // ============================================================================
 
+/**
+ * Provides functionality to fetch color values based on a specified color model and key.
+ */
 export class ColorPicker {
 
     /**
      * Retrieves a color value by its enum key.
-     * @param colorEnum The enum type ('RGB' or 'HSL') to pick the color from.
-     * @param colorKey The key of the color in the specified enum.
-     * @returns The color value or null if the key does not exist in the specified enum.
+     * 
+     * This method allows for fetching a color value using a defined enum type
+     * and a key specific to that enum's color model. The method supports various color models
+     * such as RGB, HCL, and HEX.
+     * 
+     * @param colorEnum The enum type to pick the color from. Possible values are 'RGB', 'HSL', 'HCL', 'HEX'.
+     * @param colorKey The key of the color in the specified enum. This is expected to be a valid key within the respective color dictionary.
+     * @returns The color value as a string (if found), or null if the key does not exist in the specified enum.
      */
      static get(colorEnum: ColorEnum, colorKey: string): string | null {
         let color: string | undefined;
@@ -70,6 +81,14 @@ export class ColorPicker {
 
 }
 
-// Usage examples
-// const specificRGBColor = ColorPicker.getColor('RGB', 'N0001'); // Should return "rgb(0, 0, 90)" or similar
-// console.log(specificRGBColor); // Outputs: rgb(0, 0, 90) or similar
+
+// ============================================================================
+// Example
+// ============================================================================
+
+
+/**
+ * Example demonstrating how to retrieve a specific RGB color using the ColorPicker.
+ */
+//  const specificRGBColor = ColorPicker.get('RGB', 'N0001'); // Should return "rgb(0, 0, 90)" or similar
+//  console.log(specificRGBColor); // Outputs: rgb(0, 0, 90) or similar
