@@ -4,8 +4,8 @@
 @use "sass:math";
 
 
-@forward "hue/_hue.gl-hex-map.scss";
-@forward "hue/_hue.gl-hex-var.scss";
+@forward "hue/hue.gl-hex-map";
+@forward "hue/hue.gl-hex-var";
 
 
 
