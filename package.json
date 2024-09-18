@@ -53,6 +53,9 @@
         "webpack-serve": "webpack serve --mode development --config webpack.config.js",
         "webpack-start": "webpack-dev-server --mode development --config webpack.config.js"
     },
+    "dependencies": {
+        "colorjs.io": "^0.5.2"
+    },
     "devDependencies": {
         "@babel/core": "^7.23.7",
         "@babel/preset-env": "^7.23.8",
@@ -96,7 +99,8 @@
     "exports": {
         ".": {
             "sass": "./scss/index.scss",
-            "typescript": "./ts/index.scss"
+            "import": "./js/index.js",
+            "require": "./js/index.js"
         }
     }
 }
