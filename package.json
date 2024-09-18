@@ -53,6 +53,9 @@
         "webpack-serve": "webpack serve --mode development --config webpack.config.js",
         "webpack-start": "webpack-dev-server --mode development --config webpack.config.js"
     },
+    "dependencies": {
+        "colorjs.io": "^0.5.2"
+    },
     "devDependencies": {
         "@babel/core": "^7.23.7",
         "@babel/preset-env": "^7.23.8",
@@ -65,7 +68,6 @@
         "autoprefixer": "^10.4.16",
         "babel-loader": "^9.1.3",
         "clean-webpack-plugin": "^4.0.0",
-        "colorjs.io": "^0.5.2",
         "copy-webpack-plugin": "^12.0.2",
         "css-loader": "^7.1.2",
         "css-minimizer-webpack-plugin": "^7.0.0",
@@ -96,7 +98,8 @@
     "exports": {
         ".": {
             "sass": "./scss/index.scss",
-            "typescript": "./ts/index.scss"
+            "import": "./js/index.js",
+            "require": "./js/index.js"
         }
     }
 }
