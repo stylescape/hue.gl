@@ -1,7 +1,7 @@
 {
     "name": "hue.gl",
     "description": "hue.gl is a colour palette developed by Scape Agency.",
-    "version": "0.0.24",
+    "version": "0.0.26",
     "config": {
         "version_short": "0.0"
     },
