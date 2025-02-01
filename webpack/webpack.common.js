@@ -2,10 +2,9 @@
 // Imports
 // ============================================================================
 import path from "path";
+import { fileURLToPath } from "url";
 import params from "./webpack.params.js";
 import paths from "./webpack.paths.js";
-// import HtmlWebpackPlugin from "html-webpack-plugin";
-import { fileURLToPath } from "url";
 
 
 // ============================================================================
