@@ -4,10 +4,10 @@
 // Colour Utilities
 // ============================================================================
 
-@import "_base.scss";
-@import "_contrast.scss";
-@import "_variants.scss";
-@import "_blend.scss";
-@import "_scheme.scss";
-@import "_pattern.scss";
-@import "_helpers.scss";
+@forward "_base.scss";
+@forward "_contrast.scss";
+@forward "_variants.scss";
+@forward "_blend.scss";
+@forward "_scheme.scss";
+@forward "_pattern.scss";
+@forward "_helpers.scss";
