@@ -15,4 +15,3 @@ export const hueConfig = {
     d_c_step:   -6,
 
 };
-
