@@ -3,7 +3,7 @@
 // ============================================================================
 
 import Color from "colorjs.io";
-import { convertRGBtoHex } from "../util.js";
+import { convertRGBtoHex } from "../util";
 
 
 // ============================================================================
