@@ -2,8 +2,8 @@
 // Import
 // ============================================================================
 
-import { pad } from "../util.js";
-import { ColorSwatch } from "./ColorSwatch.js";
+import { pad } from "../util";
+import { ColorSwatch } from "./ColorSwatch";
 
 
 // ============================================================================
