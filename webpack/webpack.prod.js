@@ -1,19 +1,15 @@
-// webpack.prod.js
-
-
 // ============================================================================
 // Imports
 // ============================================================================
 
-import path from "path"
-import paths from "./webpack.paths.js";
-import params from "./webpack.params.js";
-import { fileURLToPath } from "url";
-import MiniCssExtractPlugin from "mini-css-extract-plugin";
 import CopyWebpackPlugin from "copy-webpack-plugin";
-import TerserPlugin from "terser-webpack-plugin";
-import { CleanWebpackPlugin } from "clean-webpack-plugin";
 import CssMinimizerPlugin from "css-minimizer-webpack-plugin";
+import MiniCssExtractPlugin from "mini-css-extract-plugin";
+import path from "path";
+import TerserPlugin from "terser-webpack-plugin";
+import { fileURLToPath } from "url";
+import params from "./webpack.params.js";
+import paths from "./webpack.paths.js";
 
 
 // ============================================================================
@@ -27,7 +23,7 @@ const __dirname = path.dirname(__filename);
 
 /**
  * Production Webpack Configuration
- * 
+ *
  */
 export const configProduction = {
 
@@ -113,7 +109,7 @@ export const configProduction = {
 
             // TypeScript Rules
             // ----------------------------------------------------------------
-            // Compiles TypeScript (.ts) files to JavaScript and enables 
+            // Compiles TypeScript (.ts) files to JavaScript and enables
             // additional features for development
             {
                 test: /\.ts$/,
@@ -153,7 +149,7 @@ export const configProduction = {
                                 // Enables dynamic import syntax in JavaScript
                                 // (important for code splitting in ESM)
                                 "@babel/plugin-syntax-dynamic-import",
-                                
+
                                 // Other plugins that your project might need
                             ],
                         },
@@ -200,7 +196,7 @@ export const configProduction = {
                 exclude: /node_modules/,
                 use: [
                     MiniCssExtractPlugin.loader,
-                    
+
                     {
                         loader: "css-loader",
                         options: {
@@ -250,18 +246,18 @@ export const configProduction = {
                             // Specify the path to the Nunjucks configuration file
                             // Adjust the path as per your project structure
                             // config: path.join(__dirname, "src/nunjucks.config.js"),
-            
+
                             // Set to true if you are using Jinja compatibility features
                             jinjaCompat: true,
-            
+
                             // Define the root directory for Nunjucks templates
                             // This is where Nunjucks will look for template files
                             // root: path.resolve(__dirname, "path/to/templates"),
-            
+
                             // Optional: Suppress the "Cannot configure nunjucks
                             // environment before precompile" warning
                             quiet: true,
-            
+
                             // Other Nunjucks loader specific options can be added here
                         }
                     }
@@ -396,7 +392,7 @@ export const configProduction = {
 
 
 
-      
+
     // Configuration | Performance
     // ========================================================================
     // Performance settings to control webpack"s hints

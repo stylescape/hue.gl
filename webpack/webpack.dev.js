@@ -1,13 +1,9 @@
-// webpack.dev.js
-
-
 // ============================================================================
 // Imports
 // ============================================================================
 
+import HtmlWebpackPlugin from "html-webpack-plugin";
 import webpack from "webpack";
-import paths from "./webpack.paths.js"
-import HtmlWebpackPlugin from "html-webpack-plugin"
 
 
 // ============================================================================
