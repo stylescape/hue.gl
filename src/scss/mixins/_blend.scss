@@ -3,18 +3,18 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Blend Mixins Module
 /// ===========================================================================
-/// 
-/// 
+///
+///
 /// @group Blend
 /// @author Scape Agency
 /// @link https://hue.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -34,13 +34,13 @@
 
 /// Gradient Mixin
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Mixin to create a CSS background gradient using color names from the `$hue` map.
-/// 
+///
 /// @name gradient_bg
 /// @param {String} $start_color_name - Name of the start color.
 /// @param {String} $end_color_name - Name of the end color.
-/// 
+///
 /// @example scss - Usage
 ///   .element {
 ///     @include gradient_bg('primary', 'secondary');
@@ -54,18 +54,18 @@
 }
 
 
-/// 
+///
 /// Color Blending Mixin
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Mixin to apply a blended background color using two color names from
 /// the `$hue` map.
-/// 
+///
 /// @name blend_colors
 /// @param {String} $color1_name - First color name.
 /// @param {String} $color2_name - Second color name.
 /// @param {Number} $percentage [50%] - Blend ratio of the first color.
-/// 
+///
 /// @example scss - Usage
 ///   .element {
 ///     @include blend_colors('red', 'blue', 30%);

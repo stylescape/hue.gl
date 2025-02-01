@@ -3,18 +3,18 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Blend Functions Module
 /// ===========================================================================
-/// 
-/// 
+///
+///
 /// @group Blend
 /// @author Scape Agency
 /// @link https://hue.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -36,15 +36,15 @@
 ///
 /// Gradient Color
 /// ----------------------------------------------------------------------------
-/// 
+///
 /// Generates a CSS linear gradient from one color to another using color
 /// names from the `$hue` map.
-/// 
+///
 /// @name hue_gradient
 /// @param {String} $start_color_name - Name of the start color.
 /// @param {String} $end_color_name - Name of the end color.
 /// @return {String} - CSS linear-gradient string if both colors are found, otherwise null.
-/// 
+///
 /// @example scss - Usage
 ///   .gradient-background {
 ///     background: hue_gradient('red', 'blue');
@@ -69,15 +69,15 @@
 ///
 /// Color Blending Function
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Function to blend two colors based on a given weight percentage.
-/// 
+///
 /// @name hue_blend_colors
 /// @param {String} $color_name1 - First color name.
 /// @param {String} $color_name2 - Second color name.
 /// @param {Number} $weight [50%] - Percentage of the first color to blend.
 /// @return {Color} - The blended color, or null if one of the colors is not found.
-/// 
+///
 /// @example scss - Usage
 ///   .mixed-color {
 ///     color: hue_blend_colors('red', 'blue', 25%);
@@ -100,16 +100,16 @@
 }
 
 
-/// 
+///
 /// Grayscale Color Variant
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Converts a specified color to grayscale using its name from the `$hue` map.
-/// 
+///
 /// @name hue_grayscale
 /// @param {String} $color_name - Name of the color to convert.
 /// @return {Color} - Grayscale color, or null if the color is not found.
-/// 
+///
 /// @example scss - Usage
 ///   .gray-element {
 ///     color: hue_grayscale('vibrant');
@@ -127,12 +127,12 @@
 }
 
 
-/// 
+///
 /// Blend Colors
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Mixes two colors together in a specified ratio.
-/// 
+///
 @function hue_blend($color_name1, $color_name2, $weight: 50%) {
     $color1: hue_color($color_name1);
     $color2: hue_color($color_name2);
@@ -146,12 +146,12 @@
 }
 
 
-/// 
+///
 /// Background Gradient with Direction
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Generates a background gradient with a specified direction.
-/// 
+///
 // @function hue_background_gradient($start_color_name, $end_color_name, $direction: to bottom) {
 //     $start_color: hue_color($start_color_name);
 //     $end_color: hue_color($end_color_name);
