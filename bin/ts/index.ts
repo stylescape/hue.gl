@@ -26,21 +26,20 @@ import {
     DirectoryCleaner,
     DirectoryCopier,
     FileCopier,
-    StyleProcessor,
-    PackageCreator,
-    VersionWriter,
-    TypeScriptCompiler,
     JavaScriptMinifier,
+    PackageCreator,
+    StyleProcessor,
     StylizedLogger,
-    TemplateWriter,
     SvgToPngConverter,
-    gl_installer,
-    readPackageJson,
+    TemplateWriter,
+    TypeScriptCompiler,
+    VersionWriter,
+    readPackageJson
 } from 'pack.gl';
 
 import ColorScheme from './hue/color/ColorScheme.js';
-import hueConfig from "./hue/config/hue.config.js"
-import hueNames from "./hue/config/hue.names.js"
+import hueConfig from "./hue/config/hue.config.js";
+import hueNames from "./hue/config/hue.names.js";
 
 
 // ============================================================================
@@ -174,7 +173,7 @@ async function main() {
                 for (const colorName in color_dict[groupName]) {
                     if (color_dict[groupName].hasOwnProperty(colorName)) {
                         const colorSwatch = color_dict[groupName][colorName];
-                        
+
                         // Process each color swatch here
                         console.log(`Color Name: ${colorName}`);
 
