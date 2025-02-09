@@ -1,6 +1,6 @@
-import { __awaiter } from "tslib";
+import { DirectoryCleaner, DirectoryCopier, FileCopier, JavaScriptMinifier, PackageCreator, StyleProcessor, StylizedLogger, SvgToPngConverter, TemplateWriter, TypeScriptCompiler, VersionWriter, readPackageJson, } from 'pack.gl';
 import path from 'path';
-import { DirectoryCleaner, DirectoryCopier, FileCopier, StyleProcessor, PackageCreator, VersionWriter, TypeScriptCompiler, JavaScriptMinifier, StylizedLogger, TemplateWriter, SvgToPngConverter, readPackageJson, } from 'pack.gl';
+import { __awaiter } from "tslib";
 import ColorScheme from './hue/color/ColorScheme.js';
 import hueConfig from "./hue/config/hue.config.js";
 import hueNames from "./hue/config/hue.names.js";
