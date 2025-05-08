@@ -1,5 +1,5 @@
 "use strict";
-// Copyright 2024 Scape Agency BV
+// Copyright 2025 Scape Agency BV
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };

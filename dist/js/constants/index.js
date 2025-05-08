@@ -1,5 +1,5 @@
 "use strict";
-// Copyright 2024 Scape Agency BV
+// Copyright 2025 Scape Agency BV
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.hue_rgb = exports.hue_hcl = exports.hue_hex = void 0;
 // Licensed under the Apache License, Version 2.0 (the "License");
