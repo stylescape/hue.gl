@@ -1,5 +1,5 @@
-import ColorSwatch from './ColorSwatch.js';
 import { pad } from '../util.js';
+import ColorSwatch from './ColorSwatch.js';
 class ColorScheme {
     constructor(config, names) {
         this.config = config;
