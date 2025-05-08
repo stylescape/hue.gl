@@ -35,59 +35,59 @@ stages:
 
         steps:
 
-            # Dirs Clean
-            # -----------------------------------------------------------------
-            -
-                name: CleanBuildDirStep
-                action: DirectoryCleanAction
-                options:
-                    dirPath: "./dist"
+            # # Dirs Clean
+            # # -----------------------------------------------------------------
+            # -
+            #     name: CleanBuildDirStep
+            #     action: DirectoryCleanAction
+            #     options:
+            #         dirPath: "./dist"
 
-            # Dirs Clean
-            # -----------------------------------------------------------------
-            -   name: ProcessMainStyles
-                action: StyleProcessingAction
-                options:
-                    inputFile: "./src/scss/index.scss"
-                    outputFile: "./dist/css/unit.gl.min.css"
-                    styleOption: "compressed"
-            -
-                name: ProcessAdditionalStyles
-                action: StyleProcessingAction
-                options:
-                    inputFile: "./src/scss/index.scss"
-                    outputFile: "./dist/css/unit.gl.css"
-                    styleOption: "expanded"
+            # # Dirs Clean
+            # # -----------------------------------------------------------------
+            # -   name: ProcessMainStyles
+            #     action: StyleProcessingAction
+            #     options:
+            #         inputFile: "./src/scss/index.scss"
+            #         outputFile: "./dist/css/unit.gl.min.css"
+            #         styleOption: "compressed"
+            # -
+            #     name: ProcessAdditionalStyles
+            #     action: StyleProcessingAction
+            #     options:
+            #         inputFile: "./src/scss/index.scss"
+            #         outputFile: "./dist/css/unit.gl.css"
+            #         styleOption: "expanded"
 
-            # Copy Files
-            # -----------------------------------------------------------------
-            -
-                name: CopyLICENSE
-                action: FileCopyAction
-                options:
-                    srcFile: "./LICENSE"
-                    destDir: "./dist"
-            -
-                name: CopyREADME
-                action: FileCopyAction
-                options:
-                    srcFile: "./README.md"
-                    destDir: "./dist"
+            # # Copy Files
+            # # -----------------------------------------------------------------
+            # -
+            #     name: CopyLICENSE
+            #     action: FileCopyAction
+            #     options:
+            #         srcFile: "./LICENSE"
+            #         destDir: "./dist"
+            # -
+            #     name: CopyREADME
+            #     action: FileCopyAction
+            #     options:
+            #         srcFile: "./README.md"
+            #         destDir: "./dist"
 
-            # Copy Dirs
-            # -----------------------------------------------------------------
-            -
-                name: CopySrcSCSS
-                action: DirectoryCopyAction
-                options:
-                    srcDir: "./src/scss"
-                    destDir: "./dist/scss"
-            -
-                name: CopySrcTS
-                action: DirectoryCopyAction
-                options:
-                    srcDir: "./src/ts"
-                    destDir: "./dist/ts"
+            # # Copy Dirs
+            # # -----------------------------------------------------------------
+            # -
+            #     name: CopySrcSCSS
+            #     action: DirectoryCopyAction
+            #     options:
+            #         srcDir: "./src/scss"
+            #         destDir: "./dist/scss"
+            # -
+            #     name: CopySrcTS
+            #     action: DirectoryCopyAction
+            #     options:
+            #         srcDir: "./src/ts"
+            #         destDir: "./dist/ts"
 
             # Compile TS to JS
             # -----------------------------------------------------------------
@@ -122,6 +122,11 @@ stages:
                         - keywords
                         - license
                         - homepage
+                        - author
+                        - contributors
+                        - repository
+                        - funding
+                        - exports
                     # customConfig:
                     #     private: true
                     #     scripts:
