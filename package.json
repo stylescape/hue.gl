@@ -1,7 +1,7 @@
 {
     "name": "hue.gl",
     "description": "hue.gl is a colour palette developed by Scape Agency.",
-    "version": "0.0.29",
+    "version": "0.0.32",
     "config": {
         "version_short": "0.0"
     },
@@ -35,22 +35,21 @@
             "url": "https://github.com/sponsors/stylescape"
         }
     ],
-    "main": "src/ts/index.ts",
     "type": "module",
-    "module": "dist/js/hue.gl.js",
+    "main": "src/ts/index.ts",
     "sass": "scss/index.scss",
+    "module": "dist/js/hue.gl.js",
     "style": "dist/css/hue.gl.css",
     "scripts": {
+        "build": "npm run build-compile && npm run build-process &&  npm run kist-build",
+        "build-compile": "tsc -p bin/tsconfig.json",
+        "build-process": "node bin/js/index.js",
         "kist-build": "npx kist --config ./kist.yml",
         "kist-watch": "npx kist --config ./kist.yml --live",
         "start": "node dist/index.js",
         "format": "npx prettier --write .",
         "lint": "eslint 'src/**/*.ts' || true",
         "prettify": "prettier --write 'src/**/*.ts'",
-        "build": "npm run kist-build",
-        "build2": "npm run build-compile && npm run build-process",
-        "build-compile": "tsc -p bin/tsconfig.json",
-        "build-process": "node bin/js/index.js",
         "webpack-build": "npm run webpack-prod",
         "webpack-dev": "webpack --mode development --config webpack/webpack.config.js",
         "webpack-prod": "webpack --mode production --config webpack/webpack.config.js",
@@ -59,7 +58,8 @@
     },
     "dependencies": {
         "colorjs.io": "^0.5.2",
-        "core-js": "^3.40.0"
+        "core-js": "^3.40.0",
+        "tslib": "^2.8.1"
     },
     "devDependencies": {
         "@babel/core": "^7.26.0",
@@ -68,7 +68,7 @@
         "@babel/preset-typescript": "^7.23.3",
         "@types/fs-extra": "^11.0.4",
         "@types/glob": "^8.1.0",
-        "@types/node": "^22.1.0",
+        "@types/node": "^22.15.17",
         "@types/webpack": "^5.28.5",
         "ase-utils": "^0.1.1",
         "autoprefixer": "^10.4.16",
@@ -84,6 +84,7 @@
         "html-webpack-plugin": "^5.6.0",
         "kist": "^0.1.31",
         "mini-css-extract-plugin": "^2.7.6",
+        "pack.gl": "0.1.29",
         "postcss-loader": "^8.1.1",
         "postcss-preset-env": "^10.1.6",
         "prettier": "^3.5.3",
@@ -101,12 +102,12 @@
     "files": [
         "src/**",
         "dist/**"
+
     ],
     "exports": {
         ".": {
             "sass": "./scss/index.scss",
-            "import": "./js/index.js",
-            "require": "./js/index.js"
+            "typescript": "./ts/index.ts"
         }
     }
 }
