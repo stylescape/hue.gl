@@ -1,25 +1,9 @@
-
-// Copyright 2025 Scape Agency BV
-
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-// http://www.apache.org/licenses/LICENSE-2.0
-
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
-
 // ============================================================================
 // Import
 // ============================================================================
 
-import Color from 'colorjs.io';
-import { rgb2cmyk, convertRGBtoHex } from '../util.js';
+import Color from "colorjs.io";
+import { convertRGBtoHex } from "../util";
 
 
 // ============================================================================
@@ -62,10 +46,10 @@ export class ColorSwatch {
         // console.log(argb_in_gamut);
 
         let in_gamut;
-        if ( 
-            lch_in_gamut == false || 
-            srgb_in_gamut == false  || 
-            argb_in_gamut == false 
+        if (
+            lch_in_gamut == false ||
+            srgb_in_gamut == false  ||
+            argb_in_gamut == false
         ) {
             in_gamut = false;
             // color_object = new Color("white");
@@ -237,7 +221,7 @@ export class ColorSwatch {
     }
 
     hex() {
-        
+
         let color = this.srgb();
         let hex = convertRGBtoHex(
             Math.round(color.coords[0]*255),
@@ -250,7 +234,7 @@ export class ColorSwatch {
     }
 
     hcl() {
-        
+
         let hcl = {
             "h": this.h,
             "c": this.c,

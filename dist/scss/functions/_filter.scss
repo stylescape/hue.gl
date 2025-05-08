@@ -3,18 +3,18 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Filter Functions Module
 /// ===========================================================================
-/// 
-/// 
+///
+///
 /// @group Filter
 /// @author Scape Agency
 /// @link https://hue.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -33,29 +33,29 @@
 
 
 
-/// 
+///
 /// Color Filter Function
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Applies a CSS filter effect to a color. Supported filters include 'sepia'
 /// and 'brightness'.
-/// 
+///
 /// @name hue_apply_filter
 /// @param {String} $color_name - The name of the color in the color map.
 /// @param {String} $filter - The type of filter to apply ('sepia' or 'brightness').
 /// @return {Color} - The color with the filter effect applied, or the original color if the filter is unsupported.
 /// @throws - If the color name does not exist in the map, or if the filter type is unsupported.
-/// 
+///
 /// @example scss - Applying a sepia filter
 ///   .image-sepia {
 ///     color: hue_apply_filter('oceanblue', 'sepia');
 ///   }
-/// 
+///
 /// @example scss - Applying a brightness filter
 ///   .image-bright {
 ///     color: hue_apply_filter('skyblue', 'brightness');
 ///   }
-/// 
+///
 /// @example scss - Using an unsupported filter
 ///   .image-unsupported {
 ///     color: hue_apply_filter('forestgreen', 'blur');

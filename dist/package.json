@@ -1,6 +1,6 @@
 {
   "name": "hue.gl",
-  "version": "0.0.23",
+  "version": "0.0.32",
   "description": "hue.gl is a colour palette developed by Scape Agency.",
   "keywords": [
     "hue.gl",
@@ -15,12 +15,6 @@
   ],
   "license": "MIT",
   "homepage": "https://www.hue.gl/",
-  "funding": [
-    {
-      "type": "github",
-      "url": "https://github.com/sponsors/stylescape"
-    }
-  ],
   "main": "js/index.js",
   "types": "js/index.d.ts",
   "files": [
@@ -45,6 +39,11 @@
     "ts/**/*.ts",
     "!.DS_Store"
   ],
+  "dependencies": {
+    "colorjs.io": "^0.5.2",
+    "core-js": "^3.40.0",
+    "tslib": "^2.8.1"
+  },
   "author": "Lars van Vianen",
   "contributors": [
     "Scape Agency"
@@ -53,10 +52,16 @@
     "type": "git",
     "url": "git+https://github.com/stylescape/hue.gl.git"
   },
+  "funding": [
+    {
+      "type": "github",
+      "url": "https://github.com/sponsors/stylescape"
+    }
+  ],
   "exports": {
     ".": {
       "sass": "./scss/index.scss",
-      "typescript": "./ts/index.scss"
+      "typescript": "./ts/index.ts"
     }
   }
 }

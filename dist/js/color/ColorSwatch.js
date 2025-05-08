@@ -1,24 +1,14 @@
 "use strict";
-// Copyright 2025 Scape Agency BV
+// ============================================================================
+// Import
+// ============================================================================
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.ColorSwatch = void 0;
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// http://www.apache.org/licenses/LICENSE-2.0
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-// ============================================================================
-// Import
-// ============================================================================
 const colorjs_io_1 = __importDefault(require("colorjs.io"));
-const util_js_1 = require("../util.js");
+const util_1 = require("../util");
 // ============================================================================
 // Classes
 // ============================================================================
@@ -194,7 +184,7 @@ class ColorSwatch {
     }
     hex() {
         let color = this.srgb();
-        let hex = (0, util_js_1.convertRGBtoHex)(Math.round(color.coords[0] * 255), Math.round(color.coords[1] * 255), Math.round(color.coords[2] * 255));
+        let hex = (0, util_1.convertRGBtoHex)(Math.round(color.coords[0] * 255), Math.round(color.coords[1] * 255), Math.round(color.coords[2] * 255));
         // console.log(color.coords[0]);
         return hex;
     }

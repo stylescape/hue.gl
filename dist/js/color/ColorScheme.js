@@ -1,22 +1,11 @@
 "use strict";
-// script/class/class/DirectoryCleaner.ts
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.ColorScheme = void 0;
-// Copyright 2025 Scape Agency BV
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-// http://www.apache.org/licenses/LICENSE-2.0
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
 // ============================================================================
 // Import
 // ============================================================================
-const ColorSwatch_js_1 = require("./ColorSwatch.js");
-const util_js_1 = require("../util.js");
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.ColorScheme = void 0;
+const util_1 = require("../util");
+const ColorSwatch_1 = require("./ColorSwatch");
 // ============================================================================
 // Classes
 // ============================================================================
@@ -84,8 +73,8 @@ class ColorScheme {
                     c_cur = 0;
                 }
                 ;
-                let name = this.config.prefix + (0, util_js_1.pad)(h.toString(), 3, "0") + (i + 1).toString();
-                let color = new ColorSwatch_js_1.ColorSwatch(h, c_cur, l_cur, name);
+                let name = this.config.prefix + (0, util_1.pad)(h.toString(), 3, "0") + (i + 1).toString();
+                let color = new ColorSwatch_1.ColorSwatch(h, c_cur, l_cur, name);
                 this.colorList.push(color);
                 h_group[name] = color;
             }

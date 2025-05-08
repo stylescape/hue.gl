@@ -1,4 +1,4 @@
-import { ColorSwatch } from './ColorSwatch.js';
+import { ColorSwatch } from "./ColorSwatch";
 /**
  * Configuration for generating a color scheme, including steps and bounds for
  * color values.

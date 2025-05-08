@@ -3,18 +3,18 @@
 // ============================================================================
 
 ////
-/// 
+///
 /// Contrast Functions Module
 /// ===========================================================================
-/// 
-/// 
+///
+///
 /// @group Contrast
 /// @author Scape Agency
 /// @link https://hue.gl
 /// @since 0.1.0 initial release
 /// @todo None
 /// @access public
-/// 
+///
 ////
 
 
@@ -33,17 +33,17 @@
 
 
 
-/// 
+///
 /// Contrast Function
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Function to determine the ideal text color (light or dark) for optimal
 /// readability against a specified background color.
-/// 
+///
 /// @name color_contrast
 /// @param {Color} $background-color - The background color to analyze.
 /// @return {Color} - Returns `black` for light backgrounds and `white` for dark backgrounds.
-/// 
+///
 /// @example scss - Usage
 ///   color: color_contrast(#fff); // Returns 'black'
 ///
@@ -58,18 +58,18 @@
 }
 
 
-/// 
+///
 /// Contrast Checker
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Calculates the contrast ratio between two colors to ensure they meet
 /// accessibility guidelines.
-/// 
+///
 /// @name color_contrast_checker
 /// @param {String} $color1_name - The name of the first color.
 /// @param {String} $color2_name - The name of the second color.
 /// @return {Number} - The contrast ratio between the two colors.
-/// 
+///
 /// @example scss - Usage
 ///   $contrast: color_contrast_checker('blue', 'white');
 ///
@@ -86,14 +86,14 @@
 ///
 ///  Color Contrast Ratio
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Generates a dynamic text color (black or white) based on the given
 /// background color to enhance readability.
-/// 
+///
 /// @name color_contrast_dynamic
 /// @param {String} $background_color_name - The name of the background color.
 /// @return {Color} - Optimal text color for the given background.
-/// 
+///
 /// @example scss - Usage
 ///   color: color_contrast_dynamic('darkblue');
 ///
@@ -115,13 +115,13 @@
 }
 
 
-/// 
+///
 /// Dynamic Text Color
 /// ---------------------------------------------------------------------------
-/// 
+///
 /// Generates a dynamic text color (black or white) based on the given
 /// background color to enhance readability.
-/// 
+///
 /// @name color_contrast_dynamic
 /// @param {String} $background_color_name - The name of the background color.
 /// @return {Color} - Optimal text color for the given background.
@@ -143,15 +143,15 @@
 /// ---------------------------------------------------------------------------
 /// Returns a high-contrast text color (black or white) based on the specified
 /// background color.
-/// 
+///
 /// @name hue_contrast_text_color
 /// @param {String} $background_color_name - The name of the background color from the color map.
 /// @return {Color} - Either black or white, depending on which has higher contrast against the background.
-/// 
+///
 /// @example scss - Usage
 ///   color: hue_contrast_text_color('lightgrey'); // Returns 'black'
 ///
-/// 
+///
 @function hue_contrast_text_color(
     $background_color_name
 ) {
@@ -175,11 +175,11 @@
 /// ---------------------------------------------------------------------------
 /// Determines an overlay text color that is readable over any background by
 /// adjusting opacity.
-/// 
+///
 /// @name hue_readable_overlay
 /// @param {String} $background_color_name - The name of the background color.
 /// @return {Color} - A semi-transparent black or white color for text overlays.
-/// 
+///
 /// @example scss - Usage
 ///   background-color: hue_readable_overlay('limegreen');
 ///

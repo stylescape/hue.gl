@@ -1,4 +1,4 @@
-import Color from 'colorjs.io';
+import Color from "colorjs.io";
 export declare class ColorSwatch {
     name?: string;
     h: number;
