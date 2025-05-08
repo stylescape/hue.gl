@@ -8,12 +8,12 @@
 
 <div align="center">
 
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.hue.gl&up_message=Up&up_color=354351&down_message=Down&down_color=354351&style=flat-square&logo=Firefox&logoColor=FFFFFF&label=Website&labelColor=354351&color=354351)
+[![Website](https://img.shields.io/website?url=https%3A%2F%2Fwww.hue.gl&up_message=Up&up_color=%23000000&down_message=Down&down_color=%23000000&style=flat-square&logo=Firefox&logoColor=FFFFFF&label=Website&labelColor=%23000000&color=%23000000)
 ](https://www.hue.gl)
-[![NPM Version](https://img.shields.io/npm/v/hue.gl?style=flat-square&logo=npm&logoColor=FFFFFF&label=NPM&labelColor=354351&color=354351&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fhue.gl)](https://www.npmjs.com/package/hue.gl)
-[![devContainer](https://img.shields.io/badge/devContainer-23354351?style=flat-square&logo=Docker&logoColor=%23FFFFFF&labelColor=%23354351&color=%23354351)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/stylescape/hue.gl)
-[![StackBlitz](https://img.shields.io/badge/StackBlitz-23354351?style=flat-square&logo=StackBlitz&logoColor=%23FFFFFF&labelColor=%23354351&color=%23354351)](https://stackblitz.com/github/stylescape/hue.gl/tree/main?file=src%2Findex.html)
-[![GitHub License](https://img.shields.io/github/license/stylescape/hue.gl?style=flat-square&logo=readthedocs&logoColor=FFFFFF&label=&labelColor=%23354351&color=%23354351&link=LICENSE)](https://github.com/stylescape/hue.gl/blob/main/LICENSE)
+[![NPM Version](https://img.shields.io/npm/v/hue.gl?style=flat-square&logo=npm&logoColor=FFFFFF&label=NPM&labelColor=%23000000&color=%23000000&link=https%3A%2F%2Fwww.npmjs.com%2Fpackage%2Fhue.gl)](https://www.npmjs.com/package/hue.gl)
+[![devContainer](https://img.shields.io/badge/devContainer-23354351?style=flat-square&logo=Docker&logoColor=%23FFFFFF&labelColor=%23000000&color=%23000000)](https://vscode.dev/redirect?url=vscode://ms-vscode-remote.remote-containers/cloneInVolume?url=https://github.com/stylescape/hue.gl)
+[![StackBlitz](https://img.shields.io/badge/StackBlitz-23354351?style=flat-square&logo=StackBlitz&logoColor=%23FFFFFF&labelColor=%23000000&color=%23000000)](https://stackblitz.com/github/stylescape/hue.gl/tree/main?file=src%2Findex.html)
+[![GitHub License](https://img.shields.io/github/license/stylescape/hue.gl?style=flat-square&logo=readthedocs&logoColor=FFFFFF&label=&labelColor=%23000000&color=%23000000&link=LICENSE)](https://github.com/stylescape/hue.gl/blob/main/LICENSE)
 
 </div>
 
