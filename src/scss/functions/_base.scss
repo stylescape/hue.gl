@@ -58,7 +58,7 @@
     $color_name
 ) {
     @if map.has-key($hue, $color_name) {
-        @return map-get($hue, $color_name);
+        @return map.get($hue, $color_name);
     } @else {
         @warn "Unknown `#{$color_name}` in `$hue`.";
         @return null;
