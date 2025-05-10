@@ -46,7 +46,7 @@
         "build-process": "node bin/js/index.js",
         "kist-build": "npx kist --config ./kist.yml",
         "kist-watch": "npx kist --config ./kist.yml --live",
-        "start": "node dist/index.js",
+        "dev": "node dist/index.js",
         "format": "npx prettier --write .",
         "lint": "eslint 'src/**/*.ts' || true",
         "prettify": "prettier --write 'src/**/*.ts'",
