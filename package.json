@@ -57,7 +57,7 @@
         "webpack-start": "webpack-dev-server --mode development --config webpack/webpack.config.js"
     },
     "dependencies": {
-        "colorjs.io": "^0.5.2",
+        "colorjs.io": "^0.6.0",
         "core-js": "^3.40.0",
         "tslib": "^2.8.1"
     },
@@ -74,7 +74,7 @@
         "autoprefixer": "^10.4.16",
         "babel-loader": "^10.0.0",
         "clean-webpack-plugin": "^4.0.0",
-        "colorjs.io": "^0.5.2",
+        "colorjs.io": "^0.6.0",
         "copy-webpack-plugin": "^13.0.0",
         "css-loader": "^7.1.2",
         "css-minimizer-webpack-plugin": "^7.0.0",
