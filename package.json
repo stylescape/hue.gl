@@ -86,7 +86,7 @@
         "mini-css-extract-plugin": "^2.7.6",
         "pack.gl": "^0.1.25",
         "postcss-loader": "^8.1.1",
-        "postcss-preset-env": "^10.1.6",
+        "postcss-preset-env": "^11.1.1",
         "prettier": "^3.5.3",
         "sass": "^1.69.7",
         "sass-loader": "^16.0.0",
