@@ -1,7 +1,7 @@
 {
     "name": "hue.gl",
     "description": "hue.gl is a colour palette developed by Scape Agency.",
-    "version": "0.0.36",
+    "version": "0.1.1",
     "config": {
         "version_short": "0.0"
     },
@@ -41,63 +41,38 @@
     "module": "dist/js/hue.gl.js",
     "style": "dist/css/hue.gl.css",
     "scripts": {
-        "build": "npm run build-compile && npm run build-process &&  npm run kist-build",
+        "build": "npm run build-compile && npm run build-process && npm run kist-build",
         "build-compile": "tsc -p bin/tsconfig.json",
         "build-process": "node bin/js/index.js",
         "kist-build": "npx kist --config ./kist.yml",
         "kist-watch": "npx kist --config ./kist.yml --live",
-        "dev": "node dist/index.js",
+        "dev": "vite",
+        "test": "vitest run",
+        "test:watch": "vitest",
+        "test:coverage": "vitest run --coverage",
         "format": "npx prettier --write .",
         "lint": "eslint 'src/**/*.ts' || true",
-        "prettify": "prettier --write 'src/**/*.ts'",
-        "webpack-build": "npm run webpack-prod",
-        "webpack-dev": "webpack --mode development --config webpack/webpack.config.js",
-        "webpack-prod": "webpack --mode production --config webpack/webpack.config.js",
-        "webpack-serve": "webpack serve --mode development --config webpack/webpack.config.js",
-        "webpack-start": "webpack-dev-server --mode development --config webpack/webpack.config.js"
+        "prettify": "prettier --write 'src/**/*.ts'"
     },
     "dependencies": {
-        "colorjs.io": "^0.6.0",
-        "core-js": "^3.40.0",
+        "colorjs.io": "^0.6.1",
         "tslib": "^2.8.1"
     },
     "devDependencies": {
-        "@babel/core": "^7.26.0",
-        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
-        "@babel/preset-env": "^7.23.8",
-        "@babel/preset-typescript": "^7.23.3",
-        "@types/fs-extra": "^11.0.4",
-        "@types/glob": "^9.0.0",
-        "@types/node": "^25.0.10",
-        "@types/webpack": "^5.28.5",
-        "ase-utils": "^0.1.1",
-        "autoprefixer": "^10.4.16",
-        "babel-loader": "^10.0.0",
-        "clean-webpack-plugin": "^4.0.0",
-        "colorjs.io": "^0.6.0",
-        "copy-webpack-plugin": "^13.0.0",
-        "css-loader": "^7.1.2",
-        "css-minimizer-webpack-plugin": "^7.0.0",
-        "d3": "^7.8.5",
-        "eslint": "^9.8.0",
-        "eslint-config-prettier": "^10.0.1",
-        "html-webpack-plugin": "^5.6.0",
-        "kist": "^0.1.31",
-        "mini-css-extract-plugin": "^2.7.6",
-        "pack.gl": "^0.1.25",
-        "postcss-loader": "^8.1.1",
-        "postcss-preset-env": "^11.1.1",
-        "prettier": "^3.5.3",
-        "sass": "^1.69.7",
-        "sass-loader": "^16.0.0",
-        "style-loader": "^4.0.0",
-        "ts-loader": "^9.5.1",
-        "ts-node": "^10.9.2",
-        "typescript": "^5.3.3",
-        "webpack": "^5.89.0",
-        "webpack-cli": "^6.0.1",
-        "webpack-dev-server": "^5.0.4",
-        "webpack-merge": "^6.0.1"
+        "@babel/core": "^7.29.0",
+        "@babel/preset-env": "^7.29.0",
+        "@babel/preset-typescript": "^7.28.5",
+        "@types/node": "^25.2.0",
+        "@vitest/coverage-v8": "^4.0.18",
+        "eslint": "^9.39.2",
+        "eslint-config-prettier": "^10.1.8",
+        "kist": "^0.1.58",
+        "pack.gl": "^0.1.29",
+        "prettier": "^3.8.1",
+        "sass": "^1.97.3",
+        "typescript": "^5.9.3",
+        "vite": "^7.3.1",
+        "vitest": "^4.0.18"
     },
     "files": [
         "src/**",
@@ -105,8 +80,19 @@
     ],
     "exports": {
         ".": {
-            "sass": "./scss/index.scss",
-            "typescript": "./ts/index.ts"
+            "sass": "./src/scss/index.scss",
+            "types": "./dist/ts/index.d.ts",
+            "import": "./dist/js/hue.gl.js",
+            "default": "./dist/js/hue.gl.js"
+        },
+        "./css/hue.gl.css": "./dist/css/hue.gl.css",
+        "./css/hue.gl.min.css": "./dist/css/hue.gl.min.css"
+    },
+    "typesVersions": {
+        "*": {
+            "*": [
+                "./dist/ts/index.d.ts"
+            ]
         }
     }
 }
