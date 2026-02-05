@@ -69,12 +69,12 @@ export class ColorSwatch {
     // }
 
     getRGB(): [number, number, number] {
-        // const color_constant = new Color("lch", [l, c, h]);
-        // let color_object = color_constant
-        // Convert HCL to RGB here
-        // This is a non-trivial conversion and may require a detailed algorithm or library
-        // Placeholder for conversion logic
-        return [0, 0, 0]; // Replace with actual conversion logic
+        const color = this.srgb();
+        return [
+            Math.round(color.coords[0] * 255),
+            Math.round(color.coords[1] * 255),
+            Math.round(color.coords[2] * 255)
+        ];
     }
 
     // Color Space Conversions
