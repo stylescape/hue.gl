@@ -1,0 +1,399 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Full Palette — hue.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Palette</p>
+<h1>Full Colour Palette</h1>
+<p class="lead">225 perceptually uniform colors organized into 25 hue groups with 9 shades each.</p>
+{%- endblock %}
+
+{%- block content %}
+
+<!-- Palette Controls -->
+<section>
+    <div class="palette-controls">
+        <div class="palette-controls__group">
+            <label>Format:</label>
+            <select id="color-format">
+                <option value="hex">HEX</option>
+                <option value="rgb">RGB</option>
+                <option value="hsl">HSL</option>
+                <option value="name">Name</option>
+            </select>
+        </div>
+        <div class="palette-controls__group">
+            <label>View:</label>
+            <button class="view-toggle active" data-view="grid">Grid</button>
+            <button class="view-toggle" data-view="list">List</button>
+        </div>
+    </div>
+</section>
+
+<!-- Full Palette -->
+<section>
+    <div class="full-palette" id="palette">
+        {% set palette_data = [
+        {'name': 'Grey', 'deg': 0, 'colors': [
+        {'name': 'N0001', 'hex': '#e2e2e2', 'rgb': '226,226,226'},
+        {'name': 'N0002', 'hex': '#cccccc', 'rgb': '204,204,204'},
+        {'name': 'N0003', 'hex': '#b6b6b6', 'rgb': '182,182,182'},
+        {'name': 'N0004', 'hex': '#a0a0a0', 'rgb': '160,160,160'},
+        {'name': 'N0005', 'hex': '#8b8b8b', 'rgb': '139,139,139'},
+        {'name': 'N0006', 'hex': '#777777', 'rgb': '119,119,119'},
+        {'name': 'N0007', 'hex': '#636363', 'rgb': '99,99,99'},
+        {'name': 'N0008', 'hex': '#505050', 'rgb': '80,80,80'},
+        {'name': 'N0009', 'hex': '#3e3e3e', 'rgb': '62,62,62'}
+        ]},
+        {'name': 'Salmon', 'deg': 15, 'colors': [
+        {'name': 'N0151', 'hex': '#fadbdd', 'rgb': '250,219,221'},
+        {'name': 'N0152', 'hex': '#eec0c4', 'rgb': '238,192,196'},
+        {'name': 'N0153', 'hex': '#e2a6ac', 'rgb': '226,166,172'},
+        {'name': 'N0154', 'hex': '#d48c94', 'rgb': '212,140,148'},
+        {'name': 'N0155', 'hex': '#c6727d', 'rgb': '198,114,125'},
+        {'name': 'N0156', 'hex': '#a7636b', 'rgb': '167,99,107'},
+        {'name': 'N0157', 'hex': '#89545a', 'rgb': '137,84,90'},
+        {'name': 'N0158', 'hex': '#6b4549', 'rgb': '107,69,73'},
+        {'name': 'N0159', 'hex': '#4f3739', 'rgb': '79,55,57'}
+        ]},
+        {'name': 'Orange', 'deg': 30, 'colors': [
+        {'name': 'N0301', 'hex': '#fadbd7', 'rgb': '250,219,215'},
+        {'name': 'N0302', 'hex': '#edc1bc', 'rgb': '237,193,188'},
+        {'name': 'N0303', 'hex': '#e0a8a1', 'rgb': '224,168,161'},
+        {'name': 'N0304', 'hex': '#d28e87', 'rgb': '210,142,135'},
+        {'name': 'N0305', 'hex': '#c4756e', 'rgb': '196,117,110'},
+        {'name': 'N0306', 'hex': '#a5655f', 'rgb': '165,101,95'},
+        {'name': 'N0307', 'hex': '#875650', 'rgb': '135,86,80'},
+        {'name': 'N0308', 'hex': '#6b4642', 'rgb': '107,70,66'},
+        {'name': 'N0309', 'hex': '#4f3835', 'rgb': '79,56,53'}
+        ]},
+        {'name': 'Amber', 'deg': 45, 'colors': [
+        {'name': 'N0451', 'hex': '#f8dcd3', 'rgb': '248,220,211'},
+        {'name': 'N0452', 'hex': '#eac3b5', 'rgb': '234,195,181'},
+        {'name': 'N0453', 'hex': '#dcaa98', 'rgb': '220,170,152'},
+        {'name': 'N0454', 'hex': '#cd927c', 'rgb': '205,146,124'},
+        {'name': 'N0455', 'hex': '#be7960', 'rgb': '190,121,96'},
+        {'name': 'N0456', 'hex': '#a06954', 'rgb': '160,105,84'},
+        {'name': 'N0457', 'hex': '#845848', 'rgb': '132,88,72'},
+        {'name': 'N0458', 'hex': '#68483c', 'rgb': '104,72,60'},
+        {'name': 'N0459', 'hex': '#4d3931', 'rgb': '77,57,49'}
+        ]},
+        {'name': 'Yellow', 'deg': 60, 'colors': [
+        {'name': 'N0601', 'hex': '#f4decf', 'rgb': '244,222,207'},
+        {'name': 'N0602', 'hex': '#e5c6af', 'rgb': '229,198,175'},
+        {'name': 'N0603', 'hex': '#d5ad90', 'rgb': '213,173,144'},
+        {'name': 'N0604', 'hex': '#c59672', 'rgb': '197,150,114'},
+        {'name': 'N0605', 'hex': '#b57f55', 'rgb': '181,127,85'},
+        {'name': 'N0606', 'hex': '#996d4b', 'rgb': '153,109,75'},
+        {'name': 'N0607', 'hex': '#7e5b41', 'rgb': '126,91,65'},
+        {'name': 'N0608', 'hex': '#644a38', 'rgb': '100,74,56'},
+        {'name': 'N0609', 'hex': '#4a3a2e', 'rgb': '74,58,46'}
+        ]},
+        {'name': 'Lime', 'deg': 75, 'colors': [
+        {'name': 'N0751', 'hex': '#efe0cc', 'rgb': '239,224,204'},
+        {'name': 'N0752', 'hex': '#dec8ac', 'rgb': '222,200,172'},
+        {'name': 'N0753', 'hex': '#cdb18c', 'rgb': '205,177,140'},
+        {'name': 'N0754', 'hex': '#bb9b6c', 'rgb': '187,155,108'},
+        {'name': 'N0755', 'hex': '#a8854d', 'rgb': '168,133,77'},
+        {'name': 'N0756', 'hex': '#8f7344', 'rgb': '143,115,68'},
+        {'name': 'N0757', 'hex': '#76613b', 'rgb': '118,97,59'},
+        {'name': 'N0758', 'hex': '#5e4f33', 'rgb': '94,79,51'},
+        {'name': 'N0759', 'hex': '#473e2b', 'rgb': '71,62,43'}
+        ]},
+        {'name': 'Ecru', 'deg': 90, 'colors': [
+        {'name': 'N0901', 'hex': '#e9e2ca', 'rgb': '233,226,202'},
+        {'name': 'N0902', 'hex': '#d6cba8', 'rgb': '214,203,168'},
+        {'name': 'N0903', 'hex': '#c3b588', 'rgb': '195,181,136'},
+        {'name': 'N0904', 'hex': '#af9f67', 'rgb': '175,159,103'},
+        {'name': 'N0905', 'hex': '#9b8948', 'rgb': '155,137,72'},
+        {'name': 'N0906', 'hex': '#847640', 'rgb': '132,118,64'},
+        {'name': 'N0907', 'hex': '#6e6338', 'rgb': '110,99,56'},
+        {'name': 'N0908', 'hex': '#585130', 'rgb': '88,81,48'},
+        {'name': 'N0909', 'hex': '#434028', 'rgb': '67,64,40'}
+        ]},
+        {'name': 'Olive', 'deg': 105, 'colors': [
+        {'name': 'N1051', 'hex': '#e2e4c9', 'rgb': '226,228,201'},
+        {'name': 'N1052', 'hex': '#cbcea7', 'rgb': '203,206,167'},
+        {'name': 'N1053', 'hex': '#b5b986', 'rgb': '181,185,134'},
+        {'name': 'N1054', 'hex': '#9ea465', 'rgb': '158,164,101'},
+        {'name': 'N1055', 'hex': '#878f47', 'rgb': '135,143,71'},
+        {'name': 'N1056', 'hex': '#747b40', 'rgb': '116,123,64'},
+        {'name': 'N1057', 'hex': '#616839', 'rgb': '97,104,57'},
+        {'name': 'N1058', 'hex': '#4f5531', 'rgb': '79,85,49'},
+        {'name': 'N1059', 'hex': '#3d4329', 'rgb': '61,67,41'}
+        ]},
+        {'name': 'Green', 'deg': 120, 'colors': [
+        {'name': 'N1201', 'hex': '#dae5c9', 'rgb': '218,229,201'},
+        {'name': 'N1202', 'hex': '#c0d0a7', 'rgb': '192,208,167'},
+        {'name': 'N1203', 'hex': '#a6bb86', 'rgb': '166,187,134'},
+        {'name': 'N1204', 'hex': '#8ca665', 'rgb': '140,166,101'},
+        {'name': 'N1205', 'hex': '#729247', 'rgb': '114,146,71'},
+        {'name': 'N1206', 'hex': '#647e41', 'rgb': '100,126,65'},
+        {'name': 'N1207', 'hex': '#566b3a', 'rgb': '86,107,58'},
+        {'name': 'N1208', 'hex': '#485833', 'rgb': '72,88,51'},
+        {'name': 'N1209', 'hex': '#3b462c', 'rgb': '59,70,44'}
+        ]},
+        {'name': 'Forest', 'deg': 135, 'colors': [
+        {'name': 'N1351', 'hex': '#d1e6cb', 'rgb': '209,230,203'},
+        {'name': 'N1352', 'hex': '#b3d1a9', 'rgb': '179,209,169'},
+        {'name': 'N1353', 'hex': '#95bd88', 'rgb': '149,189,136'},
+        {'name': 'N1354', 'hex': '#77a867', 'rgb': '119,168,103'},
+        {'name': 'N1355', 'hex': '#5a944a', 'rgb': '90,148,74'},
+        {'name': 'N1356', 'hex': '#508143', 'rgb': '80,129,67'},
+        {'name': 'N1357', 'hex': '#466f3c', 'rgb': '70,111,60'},
+        {'name': 'N1358', 'hex': '#3c5c35', 'rgb': '60,92,53'},
+        {'name': 'N1359', 'hex': '#324a2e', 'rgb': '50,74,46'}
+        ]},
+        {'name': 'Jade', 'deg': 150, 'colors': [
+        {'name': 'N1501', 'hex': '#c6e7ce', 'rgb': '198,231,206'},
+        {'name': 'N1502', 'hex': '#a4d3ac', 'rgb': '164,211,172'},
+        {'name': 'N1503', 'hex': '#82be8b', 'rgb': '130,190,139'},
+        {'name': 'N1504', 'hex': '#5faa6b', 'rgb': '95,170,107'},
+        {'name': 'N1505', 'hex': '#3b964e', 'rgb': '59,150,78'},
+        {'name': 'N1506', 'hex': '#378347', 'rgb': '55,131,71'},
+        {'name': 'N1507', 'hex': '#337040', 'rgb': '51,112,64'},
+        {'name': 'N1508', 'hex': '#2f5e39', 'rgb': '47,94,57'},
+        {'name': 'N1509', 'hex': '#2b4c32', 'rgb': '43,76,50'}
+        ]},
+        {'name': 'Mint', 'deg': 165, 'colors': [
+        {'name': 'N1651', 'hex': '#bae7d3', 'rgb': '186,231,211'},
+        {'name': 'N1652', 'hex': '#94d4b1', 'rgb': '148,212,177'},
+        {'name': 'N1653', 'hex': '#6dc08f', 'rgb': '109,192,143'},
+        {'name': 'N1654', 'hex': '#43ac6f', 'rgb': '67,172,111'},
+        {'name': 'N1655', 'hex': '#009852', 'rgb': '0,152,82'},
+        {'name': 'N1656', 'hex': '#0c854a', 'rgb': '12,133,74'},
+        {'name': 'N1657', 'hex': '#187242', 'rgb': '24,114,66'},
+        {'name': 'N1658', 'hex': '#215f3a', 'rgb': '33,95,58'},
+        {'name': 'N1659', 'hex': '#284d33', 'rgb': '40,77,51'}
+        ]},
+        {'name': 'Cyan', 'deg': 180, 'colors': [
+        {'name': 'N1801', 'hex': '#ade7d9', 'rgb': '173,231,217'},
+        {'name': 'N1802', 'hex': '#83d4b8', 'rgb': '131,212,184'},
+        {'name': 'N1803', 'hex': '#57c097', 'rgb': '87,192,151'},
+        {'name': 'N1804', 'hex': '#1dac78', 'rgb': '29,172,120'},
+        {'name': 'N1805', 'hex': '#00985c', 'rgb': '0,152,92'},
+        {'name': 'N1806', 'hex': '#008553', 'rgb': '0,133,83'},
+        {'name': 'N1807', 'hex': '#007249', 'rgb': '0,114,73'},
+        {'name': 'N1808', 'hex': '#005f40', 'rgb': '0,95,64'},
+        {'name': 'N1809', 'hex': '#004d36', 'rgb': '0,77,54'}
+        ]},
+        {'name': 'Teal', 'deg': 195, 'colors': [
+        {'name': 'N1951', 'hex': '#a0e6e0', 'rgb': '160,230,224'},
+        {'name': 'N1952', 'hex': '#71d3c0', 'rgb': '113,211,192'},
+        {'name': 'N1953', 'hex': '#3fbfa1', 'rgb': '63,191,161'},
+        {'name': 'N1954', 'hex': '#00ab84', 'rgb': '0,171,132'},
+        {'name': 'N1955', 'hex': '#00976a', 'rgb': '0,151,106'},
+        {'name': 'N1956', 'hex': '#008460', 'rgb': '0,132,96'},
+        {'name': 'N1957', 'hex': '#007156', 'rgb': '0,113,86'},
+        {'name': 'N1958', 'hex': '#005f4c', 'rgb': '0,95,76'},
+        {'name': 'N1959', 'hex': '#004d42', 'rgb': '0,77,66'}
+        ]},
+        {'name': 'Capri', 'deg': 210, 'colors': [
+        {'name': 'N2101', 'hex': '#92e5e7', 'rgb': '146,229,231'},
+        {'name': 'N2102', 'hex': '#5ed2c9', 'rgb': '94,210,201'},
+        {'name': 'N2103', 'hex': '#1dbeab', 'rgb': '29,190,171'},
+        {'name': 'N2104', 'hex': '#00aa90', 'rgb': '0,170,144'},
+        {'name': 'N2105', 'hex': '#009678', 'rgb': '0,150,120'},
+        {'name': 'N2106', 'hex': '#00836d', 'rgb': '0,131,109'},
+        {'name': 'N2107', 'hex': '#007062', 'rgb': '0,112,98'},
+        {'name': 'N2108', 'hex': '#005e57', 'rgb': '0,94,87'},
+        {'name': 'N2109', 'hex': '#004c4c', 'rgb': '0,76,76'}
+        ]},
+        {'name': 'Sky', 'deg': 225, 'colors': [
+        {'name': 'N2251', 'hex': '#84e3ee', 'rgb': '132,227,238'},
+        {'name': 'N2252', 'hex': '#4ad0d3', 'rgb': '74,208,211'},
+        {'name': 'N2253', 'hex': '#00bcb8', 'rgb': '0,188,184'},
+        {'name': 'N2254', 'hex': '#00a79f', 'rgb': '0,167,159'},
+        {'name': 'N2255', 'hex': '#00938a', 'rgb': '0,147,138'},
+        {'name': 'N2256', 'hex': '#00807a', 'rgb': '0,128,122'},
+        {'name': 'N2257', 'hex': '#006e6a', 'rgb': '0,110,106'},
+        {'name': 'N2258', 'hex': '#005c5a', 'rgb': '0,92,90'},
+        {'name': 'N2259', 'hex': '#004b4a', 'rgb': '0,75,74'}
+        ]},
+        {'name': 'Blue', 'deg': 240, 'colors': [
+        {'name': 'N2401', 'hex': '#77e0f5', 'rgb': '119,224,245'},
+        {'name': 'N2402', 'hex': '#35cddd', 'rgb': '53,205,221'},
+        {'name': 'N2403', 'hex': '#00b9c6', 'rgb': '0,185,198'},
+        {'name': 'N2404', 'hex': '#00a4b0', 'rgb': '0,164,176'},
+        {'name': 'N2405', 'hex': '#008f9d', 'rgb': '0,143,157'},
+        {'name': 'N2406', 'hex': '#007c8a', 'rgb': '0,124,138'},
+        {'name': 'N2407', 'hex': '#006a77', 'rgb': '0,106,119'},
+        {'name': 'N2408', 'hex': '#005864', 'rgb': '0,88,100'},
+        {'name': 'N2409', 'hex': '#004751', 'rgb': '0,71,81'}
+        ]},
+        {'name': 'Azure', 'deg': 255, 'colors': [
+        {'name': 'N2551', 'hex': '#6cddfc', 'rgb': '108,221,252'},
+        {'name': 'N2552', 'hex': '#21c9e8', 'rgb': '33,201,232'},
+        {'name': 'N2553', 'hex': '#00b4d4', 'rgb': '0,180,212'},
+        {'name': 'N2554', 'hex': '#009fbf', 'rgb': '0,159,191'},
+        {'name': 'N2555', 'hex': '#008aad', 'rgb': '0,138,173'},
+        {'name': 'N2556', 'hex': '#00779a', 'rgb': '0,119,154'},
+        {'name': 'N2557', 'hex': '#006587', 'rgb': '0,101,135'},
+        {'name': 'N2558', 'hex': '#005474', 'rgb': '0,84,116'},
+        {'name': 'N2559', 'hex': '#004361', 'rgb': '0,67,97'}
+        ]},
+        {'name': 'Indigo', 'deg': 270, 'colors': [
+        {'name': 'N2701', 'hex': '#65d9ff', 'rgb': '101,217,255'},
+        {'name': 'N2702', 'hex': '#0dc4f2', 'rgb': '13,196,242'},
+        {'name': 'N2703', 'hex': '#00afdf', 'rgb': '0,175,223'},
+        {'name': 'N2704', 'hex': '#0099cb', 'rgb': '0,153,203'},
+        {'name': 'N2705', 'hex': '#0084b9', 'rgb': '0,132,185'},
+        {'name': 'N2706', 'hex': '#0071a6', 'rgb': '0,113,166'},
+        {'name': 'N2707', 'hex': '#006093', 'rgb': '0,96,147'},
+        {'name': 'N2708', 'hex': '#004f80', 'rgb': '0,79,128'},
+        {'name': 'N2709', 'hex': '#003f6d', 'rgb': '0,63,109'}
+        ]},
+        {'name': 'Violet', 'deg': 285, 'colors': [
+        {'name': 'N2851', 'hex': '#63d4ff', 'rgb': '99,212,255'},
+        {'name': 'N2852', 'hex': '#00bffb', 'rgb': '0,191,251'},
+        {'name': 'N2853', 'hex': '#00a9e9', 'rgb': '0,169,233'},
+        {'name': 'N2854', 'hex': '#0093d6', 'rgb': '0,147,214'},
+        {'name': 'N2855', 'hex': '#007dc4', 'rgb': '0,125,196'},
+        {'name': 'N2856', 'hex': '#006ab1', 'rgb': '0,106,177'},
+        {'name': 'N2857', 'hex': '#00589e', 'rgb': '0,88,158'},
+        {'name': 'N2858', 'hex': '#00478b', 'rgb': '0,71,139'},
+        {'name': 'N2859', 'hex': '#003778', 'rgb': '0,55,120'}
+        ]},
+        {'name': 'Magenta', 'deg': 300, 'colors': [
+        {'name': 'N3001', 'hex': '#68cfff', 'rgb': '104,207,255'},
+        {'name': 'N3002', 'hex': '#00b9ff', 'rgb': '0,185,255'},
+        {'name': 'N3003', 'hex': '#00a2f2', 'rgb': '0,162,242'},
+        {'name': 'N3004', 'hex': '#008cdf', 'rgb': '0,140,223'},
+        {'name': 'N3005', 'hex': '#0076cd', 'rgb': '0,118,205'},
+        {'name': 'N3006', 'hex': '#0063ba', 'rgb': '0,99,186'},
+        {'name': 'N3007', 'hex': '#0051a7', 'rgb': '0,81,167'},
+        {'name': 'N3008', 'hex': '#004094', 'rgb': '0,64,148'},
+        {'name': 'N3009', 'hex': '#003081', 'rgb': '0,48,129'}
+        ]},
+        {'name': 'Purple', 'deg': 315, 'colors': [
+        {'name': 'N3151', 'hex': '#74c9ff', 'rgb': '116,201,255'},
+        {'name': 'N3152', 'hex': '#3fb2ff', 'rgb': '63,178,255'},
+        {'name': 'N3153', 'hex': '#009afa', 'rgb': '0,154,250'},
+        {'name': 'N3154', 'hex': '#0083e8', 'rgb': '0,131,232'},
+        {'name': 'N3155', 'hex': '#006dd6', 'rgb': '0,109,214'},
+        {'name': 'N3156', 'hex': '#005ac3', 'rgb': '0,90,195'},
+        {'name': 'N3157', 'hex': '#0048b0', 'rgb': '0,72,176'},
+        {'name': 'N3158', 'hex': '#00379d', 'rgb': '0,55,157'},
+        {'name': 'N3159', 'hex': '#00278a', 'rgb': '0,39,138'}
+        ]},
+        {'name': 'Rose', 'deg': 330, 'colors': [
+        {'name': 'N3301', 'hex': '#85c2ff', 'rgb': '133,194,255'},
+        {'name': 'N3302', 'hex': '#57aaff', 'rgb': '87,170,255'},
+        {'name': 'N3303', 'hex': '#0091fd', 'rgb': '0,145,253'},
+        {'name': 'N3304', 'hex': '#0079eb', 'rgb': '0,121,235'},
+        {'name': 'N3305', 'hex': '#0062d9', 'rgb': '0,98,217'},
+        {'name': 'N3306', 'hex': '#004fc6', 'rgb': '0,79,198'},
+        {'name': 'N3307', 'hex': '#003db3', 'rgb': '0,61,179'},
+        {'name': 'N3308', 'hex': '#002ca0', 'rgb': '0,44,160'},
+        {'name': 'N3309', 'hex': '#001c8d', 'rgb': '0,28,141'}
+        ]},
+        {'name': 'Pink', 'deg': 345, 'colors': [
+        {'name': 'N3451', 'hex': '#9bbaff', 'rgb': '155,186,255'},
+        {'name': 'N3452', 'hex': '#72a1ff', 'rgb': '114,161,255'},
+        {'name': 'N3453', 'hex': '#4587f8', 'rgb': '69,135,248'},
+        {'name': 'N3454', 'hex': '#006de6', 'rgb': '0,109,230'},
+        {'name': 'N3455', 'hex': '#0054d4', 'rgb': '0,84,212'},
+        {'name': 'N3456', 'hex': '#0041c1', 'rgb': '0,65,193'},
+        {'name': 'N3457', 'hex': '#002fae', 'rgb': '0,47,174'},
+        {'name': 'N3458', 'hex': '#001e9b', 'rgb': '0,30,155'},
+        {'name': 'N3459', 'hex': '#000e88', 'rgb': '0,14,136'}
+        ]},
+        {'name': 'Red', 'deg': 360, 'colors': [
+        {'name': 'N3601', 'hex': '#b4b1ff', 'rgb': '180,177,255'},
+        {'name': 'N3602', 'hex': '#9196f9', 'rgb': '145,150,249'},
+        {'name': 'N3603', 'hex': '#6b7aee', 'rgb': '107,122,238'},
+        {'name': 'N3604', 'hex': '#3e5fe2', 'rgb': '62,95,226'},
+        {'name': 'N3605', 'hex': '#0045d5', 'rgb': '0,69,213'},
+        {'name': 'N3606', 'hex': '#0033c2', 'rgb': '0,51,194'},
+        {'name': 'N3607', 'hex': '#0022af', 'rgb': '0,34,175'},
+        {'name': 'N3608', 'hex': '#00119c', 'rgb': '0,17,156'},
+        {'name': 'N3609', 'hex': '#000089', 'rgb': '0,0,137'}
+        ]}
+        ] %}
+
+        {% for hue_group in palette_data %}
+        <div class="hue-group" data-hue="{{ hue_group.name }}">
+            <div class="hue-group__header">
+                <h3 class="hue-group__name">{{ hue_group.name }}</h3>
+                <span class="hue-group__deg">{{ hue_group.deg }}°</span>
+            </div>
+            <div class="hue-group__swatches">
+                {% for color in hue_group.colors %}
+                <div class="color-swatch" style="background-color: {{ color.hex }};" data-name="{{ color.name }}"
+                    data-hex="{{ color.hex }}" data-rgb="{{ color.rgb }}" title="{{ color.name }}: {{ color.hex }}">
+                    <span class="color-swatch__name">{{ color.name }}</span>
+                    <span class="color-swatch__value">{{ color.hex }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<script>
+    // Format switcher
+    const formatSelect = document.getElementById('color-format');
+    formatSelect?.addEventListener('change', function () {
+        const format = this.value;
+        document.querySelectorAll('.color-swatch').forEach(swatch => {
+            const valueEl = swatch.querySelector('.color-swatch__value');
+            switch (format) {
+                case 'hex':
+                    valueEl.textContent = swatch.dataset.hex;
+                    break;
+                case 'rgb':
+                    valueEl.textContent = `rgb(${swatch.dataset.rgb})`;
+                    break;
+                case 'hsl':
+                    // Simple approximation
+                    valueEl.textContent = swatch.dataset.hex;
+                    break;
+                case 'name':
+                    valueEl.textContent = swatch.dataset.name;
+                    break;
+            }
+        });
+    });
+
+    // View toggle
+    document.querySelectorAll('.view-toggle').forEach(btn => {
+        btn.addEventListener('click', function () {
+            document.querySelectorAll('.view-toggle').forEach(b => b.classList.remove('active'));
+            this.classList.add('active');
+            const view = this.dataset.view;
+            document.getElementById('palette').className = `full-palette full-palette--${view}`;
+        });
+    });
+
+    // Copy on click
+    document.querySelectorAll('.color-swatch').forEach(swatch => {
+        swatch.addEventListener('click', function () {
+            const format = formatSelect?.value || 'hex';
+            let value;
+            switch (format) {
+                case 'hex':
+                    value = this.dataset.hex;
+                    break;
+                case 'rgb':
+                    value = `rgb(${this.dataset.rgb})`;
+                    break;
+                case 'name':
+                    value = this.dataset.name;
+                    break;
+                default:
+                    value = this.dataset.hex;
+            }
+            navigator.clipboard.writeText(value).then(() => {
+                const valueEl = this.querySelector('.color-swatch__value');
+                const original = valueEl.textContent;
+                valueEl.textContent = 'Copied!';
+                setTimeout(() => {
+                    valueEl.textContent = original;
+                }, 1000);
+            });
+        });
+    });
+</script>
+
+{%- endblock %}

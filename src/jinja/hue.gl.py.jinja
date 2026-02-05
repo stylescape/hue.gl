@@ -1,34 +1,263 @@
-# Copyright 2023 Scape Agency BV
+# -*- coding: utf-8 -*-
+"""
+hue.gl - Perceptual Colour System for Python
 
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
+{{ name }}
+Version: {{ version }}
 
-# http:%www.apache.org/licenses/LICENSE-2.0
+A perceptually uniform color palette with 25 hues and 9 shades each.
+Colors are generated using the LCH color space for consistent visual perception.
 
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
+Copyright (c) 2023-2026 Scape Agency BV
+Licensed under the MIT License
+https://github.com/stylescape/hue.gl
+
+Example usage:
+    from hue_gl import HueGL, colors
+
+    # Access colors by name
+    print(colors['Grey']['N0001'])  # Light grey
+    print(colors['Blue']['N2405'])  # Mid blue
+
+    # Or use the HueGL class
+    palette = HueGL()
+    blue = palette.get_color('Blue', 5)
+    print(blue.hex)  # Hex value
+    print(blue.rgb)  # RGB tuple
+"""
+
+from __future__ import annotations
+from typing import Dict, Tuple, NamedTuple, Optional
+from dataclasses import dataclass
+
+
+__version__ = "{{ version }}"
+__all__ = ["HueGL", "Color", "colors", "HUE_NAMES"]
+
 
 # =============================================================================
-#
-# {{ name }}
-# {{ version }}
-#
+# Type Definitions
 # =============================================================================
 
+class RGB(NamedTuple):
+    """RGB color representation (0-255 range)."""
+    r: int
+    g: int
+    b: int
 
-# General
+
+class HCL(NamedTuple):
+    """HCL color representation (Hue, Chroma, Luminance)."""
+    h: float
+    c: float
+    l: float
+
+
 # =============================================================================
+# Color Data Class
+# =============================================================================
+
+@dataclass(frozen=True)
+class Color:
+    """
+    Represents a single color in the hue.gl palette.
+
+    Attributes:
+        name: The color identifier (e.g., 'N1201')
+        hue_name: The hue group name (e.g., 'Green')
+        rgb: RGB values as a tuple (0-255 range)
+        hcl: HCL values as a tuple
+        hex: Hexadecimal color string
+    """
+    name: str
+    hue_name: str
+    rgb: RGB
+    hcl: HCL
+    hex: str
+
+    def __str__(self) -> str:
+        return self.hex
+
+    def __repr__(self) -> str:
+        return f"Color(name='{self.name}', hex='{self.hex}')"
+
+    @property
+    def css_rgb(self) -> str:
+        """Returns CSS rgb() format."""
+        return f"rgb({self.rgb.r}, {self.rgb.g}, {self.rgb.b})"
+
+    @property
+    def css_hsl(self) -> str:
+        """Returns CSS hsl() format (approximate)."""
+        # Convert HCL to HSL approximation
+        h = self.hcl.h
+        l = self.hcl.l
+        s = min(100, self.hcl.c * 1.5)  # Approximate saturation
+        return f"hsl({h:.0f}, {s:.0f}%, {l:.0f}%)"
+
+
+# =============================================================================
+# Hue Names Mapping
+# =============================================================================
+
+HUE_NAMES: Dict[int, str] = {
+    0: "Grey",
+    15: "Salmon",
+    30: "Orange",
+    45: "Amber",
+    60: "Yellow",
+    75: "Lime",
+    90: "Ecru",
+    105: "Olive",
+    120: "Green",
+    135: "Forest",
+    150: "Jade",
+    165: "Mint",
+    180: "Cyan",
+    195: "Teal",
+    210: "Capri",
+    225: "Sky",
+    240: "Blue",
+    255: "Azure",
+    270: "Indigo",
+    285: "Violet",
+    300: "Magenta",
+    315: "Purple",
+    330: "Rose",
+    345: "Pink",
+    360: "Red",
+}
+
+
+# =============================================================================
+# Color Definitions
+# =============================================================================
+
+# Color palette dictionary: { hue_name: { color_name: Color } }
+colors: Dict[str, Dict[str, Color]] = {}
 
 {% for group_name, group in colors -%}
 # {{ group_name }}
 # -----------------------------------------------------------------------------
+colors["{{ group_name }}"] = {
+{%- for color_name, color in group %}
+    "{{ color_name }}": Color(
+        name="{{ color_name }}",
+        hue_name="{{ group_name }}",
+        rgb=RGB({{ color.rgb().r }}, {{ color.rgb().g }}, {{ color.rgb().b }}),
+        hcl=HCL({{ color.hcl().h }}, {{ color.hcl().c }}, {{ color.hcl().l }}),
+        hex="{{ color.hex() }}",
+    ),
+{%- endfor %}
+}
 
-{% for color_name, color in group -%}
-{{ color_name }} = ({{ color.rgb().r }}, {{ color.rgb().g }}, {{ color.rgb().b }})
 {% endfor %}
 
-{% endfor %}
+# =============================================================================
+# Convenience Access
+# =============================================================================
+
+# Flat dictionary for direct access by color name
+colors_flat: Dict[str, Color] = {}
+for hue_group in colors.values():
+    colors_flat.update(hue_group)
+
+
+# =============================================================================
+# HueGL Class
+# =============================================================================
+
+class HueGL:
+    """
+    Main class for working with the hue.gl color palette.
+
+    Provides convenient access to colors by hue name and shade index.
+
+    Example:
+        >>> palette = HueGL()
+        >>> blue5 = palette.get_color('Blue', 5)
+        >>> print(blue5.hex)
+        '#4169E1'
+    """
+
+    def __init__(self) -> None:
+        self._colors = colors
+        self._flat = colors_flat
+
+    @property
+    def hue_names(self) -> list[str]:
+        """Returns list of all hue names."""
+        return list(self._colors.keys())
+
+    @property
+    def shade_count(self) -> int:
+        """Returns number of shades per hue (default: 9)."""
+        return 9
+
+    def get_color(self, hue_name: str, shade: int) -> Optional[Color]:
+        """
+        Get a color by hue name and shade index (1-9).
+
+        Args:
+            hue_name: The hue group name (e.g., 'Blue', 'Red', 'Grey')
+            shade: The shade index from 1 (lightest) to 9 (darkest)
+
+        Returns:
+            Color object or None if not found
+        """
+        if hue_name not in self._colors:
+            return None
+
+        # Find the color with the matching shade
+        hue_group = self._colors[hue_name]
+        for color in hue_group.values():
+            if color.name.endswith(str(shade)):
+                return color
+        return None
+
+    def get_hue_group(self, hue_name: str) -> Optional[Dict[str, Color]]:
+        """
+        Get all colors in a hue group.
+
+        Args:
+            hue_name: The hue group name (e.g., 'Blue', 'Red')
+
+        Returns:
+            Dictionary of colors in the hue group or None
+        """
+        return self._colors.get(hue_name)
+
+    def get_by_name(self, color_name: str) -> Optional[Color]:
+        """
+        Get a color by its full name (e.g., 'N2405').
+
+        Args:
+            color_name: The full color name
+
+        Returns:
+            Color object or None if not found
+        """
+        return self._flat.get(color_name)
+
+    def __getitem__(self, key: str) -> Dict[str, Color]:
+        """Allow dictionary-style access to hue groups."""
+        return self._colors[key]
+
+    def __contains__(self, key: str) -> bool:
+        """Check if a hue name exists."""
+        return key in self._colors
+
+    def __iter__(self):
+        """Iterate over hue names."""
+        return iter(self._colors)
+
+    def __len__(self) -> int:
+        """Return total number of colors."""
+        return len(self._flat)
+
+
+# =============================================================================
+# Module-level instance for convenience
+# =============================================================================
+
+hue = HueGL()

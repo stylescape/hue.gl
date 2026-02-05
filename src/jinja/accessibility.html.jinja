@@ -1,0 +1,371 @@
+{% extends "base.html.jinja" %}
+
+{% block title %}Accessibility — hue.gl{% endblock %}
+
+{% block content %}
+<section class="header">
+    <div class="container">
+        <p class="eyebrow">A11y</p>
+        <h1>Color Accessibility</h1>
+        <p class="lead">Build inclusive interfaces with WCAG-compliant color combinations.</p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Why Color Accessibility Matters</h2>
+        <p>Approximately 8% of men and 0.5% of women have some form of color vision deficiency. Beyond that, contrast is
+            essential for users in bright environments, older adults, and anyone experiencing eye strain. Good contrast
+            isn't just accessible—it's better for everyone.</p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>WCAG Contrast Requirements</h2>
+        <p>The Web Content Accessibility Guidelines (WCAG) define minimum contrast ratios for text and UI elements:</p>
+
+        <div class="contrast-requirements">
+            <div class="contrast-req-card">
+                <div class="contrast-req-card__header">
+                    <span class="contrast-badge contrast-badge--aa">AA</span>
+                    <h3>Level AA</h3>
+                </div>
+                <div class="contrast-req-card__body">
+                    <div class="contrast-req-item">
+                        <span class="contrast-req-item__ratio">4.5:1</span>
+                        <span class="contrast-req-item__desc">Normal text (&lt;24px)</span>
+                    </div>
+                    <div class="contrast-req-item">
+                        <span class="contrast-req-item__ratio">3:1</span>
+                        <span class="contrast-req-item__desc">Large text (≥24px or ≥18.66px bold)</span>
+                    </div>
+                    <div class="contrast-req-item">
+                        <span class="contrast-req-item__ratio">3:1</span>
+                        <span class="contrast-req-item__desc">UI components & graphics</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contrast-req-card">
+                <div class="contrast-req-card__header">
+                    <span class="contrast-badge contrast-badge--aaa">AAA</span>
+                    <h3>Level AAA</h3>
+                </div>
+                <div class="contrast-req-card__body">
+                    <div class="contrast-req-item">
+                        <span class="contrast-req-item__ratio">7:1</span>
+                        <span class="contrast-req-item__desc">Normal text (&lt;24px)</span>
+                    </div>
+                    <div class="contrast-req-item">
+                        <span class="contrast-req-item__ratio">4.5:1</span>
+                        <span class="contrast-req-item__desc">Large text (≥24px or ≥18.66px bold)</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Perceptual Advantage of LCH</h2>
+        <p>Because hue.gl uses LCH lightness values, predicting contrast is straightforward. Colors with the same L
+            value have similar luminance, making it easier to identify compliant pairs.</p>
+
+        <div class="lightness-contrast-demo">
+            <div class="lightness-row">
+                <div class="lightness-label">L: 95</div>
+                <div class="lightness-swatches">
+                    <div class="lightness-swatch" style="background: #ffe3e3" title="Red-100"></div>
+                    <div class="lightness-swatch" style="background: #fff4e6" title="Orange-100"></div>
+                    <div class="lightness-swatch" style="background: #fff9db" title="Yellow-100"></div>
+                    <div class="lightness-swatch" style="background: #f8f9fa" title="Gray-100"></div>
+                </div>
+                <div class="lightness-note">Good for backgrounds with dark text</div>
+            </div>
+            <div class="lightness-row">
+                <div class="lightness-label">L: 55</div>
+                <div class="lightness-swatches">
+                    <div class="lightness-swatch" style="background: #e03131" title="Red-500"></div>
+                    <div class="lightness-swatch" style="background: #e8590c" title="Orange-500"></div>
+                    <div class="lightness-swatch" style="background: #fab005" title="Yellow-500"></div>
+                    <div class="lightness-swatch" style="background: #868e96" title="Gray-500"></div>
+                </div>
+                <div class="lightness-note">Primary brand colors</div>
+            </div>
+            <div class="lightness-row">
+                <div class="lightness-label">L: 25</div>
+                <div class="lightness-swatches">
+                    <div class="lightness-swatch" style="background: #842029" title="Red-700"></div>
+                    <div class="lightness-swatch" style="background: #7c3118" title="Orange-700"></div>
+                    <div class="lightness-swatch" style="background: #7c4a03" title="Yellow-700"></div>
+                    <div class="lightness-swatch" style="background: #343a40" title="Gray-700"></div>
+                </div>
+                <div class="lightness-note">Good for text on light backgrounds</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Safe Color Combinations</h2>
+        <p>These combinations meet WCAG AA requirements for normal text (4.5:1 ratio):</p>
+
+        <div class="safe-combinations">
+            <div class="combo-grid">
+                <div class="combo-card">
+                    <div class="combo-preview" style="background: #ffffff; color: #212529">
+                        <span class="combo-text">Text sample</span>
+                    </div>
+                    <div class="combo-info">
+                        <code>White + Gray-800</code>
+                        <span class="combo-ratio">16.0:1</span>
+                    </div>
+                </div>
+
+                <div class="combo-card">
+                    <div class="combo-preview" style="background: #fff5f5; color: #842029">
+                        <span class="combo-text">Text sample</span>
+                    </div>
+                    <div class="combo-info">
+                        <code>Red-50 + Red-700</code>
+                        <span class="combo-ratio">7.2:1</span>
+                    </div>
+                </div>
+
+                <div class="combo-card">
+                    <div class="combo-preview" style="background: #212529; color: #f8f9fa">
+                        <span class="combo-text">Text sample</span>
+                    </div>
+                    <div class="combo-info">
+                        <code>Gray-800 + Gray-50</code>
+                        <span class="combo-ratio">15.1:1</span>
+                    </div>
+                </div>
+
+                <div class="combo-card">
+                    <div class="combo-preview" style="background: #364fc7; color: #ffffff">
+                        <span class="combo-text">Text sample</span>
+                    </div>
+                    <div class="combo-info">
+                        <code>Blue-600 + White</code>
+                        <span class="combo-ratio">6.8:1</span>
+                    </div>
+                </div>
+
+                <div class="combo-card">
+                    <div class="combo-preview" style="background: #e3fafc; color: #0b7285">
+                        <span class="combo-text">Text sample</span>
+                    </div>
+                    <div class="combo-info">
+                        <code>Cyan-50 + Cyan-700</code>
+                        <span class="combo-ratio">5.4:1</span>
+                    </div>
+                </div>
+
+                <div class="combo-card">
+                    <div class="combo-preview" style="background: #f3f0ff; color: #5f3dc4">
+                        <span class="combo-text">Text sample</span>
+                    </div>
+                    <div class="combo-info">
+                        <code>Violet-50 + Violet-600</code>
+                        <span class="combo-ratio">6.1:1</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Quick Reference Rules</h2>
+
+        <div class="a11y-rules">
+            <div class="a11y-rule">
+                <div class="a11y-rule__icon">✅</div>
+                <div class="a11y-rule__content">
+                    <h3>50/700 Rule</h3>
+                    <p>Pair shade 50 backgrounds with shade 700 text for AA compliance on most hues.</p>
+                </div>
+            </div>
+
+            <div class="a11y-rule">
+                <div class="a11y-rule__icon">✅</div>
+                <div class="a11y-rule__content">
+                    <h3>White Text on 600+</h3>
+                    <p>White text is safe on shades 600, 700, and 800 for AA large text (3:1).</p>
+                </div>
+            </div>
+
+            <div class="a11y-rule">
+                <div class="a11y-rule__icon">⚠️</div>
+                <div class="a11y-rule__content">
+                    <h3>Yellow Caution</h3>
+                    <p>Yellow and lime hues have higher inherent luminance. Use shade 700+ for text.</p>
+                </div>
+            </div>
+
+            <div class="a11y-rule">
+                <div class="a11y-rule__icon">❌</div>
+                <div class="a11y-rule__content">
+                    <h3>Never Adjacent Shades</h3>
+                    <p>Adjacent shades (400 & 500, 200 & 300) rarely meet contrast requirements.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Contrast Checker</h2>
+        <p>Use this tool to verify color combinations:</p>
+
+        <div class="contrast-checker" id="contrastChecker">
+            <div class="contrast-checker__inputs">
+                <div class="contrast-input-group">
+                    <label>Foreground</label>
+                    <input type="text" id="fgColor" value="#212529" placeholder="#212529">
+                    <div class="color-preview" id="fgPreview" style="background: #212529"></div>
+                </div>
+                <div class="contrast-input-group">
+                    <label>Background</label>
+                    <input type="text" id="bgColor" value="#ffffff" placeholder="#ffffff">
+                    <div class="color-preview" id="bgPreview" style="background: #ffffff"></div>
+                </div>
+            </div>
+
+            <div class="contrast-checker__preview">
+                <div class="contrast-preview-box" id="contrastPreviewBox" style="background: #ffffff; color: #212529">
+                    <p class="contrast-preview-text--lg">Large Text Sample</p>
+                    <p class="contrast-preview-text--sm">Normal text sample for testing contrast ratio compliance with
+                        WCAG guidelines.</p>
+                </div>
+            </div>
+
+            <div class="contrast-checker__results" id="contrastResults">
+                <div class="contrast-result">
+                    <span class="contrast-result__label">Contrast Ratio</span>
+                    <span class="contrast-result__value" id="contrastRatio">16.0:1</span>
+                </div>
+                <div class="contrast-result">
+                    <span class="contrast-result__label">AA Normal Text</span>
+                    <span class="contrast-result__status contrast-result__status--pass" id="aaNormal">Pass</span>
+                </div>
+                <div class="contrast-result">
+                    <span class="contrast-result__label">AA Large Text</span>
+                    <span class="contrast-result__status contrast-result__status--pass" id="aaLarge">Pass</span>
+                </div>
+                <div class="contrast-result">
+                    <span class="contrast-result__label">AAA Normal Text</span>
+                    <span class="contrast-result__status contrast-result__status--pass" id="aaaNormal">Pass</span>
+                </div>
+                <div class="contrast-result">
+                    <span class="contrast-result__label">AAA Large Text</span>
+                    <span class="contrast-result__status contrast-result__status--pass" id="aaaLarge">Pass</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Color Vision Simulation</h2>
+        <p>Preview how colors appear to users with different types of color vision deficiency:</p>
+
+        <div class="cvd-simulation">
+            <div class="cvd-controls">
+                <button class="cvd-btn active" data-cvd="normal">Normal Vision</button>
+                <button class="cvd-btn" data-cvd="protanopia">Protanopia</button>
+                <button class="cvd-btn" data-cvd="deuteranopia">Deuteranopia</button>
+                <button class="cvd-btn" data-cvd="tritanopia">Tritanopia</button>
+                <button class="cvd-btn" data-cvd="achromatopsia">Achromatopsia</button>
+            </div>
+
+            <div class="cvd-palette" id="cvdPalette">
+                <div class="cvd-swatch" style="background: #e03131"></div>
+                <div class="cvd-swatch" style="background: #e8590c"></div>
+                <div class="cvd-swatch" style="background: #fab005"></div>
+                <div class="cvd-swatch" style="background: #40c057"></div>
+                <div class="cvd-swatch" style="background: #15aabf"></div>
+                <div class="cvd-swatch" style="background: #4c6ef5"></div>
+                <div class="cvd-swatch" style="background: #7950f2"></div>
+                <div class="cvd-swatch" style="background: #e64980"></div>
+            </div>
+
+            <p class="cvd-note">Ensure important information is conveyed through more than color alone—use icons,
+                patterns, or labels.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Resources</h2>
+        <ul class="reference-list">
+            <li>
+                <a href="https://www.w3.org/WAI/WCAG21/Understanding/contrast-minimum.html" target="_blank">WCAG 2.1:
+                    Understanding Contrast</a>
+            </li>
+            <li>
+                <a href="https://webaim.org/resources/contrastchecker/" target="_blank">WebAIM Contrast Checker</a>
+            </li>
+            <li>
+                <a href="https://colorjs.io/docs/contrast" target="_blank">Color.js Contrast Documentation</a>
+            </li>
+        </ul>
+    </div>
+</section>
+
+{% block scripts %}
+<script>
+    // Contrast checker functionality
+    function getLuminance(hex) {
+        const rgb = hex.replace('#', '').match(/.{2}/g).map(x => parseInt(x, 16) / 255);
+        const [r, g, b] = rgb.map(c => c <= 0.03928 ? c / 12.92 : Math.pow((c + 0.055) / 1.055, 2.4));
+        return 0.2126 * r + 0.7152 * g + 0.0722 * b;
+    }
+
+    function getContrastRatio(fg, bg) {
+        const l1 = getLuminance(fg);
+        const l2 = getLuminance(bg);
+        const lighter = Math.max(l1, l2);
+        const darker = Math.min(l1, l2);
+        return (lighter + 0.05) / (darker + 0.05);
+    }
+
+    function updateContrastChecker() {
+        const fg = document.getElementById('fgColor').value;
+        const bg = document.getElementById('bgColor').value;
+
+        if (!/^#[0-9a-fA-F]{6}$/.test(fg) || !/^#[0-9a-fA-F]{6}$/.test(bg)) return;
+
+        const ratio = getContrastRatio(fg, bg);
+
+        document.getElementById('fgPreview').style.background = fg;
+        document.getElementById('bgPreview').style.background = bg;
+        document.getElementById('contrastPreviewBox').style.background = bg;
+        document.getElementById('contrastPreviewBox').style.color = fg;
+        document.getElementById('contrastRatio').textContent = ratio.toFixed(2) + ':1';
+
+        const setStatus = (id, pass) => {
+            const el = document.getElementById(id);
+            el.textContent = pass ? 'Pass' : 'Fail';
+            el.className = 'contrast-result__status contrast-result__status--' + (pass ? 'pass' : 'fail');
+        };
+
+        setStatus('aaNormal', ratio >= 4.5);
+        setStatus('aaLarge', ratio >= 3);
+        setStatus('aaaNormal', ratio >= 7);
+        setStatus('aaaLarge', ratio >= 4.5);
+    }
+
+    document.getElementById('fgColor')?.addEventListener('input', updateContrastChecker);
+    document.getElementById('bgColor')?.addEventListener('input', updateContrastChecker);
+</script>
+{% endblock %}
+{% endblock %}

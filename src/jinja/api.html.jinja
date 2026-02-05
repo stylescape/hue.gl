@@ -1,0 +1,420 @@
+{% extends "base.html.jinja" %}
+
+{% block title %}API Reference — hue.gl{% endblock %}
+
+{% block content %}
+<section class="header">
+    <div class="container">
+        <p class="eyebrow">API</p>
+        <h1>API Reference</h1>
+        <p class="lead">Complete documentation for the hue.gl TypeScript/JavaScript API.</p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Installation</h2>
+
+        <div class="code-block">npm install hue.gl</div>
+
+        <p>Import the library:</p>
+
+        <div class="code-block">import { ColorSwatch, ColorScheme, generatePalette } from 'hue.gl';</div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>ColorSwatch</h2>
+        <p>Represents a single color with LCH values and conversion methods.</p>
+
+        <h3>Constructor</h3>
+
+        <div class="api-signature">
+            <code>new ColorSwatch(hue: number, shade: number, name: string, h: number, c: number, l: number)</code>
+        </div>
+
+        <div class="api-params">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>hue</code></td>
+                        <td><code>number</code></td>
+                        <td>Hue index (0-24)</td>
+                    </tr>
+                    <tr>
+                        <td><code>shade</code></td>
+                        <td><code>number</code></td>
+                        <td>Shade value (50, 100, 200, 300, 400, 500, 600, 700, 800)</td>
+                    </tr>
+                    <tr>
+                        <td><code>name</code></td>
+                        <td><code>string</code></td>
+                        <td>Human-readable name (e.g., "Red 500")</td>
+                    </tr>
+                    <tr>
+                        <td><code>h</code></td>
+                        <td><code>number</code></td>
+                        <td>LCH Hue angle (0-360)</td>
+                    </tr>
+                    <tr>
+                        <td><code>c</code></td>
+                        <td><code>number</code></td>
+                        <td>LCH Chroma (0-230)</td>
+                    </tr>
+                    <tr>
+                        <td><code>l</code></td>
+                        <td><code>number</code></td>
+                        <td>LCH Lightness (0-100)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>Methods</h3>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getHex(): string</code>
+            </div>
+            <p>Returns the color as a hex string.</p>
+            <div class="code-block">const swatch = new ColorSwatch(0, 500, 'Red 500', 0, 100, 55);
+                swatch.getHex(); // "#e03131"</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getRGB(): [number, number, number]</code>
+            </div>
+            <p>Returns the color as an RGB tuple (0-255 values).</p>
+            <div class="code-block">swatch.getRGB(); // [224, 49, 49]</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getLCH(): { l: number, c: number, h: number }</code>
+            </div>
+            <p>Returns the original LCH values.</p>
+            <div class="code-block">swatch.getLCH(); // { l: 55, c: 100, h: 0 }</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getHSL(): { h: number, s: number, l: number }</code>
+            </div>
+            <p>Returns the color as HSL values.</p>
+            <div class="code-block">swatch.getHSL(); // { h: 0, s: 78, l: 53 }</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getCMYK(): { c: number, m: number, y: number, k: number }</code>
+            </div>
+            <p>Returns the color as CMYK values (0-100).</p>
+            <div class="code-block">swatch.getCMYK(); // { c: 0, m: 78, y: 78, k: 12 }</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getP3(): string</code>
+            </div>
+            <p>Returns the color in CSS color() format for Display P3.</p>
+            <div class="code-block">swatch.getP3(); // "color(display-p3 0.85 0.2 0.2)"</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getOKLCH(): { l: number, c: number, h: number }</code>
+            </div>
+            <p>Returns the color in OKLCH color space.</p>
+            <div class="code-block">swatch.getOKLCH(); // { l: 0.55, c: 0.21, h: 24 }</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>clone(): ColorSwatch</code>
+            </div>
+            <p>Creates a copy of the swatch.</p>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>isInGamut(): boolean</code>
+            </div>
+            <p>Returns true if the color is within sRGB gamut.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>ColorScheme</h2>
+        <p>Generates complete color palettes from configuration.</p>
+
+        <h3>Constructor</h3>
+
+        <div class="api-signature">
+            <code>new ColorScheme(config?: ColorSchemeConfig)</code>
+        </div>
+
+        <div class="api-params">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Parameter</th>
+                        <th>Type</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>config</code></td>
+                        <td><code>ColorSchemeConfig</code></td>
+                        <td>Optional configuration object (defaults to built-in hue.gl config)</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <h3>ColorSchemeConfig</h3>
+
+        <div class="code-block">interface ColorSchemeConfig {
+            hues: HueConfig[];
+            shades: ShadeConfig[];
+            chroma: number;
+            }
+
+            interface HueConfig {
+            name: string;
+            angle: number;
+            }
+
+            interface ShadeConfig {
+            value: number;
+            lightness: number;
+            }</div>
+
+        <h3>Methods</h3>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>generate(): void</code>
+            </div>
+            <p>Generates all color swatches based on configuration.</p>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getColor(hueName: string, shade: number): ColorSwatch | undefined</code>
+            </div>
+            <p>Gets a specific color by hue name and shade.</p>
+            <div class="code-block">const scheme = new ColorScheme();
+                scheme.generate();
+                const red500 = scheme.getColor('red', 500);</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getHue(hueName: string): ColorSwatch[]</code>
+            </div>
+            <p>Gets all shades for a specific hue.</p>
+            <div class="code-block">const allReds = scheme.getHue('red');
+                // [Red 50, Red 100, Red 200, ...]</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getShade(shade: number): ColorSwatch[]</code>
+            </div>
+            <p>Gets all colors at a specific shade level.</p>
+            <div class="code-block">const all500s = scheme.getShade(500);
+                // [Red 500, Orange 500, Yellow 500, ...]</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>getAllColors(): ColorSwatch[]</code>
+            </div>
+            <p>Gets all generated colors as a flat array.</p>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>toJSON(): object</code>
+            </div>
+            <p>Exports the palette as a JSON-serializable object.</p>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>toCSSVariables(): string</code>
+            </div>
+            <p>Generates CSS custom properties for all colors.</p>
+            <div class="code-block">scheme.toCSSVariables();
+                // ":root { --hue-red-50: #fff5f5; --hue-red-100: #ffe3e3; ... }"</div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Utility Functions</h2>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>rgb2cmyk(r: number, g: number, b: number): CMYK</code>
+            </div>
+            <p>Converts RGB values (0-255) to CMYK (0-100).</p>
+            <div class="code-block">import { rgb2cmyk } from 'hue.gl';
+                rgb2cmyk(224, 49, 49); // { c: 0, m: 78, y: 78, k: 12 }</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>colorToHex(r: number, g: number, b: number): string</code>
+            </div>
+            <p>Converts RGB values to a hex string.</p>
+            <div class="code-block">import { colorToHex } from 'hue.gl';
+                colorToHex(224, 49, 49); // "#e03131"</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>convertRGBtoHex(rgb: [number, number, number]): string</code>
+            </div>
+            <p>Converts an RGB tuple to a hex string.</p>
+            <div class="code-block">import { convertRGBtoHex } from 'hue.gl';
+                convertRGBtoHex([224, 49, 49]); // "#e03131"</div>
+        </div>
+
+        <div class="api-method">
+            <div class="api-method__header">
+                <code>pad(value: string | number, length?: number): string</code>
+            </div>
+            <p>Pads a value with leading zeros.</p>
+            <div class="code-block">import { pad } from 'hue.gl';
+                pad(15, 2); // "15"
+                pad(5, 2); // "05"
+                pad("f", 2); // "0f"</div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Constants</h2>
+
+        <h3>HUE_NAMES</h3>
+        <p>Array of all hue names in order:</p>
+        <div class="code-block">import { HUE_NAMES } from 'hue.gl';
+            // ['red', 'vermilion', 'orange', 'amber', 'yellow', 'lime', ...]</div>
+
+        <h3>SHADE_VALUES</h3>
+        <p>Array of all shade values:</p>
+        <div class="code-block">import { SHADE_VALUES } from 'hue.gl';
+            // [50, 100, 200, 300, 400, 500, 600, 700, 800]</div>
+
+        <h3>DEFAULT_CONFIG</h3>
+        <p>The default ColorScheme configuration:</p>
+        <div class="code-block">import { DEFAULT_CONFIG } from 'hue.gl';
+            // { hues: [...], shades: [...], chroma: 100 }</div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>TypeScript Types</h2>
+
+        <div class="code-block">// Color value types
+            type HexColor = string;
+            type RGBTuple = [number, number, number];
+
+            interface LCH {
+            l: number;
+            c: number;
+            h: number;
+            }
+
+            interface HSL {
+            h: number;
+            s: number;
+            l: number;
+            }
+
+            interface CMYK {
+            c: number;
+            m: number;
+            y: number;
+            k: number;
+            }
+
+            // Hue name literal type
+            type HueName =
+            | 'red' | 'vermilion' | 'orange' | 'amber' | 'yellow'
+            | 'lime' | 'chartreuse' | 'green' | 'emerald' | 'teal'
+            | 'cyan' | 'sky' | 'azure' | 'blue' | 'indigo'
+            | 'violet' | 'purple' | 'magenta' | 'pink' | 'rose'
+            | 'crimson' | 'gray';
+
+            // Shade value literal type
+            type ShadeValue = 50 | 100 | 200 | 300 | 400 | 500 | 600 | 700 | 800;</div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Examples</h2>
+
+        <h3>Generate a Custom Palette</h3>
+        <div class="code-block">import { ColorScheme } from 'hue.gl';
+
+            const customScheme = new ColorScheme({
+            hues: [
+            { name: 'primary', angle: 220 },
+            { name: 'secondary', angle: 340 },
+            { name: 'accent', angle: 45 },
+            ],
+            shades: [
+            { value: 100, lightness: 95 },
+            { value: 500, lightness: 55 },
+            { value: 900, lightness: 15 },
+            ],
+            chroma: 80,
+            });
+
+            customScheme.generate();
+            console.log(customScheme.getColor('primary', 500).getHex());</div>
+
+        <h3>Generate CSS Variables</h3>
+        <div class="code-block">import { ColorScheme } from 'hue.gl';
+            import fs from 'fs';
+
+            const scheme = new ColorScheme();
+            scheme.generate();
+
+            const css = scheme.toCSSVariables();
+            fs.writeFileSync('colors.css', css);</div>
+
+        <h3>Access Pre-built Colors</h3>
+        <div class="code-block">import { colors } from 'hue.gl';
+
+            // Direct access to hex values
+            const red500 = colors.red[500]; // "#e03131"
+            const blue200 = colors.blue[200]; // "#a5d8ff"
+
+            // Use in React
+            const Button = ({ variant }) => (
+            &lt;button style={{ background: colors[variant][500] }}&gt;
+            Click me
+            &lt;/button&gt;
+            );</div>
+    </div>
+</section>
+{% endblock %}

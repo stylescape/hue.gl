@@ -1,0 +1,312 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}hue.gl — Perceptual Colour System{%- endblock %}
+
+{%- block header_class %}header--hero{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Perceptual Colour System</p>
+<h1>hue.gl</h1>
+<p class="lead">A scientifically-designed color palette built on the LCH color space — ensuring colors are visually
+    consistent, accessible, and beautiful across all applications.</p>
+<div class="hero-actions">
+    <a href="/getting-started.html" class="btn btn--primary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <circle cx="12" cy="12" r="10" />
+            <circle cx="12" cy="12" r="4" />
+        </svg>
+        Get Started
+    </a>
+    <a href="https://github.com/stylescape/hue.gl" class="btn btn--secondary">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
+            <path
+                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z" />
+        </svg>
+        View on GitHub
+    </a>
+</div>
+{%- endblock %}
+
+{%- block content %}
+
+<!-- Color Wheel Preview -->
+<section>
+    <h2>The Colour Wheel</h2>
+    <p>25 hues spanning the full color spectrum at 15° intervals, each with 9 carefully calibrated shades from light to
+        dark.</p>
+
+    <div class="color-wheel-preview">
+        <div class="hue-ring">
+            {% set hues = [
+            {'deg': 0, 'name': 'Grey', 'color': '#8b8b8b'},
+            {'deg': 15, 'name': 'Salmon', 'color': '#c6727d'},
+            {'deg': 30, 'name': 'Orange', 'color': '#c4756e'},
+            {'deg': 45, 'name': 'Amber', 'color': '#be7960'},
+            {'deg': 60, 'name': 'Yellow', 'color': '#b57f55'},
+            {'deg': 75, 'name': 'Lime', 'color': '#a5854d'},
+            {'deg': 90, 'name': 'Ecru', 'color': '#938b48'},
+            {'deg': 105, 'name': 'Olive', 'color': '#7f9147'},
+            {'deg': 120, 'name': 'Green', 'color': '#68964a'},
+            {'deg': 135, 'name': 'Forest', 'color': '#4d9a52'},
+            {'deg': 150, 'name': 'Jade', 'color': '#259d5e'},
+            {'deg': 165, 'name': 'Mint', 'color': '#009f6e'},
+            {'deg': 180, 'name': 'Cyan', 'color': '#00a182'},
+            {'deg': 195, 'name': 'Teal', 'color': '#00a299'},
+            {'deg': 210, 'name': 'Capri', 'color': '#00a2b1'},
+            {'deg': 225, 'name': 'Sky', 'color': '#00a0c9'},
+            {'deg': 240, 'name': 'Blue', 'color': '#009ddf'},
+            {'deg': 255, 'name': 'Azure', 'color': '#5c96eb'},
+            {'deg': 270, 'name': 'Indigo', 'color': '#888dee'},
+            {'deg': 285, 'name': 'Violet', 'color': '#a982e8'},
+            {'deg': 300, 'name': 'Magenta', 'color': '#c377db'},
+            {'deg': 315, 'name': 'Purple', 'color': '#d66dc8'},
+            {'deg': 330, 'name': 'Rose', 'color': '#e165b0'},
+            {'deg': 345, 'name': 'Pink', 'color': '#e56096'},
+            {'deg': 360, 'name': 'Red', 'color': '#e15f7b'}
+            ] %}
+            {% for hue in hues %}
+            <div class="hue-segment" style="--hue-deg: {{ hue.deg }}deg; --hue-color: {{ hue.color }};"
+                title="{{ hue.name }} ({{ hue.deg }}°)">
+                <span class="hue-segment__label">{{ hue.name }}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Key Features -->
+<section>
+    <h2>Features</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="feature-card__icon">◐</div>
+            <h3 class="feature-card__title">LCH Color Space</h3>
+            <p class="feature-card__desc">Built on Lightness, Chroma, Hue — a perceptually uniform color model where
+                equal steps create equal visual changes.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon">◉</div>
+            <h3 class="feature-card__title">25 Hue Groups</h3>
+            <p class="feature-card__desc">Complete color wheel coverage at 15° intervals, from Grey through Red,
+                covering every color family.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon">▤</div>
+            <h3 class="feature-card__title">9 Shade Levels</h3>
+            <p class="feature-card__desc">Each hue has 9 carefully calibrated shades, from light backgrounds to dark
+                accents.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon">♿</div>
+            <h3 class="feature-card__title">Accessibility First</h3>
+            <p class="feature-card__desc">Designed with WCAG contrast ratios in mind. Easy to find accessible color
+                combinations.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon">⇄</div>
+            <h3 class="feature-card__title">Multi-Format Export</h3>
+            <p class="feature-card__desc">Available in 15+ formats: CSS, SCSS, TypeScript, Python, Sketch, Inkscape, and
+                more.</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-card__icon">⚛</div>
+            <h3 class="feature-card__title">Framework Agnostic</h3>
+            <p class="feature-card__desc">Use with any framework or design tool. CSS variables, SCSS maps, JS constants
+                — your choice.</p>
+        </div>
+    </div>
+</section>
+
+<!-- Quick Start -->
+<section>
+    <h2>Quick Start</h2>
+    <div class="code-block"><span class="comment">// Install via npm</span>
+        npm install hue.gl
+
+        <span class="comment">// Import in your SCSS</span>
+        @use "hue.gl" as hue;
+
+        <span class="comment">// Use color variables</span>
+        .button {
+        background-color: <span class="color-value">hue.$N2405</span>; <span class="comment">// Blue shade 5</span>
+        color: <span class="color-value">hue.$N0001</span>; <span class="comment">// Light grey</span>
+        }
+
+        <span class="comment">// Or use CSS custom properties</span>
+        .card {
+        background: <span class="color-value">var(--n-0001)</span>;
+        border-color: <span class="color-value">var(--n-2405)</span>;
+        }
+    </div>
+    <a href="/getting-started.html" class="btn btn--secondary" style="margin-top: 16px;">Full Installation Guide →</a>
+</section>
+
+<!-- Palette Preview -->
+<section>
+    <h2>Palette Preview</h2>
+    <p>225 colors organized into 25 hue groups. Click any swatch to copy its value.</p>
+
+    <div class="palette-preview">
+        {% set palette = [
+        {'name': 'Grey', 'colors': ['#e2e2e2', '#cccccc', '#b6b6b6', '#a0a0a0', '#8b8b8b', '#777777', '#636363',
+        '#505050', '#3e3e3e']},
+        {'name': 'Salmon', 'colors': ['#fadbdd', '#eec0c4', '#e2a6ac', '#d48c94', '#c6727d', '#a7636b', '#89545a',
+        '#6b4549', '#4f3739']},
+        {'name': 'Orange', 'colors': ['#fadbd7', '#edc1bc', '#e0a8a1', '#d28e87', '#c4756e', '#a5655f', '#875650',
+        '#6b4642', '#4f3835']},
+        {'name': 'Amber', 'colors': ['#f8dcd3', '#eac3b5', '#dcaa98', '#cd927c', '#be7960', '#a06954', '#845848',
+        '#68483c', '#4d3931']},
+        {'name': 'Yellow', 'colors': ['#f4decf', '#e5c6af', '#d5ad90', '#c59672', '#b57f55', '#996d4b', '#7e5b41',
+        '#644a38', '#4a3a2e']},
+        {'name': 'Lime', 'colors': ['#efe0cc', '#dec8ac', '#cdb18c', '#bb9b6c', '#a8854d', '#8f7344', '#76613b',
+        '#5e4f33', '#473e2b']},
+        {'name': 'Ecru', 'colors': ['#e9e2ca', '#d6cba8', '#c3b588', '#af9f67', '#9b8948', '#847640', '#6e6338',
+        '#585130', '#434028']},
+        {'name': 'Olive', 'colors': ['#e2e4c9', '#cbcea7', '#b5b986', '#9ea465', '#878f47', '#747b40', '#616839',
+        '#4f5531', '#3d4329']},
+        {'name': 'Green', 'colors': ['#dae5c9', '#c0d0a7', '#a6bb86', '#8ca665', '#729247', '#647e41', '#566b3a',
+        '#485833', '#3b462c']},
+        {'name': 'Forest', 'colors': ['#d1e6cb', '#b3d1a9', '#95bd88', '#77a867', '#5a944a', '#508143', '#466f3c',
+        '#3c5c35', '#324a2e']},
+        {'name': 'Jade', 'colors': ['#c6e7ce', '#a4d3ac', '#82be8b', '#5faa6b', '#3b964e', '#378347', '#337040',
+        '#2f5e39', '#2b4c32']},
+        {'name': 'Mint', 'colors': ['#bae7d3', '#94d4b1', '#6dc08f', '#43ac6f', '#009852', '#0c854a', '#187242',
+        '#215f3a', '#284d33']},
+        {'name': 'Cyan', 'colors': ['#ade7d9', '#83d4b8', '#57c097', '#1dac78', '#00985c', '#008553', '#007249',
+        '#005f40', '#004d36']},
+        {'name': 'Teal', 'colors': ['#a0e6e0', '#71d3c0', '#3fbfa1', '#00ab84', '#00976a', '#008460', '#007156',
+        '#005f4c', '#004d42']},
+        {'name': 'Capri', 'colors': ['#92e5e7', '#5ed2c9', '#1dbeab', '#00aa90', '#009678', '#00836d', '#007062',
+        '#005e57', '#004c4c']},
+        {'name': 'Sky', 'colors': ['#84e3ee', '#4ad0d3', '#00bcb8', '#00a79f', '#00938a', '#00807a', '#006e6a',
+        '#005c5a', '#004b4a']},
+        {'name': 'Blue', 'colors': ['#77e0f5', '#35cddd', '#00b9c6', '#00a4b0', '#008f9d', '#007c8a', '#006a77',
+        '#005864', '#004751']},
+        {'name': 'Azure', 'colors': ['#6cddfc', '#21c9e8', '#00b4d4', '#009fbf', '#008aad', '#00779a', '#006587',
+        '#005474', '#004361']},
+        {'name': 'Indigo', 'colors': ['#65d9ff', '#0dc4f2', '#00afdf', '#0099cb', '#0084b9', '#0071a6', '#006093',
+        '#004f80', '#003f6d']},
+        {'name': 'Violet', 'colors': ['#63d4ff', '#00bffb', '#00a9e9', '#0093d6', '#007dc4', '#006ab1', '#00589e',
+        '#00478b', '#003778']},
+        {'name': 'Magenta', 'colors': ['#68cfff', '#00b9ff', '#00a2f2', '#008cdf', '#0076cd', '#0063ba', '#0051a7',
+        '#004094', '#003081']},
+        {'name': 'Purple', 'colors': ['#74c9ff', '#3fb2ff', '#009afa', '#0083e8', '#006dd6', '#005ac3', '#0048b0',
+        '#00379d', '#00278a']},
+        {'name': 'Rose', 'colors': ['#85c2ff', '#57aaff', '#0091fd', '#0079eb', '#0062d9', '#004fc6', '#003db3',
+        '#002ca0', '#001c8d']},
+        {'name': 'Pink', 'colors': ['#9bbaff', '#72a1ff', '#4587f8', '#006de6', '#0054d4', '#0041c1', '#002fae',
+        '#001e9b', '#000e88']},
+        {'name': 'Red', 'colors': ['#b4b1ff', '#9196f9', '#6b7aee', '#3e5fe2', '#0045d5', '#0033c2', '#0022af',
+        '#00119c', '#000089']}
+        ] %}
+
+        {% for hue in palette %}
+        <div class="palette-row">
+            <span class="palette-row__name">{{ hue.name }}</span>
+            <div class="palette-row__swatches">
+                {% for color in hue.colors %}
+                <div class="swatch" style="background-color: {{ color }};" data-color="{{ color }}" title="{{ color }}">
+                    <span class="swatch__shade">{{ loop.index }}</span>
+                </div>
+                {% endfor %}
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+
+    <a href="/palette.html" class="btn btn--secondary" style="margin-top: 16px;">Explore Full Palette →</a>
+</section>
+
+<!-- Documentation Sections -->
+<section>
+    <h2>Documentation</h2>
+
+    <div class="doc-sections">
+        <div class="doc-section">
+            <h3>Learn</h3>
+            <ul>
+                <li><a href="/getting-started.html">Getting Started</a></li>
+                <li><a href="/color-theory.html">Color Theory</a></li>
+                <li><a href="/accessibility.html">Accessibility</a></li>
+            </ul>
+        </div>
+        <div class="doc-section">
+            <h3>Palette</h3>
+            <ul>
+                <li><a href="/palette.html">Full Palette</a></li>
+                <li><a href="/hue-explorer.html">Hue Explorer</a></li>
+                <li><a href="/contrast-checker.html">Contrast Checker</a></li>
+            </ul>
+        </div>
+        <div class="doc-section">
+            <h3>Integration</h3>
+            <ul>
+                <li><a href="/formats.html">Export Formats</a></li>
+                <li><a href="/usage.html">Usage Examples</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+<!-- Export Formats -->
+<section>
+    <h2>Available Formats</h2>
+    <p>hue.gl exports to 15+ formats for seamless integration with your workflow.</p>
+
+    <div class="format-grid">
+        <div class="format-card">
+            <span class="format-card__icon">{ }</span>
+            <span class="format-card__name">CSS</span>
+        </div>
+        <div class="format-card">
+            <span class="format-card__icon">$</span>
+            <span class="format-card__name">SCSS</span>
+        </div>
+        <div class="format-card">
+            <span class="format-card__icon">@</span>
+            <span class="format-card__name">LESS</span>
+        </div>
+        <div class="format-card">
+            <span class="format-card__icon">TS</span>
+            <span class="format-card__name">TypeScript</span>
+        </div>
+        <div class="format-card">
+            <span class="format-card__icon">JS</span>
+            <span class="format-card__name">JavaScript</span>
+        </div>
+        <div class="format-card">
+            <span class="format-card__icon">🐍</span>
+            <span class="format-card__name">Python</span>
+        </div>
+        <div class="format-card">
+            <span class="format-card__icon">{ }</span>
+            <span class="format-card__name">JSON</span>
+        </div>
+        <div class="format-card">
+            <span class="format-card__icon">◇</span>
+            <span class="format-card__name">Sketch</span>
+        </div>
+        <div class="format-card">
+            <span class="format-card__icon">▧</span>
+            <span class="format-card__name">Inkscape</span>
+        </div>
+    </div>
+</section>
+
+<script>
+    // Copy color on click
+    document.querySelectorAll('.swatch').forEach(swatch => {
+        swatch.addEventListener('click', function () {
+            const color = this.dataset.color;
+            navigator.clipboard.writeText(color).then(() => {
+                const original = this.innerHTML;
+                this.innerHTML = '<span class="swatch__copied">✓</span>';
+                setTimeout(() => {
+                    this.innerHTML = original;
+                }, 1000);
+            });
+        });
+    });
+</script>
+
+{%- endblock %}

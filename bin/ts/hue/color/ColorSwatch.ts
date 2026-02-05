@@ -225,10 +225,11 @@ class ColorSwatch {
     hex() {
 
         let color = this.srgb();
+        const coords = (color.coords ?? [0, 0, 0]) as [number, number, number];
         let hex = convertRGBtoHex(
-            Math.round(color.coords[0]*255),
-            Math.round(color.coords[1]*255),
-            Math.round(color.coords[2]*255),
+            Math.round(coords[0]*255),
+            Math.round(coords[1]*255),
+            Math.round(coords[2]*255),
         );
         // console.log(color.coords[0]);
         return hex;
@@ -260,11 +261,11 @@ class ColorSwatch {
 
     rgb() {
         let color = this.srgb();
-
+        const coords = (color.coords ?? [0, 0, 0]) as [number, number, number];
         let rgb = {
-            "r": Math.round(color.coords[0]*255),
-            "g": Math.round(color.coords[1]*255),
-            "b": Math.round(color.coords[2]*255)
+            "r": Math.round(coords[0]*255),
+            "g": Math.round(coords[1]*255),
+            "b": Math.round(coords[2]*255)
         }
         return rgb;
 

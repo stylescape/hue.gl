@@ -79,7 +79,7 @@ class ColorScheme {
                 h_group[name] = color;
             }
             ;
-            this.colordict[h_group_name] = h_group;
+            this.colorDict[h_group_name] = h_group;
         }
     }
     /**

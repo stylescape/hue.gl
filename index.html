@@ -1,0 +1,2346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hue.gl — Perceptual Colour System</title>
+    <meta name="description" content="A perceptually uniform color system with 216 colors across 24 hues, generated using the LCH color space.">
+    <link rel="stylesheet" href="/dist/css/hue.gl.css">
+    <style>
+        :root {
+            --color-bg: #ffffff;
+            --color-bg-secondary: #f8f9fa;
+            --color-bg-tertiary: #f0f1f2;
+            --color-text: #1a1a1a;
+            --color-text-secondary: #666666;
+            --color-text-muted: #999999;
+            --color-border: #e0e0e0;
+            --color-primary: #008f9d;
+            --sidebar-width: 260px;
+        }
+
+        [data-theme="dark"] {
+            --color-bg: #0d0d0d;
+            --color-bg-secondary: #1a1a1a;
+            --color-bg-tertiary: #252525;
+            --color-text: #f0f0f0;
+            --color-text-secondary: #a0a0a0;
+            --color-text-muted: #666666;
+            --color-border: #333333;
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--color-bg);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .layout { display: flex; min-height: 100vh; }
+
+        /* Sidebar */
+        .sidebar {
+            width: var(--sidebar-width);
+            background: var(--color-bg-secondary);
+            border-right: 1px solid var(--color-border);
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: 0;
+            overflow-y: auto;
+            z-index: 100;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+            border-bottom: 1px solid var(--color-border);
+        }
+
+        .sidebar-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--color-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .sidebar-logo .version {
+            font-size: 0.625rem;
+            padding: 2px 6px;
+            background: var(--color-bg-tertiary);
+            font-weight: 400;
+        }
+
+        .sidebar-nav { padding: 16px 0; }
+
+        .nav-section { padding: 0 16px; margin-bottom: 24px; }
+
+        .nav-section-title {
+            font-size: 0.625rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--color-text-muted);
+            margin-bottom: 8px;
+            padding: 0 8px;
+        }
+
+        .nav-link {
+            display: block;
+            padding: 8px 12px;
+            color: var(--color-text-secondary);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: all 0.15s;
+        }
+
+        .nav-link:hover { background: var(--color-bg-tertiary); color: var(--color-text); }
+        .nav-link.active { background: var(--color-primary); color: white; }
+
+        .sidebar-footer {
+            padding: 16px 20px;
+            border-top: 1px solid var(--color-border);
+            display: flex;
+            gap: 8px;
+        }
+
+        .sidebar-footer .btn { flex: 1; text-align: center; }
+
+        /* Main Content */
+        .main-content { flex: 1; margin-left: var(--sidebar-width); }
+
+        .topbar {
+            padding: 12px 24px;
+            border-bottom: 1px solid var(--color-border);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            background: var(--color-bg);
+            z-index: 50;
+        }
+
+        .breadcrumb { font-size: 0.875rem; color: var(--color-text-secondary); }
+        .breadcrumb a { color: var(--color-text-muted); text-decoration: none; }
+        .breadcrumb a:hover { color: var(--color-primary); }
+
+        .topbar-right { display: flex; align-items: center; gap: 12px; }
+
+        .search-box {
+            padding: 8px 16px;
+            border: 1px solid var(--color-border);
+            background: var(--color-bg-secondary);
+            color: var(--color-text);
+            font-size: 0.875rem;
+            width: 200px;
+        }
+
+        .search-box:focus { outline: none; border-color: var(--color-primary); }
+
+        .btn {
+            padding: 8px 16px;
+            border: 1px solid var(--color-border);
+            background: transparent;
+            color: var(--color-text);
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: all 0.15s;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .btn:hover { background: var(--color-bg-secondary); }
+        .btn--primary { background: var(--color-primary); border-color: var(--color-primary); color: white; }
+        .btn--primary:hover { opacity: 0.9; background: var(--color-primary); }
+        .btn--sm { padding: 6px 12px; font-size: 0.75rem; }
+
+        /* Pages */
+        .page-section { display: none; padding: 32px; max-width: 1200px; }
+        .page-section.active { display: block; }
+
+        .section-header { margin-bottom: 32px; }
+        .section-header h1 { font-size: 2rem; margin-bottom: 8px; }
+        .section-header p { font-size: 1.125rem; color: var(--color-text-secondary); }
+
+        /* Hero */
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 48px;
+            align-items: center;
+            margin-bottom: 48px;
+        }
+
+        .hero-content h1 { font-size: 2.5rem; margin-bottom: 16px; line-height: 1.2; }
+        .hero-content p { font-size: 1.125rem; color: var(--color-text-secondary); margin-bottom: 24px; }
+        .hero-buttons { display: flex; gap: 12px; }
+
+        .hero-stats { display: flex; gap: 32px; margin-top: 32px; }
+        .hero-stat { text-align: center; }
+        .hero-stat-value { font-size: 2rem; font-weight: 700; color: var(--color-primary); }
+        .hero-stat-label { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+
+        /* Color Wheel */
+        .wheel-container { position: relative; display: flex; justify-content: center; align-items: center; }
+        #colorWheel, #colorWheelLarge { cursor: pointer; }
+
+        .wheel-center {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: var(--color-bg);
+            border: 2px solid var(--color-border);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            pointer-events: none;
+        }
+
+        .wheel-center-color {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            margin-bottom: 4px;
+            border: 2px solid var(--color-border);
+        }
+
+        .wheel-center-text {
+            font-size: 0.5rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            text-align: center;
+            color: var(--color-text-muted);
+        }
+
+        /* Inspector Panel */
+        .inspector-panel {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            padding: 24px;
+            margin-top: 24px;
+        }
+
+        .inspector-header { display: flex; align-items: center; gap: 16px; margin-bottom: 20px; }
+        .inspector-swatch { width: 64px; height: 64px; border: 1px solid var(--color-border); }
+        .inspector-title h3 { font-size: 1.25rem; margin-bottom: 4px; }
+        .inspector-title p { font-size: 0.875rem; color: var(--color-text-secondary); }
+
+        .inspector-values { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+
+        .inspector-value {
+            background: var(--color-bg);
+            padding: 8px 12px;
+            border: 1px solid var(--color-border);
+        }
+
+        .inspector-value label {
+            display: block;
+            font-size: 0.625rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-muted);
+            margin-bottom: 4px;
+        }
+
+        .inspector-value code {
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.8125rem;
+            cursor: pointer;
+        }
+
+        .inspector-value code:hover { color: var(--color-primary); }
+        .inspector-value.full-width { grid-column: 1 / -1; }
+
+        /* Feature Cards */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 24px;
+            margin-top: 32px;
+        }
+
+        .feature-card {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            padding: 24px;
+        }
+
+        .feature-card-icon {
+            width: 48px;
+            height: 48px;
+            background: var(--color-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 16px;
+            font-size: 1.5rem;
+        }
+
+        .feature-card h3 { font-size: 1.125rem; margin-bottom: 8px; }
+        .feature-card p { font-size: 0.875rem; color: var(--color-text-secondary); }
+
+        /* Controls */
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--color-border);
+            margin-bottom: 24px;
+        }
+
+        .control-group { display: flex; align-items: center; gap: 8px; }
+        .control-group label { font-size: 0.875rem; color: var(--color-text-secondary); }
+        .control-group input[type="range"] { width: 100px; }
+
+        .toggle-group { display: flex; border: 1px solid var(--color-border); overflow: hidden; }
+
+        .toggle-btn {
+            padding: 6px 12px;
+            border: none;
+            background: transparent;
+            color: var(--color-text);
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.15s;
+        }
+
+        .toggle-btn.active { background: var(--color-primary); color: white; }
+        .toggle-btn:not(:last-child) { border-right: 1px solid var(--color-border); }
+
+        /* Palette */
+        .palette-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .palette-header h2 { font-size: 1.25rem; }
+
+        .shade-labels { display: flex; gap: 1px; margin-left: 100px; margin-bottom: 4px; }
+
+        .shade-label {
+            flex: 1;
+            aspect-ratio: 3 / 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.5rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            color: var(--color-text-muted);
+            background: var(--color-bg-secondary);
+        }
+
+        .hue-row { display: flex; align-items: stretch; margin-bottom: 1px; }
+
+        .hue-info {
+            width: 100px;
+            padding-right: 12px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hue-name { font-size: 0.75rem; font-weight: 600; }
+        .hue-deg { font-size: 0.625rem; font-family: 'SF Mono', Monaco, monospace; color: var(--color-text-muted); }
+
+        .shades { display: flex; flex: 1; gap: 1px; }
+
+        .swatch {
+            flex: 1;
+            aspect-ratio: 3 / 2;
+            cursor: pointer;
+            transition: transform 0.15s ease, box-shadow 0.15s ease;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .swatch:hover { transform: scale(1.15); z-index: 10; box-shadow: 0 4px 20px rgba(0,0,0,0.3); }
+
+        .swatch-label {
+            font-size: 0.5rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            opacity: 0;
+            transition: opacity 0.15s;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.5);
+            text-align: center;
+            line-height: 1.2;
+        }
+
+        .swatch:hover .swatch-label { opacity: 1; }
+        .swatch[data-light="true"] .swatch-label { color: rgba(0,0,0,0.7); text-shadow: none; }
+        .swatch[data-light="false"] .swatch-label { color: rgba(255,255,255,0.95); }
+        .swatch.selected { outline: 3px solid var(--color-text); outline-offset: 2px; }
+
+        .out-of-gamut {
+            background: repeating-linear-gradient(45deg, var(--color-bg-tertiary), var(--color-bg-tertiary) 4px, var(--color-bg-secondary) 4px, var(--color-bg-secondary) 8px) !important;
+            cursor: not-allowed;
+        }
+
+        /* Documentation */
+        .doc-content { max-width: 800px; }
+        .doc-content h2 { font-size: 1.5rem; margin: 32px 0 16px; padding-top: 16px; border-top: 1px solid var(--color-border); }
+        .doc-content h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
+        .doc-content h3 { font-size: 1.25rem; margin: 24px 0 12px; }
+        .doc-content p { margin-bottom: 16px; color: var(--color-text-secondary); }
+        .doc-content ul, .doc-content ol { margin-bottom: 16px; padding-left: 24px; }
+        .doc-content li { margin-bottom: 8px; color: var(--color-text-secondary); }
+        .doc-content code { background: var(--color-bg-tertiary); padding: 2px 6px; font-family: 'SF Mono', Monaco, monospace; font-size: 0.875em; }
+
+        .doc-content pre {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            padding: 16px;
+            overflow-x: auto;
+            margin-bottom: 16px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+
+        .doc-content pre code { background: none; padding: 0; }
+
+        .install-box {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            padding: 20px;
+            margin: 24px 0;
+        }
+
+        .install-box h4 {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: var(--color-text-muted);
+            margin-bottom: 12px;
+        }
+
+        .install-command { display: flex; align-items: center; gap: 12px; }
+        .install-command code { flex: 1; background: var(--color-bg); padding: 12px 16px; font-family: 'SF Mono', Monaco, monospace; font-size: 0.875rem; }
+
+        .doc-table { width: 100%; border-collapse: collapse; margin: 24px 0; }
+        .doc-table th, .doc-table td { padding: 12px 16px; text-align: left; border-bottom: 1px solid var(--color-border); }
+        .doc-table th { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); background: var(--color-bg-secondary); }
+        .doc-table td { font-size: 0.875rem; }
+        .doc-table code { font-size: 0.8125rem; }
+
+        .color-theory-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 24px; margin: 24px 0; }
+        .color-theory-card { background: var(--color-bg-secondary); border: 1px solid var(--color-border); padding: 20px; }
+        .color-theory-card h4 { margin-bottom: 12px; }
+        .lch-diagram { display: flex; gap: 16px; margin-top: 12px; }
+        .lch-channel { flex: 1; text-align: center; }
+        .lch-bar { height: 24px; margin-bottom: 8px; }
+        .lch-label { font-size: 0.75rem; color: var(--color-text-muted); }
+
+        /* Modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-overlay.show { display: flex; }
+
+        .modal {
+            background: var(--color-bg);
+            border: 1px solid var(--color-border);
+            padding: 24px;
+            max-width: 700px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .modal-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 16px; }
+        .modal-header h3 { font-size: 1.25rem; }
+        .modal-close { background: none; border: none; font-size: 1.5rem; cursor: pointer; color: var(--color-text-muted); }
+
+        .export-code {
+            background: var(--color-bg-secondary);
+            border: 1px solid var(--color-border);
+            padding: 16px;
+            font-family: 'SF Mono', Monaco, monospace;
+            font-size: 0.8125rem;
+            white-space: pre-wrap;
+            word-break: break-all;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+
+        .export-tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+
+        .copied-toast {
+            position: fixed;
+            bottom: 24px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--color-text);
+            color: var(--color-bg);
+            padding: 12px 24px;
+            font-size: 0.875rem;
+            font-family: 'SF Mono', Monaco, monospace;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .copied-toast.show { opacity: 1; }
+
+        .a11y-examples { display: grid; gap: 16px; margin: 24px 0; }
+        .a11y-example { display: flex; align-items: center; gap: 16px; padding: 16px; border: 1px solid var(--color-border); }
+        .a11y-swatch { width: 80px; height: 48px; display: flex; align-items: center; justify-content: center; font-size: 0.875rem; font-weight: 600; }
+        .a11y-info { flex: 1; }
+        .a11y-ratio { font-family: 'SF Mono', Monaco, monospace; font-size: 0.875rem; }
+        .a11y-pass { color: #22c55e; }
+        .a11y-fail { color: #ef4444; }
+
+        /* Color Harmonies */
+        .harmony-section { margin: 32px 0; }
+        .harmony-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 16px; }
+        .harmony-card { background: var(--color-bg-secondary); border: 1px solid var(--color-border); padding: 16px; cursor: pointer; transition: all 0.2s; }
+        .harmony-card:hover { border-color: var(--color-primary); transform: translateY(-2px); }
+        .harmony-card.active { border-color: var(--color-primary); box-shadow: 0 0 0 2px rgba(0, 143, 157, 0.2); }
+        .harmony-card h4 { font-size: 0.875rem; margin-bottom: 8px; }
+        .harmony-swatches { display: flex; gap: 4px; }
+        .harmony-swatch { flex: 1; height: 32px; }
+
+        /* Contrast Checker */
+        .contrast-checker { background: var(--color-bg-secondary); border: 1px solid var(--color-border); padding: 24px; margin: 24px 0; }
+        .contrast-preview { display: flex; gap: 24px; margin-bottom: 20px; }
+        .contrast-sample { flex: 1; padding: 24px; text-align: center; }
+        .contrast-sample h3 { font-size: 1.5rem; margin-bottom: 8px; }
+        .contrast-sample p { font-size: 0.875rem; }
+        .contrast-results { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; }
+        .contrast-result { text-align: center; padding: 12px; background: var(--color-bg); border: 1px solid var(--color-border); }
+        .contrast-result .ratio { font-size: 1.25rem; font-weight: 700; font-family: 'SF Mono', Monaco, monospace; }
+        .contrast-result .label { font-size: 0.625rem; text-transform: uppercase; letter-spacing: 0.05em; color: var(--color-text-muted); margin-top: 4px; }
+        .contrast-result .status { font-size: 0.75rem; margin-top: 4px; }
+        .contrast-pass { color: #22c55e; }
+        .contrast-fail { color: #ef4444; }
+
+        /* Gradient Generator */
+        .gradient-generator { margin: 24px 0; }
+        .gradient-preview { height: 120px; margin-bottom: 16px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 600; }
+        .gradient-controls { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+        .gradient-stops { display: flex; gap: 8px; flex: 1; }
+        .gradient-stop { width: 48px; height: 48px; cursor: pointer; border: 2px solid var(--color-border); transition: all 0.15s; }
+        .gradient-stop:hover, .gradient-stop.active { border-color: var(--color-text); transform: scale(1.1); }
+        .gradient-code { background: var(--color-bg-secondary); border: 1px solid var(--color-border); padding: 12px 16px; font-family: 'SF Mono', Monaco, monospace; font-size: 0.8125rem; margin-top: 16px; cursor: pointer; }
+        .gradient-code:hover { background: var(--color-bg-tertiary); }
+
+        /* Color Blindness Simulation */
+        .cb-simulation { margin: 24px 0; }
+        .cb-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 16px; }
+        .cb-card { text-align: center; }
+        .cb-preview { height: 60px; margin-bottom: 8px; display: flex; }
+        .cb-preview > div { flex: 1; }
+        .cb-label { font-size: 0.75rem; color: var(--color-text-secondary); }
+        .cb-percent { font-size: 0.625rem; color: var(--color-text-muted); }
+
+        /* Favorites / Saved Colors */
+        .favorites-bar { background: var(--color-bg-secondary); border: 1px solid var(--color-border); padding: 12px 16px; margin-bottom: 24px; display: flex; align-items: center; gap: 12px; }
+        .favorites-label { font-size: 0.75rem; color: var(--color-text-muted); text-transform: uppercase; letter-spacing: 0.05em; }
+        .favorites-list { display: flex; gap: 6px; flex: 1; flex-wrap: wrap; }
+        .favorite-color { width: 28px; height: 28px; cursor: pointer; border: 2px solid transparent; transition: all 0.15s; position: relative; }
+        .favorite-color:hover { transform: scale(1.2); z-index: 10; }
+        .favorite-color::after { content: '×'; position: absolute; top: -6px; right: -6px; width: 14px; height: 14px; background: var(--color-text); color: var(--color-bg); font-size: 0.625rem; display: none; align-items: center; justify-content: center; border-radius: 50%; }
+        .favorite-color:hover::after { display: flex; }
+        .add-favorite { width: 28px; height: 28px; border: 2px dashed var(--color-border); background: transparent; cursor: pointer; font-size: 1rem; color: var(--color-text-muted); display: flex; align-items: center; justify-content: center; }
+        .add-favorite:hover { border-color: var(--color-primary); color: var(--color-primary); }
+
+        /* Quick Actions */
+        .quick-actions { display: flex; gap: 8px; margin-top: 16px; }
+
+        /* Keyboard Shortcuts */
+        .kbd { display: inline-block; padding: 2px 6px; font-family: 'SF Mono', Monaco, monospace; font-size: 0.75rem; background: var(--color-bg-tertiary); border: 1px solid var(--color-border); border-radius: 3px; }
+
+        /* Animation for selections */
+        @keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(0, 143, 157, 0.4); } 50% { box-shadow: 0 0 0 8px rgba(0, 143, 157, 0); } }
+        .swatch.pulse { animation: pulse 0.5s ease-out; }
+
+        .mobile-toggle {
+            display: none;
+            position: fixed;
+            bottom: 24px;
+            right: 24px;
+            width: 56px;
+            height: 56px;
+            background: var(--color-primary);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            cursor: pointer;
+            z-index: 200;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+        }
+
+        @media (max-width: 1024px) {
+            .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+            .sidebar.open { transform: translateX(0); }
+            .main-content { margin-left: 0; }
+            .mobile-toggle { display: flex; align-items: center; justify-content: center; }
+            .hero-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (max-width: 768px) {
+            .hue-info { width: 60px; }
+            .shade-labels { margin-left: 60px; }
+            .hero-stats { flex-wrap: wrap; gap: 16px; }
+            .page-section { padding: 24px 16px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="layout">
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <a href="#" class="sidebar-logo" onclick="navigateTo('home')">
+                    hue.gl
+                    <span class="version">v0.1.1</span>
+                </a>
+            </div>
+
+            <nav class="sidebar-nav">
+                <div class="nav-section">
+                    <div class="nav-section-title">Getting Started</div>
+                    <a href="#" class="nav-link active" data-page="home" onclick="navigateTo('home')">Overview</a>
+                    <a href="#" class="nav-link" data-page="installation" onclick="navigateTo('installation')">Installation</a>
+                    <a href="#" class="nav-link" data-page="quick-start" onclick="navigateTo('quick-start')">Quick Start</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Colors</div>
+                    <a href="#" class="nav-link" data-page="palette" onclick="navigateTo('palette')">Color Palette</a>
+                    <a href="#" class="nav-link" data-page="hue-picker" onclick="navigateTo('hue-picker')">Hue Picker</a>
+                    <a href="#" class="nav-link" data-page="color-wheel" onclick="navigateTo('color-wheel')">Color Wheel</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Theory</div>
+                    <a href="#" class="nav-link" data-page="color-theory" onclick="navigateTo('color-theory')">Color Theory</a>
+                    <a href="#" class="nav-link" data-page="lch" onclick="navigateTo('lch')">LCH Color Space</a>
+                    <a href="#" class="nav-link" data-page="accessibility" onclick="navigateTo('accessibility')">Accessibility</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">API</div>
+                    <a href="#" class="nav-link" data-page="api" onclick="navigateTo('api')">JavaScript API</a>
+                    <a href="#" class="nav-link" data-page="css" onclick="navigateTo('css')">CSS Variables</a>
+                    <a href="#" class="nav-link" data-page="scss" onclick="navigateTo('scss')">SCSS Functions</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Tools</div>
+                    <a href="#" class="nav-link" data-page="harmonies" onclick="navigateTo('harmonies')">Color Harmonies</a>
+                    <a href="#" class="nav-link" data-page="contrast" onclick="navigateTo('contrast')">Contrast Checker</a>
+                    <a href="#" class="nav-link" data-page="gradients" onclick="navigateTo('gradients')">Gradient Generator</a>
+                    <a href="#" class="nav-link" data-page="blindness" onclick="navigateTo('blindness')">Color Blindness</a>
+                </div>
+
+                <div class="nav-section">
+                    <div class="nav-section-title">Export</div>
+                    <a href="#" class="nav-link" data-page="formats" onclick="navigateTo('formats')">Export Formats</a>
+                </div>
+            </nav>
+
+            <div class="sidebar-footer">
+                <a href="https://github.com/stylescape/hue.gl" class="btn btn--sm" target="_blank">GitHub</a>
+                <button class="btn btn--sm" onclick="toggleTheme()">🌓</button>
+            </div>
+        </aside>
+
+        <main class="main-content">
+            <div class="topbar">
+                <div class="topbar-left">
+                    <span class="breadcrumb" id="breadcrumb">
+                        <a href="#" onclick="navigateTo('home')">hue.gl</a> / <span>Overview</span>
+                    </span>
+                </div>
+                <div class="topbar-right">
+                    <input type="text" class="search-box" placeholder="Search colors..." id="searchBox">
+                    <button class="btn btn--primary" onclick="openExportModal()">Export</button>
+                </div>
+            </div>
+
+            <!-- Home Page -->
+            <section class="page-section active" id="page-home">
+                <div class="hero-grid">
+                    <div class="hero-content">
+                        <h1>Perceptual Colour System</h1>
+                        <p>216 colors across 24 hues, generated using the LCH color space for perceptually uniform shades. Based on the NIJI color system.</p>
+                        <div class="hero-buttons">
+                            <button class="btn btn--primary" onclick="navigateTo('installation')">Get Started</button>
+                            <button class="btn" onclick="navigateTo('palette')">Browse Palette</button>
+                        </div>
+                        <div class="hero-stats">
+                            <div class="hero-stat">
+                                <div class="hero-stat-value">24</div>
+                                <div class="hero-stat-label">Hues</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-value">9</div>
+                                <div class="hero-stat-label">Shades</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-value">216</div>
+                                <div class="hero-stat-label">Colors</div>
+                            </div>
+                            <div class="hero-stat">
+                                <div class="hero-stat-value">15°</div>
+                                <div class="hero-stat-label">Hue Step</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="wheel-container">
+                        <svg id="colorWheel" width="360" height="360"></svg>
+                        <div class="wheel-center">
+                            <div class="wheel-center-color" id="wheelCenterColor"></div>
+                            <div class="wheel-center-text" id="wheelCenterText">Hover</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inspector-panel" id="inspectorPanel">
+                    <div class="inspector-header">
+                        <div class="inspector-swatch" id="inspectorSwatch"></div>
+                        <div class="inspector-title">
+                            <h3 id="inspectorName">N0605</h3>
+                            <p id="inspectorHueName">Yellow · Shade 5</p>
+                        </div>
+                    </div>
+                    <div class="inspector-values">
+                        <div class="inspector-value">
+                            <label>HEX</label>
+                            <code id="inspectorHex" onclick="copyValue(this)">#ffd43b</code>
+                        </div>
+                        <div class="inspector-value">
+                            <label>RGB</label>
+                            <code id="inspectorRGB" onclick="copyValue(this)">rgb(255, 212, 59)</code>
+                        </div>
+                        <div class="inspector-value">
+                            <label>LCH</label>
+                            <code id="inspectorLCH" onclick="copyValue(this)">lch(87 84 85)</code>
+                        </div>
+                        <div class="inspector-value">
+                            <label>HSL</label>
+                            <code id="inspectorHSL" onclick="copyValue(this)">hsl(47 100% 62%)</code>
+                        </div>
+                        <div class="inspector-value full-width">
+                            <label>CSS Variable</label>
+                            <code id="inspectorCSS" onclick="copyValue(this)">var(--N0605)</code>
+                        </div>
+                    </div>
+                    <div class="quick-actions">
+                        <button class="btn btn--sm" onclick="addToFavorites()">★ Save Color</button>
+                        <button class="btn btn--sm" onclick="copyAllFormats()">Copy All</button>
+                        <button class="btn btn--sm" onclick="showHarmonyFor()">Show Harmonies</button>
+                    </div>
+                </div>
+
+                <div class="favorites-bar" id="favoritesBar" style="display: none;">
+                    <span class="favorites-label">Saved Colors</span>
+                    <div class="favorites-list" id="favoritesList"></div>
+                    <button class="btn btn--sm" onclick="clearFavorites()">Clear</button>
+                    <button class="btn btn--sm" onclick="exportFavorites()">Export</button>
+                </div>
+
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <div class="feature-card-icon">🎨</div>
+                        <h3>Perceptually Uniform</h3>
+                        <p>Colors are generated using LCH color space, ensuring consistent visual spacing between shades.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">📐</div>
+                        <h3>Systematic Naming</h3>
+                        <p>Every color follows the NIJI naming convention: prefix + hue degree + shade number (e.g., N0605).</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">🔧</div>
+                        <h3>Multiple Formats</h3>
+                        <p>Export to CSS, SCSS, JSON, JavaScript, and more. Use in any project or design tool.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">♿</div>
+                        <h3>Accessibility Ready</h3>
+                        <p>Designed with contrast ratios in mind. Easily find WCAG-compliant color combinations.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-card-icon">🌈</div>
+                        <h3>Universal Compatibility</h3>
+                        <p>NIJI colors work across all color systems: RGB, HEX, CMYK, LCH, HSL, LAB, and more.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Installation Page -->
+            <section class="page-section" id="page-installation">
+                <div class="section-header">
+                    <h1>Installation</h1>
+                    <p>Get started with hue.gl in your project</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>Package Managers</h2>
+
+                    <div class="install-box">
+                        <h4>npm</h4>
+                        <div class="install-command">
+                            <code>npm install hue.gl</code>
+                            <button class="btn btn--sm" onclick="copyInstall('npm install hue.gl')">Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="install-box">
+                        <h4>Yarn</h4>
+                        <div class="install-command">
+                            <code>yarn add hue.gl</code>
+                            <button class="btn btn--sm" onclick="copyInstall('yarn add hue.gl')">Copy</button>
+                        </div>
+                    </div>
+
+                    <div class="install-box">
+                        <h4>pnpm</h4>
+                        <div class="install-command">
+                            <code>pnpm add hue.gl</code>
+                            <button class="btn btn--sm" onclick="copyInstall('pnpm add hue.gl')">Copy</button>
+                        </div>
+                    </div>
+
+                    <h2>CDN</h2>
+                    <p>Include hue.gl directly in your HTML:</p>
+
+                    <pre><code>&lt;!-- CSS Variables --&gt;
+&lt;link rel="stylesheet" href="https://unpkg.com/hue.gl/dist/css/hue.gl.css"&gt;
+
+&lt;!-- JavaScript Module --&gt;
+&lt;script type="module"&gt;
+  import { colors } from 'https://unpkg.com/hue.gl/dist/js/hue.gl.js';
+&lt;/script&gt;</code></pre>
+
+                    <h2>Requirements</h2>
+                    <ul>
+                        <li>Node.js 16+ (for package installation)</li>
+                        <li>Modern browser with CSS custom properties support</li>
+                        <li>Optional: SCSS compiler for SCSS features</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Quick Start Page -->
+            <section class="page-section" id="page-quick-start">
+                <div class="section-header">
+                    <h1>Quick Start</h1>
+                    <p>Start using hue.gl colors in minutes</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>Using CSS Variables</h2>
+                    <p>The simplest way to use hue.gl is with CSS variables:</p>
+
+                    <pre><code>/* Import the stylesheet */
+@import 'hue.gl/dist/css/hue.gl.css';
+
+/* Use any color */
+.button {
+  background: var(--N2405);  /* Blue, shade 5 */
+  color: var(--N0601);       /* Yellow, shade 1 (light) */
+}
+
+.card {
+  border: 1px solid var(--N1803);  /* Cyan, shade 3 */
+}</code></pre>
+
+                    <h2>Using SCSS</h2>
+                    <p>Import SCSS variables and maps for more control:</p>
+
+                    <pre><code>@use 'hue.gl/dist/scss/hue.gl' as hue;
+
+.element {
+  // Use color variables
+  background: hue.$n240-5;
+
+  // Use the color map
+  color: map-get(hue.$colors, 'N0601');
+}</code></pre>
+
+                    <h2>Using JavaScript</h2>
+                    <p>Import colors programmatically:</p>
+
+                    <pre><code>import { ColorScheme, getColor } from 'hue.gl';
+
+// Get a specific color
+const blue = getColor('N2405');
+console.log(blue.hex);  // #3b82f6
+console.log(blue.rgb);  // [59, 130, 246]
+console.log(blue.lch);  // [55, 70, 240]
+
+// Create a color scheme instance
+const scheme = new ColorScheme();
+const palette = scheme.getHue('blue');</code></pre>
+
+                    <h2>Color Naming Convention</h2>
+                    <p>Every color follows this pattern:</p>
+
+                    <table class="doc-table">
+                        <thead>
+                            <tr>
+                                <th>Part</th>
+                                <th>Description</th>
+                                <th>Example</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><code>N</code></td>
+                                <td>Prefix (NIJI system)</td>
+                                <td>N</td>
+                            </tr>
+                            <tr>
+                                <td><code>240</code></td>
+                                <td>Hue degree (015-360)</td>
+                                <td>240 (blue)</td>
+                            </tr>
+                            <tr>
+                                <td><code>5</code></td>
+                                <td>Shade number (1-9)</td>
+                                <td>5 (middle shade)</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- Palette Page -->
+            <section class="page-section" id="page-palette">
+                <div class="section-header">
+                    <h1>Color Palette</h1>
+                    <p>All 216 colors organized by hue and shade</p>
+                </div>
+
+                <div class="controls-bar">
+                    <div class="control-group">
+                        <label>Format:</label>
+                        <div class="toggle-group">
+                            <button class="toggle-btn active" data-format="hex">HEX</button>
+                            <button class="toggle-btn" data-format="rgb">RGB</button>
+                            <button class="toggle-btn" data-format="lch">LCH</button>
+                            <button class="toggle-btn" data-format="hsl">HSL</button>
+                        </div>
+                    </div>
+                    <div class="control-group">
+                        <label>Chroma:</label>
+                        <input type="range" id="chromaSlider" min="0" max="100" value="100">
+                        <span id="chromaValue">100%</span>
+                    </div>
+                </div>
+
+                <div class="palette-header">
+                    <h2>All Hues</h2>
+                    <span id="colorCount">216 colors</span>
+                </div>
+                <div class="shade-labels" id="shadeLabels"></div>
+                <div id="palette"></div>
+            </section>
+
+            <!-- Hue Picker Page -->
+            <section class="page-section" id="page-hue-picker">
+                <div class="section-header">
+                    <h1>Hue Picker</h1>
+                    <p>Explore individual hues and their shades</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>Select a Hue</h2>
+                    <div id="huePicker" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); gap: 12px; margin: 24px 0;"></div>
+                    <div id="hueShades" style="margin-top: 32px;"></div>
+                </div>
+            </section>
+
+            <!-- Color Wheel Page -->
+            <section class="page-section" id="page-color-wheel">
+                <div class="section-header">
+                    <h1>Color Wheel</h1>
+                    <p>Interactive visualization of the complete color system</p>
+                </div>
+
+                <div style="display: flex; justify-content: center; margin: 32px 0;">
+                    <div class="wheel-container">
+                        <svg id="colorWheelLarge" width="500" height="500"></svg>
+                        <div class="wheel-center" style="width: 120px; height: 120px;">
+                            <div class="wheel-center-color" id="wheelCenterColorLarge" style="width: 60px; height: 60px;"></div>
+                            <div class="wheel-center-text" id="wheelCenterTextLarge">Hover</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="inspector-panel">
+                    <div class="inspector-header">
+                        <div class="inspector-swatch" id="inspectorSwatchLarge"></div>
+                        <div class="inspector-title">
+                            <h3 id="inspectorNameLarge">Select a color</h3>
+                            <p id="inspectorHueNameLarge">Click on the wheel to inspect</p>
+                        </div>
+                    </div>
+                    <div class="inspector-values">
+                        <div class="inspector-value">
+                            <label>HEX</label>
+                            <code id="inspectorHexLarge" onclick="copyValue(this)">—</code>
+                        </div>
+                        <div class="inspector-value">
+                            <label>RGB</label>
+                            <code id="inspectorRGBLarge" onclick="copyValue(this)">—</code>
+                        </div>
+                        <div class="inspector-value">
+                            <label>LCH</label>
+                            <code id="inspectorLCHLarge" onclick="copyValue(this)">—</code>
+                        </div>
+                        <div class="inspector-value">
+                            <label>HSL</label>
+                            <code id="inspectorHSLLarge" onclick="copyValue(this)">—</code>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Color Theory Page -->
+            <section class="page-section" id="page-color-theory">
+                <div class="section-header">
+                    <h1>Color Theory</h1>
+                    <p>Understanding perceptual color and the NIJI system</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>Perceptual Uniformity</h2>
+                    <p>Traditional color spaces like RGB and HSL don't account for how humans perceive color. A 10-unit change in one part of the spectrum may look dramatically different than the same change elsewhere.</p>
+                    <p>hue.gl uses the LCH (Lightness, Chroma, Hue) color space, which is designed to be perceptually uniform. This means:</p>
+                    <ul>
+                        <li>Equal changes in values produce equal perceived changes</li>
+                        <li>Shades across different hues have consistent visual weight</li>
+                        <li>Color relationships are more predictable and harmonious</li>
+                    </ul>
+
+                    <h2>The NIJI System</h2>
+                    <p>NIJI (虹, Japanese for "rainbow") is a systematic approach to color organization:</p>
+
+                    <div class="color-theory-grid">
+                        <div class="color-theory-card">
+                            <h4>Universal Compatibility</h4>
+                            <p>NIJI colors are designed to work seamlessly across all color systems and spaces, ensuring consistent results in any medium.</p>
+                        </div>
+                        <div class="color-theory-card">
+                            <h4>24 Hues</h4>
+                            <p>The color wheel is divided into 24 hues at 15° intervals, providing comprehensive coverage while maintaining distinct, nameable colors.</p>
+                        </div>
+                        <div class="color-theory-card">
+                            <h4>9 Shades</h4>
+                            <p>Each hue has 9 shades ranging from very light (96L) to very dark (12L), with carefully calculated chroma values.</p>
+                        </div>
+                        <div class="color-theory-card">
+                            <h4>Systematic Naming</h4>
+                            <p>Colors are named with prefix + shade + hue degree, making them programmatically accessible and human-readable.</p>
+                        </div>
+                        <div class="color-theory-card">
+                            <h4>Gamut Awareness</h4>
+                            <p>Colors outside the sRGB gamut are clearly marked, helping designers stay within displayable colors.</p>
+                        </div>
+                    </div>
+
+                    <h2>Universal Color System Support</h2>
+                    <p>One of the key strengths of the NIJI color system is its universal compatibility. Because colors are defined in the perceptually uniform LCH space, they can be accurately converted to any other color model while maintaining their intended appearance:</p>
+
+                    <table class="doc-table">
+                        <thead>
+                            <tr><th>Color Space</th><th>Use Case</th><th>Support</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>HEX</code></td><td>Web development, CSS</td><td>✓ Full</td></tr>
+                            <tr><td><code>RGB</code></td><td>Digital displays, screens</td><td>✓ Full</td></tr>
+                            <tr><td><code>RGBA</code></td><td>Transparency support</td><td>✓ Full</td></tr>
+                            <tr><td><code>HSL/HSV</code></td><td>Color manipulation, UI tools</td><td>✓ Full</td></tr>
+                            <tr><td><code>LCH</code></td><td>Perceptual uniformity (native)</td><td>✓ Native</td></tr>
+                            <tr><td><code>LAB</code></td><td>Device-independent color</td><td>✓ Full</td></tr>
+                            <tr><td><code>CMYK</code></td><td>Print production</td><td>✓ Converted</td></tr>
+                            <tr><td><code>Pantone</code></td><td>Brand colors, spot printing</td><td>○ Nearest match</td></tr>
+                            <tr><td><code>HCL</code></td><td>Data visualization</td><td>✓ Full</td></tr>
+                            <tr><td><code>OKLCH</code></td><td>Modern CSS, improved uniformity</td><td>✓ Full</td></tr>
+                            <tr><td><code>Display P3</code></td><td>Wide gamut displays</td><td>✓ Extended</td></tr>
+                        </tbody>
+                    </table>
+
+                    <p>This universal support means you can confidently use NIJI colors in:</p>
+                    <ul>
+                        <li><strong>Web & Digital</strong> — CSS, Sass, JavaScript applications</li>
+                        <li><strong>Print Design</strong> — CMYK conversion for brochures, packaging, signage</li>
+                        <li><strong>UI/UX Design</strong> — Figma, Sketch, Adobe XD</li>
+                        <li><strong>Data Visualization</strong> — Charts, graphs, maps with consistent perception</li>
+                        <li><strong>Brand Guidelines</strong> — Cross-media color consistency</li>
+                    </ul>
+
+                    <h2>Hue Names</h2>
+                    <table class="doc-table">
+                        <thead>
+                            <tr><th>Degree</th><th>Name</th><th>Degree</th><th>Name</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>15°</td><td>Salmon</td><td>195°</td><td>Teal</td></tr>
+                            <tr><td>30°</td><td>Orange</td><td>210°</td><td>Capri</td></tr>
+                            <tr><td>45°</td><td>Amber</td><td>225°</td><td>Sky</td></tr>
+                            <tr><td>60°</td><td>Yellow</td><td>240°</td><td>Blue</td></tr>
+                            <tr><td>75°</td><td>Lime</td><td>255°</td><td>Azure</td></tr>
+                            <tr><td>90°</td><td>Ecru</td><td>270°</td><td>Indigo</td></tr>
+                            <tr><td>105°</td><td>Olive</td><td>285°</td><td>Violet</td></tr>
+                            <tr><td>120°</td><td>Green</td><td>300°</td><td>Magenta</td></tr>
+                            <tr><td>135°</td><td>Forest</td><td>315°</td><td>Purple</td></tr>
+                            <tr><td>150°</td><td>Jade</td><td>330°</td><td>Rose</td></tr>
+                            <tr><td>165°</td><td>Mint</td><td>345°</td><td>Pink</td></tr>
+                            <tr><td>180°</td><td>Cyan</td><td>360°</td><td>Red</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+
+            <!-- LCH Page -->
+            <section class="page-section" id="page-lch">
+                <div class="section-header">
+                    <h1>LCH Color Space</h1>
+                    <p>Understanding Lightness, Chroma, and Hue</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>What is LCH?</h2>
+                    <p>LCH stands for Lightness, Chroma, and Hue. It's a cylindrical representation of the CIELAB color space, designed to align with human color perception.</p>
+
+                    <div class="color-theory-grid">
+                        <div class="color-theory-card">
+                            <h4>L — Lightness</h4>
+                            <p>Ranges from 0 (black) to 100 (white). Represents the perceived brightness of the color.</p>
+                            <div class="lch-diagram">
+                                <div class="lch-channel">
+                                    <div class="lch-bar" style="background: linear-gradient(to right, #000, #fff);"></div>
+                                    <div class="lch-label">0 → 100</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="color-theory-card">
+                            <h4>C — Chroma</h4>
+                            <p>Represents color intensity or saturation. Higher values are more vivid, lower values are more muted.</p>
+                            <div class="lch-diagram">
+                                <div class="lch-channel">
+                                    <div class="lch-bar" style="background: linear-gradient(to right, #888, #ff0);"></div>
+                                    <div class="lch-label">0 → 150+</div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="color-theory-card">
+                            <h4>H — Hue</h4>
+                            <p>The color angle on the color wheel, from 0° to 360°. Red is around 0°/360°, yellow at 90°, etc.</p>
+                            <div class="lch-diagram">
+                                <div class="lch-channel">
+                                    <div class="lch-bar" style="background: linear-gradient(to right, #f00, #ff0, #0f0, #0ff, #00f, #f0f, #f00);"></div>
+                                    <div class="lch-label">0° → 360°</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>hue.gl LCH Configuration</h2>
+                    <table class="doc-table">
+                        <thead>
+                            <tr><th>Parameter</th><th>Value</th><th>Description</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>l_l_min</code></td><td>96</td><td>Starting lightness (lightest shade)</td></tr>
+                            <tr><td><code>l_l_step</code></td><td>-6</td><td>Lightness step between shades</td></tr>
+                            <tr><td><code>l_c_min</code></td><td>12</td><td>Starting chroma</td></tr>
+                            <tr><td><code>l_c_step</code></td><td>6</td><td>Chroma step (ascending)</td></tr>
+                            <tr><td><code>d_c_step</code></td><td>-6</td><td>Chroma step (descending)</td></tr>
+                            <tr><td><code>h_step</code></td><td>15</td><td>Degrees between hues</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2>Gamut Considerations</h2>
+                    <p>Not all LCH colors can be displayed on sRGB screens. Colors outside the sRGB gamut are marked in the palette. When using these colors, they are automatically mapped to the nearest in-gamut color.</p>
+                </div>
+            </section>
+
+            <!-- Accessibility Page -->
+            <section class="page-section" id="page-accessibility">
+                <div class="section-header">
+                    <h1>Accessibility</h1>
+                    <p>Creating accessible color combinations</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>WCAG Contrast Requirements</h2>
+                    <p>The Web Content Accessibility Guidelines (WCAG) define minimum contrast ratios:</p>
+                    <ul>
+                        <li><strong>AA Normal Text:</strong> 4.5:1 minimum</li>
+                        <li><strong>AA Large Text:</strong> 3:1 minimum</li>
+                        <li><strong>AAA Normal Text:</strong> 7:1 minimum</li>
+                        <li><strong>AAA Large Text:</strong> 4.5:1 minimum</li>
+                    </ul>
+
+                    <h2>Recommended Combinations</h2>
+                    <div class="a11y-examples" id="a11yExamples"></div>
+
+                    <h2>Tips for Accessible Design</h2>
+                    <ul>
+                        <li>Use shade 1-2 backgrounds with shade 8-9 text</li>
+                        <li>Use shade 8-9 backgrounds with shade 1-2 text</li>
+                        <li>Avoid combining colors that are close in lightness</li>
+                        <li>Test with color blindness simulators</li>
+                        <li>Don't rely on color alone to convey information</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- API Page -->
+            <section class="page-section" id="page-api">
+                <div class="section-header">
+                    <h1>JavaScript API</h1>
+                    <p>Programmatic access to the color system</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>ColorScheme Class</h2>
+                    <pre><code>import { ColorScheme } from 'hue.gl';
+
+const scheme = new ColorScheme();
+
+// Get all colors
+const colors = scheme.colors;
+
+// Get a specific hue
+const blues = scheme.getHue('blue');
+
+// Get a color by name
+const color = scheme.getColor('N2405');
+console.log(color.hex);   // '#3b82f6'
+console.log(color.rgb);   // [59, 130, 246]
+console.log(color.lch);   // [55, 70, 240]</code></pre>
+
+                    <h2>Helper Functions</h2>
+                    <pre><code>import { getColor, getHex, getRGB, getLCH } from 'hue.gl';
+
+// Get full color object
+const color = getColor('N2405');
+
+// Get specific format
+const hex = getHex('N2405');   // '#3b82f6'
+const rgb = getRGB('N2405');   // [59, 130, 246]
+const lch = getLCH('N2405');   // [55, 70, 240]</code></pre>
+
+                    <h2>TypeScript Support</h2>
+                    <p>hue.gl includes full TypeScript declarations:</p>
+                    <pre><code>import type { Color, ColorName, HueName } from 'hue.gl';
+
+const colorName: ColorName = 'N2405';
+const hueName: HueName = 'blue';
+
+interface MyColor extends Color {
+  customProp?: string;
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- CSS Page -->
+            <section class="page-section" id="page-css">
+                <div class="section-header">
+                    <h1>CSS Variables</h1>
+                    <p>Using hue.gl colors with CSS custom properties</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>Import</h2>
+                    <pre><code>/* In your CSS */
+@import 'hue.gl/dist/css/hue.gl.css';
+
+/* Or link in HTML */
+&lt;link rel="stylesheet" href="hue.gl/dist/css/hue.gl.css"&gt;</code></pre>
+
+                    <h2>Usage</h2>
+                    <pre><code>.button-primary {
+  background: var(--N2405);
+  color: var(--N2401);
+}
+
+.button-primary:hover {
+  background: var(--N2406);
+}
+
+.alert-success {
+  background: var(--N1202);
+  border: 1px solid var(--N1205);
+  color: var(--N1208);
+}</code></pre>
+
+                    <h2>Available Variables</h2>
+                    <p>All 216 colors are available as CSS custom properties:</p>
+                    <pre><code>:root {
+  --N0151: #fef2f2;  /* Salmon, shade 1 */
+  --N0152: #fecaca;  /* Salmon, shade 2 */
+  /* ... */
+  --N3609: #450a0a;  /* Red, shade 9 */
+}</code></pre>
+                </div>
+            </section>
+
+            <!-- SCSS Page -->
+            <section class="page-section" id="page-scss">
+                <div class="section-header">
+                    <h1>SCSS Functions</h1>
+                    <p>Advanced color manipulation with SCSS</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>Import</h2>
+                    <pre><code>@use 'hue.gl/dist/scss/hue.gl' as hue;</code></pre>
+
+                    <h2>Variables</h2>
+                    <pre><code>.element {
+  background: hue.$n240-5;
+  color: hue.$n240-1;
+}</code></pre>
+
+                    <h2>Color Map</h2>
+                    <pre><code>// Access colors from the map
+$my-color: map-get(hue.$colors, 'N2405');
+
+// Loop through all colors
+@each $name, $value in hue.$colors {
+  .bg-#{$name} {
+    background-color: $value;
+  }
+}</code></pre>
+
+                    <h2>Functions</h2>
+                    <pre><code>// Get a color by name
+$blue: hue.get-color('N2405');
+
+// Get all shades of a hue
+$blues: hue.get-hue(240);
+
+// Generate a tint/shade
+$light-blue: hue.tint($blue, 20%);
+$dark-blue: hue.shade($blue, 20%);</code></pre>
+                </div>
+            </section>
+
+            <!-- Formats Page -->
+            <section class="page-section" id="page-formats">
+                <div class="section-header">
+                    <h1>Export Formats</h1>
+                    <p>Download the color palette in various formats</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>Available Formats</h2>
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <h3>CSS Variables</h3>
+                            <p>Custom properties for use in any CSS project.</p>
+                            <button class="btn btn--sm" onclick="openExportModal('css')">Export CSS</button>
+                        </div>
+                        <div class="feature-card">
+                            <h3>SCSS</h3>
+                            <p>Variables and maps for SCSS/Sass projects.</p>
+                            <button class="btn btn--sm" onclick="openExportModal('scss')">Export SCSS</button>
+                        </div>
+                        <div class="feature-card">
+                            <h3>JSON</h3>
+                            <p>Structured data for any application.</p>
+                            <button class="btn btn--sm" onclick="openExportModal('json')">Export JSON</button>
+                        </div>
+                        <div class="feature-card">
+                            <h3>JavaScript</h3>
+                            <p>ES module export for JS/TS projects.</p>
+                            <button class="btn btn--sm" onclick="openExportModal('js')">Export JS</button>
+                        </div>
+                    </div>
+
+                    <h2>Design Tools</h2>
+                    <p>hue.gl also exports to popular design tool formats:</p>
+                    <ul>
+                        <li><strong>Adobe ASE</strong> — For Photoshop, Illustrator, etc.</li>
+                        <li><strong>Sketch Palette</strong> — For Sketch app</li>
+                        <li><strong>Figma</strong> — Import via JSON</li>
+                        <li><strong>Inkscape</strong> — GPL palette format</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- Color Harmonies Page -->
+            <section class="page-section" id="page-harmonies">
+                <div class="section-header">
+                    <h1>Color Harmonies</h1>
+                    <p>Generate harmonious color combinations based on color theory</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>Select Base Color</h2>
+                    <div style="display: flex; gap: 16px; align-items: center; margin-bottom: 24px;">
+                        <div id="harmonyBaseColor" style="width: 64px; height: 64px; background: #d4a400; border: 2px solid var(--color-border);"></div>
+                        <div>
+                            <div style="font-size: 1.25rem; font-weight: 600;" id="harmonyBaseName">N0605</div>
+                            <div style="font-size: 0.875rem; color: var(--color-text-secondary);" id="harmonyBaseHex">#d4a400</div>
+                        </div>
+                        <button class="btn" onclick="navigateTo('palette')">Choose from Palette</button>
+                    </div>
+
+                    <h2>Harmony Types</h2>
+                    <div class="harmony-grid" id="harmonyGrid"></div>
+
+                    <h2 style="margin-top: 32px;">Selected Harmony</h2>
+                    <div id="harmonyResult" style="display: flex; gap: 8px; margin: 16px 0;"></div>
+                    <div id="harmonyExport" style="display: none;">
+                        <button class="btn btn--primary btn--sm" onclick="copyHarmony()">Copy Colors</button>
+                        <button class="btn btn--sm" onclick="exportHarmonyCSS()">Export CSS</button>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Contrast Checker Page -->
+            <section class="page-section" id="page-contrast">
+                <div class="section-header">
+                    <h1>Contrast Checker</h1>
+                    <p>Check color contrast ratios for accessibility compliance</p>
+                </div>
+
+                <div class="doc-content">
+                    <div class="contrast-checker">
+                        <div class="contrast-preview">
+                            <div class="contrast-sample" id="contrastSample" style="background: #1a1a1a; color: #ffffff;">
+                                <h3>Sample Text</h3>
+                                <p>The quick brown fox jumps over the lazy dog.</p>
+                            </div>
+                        </div>
+
+                        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 24px; margin-bottom: 20px;">
+                            <div>
+                                <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); display: block; margin-bottom: 8px;">Background Color</label>
+                                <div style="display: flex; gap: 8px; align-items: center;">
+                                    <div id="contrastBgPreview" style="width: 40px; height: 40px; background: #1a1a1a; border: 1px solid var(--color-border);"></div>
+                                    <select id="contrastBgSelect" class="search-box" style="width: auto; flex: 1;" onchange="updateContrastChecker()"></select>
+                                </div>
+                            </div>
+                            <div>
+                                <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); display: block; margin-bottom: 8px;">Foreground Color</label>
+                                <div style="display: flex; gap: 8px; align-items: center;">
+                                    <div id="contrastFgPreview" style="width: 40px; height: 40px; background: #ffffff; border: 1px solid var(--color-border);"></div>
+                                    <select id="contrastFgSelect" class="search-box" style="width: auto; flex: 1;" onchange="updateContrastChecker()"></select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="contrast-results">
+                            <div class="contrast-result">
+                                <div class="ratio" id="contrastRatio">21:1</div>
+                                <div class="label">Contrast Ratio</div>
+                            </div>
+                            <div class="contrast-result">
+                                <div class="ratio" id="wcagAANormal">✓</div>
+                                <div class="label">AA Normal</div>
+                                <div class="status" id="wcagAANormalStatus">4.5:1 required</div>
+                            </div>
+                            <div class="contrast-result">
+                                <div class="ratio" id="wcagAALarge">✓</div>
+                                <div class="label">AA Large</div>
+                                <div class="status" id="wcagAALargeStatus">3:1 required</div>
+                            </div>
+                            <div class="contrast-result">
+                                <div class="ratio" id="wcagAAA">✓</div>
+                                <div class="label">AAA Normal</div>
+                                <div class="status" id="wcagAAAStatus">7:1 required</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h2>Suggested Combinations</h2>
+                    <div id="contrastSuggestions" class="a11y-examples"></div>
+                </div>
+            </section>
+
+            <!-- Gradient Generator Page -->
+            <section class="page-section" id="page-gradients">
+                <div class="section-header">
+                    <h1>Gradient Generator</h1>
+                    <p>Create beautiful gradients using NIJI colors</p>
+                </div>
+
+                <div class="doc-content">
+                    <div class="gradient-generator">
+                        <div class="gradient-preview" id="gradientPreview" style="background: linear-gradient(90deg, #d4a400, #008f9d);">Preview</div>
+
+                        <div class="gradient-controls">
+                            <div>
+                                <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); display: block; margin-bottom: 8px;">Direction</label>
+                                <select id="gradientDirection" class="search-box" style="width: auto;" onchange="updateGradient()">
+                                    <option value="90deg">Horizontal →</option>
+                                    <option value="180deg">Vertical ↓</option>
+                                    <option value="45deg">Diagonal ↘</option>
+                                    <option value="135deg">Diagonal ↙</option>
+                                    <option value="circle">Radial</option>
+                                </select>
+                            </div>
+                            <div style="flex: 1;">
+                                <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); display: block; margin-bottom: 8px;">Color Stops</label>
+                                <div class="gradient-stops" id="gradientStops"></div>
+                            </div>
+                            <button class="btn" onclick="addGradientStop()">+ Add Stop</button>
+                        </div>
+
+                        <div class="gradient-code" id="gradientCode" onclick="copyValue(this)">background: linear-gradient(90deg, #d4a400, #008f9d);</div>
+                    </div>
+
+                    <h2>Preset Gradients</h2>
+                    <div id="gradientPresets" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 16px;"></div>
+                </div>
+            </section>
+
+            <!-- Color Blindness Page -->
+            <section class="page-section" id="page-blindness">
+                <div class="section-header">
+                    <h1>Color Blindness Simulation</h1>
+                    <p>See how your colors appear to people with color vision deficiencies</p>
+                </div>
+
+                <div class="doc-content">
+                    <h2>Select Colors to Test</h2>
+                    <div style="display: flex; gap: 16px; margin-bottom: 24px;">
+                        <div>
+                            <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); display: block; margin-bottom: 8px;">Primary Color</label>
+                            <select id="cbColor1" class="search-box" style="width: 150px;" onchange="updateCBSimulation()"></select>
+                        </div>
+                        <div>
+                            <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); display: block; margin-bottom: 8px;">Secondary Color</label>
+                            <select id="cbColor2" class="search-box" style="width: 150px;" onchange="updateCBSimulation()"></select>
+                        </div>
+                        <div>
+                            <label style="font-size: 0.75rem; text-transform: uppercase; color: var(--color-text-muted); display: block; margin-bottom: 8px;">Accent Color</label>
+                            <select id="cbColor3" class="search-box" style="width: 150px;" onchange="updateCBSimulation()"></select>
+                        </div>
+                    </div>
+
+                    <h2>Simulation Results</h2>
+                    <div class="cb-simulation">
+                        <div class="cb-grid" id="cbGrid"></div>
+                    </div>
+
+                    <h2>About Color Blindness</h2>
+                    <table class="doc-table">
+                        <thead>
+                            <tr><th>Type</th><th>Affected</th><th>Population</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>Protanopia</td><td>Red perception</td><td>~1% of males</td></tr>
+                            <tr><td>Deuteranopia</td><td>Green perception</td><td>~1% of males</td></tr>
+                            <tr><td>Tritanopia</td><td>Blue perception</td><td>~0.01%</td></tr>
+                            <tr><td>Achromatopsia</td><td>All color</td><td>~0.003%</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <button class="mobile-toggle" id="mobileToggle" onclick="toggleSidebar()">☰</button>
+
+    <div class="modal-overlay" id="exportModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>Export Colors</h3>
+                <button class="modal-close" onclick="closeExportModal()">×</button>
+            </div>
+            <div class="export-tabs">
+                <button class="btn btn--primary" data-export="css">CSS</button>
+                <button class="btn" data-export="scss">SCSS</button>
+                <button class="btn" data-export="json">JSON</button>
+                <button class="btn" data-export="js">JavaScript</button>
+                <button class="btn" data-export="less">Less</button>
+                <button class="btn" data-export="stylus">Stylus</button>
+            </div>
+            <div class="export-code" id="exportCode"></div>
+            <button class="btn btn--primary" style="margin-top: 16px; width: 100%;" onclick="copyExport()">Copy to Clipboard</button>
+        </div>
+    </div>
+
+    <div class="copied-toast" id="toast">Copied!</div>
+
+    <script type="module">
+        import Color from "https://colorjs.io/dist/color.js";
+
+        const config = {
+            prefix: "N",
+            h_step: 15,
+            p_count: 9,
+            l_l_min: 96,
+            l_l_step: -6,
+            d_l_step: -6,
+            l_c_min: 12,
+            l_c_step: 6,
+            d_c_step: -6,
+        };
+
+        let chromaMultiplier = 1;
+        let currentFormat = 'hex';
+        let allColors = [];
+        let currentPage = 'home';
+
+        const hueNames = {
+            15: "Salmon", 30: "Orange", 45: "Amber", 60: "Yellow",
+            75: "Lime", 90: "Ecru", 105: "Olive", 120: "Green",
+            135: "Forest", 150: "Jade", 165: "Mint", 180: "Cyan",
+            195: "Teal", 210: "Capri", 225: "Sky", 240: "Blue",
+            255: "Azure", 270: "Indigo", 285: "Violet", 300: "Magenta",
+            315: "Purple", 330: "Rose", 345: "Pink", 360: "Red"
+        };
+
+        const l_count = Math.ceil(config.p_count / 2);
+        const d_count = Math.floor(config.p_count / 2);
+        const d_c_min = config.l_c_min + (config.l_c_step * (l_count - 1));
+
+        const l_list = [];
+        const c_list = [];
+
+        for (let i = 0; i < l_count; i++) c_list.push(config.l_c_min + i * config.l_c_step);
+        for (let i = 0; i < d_count; i++) c_list.push(d_c_min + config.d_c_step + i * config.d_c_step);
+        for (let i = 0; i < config.p_count; i++) l_list.push(config.l_l_min + config.l_l_step + i * config.l_l_step - 2 * i);
+
+        function pad(num, size, char = '0') { return String(num).padStart(size, char); }
+        function isLightColor(l) { return l > 55; }
+
+        window.navigateTo = (page) => {
+            currentPage = page;
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active'));
+            document.querySelector(`#page-${page}`).classList.add('active');
+            document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+            document.querySelector(`.nav-link[data-page="${page}"]`)?.classList.add('active');
+
+            const pageTitle = document.querySelector(`#page-${page} .section-header h1`)?.textContent ||
+                             document.querySelector(`#page-${page} .hero-content h1`)?.textContent || 'Overview';
+            document.getElementById('breadcrumb').innerHTML = `<a href="#" onclick="navigateTo('home')">hue.gl</a> / <span>${pageTitle}</span>`;
+
+            document.getElementById('sidebar').classList.remove('open');
+
+            if (page === 'palette') generatePalette();
+            else if (page === 'hue-picker') generateHuePicker();
+            else if (page === 'color-wheel') generateColorWheel('colorWheelLarge', 250, true);
+            else if (page === 'accessibility') generateA11yExamples();
+
+            window.scrollTo(0, 0);
+        };
+
+        window.toggleSidebar = () => document.getElementById('sidebar').classList.toggle('open');
+
+        // Light colors on OUTSIDE of wheel
+        function generateColorWheel(svgId = 'colorWheel', radius = 180, isLarge = false) {
+            const svg = document.getElementById(svgId);
+            if (!svg) return;
+
+            const centerX = radius;
+            const centerY = radius;
+            const outerRadius = radius - 10;
+            const innerRadius = isLarge ? 70 : 55;
+            const numShades = config.p_count;
+            const shadeWidth = (outerRadius - innerRadius) / numShades;
+
+            svg.setAttribute('width', radius * 2);
+            svg.setAttribute('height', radius * 2);
+            svg.innerHTML = '';
+
+            for (let h = config.h_step; h <= 360; h += config.h_step) {
+                const startAngle = (h - config.h_step - 90) * Math.PI / 180;
+                const endAngle = (h - 90) * Math.PI / 180;
+
+                for (let j = 0; j < numShades; j++) {
+                    // Light colors (low index = high L) on OUTSIDE
+                    const shadeIdx = j;
+                    const l = l_list[shadeIdx];
+                    const c = c_list[shadeIdx] * chromaMultiplier;
+
+                    const colorLCH = new Color("lch", [l, c, h]);
+                    const inGamut = colorLCH.to("srgb").inGamut();
+
+                    let hexValue = '#888';
+                    if (inGamut) hexValue = colorLCH.to("srgb").toString({ format: "hex" });
+                    else hexValue = colorLCH.to("srgb").toGamut().toString({ format: "hex" });
+
+                    // Outer ring = first shade (light), inner ring = last shade (dark)
+                    const ringIdx = numShades - 1 - j;
+                    const r1 = innerRadius + ringIdx * shadeWidth;
+                    const r2 = innerRadius + (ringIdx + 1) * shadeWidth;
+
+                    const x1 = centerX + r1 * Math.cos(startAngle);
+                    const y1 = centerY + r1 * Math.sin(startAngle);
+                    const x2 = centerX + r2 * Math.cos(startAngle);
+                    const y2 = centerY + r2 * Math.sin(startAngle);
+                    const x3 = centerX + r2 * Math.cos(endAngle);
+                    const y3 = centerY + r2 * Math.sin(endAngle);
+                    const x4 = centerX + r1 * Math.cos(endAngle);
+                    const y4 = centerY + r1 * Math.sin(endAngle);
+
+                    const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+                    path.setAttribute('d', `M ${x1} ${y1} L ${x2} ${y2} A ${r2} ${r2} 0 0 1 ${x3} ${y3} L ${x4} ${y4} A ${r1} ${r1} 0 0 0 ${x1} ${y1} Z`);
+                    path.setAttribute('fill', hexValue);
+                    path.style.cursor = 'pointer';
+
+                    const identifier = `${config.prefix}${pad(h, 3)}${shadeIdx + 1}`;
+                    path.dataset.hex = hexValue;
+                    path.dataset.name = identifier;
+                    path.dataset.hue = h;
+                    path.dataset.shade = shadeIdx + 1;
+                    path.dataset.l = l;
+                    path.dataset.c = c;
+
+                    path.addEventListener('mouseenter', (e) => {
+                        const suffix = isLarge ? 'Large' : '';
+                        document.getElementById('wheelCenterColor' + suffix).style.background = e.target.dataset.hex;
+                        document.getElementById('wheelCenterText' + suffix).innerHTML = `${e.target.dataset.name}<br>${e.target.dataset.hex}`;
+                    });
+
+                    path.addEventListener('click', (e) => updateInspector(e.target.dataset, isLarge));
+
+                    svg.appendChild(path);
+                }
+            }
+        }
+
+        function updateInspector(data, isLarge = false) {
+            const suffix = isLarge ? 'Large' : '';
+            const h = parseInt(data.hue);
+            const l = parseFloat(data.l);
+            const c = parseFloat(data.c);
+
+            const colorLCH = new Color("lch", [l, c, h]);
+            const srgb = colorLCH.to("srgb");
+            const hsl = colorLCH.to("hsl");
+
+            const el = (id) => document.getElementById(id + suffix);
+            if (el('inspectorSwatch')) el('inspectorSwatch').style.background = data.hex;
+            if (el('inspectorName')) el('inspectorName').textContent = data.name;
+            if (el('inspectorHueName')) el('inspectorHueName').textContent = `${hueNames[h]} · Shade ${data.shade}`;
+            if (el('inspectorHex')) el('inspectorHex').textContent = data.hex;
+            if (el('inspectorRGB')) el('inspectorRGB').textContent = srgb.toString({ format: "rgb", precision: 0 });
+            if (el('inspectorLCH')) el('inspectorLCH').textContent = `lch(${Math.round(l)} ${Math.round(c)} ${h})`;
+            if (el('inspectorHSL')) el('inspectorHSL').textContent = hsl.toString({ format: "hsl", precision: 0 });
+            if (document.getElementById('inspectorCSS')) document.getElementById('inspectorCSS').textContent = `var(--${data.name})`;
+        }
+
+        function generatePalette() {
+            const palette = document.getElementById('palette');
+            const shadeLabels = document.getElementById('shadeLabels');
+            if (!palette || !shadeLabels) return;
+
+            palette.innerHTML = '';
+            shadeLabels.innerHTML = '';
+            allColors = [];
+            let inGamutCount = 0;
+
+            for (let j = 0; j < config.p_count; j++) {
+                const label = document.createElement('div');
+                label.className = 'shade-label';
+                label.innerHTML = `<strong>${j + 1}</strong><br>L:${l_list[j]}<br>C:${Math.round(c_list[j] * chromaMultiplier)}`;
+                shadeLabels.appendChild(label);
+            }
+
+            for (let h = config.h_step; h <= 360; h += config.h_step) {
+                const hueName = hueNames[h] || `H${h}`;
+                const row = document.createElement('div');
+                row.className = 'hue-row';
+
+                const hueInfo = document.createElement('div');
+                hueInfo.className = 'hue-info';
+                hueInfo.innerHTML = `<div class="hue-name">${hueName}</div><div class="hue-deg">H: ${h}°</div>`;
+                row.appendChild(hueInfo);
+
+                const shadesDiv = document.createElement('div');
+                shadesDiv.className = 'shades';
+
+                for (let j = 0; j < config.p_count; j++) {
+                    const l = l_list[j];
+                    const c = c_list[j] * chromaMultiplier;
+
+                    const colorLCH = new Color("lch", [l, c, h]);
+                    const inGamut = colorLCH.to("srgb").inGamut();
+
+                    let hexValue = '#ffffff';
+                    if (inGamut) { hexValue = colorLCH.to("srgb").toString({ format: "hex" }); inGamutCount++; }
+                    else hexValue = colorLCH.to("srgb").toGamut().toString({ format: "hex" });
+
+                    const identifier = `${config.prefix}${pad(h, 3)}${j + 1}`;
+
+                    allColors.push({ name: identifier, hex: hexValue, hue: h, hueName, shade: j + 1, l, c: c_list[j], h, inGamut });
+
+                    const swatch = document.createElement('div');
+                    swatch.className = 'swatch' + (inGamut ? '' : ' out-of-gamut');
+                    swatch.style.background = hexValue;
+                    swatch.dataset.hex = hexValue;
+                    swatch.dataset.name = identifier;
+                    swatch.dataset.hue = h;
+                    swatch.dataset.shade = j + 1;
+                    swatch.dataset.l = l;
+                    swatch.dataset.c = c;
+                    swatch.dataset.light = isLightColor(l);
+
+                    swatch.onclick = () => updateInspector(swatch.dataset);
+
+                    const label = document.createElement('span');
+                    label.className = 'swatch-label';
+                    label.innerHTML = `${identifier}<br>${hexValue}`;
+                    swatch.appendChild(label);
+
+                    shadesDiv.appendChild(swatch);
+                }
+
+                row.appendChild(shadesDiv);
+                palette.appendChild(row);
+            }
+
+            document.getElementById('colorCount').textContent = `${allColors.length} colors`;
+        }
+
+        function generateHuePicker() {
+            const picker = document.getElementById('huePicker');
+            if (!picker) return;
+            picker.innerHTML = '';
+
+            for (let h = config.h_step; h <= 360; h += config.h_step) {
+                const hueName = hueNames[h];
+                const midShade = Math.floor(config.p_count / 2);
+                const l = l_list[midShade];
+                const c = c_list[midShade];
+
+                const colorLCH = new Color("lch", [l, c, h]);
+                const hexValue = colorLCH.to("srgb").inGamut() ? colorLCH.to("srgb").toString({ format: "hex" }) : colorLCH.to("srgb").toGamut().toString({ format: "hex" });
+
+                const card = document.createElement('button');
+                card.className = 'btn';
+                card.style.background = hexValue;
+                card.style.borderColor = hexValue;
+                card.style.color = isLightColor(l) ? '#000' : '#fff';
+                card.innerHTML = `${hueName}<br><small>${h}°</small>`;
+                card.onclick = () => showHueShades(h, hueName);
+                picker.appendChild(card);
+            }
+        }
+
+        function showHueShades(hue, hueName) {
+            const container = document.getElementById('hueShades');
+            if (!container) return;
+
+            container.innerHTML = `<h2>${hueName} (${hue}°)</h2>`;
+
+            const grid = document.createElement('div');
+            grid.style.cssText = 'display: grid; grid-template-columns: repeat(9, 1fr); gap: 8px; margin-top: 16px;';
+
+            for (let j = 0; j < config.p_count; j++) {
+                const l = l_list[j];
+                const c = c_list[j];
+                const colorLCH = new Color("lch", [l, c, hue]);
+                const inGamut = colorLCH.to("srgb").inGamut();
+                const hexValue = inGamut ? colorLCH.to("srgb").toString({ format: "hex" }) : colorLCH.to("srgb").toGamut().toString({ format: "hex" });
+
+                const identifier = `${config.prefix}${pad(hue, 3)}${j + 1}`;
+
+                const swatch = document.createElement('div');
+                swatch.style.cssText = `background: ${hexValue}; aspect-ratio: 1; display: flex; flex-direction: column; align-items: center; justify-content: center; cursor: pointer; font-size: 0.75rem; font-family: monospace; color: ${isLightColor(l) ? 'rgba(0,0,0,0.7)' : 'rgba(255,255,255,0.9)'}`;
+                swatch.innerHTML = `<strong>${identifier}</strong><br>${hexValue}`;
+                swatch.onclick = () => copyValue({ textContent: hexValue });
+
+                grid.appendChild(swatch);
+            }
+
+            container.appendChild(grid);
+        }
+
+        function generateA11yExamples() {
+            const container = document.getElementById('a11yExamples');
+            if (!container) return;
+            container.innerHTML = '';
+
+            const examples = [
+                { bg: 'N2401', fg: 'N2409', name: 'Blue Light/Dark' },
+                { bg: 'N2409', fg: 'N2401', name: 'Blue Dark/Light' },
+                { bg: 'N1201', fg: 'N1208', name: 'Green Light/Dark' },
+                { bg: 'N0602', fg: 'N0609', name: 'Yellow Light/Dark' },
+            ];
+
+            examples.forEach(ex => {
+                // Parse new format: N{hue:3}{shade:1}
+                const bgHue = parseInt(ex.bg.slice(1, 4));
+                const bgIdx = parseInt(ex.bg.charAt(4)) - 1;
+                const fgHue = parseInt(ex.fg.slice(1, 4));
+                const fgIdx = parseInt(ex.fg.charAt(4)) - 1;
+
+                const bgColor = new Color("lch", [l_list[bgIdx], c_list[bgIdx], bgHue]);
+                const fgColor = new Color("lch", [l_list[fgIdx], c_list[fgIdx], fgHue]);
+
+                const bgHex = bgColor.to("srgb").toString({ format: "hex" });
+                const fgHex = fgColor.to("srgb").toString({ format: "hex" });
+
+                const ratio = ((l_list[bgIdx] > l_list[fgIdx] ? l_list[bgIdx] : l_list[fgIdx]) / 100 + 0.05) / ((l_list[bgIdx] < l_list[fgIdx] ? l_list[bgIdx] : l_list[fgIdx]) / 100 + 0.05);
+                const passes = ratio >= 4.5;
+
+                const div = document.createElement('div');
+                div.className = 'a11y-example';
+                div.innerHTML = `<div class="a11y-swatch" style="background: ${bgHex}; color: ${fgHex};">Aa</div><div class="a11y-info"><strong>${ex.name}</strong><div class="a11y-ratio ${passes ? 'a11y-pass' : 'a11y-fail'}">${ratio.toFixed(2)}:1 ${passes ? '✓ AA' : '✗ Fails'}</div></div>`;
+                container.appendChild(div);
+            });
+        }
+
+        function generateExport(format) {
+            if (allColors.length === 0) {
+                for (let h = config.h_step; h <= 360; h += config.h_step) {
+                    for (let j = 0; j < config.p_count; j++) {
+                        const l = l_list[j];
+                        const c = c_list[j];
+                        const colorLCH = new Color("lch", [l, c, h]);
+                        const hexValue = colorLCH.to("srgb").inGamut() ? colorLCH.to("srgb").toString({ format: "hex" }) : colorLCH.to("srgb").toGamut().toString({ format: "hex" });
+                        allColors.push({ name: `${config.prefix}${j + 1}${pad(h, 3)}`, hex: hexValue, hueName: hueNames[h], shade: j + 1, l, c, h });
+                    }
+                }
+            }
+
+            let output = '';
+            switch (format) {
+                case 'css': output = ':root {\n'; allColors.forEach(c => output += `  --${c.name}: ${c.hex};\n`); output += '}'; break;
+                case 'scss': allColors.forEach(c => output += `$${c.name.toLowerCase()}: ${c.hex};\n`); break;
+                case 'less': allColors.forEach(c => output += `@${c.name.toLowerCase()}: ${c.hex};\n`); break;
+                case 'stylus': allColors.forEach(c => output += `${c.name.toLowerCase()} = ${c.hex}\n`); break;
+                case 'json':
+                    const jsonObj = {};
+                    allColors.forEach(c => { if (!jsonObj[c.hueName.toLowerCase()]) jsonObj[c.hueName.toLowerCase()] = {}; jsonObj[c.hueName.toLowerCase()][c.shade] = { hex: c.hex, lch: [c.l, c.c, c.h] }; });
+                    output = JSON.stringify(jsonObj, null, 2);
+                    break;
+                case 'js':
+                    output = 'export const colors = {\n';
+                    const grouped = {};
+                    allColors.forEach(c => { if (!grouped[c.hueName.toLowerCase()]) grouped[c.hueName.toLowerCase()] = []; grouped[c.hueName.toLowerCase()].push(`    ${c.shade}: '${c.hex}'`); });
+                    Object.entries(grouped).forEach(([name, shades]) => { output += `  ${name}: {\n${shades.join(',\n')}\n  },\n`; });
+                    output += '};';
+                    break;
+            }
+            return output;
+        }
+
+        window.openExportModal = (format = 'css') => {
+            document.getElementById('exportModal').classList.add('show');
+            updateExportCode(format);
+            document.querySelectorAll('[data-export]').forEach(b => { b.classList.remove('btn--primary'); if (b.dataset.export === format) b.classList.add('btn--primary'); });
+        };
+
+        window.closeExportModal = () => document.getElementById('exportModal').classList.remove('show');
+
+        function updateExportCode(format) { document.getElementById('exportCode').textContent = generateExport(format); }
+
+        window.copyExport = async () => { await navigator.clipboard.writeText(document.getElementById('exportCode').textContent); showToast('Export copied!'); };
+        window.copyValue = async (el) => { await navigator.clipboard.writeText(el.textContent); showToast(`Copied: ${el.textContent}`); };
+        window.copyInstall = async (cmd) => { await navigator.clipboard.writeText(cmd); showToast(`Copied: ${cmd}`); };
+
+        function showToast(message) { const toast = document.getElementById('toast'); toast.textContent = message; toast.classList.add('show'); setTimeout(() => toast.classList.remove('show'), 1500); }
+
+        document.querySelectorAll('.toggle-btn[data-format]').forEach(btn => {
+            btn.addEventListener('click', () => { document.querySelectorAll('.toggle-btn[data-format]').forEach(b => b.classList.remove('active')); btn.classList.add('active'); currentFormat = btn.dataset.format; });
+        });
+
+        document.querySelectorAll('[data-export]').forEach(btn => {
+            btn.addEventListener('click', () => { document.querySelectorAll('[data-export]').forEach(b => b.classList.remove('btn--primary')); btn.classList.add('btn--primary'); updateExportCode(btn.dataset.export); });
+        });
+
+        const chromaSlider = document.getElementById('chromaSlider');
+        if (chromaSlider) chromaSlider.addEventListener('input', (e) => { chromaMultiplier = e.target.value / 100; document.getElementById('chromaValue').textContent = `${e.target.value}%`; generateColorWheel(); if (currentPage === 'palette') generatePalette(); });
+
+        document.getElementById('exportModal').addEventListener('click', (e) => { if (e.target.id === 'exportModal') closeExportModal(); });
+
+        document.getElementById('searchBox').addEventListener('input', (e) => {
+            const query = e.target.value.toLowerCase();
+            if (query.length >= 2) {
+                for (const [deg, name] of Object.entries(hueNames)) {
+                    if (name.toLowerCase().includes(query)) { navigateTo('hue-picker'); setTimeout(() => showHueShades(parseInt(deg), name), 100); return; }
+                }
+            }
+        });
+
+        window.toggleTheme = () => { const isDark = document.documentElement.getAttribute('data-theme') === 'dark'; document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark'); localStorage.setItem('theme', isDark ? 'light' : 'dark'); };
+
+        const savedTheme = localStorage.getItem('theme');
+        if (savedTheme) document.documentElement.setAttribute('data-theme', savedTheme);
+        else if (window.matchMedia('(prefers-color-scheme: dark)').matches) document.documentElement.setAttribute('data-theme', 'dark');
+
+        generateColorWheel();
+
+        const defaultColor = { hex: '#d4a400', name: 'N0605', hue: '60', shade: '5', l: l_list[4], c: c_list[4] };
+        updateInspector(defaultColor);
+
+        // ============ FAVORITES ============
+        let favorites = JSON.parse(localStorage.getItem('huegl-favorites') || '[]');
+        let currentSelectedColor = defaultColor;
+
+        function updateFavoritesDisplay() {
+            const bar = document.getElementById('favoritesBar');
+            const list = document.getElementById('favoritesList');
+            if (!bar || !list) return;
+
+            if (favorites.length === 0) { bar.style.display = 'none'; return; }
+            bar.style.display = 'flex';
+            list.innerHTML = '';
+            favorites.forEach((fav, i) => {
+                const el = document.createElement('div');
+                el.className = 'favorite-color';
+                el.style.background = fav.hex;
+                el.title = `${fav.name} - ${fav.hex}`;
+                el.onclick = (e) => { if (e.target === el) { currentSelectedColor = fav; updateInspector(fav); } };
+                el.querySelector('::after')?.addEventListener('click', () => removeFavorite(i));
+                list.appendChild(el);
+            });
+        }
+
+        window.addToFavorites = () => {
+            if (!favorites.find(f => f.name === currentSelectedColor.name)) {
+                favorites.push({...currentSelectedColor});
+                localStorage.setItem('huegl-favorites', JSON.stringify(favorites));
+                updateFavoritesDisplay();
+                showToast(`Added ${currentSelectedColor.name} to favorites`);
+            } else showToast('Color already saved');
+        };
+
+        window.removeFavorite = (i) => { favorites.splice(i, 1); localStorage.setItem('huegl-favorites', JSON.stringify(favorites)); updateFavoritesDisplay(); };
+        window.clearFavorites = () => { favorites = []; localStorage.setItem('huegl-favorites', '[]'); updateFavoritesDisplay(); showToast('Favorites cleared'); };
+        window.exportFavorites = () => { const css = favorites.map(f => `--${f.name}: ${f.hex};`).join('\n'); navigator.clipboard.writeText(`:root {\n${css}\n}`); showToast('Favorites CSS copied!'); };
+
+        window.copyAllFormats = () => {
+            const c = currentSelectedColor;
+            const text = `${c.name}\nHEX: ${c.hex}\nLCH: lch(${c.l} ${c.c} ${c.hue})\nCSS: var(--${c.name})`;
+            navigator.clipboard.writeText(text);
+            showToast('All formats copied!');
+        };
+
+        window.showHarmonyFor = () => { navigateTo('harmonies'); generateHarmonies(currentSelectedColor); };
+
+        updateFavoritesDisplay();
+
+        // ============ COLOR HARMONIES ============
+        let harmonyBase = defaultColor;
+
+        function generateHarmonies(base) {
+            harmonyBase = base || harmonyBase;
+            const grid = document.getElementById('harmonyGrid');
+            const baseEl = document.getElementById('harmonyBaseColor');
+            const nameEl = document.getElementById('harmonyBaseName');
+            const hexEl = document.getElementById('harmonyBaseHex');
+            if (!grid) return;
+
+            if (baseEl) baseEl.style.background = harmonyBase.hex;
+            if (nameEl) nameEl.textContent = harmonyBase.name;
+            if (hexEl) hexEl.textContent = harmonyBase.hex;
+
+            const h = parseInt(harmonyBase.hue);
+            const harmonies = [
+                { name: 'Complementary', angles: [0, 180], desc: 'Opposite colors' },
+                { name: 'Analogous', angles: [-30, 0, 30], desc: 'Adjacent colors' },
+                { name: 'Triadic', angles: [0, 120, 240], desc: 'Evenly spaced' },
+                { name: 'Split-Complementary', angles: [0, 150, 210], desc: 'Softer contrast' },
+                { name: 'Tetradic', angles: [0, 90, 180, 270], desc: 'Four colors' },
+                { name: 'Monochromatic', angles: [0], shades: true, desc: 'Same hue' }
+            ];
+
+            grid.innerHTML = '';
+            harmonies.forEach(harmony => {
+                const card = document.createElement('div');
+                card.className = 'harmony-card';
+                card.innerHTML = `<h4>${harmony.name}</h4><p style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 8px;">${harmony.desc}</p><div class="harmony-swatches"></div>`;
+
+                const swatches = card.querySelector('.harmony-swatches');
+                if (harmony.shades) {
+                    for (let i = 1; i <= 5; i++) {
+                        const swatch = document.createElement('div');
+                        swatch.className = 'harmony-swatch';
+                        const l = l_list[i * 2 - 2] || l_list[0];
+                        const c = c_list[i * 2 - 2] || c_list[0];
+                        const color = new Color('lch', [l, c, h]);
+                        swatch.style.background = color.to('srgb').inGamut() ? color.to('srgb').toString({ format: 'hex' }) : color.to('srgb').toGamut().toString({ format: 'hex' });
+                        swatches.appendChild(swatch);
+                    }
+                } else {
+                    harmony.angles.forEach(angle => {
+                        const swatch = document.createElement('div');
+                        swatch.className = 'harmony-swatch';
+                        let newH = (h + angle) % 360; if (newH <= 0) newH += 360;
+                        newH = Math.round(newH / 15) * 15; if (newH === 0) newH = 360;
+                        const l = l_list[4]; const c = c_list[4];
+                        const color = new Color('lch', [l, c, newH]);
+                        swatch.style.background = color.to('srgb').inGamut() ? color.to('srgb').toString({ format: 'hex' }) : color.to('srgb').toGamut().toString({ format: 'hex' });
+                        swatches.appendChild(swatch);
+                    });
+                }
+                card.onclick = () => { document.querySelectorAll('.harmony-card').forEach(c => c.classList.remove('active')); card.classList.add('active'); showHarmonyResult(harmony, h); };
+                grid.appendChild(card);
+            });
+        }
+
+        function showHarmonyResult(harmony, baseH) {
+            const result = document.getElementById('harmonyResult');
+            const exportDiv = document.getElementById('harmonyExport');
+            if (!result) return;
+            result.innerHTML = '';
+
+            const colors = [];
+            if (harmony.shades) {
+                for (let i = 0; i < 9; i++) {
+                    const l = l_list[i]; const c = c_list[i];
+                    const color = new Color('lch', [l, c, baseH]);
+                    const hex = color.to('srgb').inGamut() ? color.to('srgb').toString({ format: 'hex' }) : color.to('srgb').toGamut().toString({ format: 'hex' });
+                    colors.push({ hex, name: `N${pad(baseH, 3)}${i+1}` });
+                }
+            } else {
+                harmony.angles.forEach(angle => {
+                    let newH = (baseH + angle) % 360; if (newH <= 0) newH += 360;
+                    newH = Math.round(newH / 15) * 15; if (newH === 0) newH = 360;
+                    const l = l_list[4]; const c = c_list[4];
+                    const color = new Color('lch', [l, c, newH]);
+                    const hex = color.to('srgb').inGamut() ? color.to('srgb').toString({ format: 'hex' }) : color.to('srgb').toGamut().toString({ format: 'hex' });
+                    colors.push({ hex, name: `N${pad(newH, 3)}5` });
+                });
+            }
+
+            colors.forEach(c => {
+                const swatch = document.createElement('div');
+                swatch.style.cssText = `flex: 1; height: 80px; background: ${c.hex}; display: flex; align-items: center; justify-content: center; font-family: monospace; font-size: 0.75rem; color: ${new Color(c.hex).luminance > 0.5 ? '#000' : '#fff'}; cursor: pointer;`;
+                swatch.innerHTML = `${c.name}<br>${c.hex}`;
+                swatch.onclick = () => { navigator.clipboard.writeText(c.hex); showToast(`Copied ${c.hex}`); };
+                result.appendChild(swatch);
+            });
+
+            if (exportDiv) exportDiv.style.display = 'block';
+            window.currentHarmonyColors = colors;
+        }
+
+        window.copyHarmony = () => { navigator.clipboard.writeText(window.currentHarmonyColors.map(c => c.hex).join(', ')); showToast('Harmony colors copied!'); };
+        window.exportHarmonyCSS = () => { const css = window.currentHarmonyColors.map(c => `--${c.name}: ${c.hex};`).join('\n'); navigator.clipboard.writeText(`:root {\n${css}\n}`); showToast('Harmony CSS copied!'); };
+
+        // ============ CONTRAST CHECKER ============
+        function initContrastChecker() {
+            const bgSelect = document.getElementById('contrastBgSelect');
+            const fgSelect = document.getElementById('contrastFgSelect');
+            if (!bgSelect || !fgSelect) return;
+
+            const options = allColors.length > 0 ? allColors : generateAllColors();
+            options.forEach(c => {
+                bgSelect.innerHTML += `<option value="${c.hex}" data-name="${c.name}">${c.name} (${c.hex})</option>`;
+                fgSelect.innerHTML += `<option value="${c.hex}" data-name="${c.name}">${c.name} (${c.hex})</option>`;
+            });
+            bgSelect.value = '#1a1a1a'; fgSelect.value = '#ffffff';
+            updateContrastChecker();
+        }
+
+        function generateAllColors() {
+            const colors = [];
+            for (let h = config.h_step; h <= 360; h += config.h_step) {
+                for (let j = 0; j < config.p_count; j++) {
+                    const l = l_list[j]; const c = c_list[j];
+                    const colorLCH = new Color('lch', [l, c, h]);
+                    const hex = colorLCH.to('srgb').inGamut() ? colorLCH.to('srgb').toString({ format: 'hex' }) : colorLCH.to('srgb').toGamut().toString({ format: 'hex' });
+                    colors.push({ name: `${config.prefix}${pad(h, 3)}${j + 1}`, hex, l });
+                }
+            }
+            return colors;
+        }
+
+        window.updateContrastChecker = () => {
+            const bgSelect = document.getElementById('contrastBgSelect');
+            const fgSelect = document.getElementById('contrastFgSelect');
+            if (!bgSelect || !fgSelect) return;
+
+            const bg = bgSelect.value; const fg = fgSelect.value;
+            document.getElementById('contrastBgPreview').style.background = bg;
+            document.getElementById('contrastFgPreview').style.background = fg;
+            document.getElementById('contrastSample').style.background = bg;
+            document.getElementById('contrastSample').style.color = fg;
+
+            const bgLum = new Color(bg).luminance;
+            const fgLum = new Color(fg).luminance;
+            const ratio = (Math.max(bgLum, fgLum) + 0.05) / (Math.min(bgLum, fgLum) + 0.05);
+
+            document.getElementById('contrastRatio').textContent = ratio.toFixed(2) + ':1';
+
+            const updateWCAG = (id, statusId, pass, req) => {
+                document.getElementById(id).textContent = pass ? '✓' : '✗';
+                document.getElementById(id).className = 'ratio ' + (pass ? 'contrast-pass' : 'contrast-fail');
+                document.getElementById(statusId).className = 'status ' + (pass ? 'contrast-pass' : 'contrast-fail');
+            };
+
+            updateWCAG('wcagAANormal', 'wcagAANormalStatus', ratio >= 4.5, '4.5:1');
+            updateWCAG('wcagAALarge', 'wcagAALargeStatus', ratio >= 3, '3:1');
+            updateWCAG('wcagAAA', 'wcagAAAStatus', ratio >= 7, '7:1');
+        };
+
+        // ============ GRADIENT GENERATOR ============
+        let gradientStops = ['#d4a400', '#008f9d'];
+
+        function initGradientGenerator() {
+            updateGradientStops();
+            generateGradientPresets();
+        }
+
+        function updateGradientStops() {
+            const container = document.getElementById('gradientStops');
+            if (!container) return;
+            container.innerHTML = '';
+            gradientStops.forEach((color, i) => {
+                const stop = document.createElement('div');
+                stop.className = 'gradient-stop';
+                stop.style.background = color;
+                stop.onclick = () => { const newColor = prompt('Enter color (hex or select from palette):', color); if (newColor) { gradientStops[i] = newColor; updateGradientStops(); updateGradient(); } };
+                container.appendChild(stop);
+            });
+        }
+
+        window.addGradientStop = () => { gradientStops.push('#ffffff'); updateGradientStops(); updateGradient(); };
+
+        window.updateGradient = () => {
+            const dir = document.getElementById('gradientDirection')?.value || '90deg';
+            const preview = document.getElementById('gradientPreview');
+            const code = document.getElementById('gradientCode');
+            let gradient;
+            if (dir === 'circle') gradient = `radial-gradient(circle, ${gradientStops.join(', ')})`;
+            else gradient = `linear-gradient(${dir}, ${gradientStops.join(', ')})`;
+            if (preview) preview.style.background = gradient;
+            if (code) code.textContent = `background: ${gradient};`;
+        };
+
+        function generateGradientPresets() {
+            const container = document.getElementById('gradientPresets');
+            if (!container) return;
+            const presets = [
+                { name: 'Sunset', colors: ['#ff6b6b', '#ffa502', '#ff9ff3'] },
+                { name: 'Ocean', colors: ['#0652DD', '#1B9CFC', '#18dcff'] },
+                { name: 'Forest', colors: ['#009432', '#A3CB38', '#C4E538'] },
+                { name: 'Twilight', colors: ['#6c5ce7', '#a29bfe', '#fd79a8'] },
+                { name: 'Monochrome', colors: ['#1a1a1a', '#666666', '#f0f0f0'] },
+                { name: 'Warm', colors: ['#f39c12', '#e74c3c', '#9b59b6'] }
+            ];
+            presets.forEach(p => {
+                const div = document.createElement('div');
+                div.style.cssText = `height: 80px; background: linear-gradient(90deg, ${p.colors.join(', ')}); cursor: pointer; display: flex; align-items: flex-end; padding: 8px;`;
+                div.innerHTML = `<span style="background: rgba(0,0,0,0.5); color: white; padding: 4px 8px; font-size: 0.75rem;">${p.name}</span>`;
+                div.onclick = () => { gradientStops = [...p.colors]; updateGradientStops(); updateGradient(); };
+                container.appendChild(div);
+            });
+        }
+
+        // ============ COLOR BLINDNESS SIMULATION ============
+        function initCBSimulation() {
+            const selects = ['cbColor1', 'cbColor2', 'cbColor3'];
+            const colors = generateAllColors();
+            const defaults = ['#d4a400', '#008f9d', '#e74c3c'];
+            selects.forEach((id, i) => {
+                const sel = document.getElementById(id);
+                if (!sel) return;
+                colors.forEach(c => sel.innerHTML += `<option value="${c.hex}">${c.name}</option>`);
+                sel.value = colors.find(c => c.name === (i === 0 ? 'N0605' : i === 1 ? 'N1805' : 'N3605'))?.hex || defaults[i];
+            });
+            updateCBSimulation();
+        }
+
+        window.updateCBSimulation = () => {
+            const colors = [
+                document.getElementById('cbColor1')?.value || '#d4a400',
+                document.getElementById('cbColor2')?.value || '#008f9d',
+                document.getElementById('cbColor3')?.value || '#e74c3c'
+            ];
+
+            const grid = document.getElementById('cbGrid');
+            if (!grid) return;
+
+            const simulations = [
+                { name: 'Normal Vision', type: 'normal' },
+                { name: 'Protanopia', type: 'protanopia', desc: 'Red-blind' },
+                { name: 'Deuteranopia', type: 'deuteranopia', desc: 'Green-blind' },
+                { name: 'Tritanopia', type: 'tritanopia', desc: 'Blue-blind' },
+                { name: 'Achromatopsia', type: 'achromatopsia', desc: 'Total' }
+            ];
+
+            grid.innerHTML = '';
+            simulations.forEach(sim => {
+                const card = document.createElement('div');
+                card.className = 'cb-card';
+                const preview = document.createElement('div');
+                preview.className = 'cb-preview';
+                colors.forEach(c => {
+                    const div = document.createElement('div');
+                    div.style.background = simulateCB(c, sim.type);
+                    preview.appendChild(div);
+                });
+                card.appendChild(preview);
+                card.innerHTML += `<div class="cb-label">${sim.name}</div>${sim.desc ? `<div class="cb-percent">${sim.desc}</div>` : ''}`;
+                grid.appendChild(card);
+            });
+        };
+
+        function simulateCB(hex, type) {
+            const color = new Color(hex);
+            const rgb = color.to('srgb').coords.map(c => Math.round(c * 255));
+            if (type === 'normal') return hex;
+            if (type === 'achromatopsia') { const gray = Math.round(0.299 * rgb[0] + 0.587 * rgb[1] + 0.114 * rgb[2]); return `rgb(${gray},${gray},${gray})`; }
+            // Simplified simulation matrices
+            const matrices = {
+                protanopia: [[0.567, 0.433, 0], [0.558, 0.442, 0], [0, 0.242, 0.758]],
+                deuteranopia: [[0.625, 0.375, 0], [0.7, 0.3, 0], [0, 0.3, 0.7]],
+                tritanopia: [[0.95, 0.05, 0], [0, 0.433, 0.567], [0, 0.475, 0.525]]
+            };
+            const m = matrices[type] || matrices.protanopia;
+            const r = Math.round(m[0][0] * rgb[0] + m[0][1] * rgb[1] + m[0][2] * rgb[2]);
+            const g = Math.round(m[1][0] * rgb[0] + m[1][1] * rgb[1] + m[1][2] * rgb[2]);
+            const b = Math.round(m[2][0] * rgb[0] + m[2][1] * rgb[1] + m[2][2] * rgb[2]);
+            return `rgb(${Math.min(255, r)},${Math.min(255, g)},${Math.min(255, b)})`;
+        }
+
+        // Update navigateTo to initialize tools
+        const origNavigateTo = window.navigateTo;
+        window.navigateTo = (page) => {
+            origNavigateTo(page);
+            if (page === 'harmonies') generateHarmonies();
+            else if (page === 'contrast') initContrastChecker();
+            else if (page === 'gradients') initGradientGenerator();
+            else if (page === 'blindness') initCBSimulation();
+        };
+
+        // Update inspector to track current color
+        const origUpdateInspector = updateInspector;
+        function newUpdateInspector(data, isLarge) {
+            origUpdateInspector(data, isLarge);
+            currentSelectedColor = {...data};
+        }
+        window.updateInspectorTracked = newUpdateInspector;
+
+        const hash = window.location.hash.slice(1);
+        if (hash && document.getElementById(`page-${hash}`)) navigateTo(hash);
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeExportModal();
+            if (e.ctrlKey || e.metaKey) {
+                if (e.key === 's') { e.preventDefault(); addToFavorites(); }
+                if (e.key === 'e') { e.preventDefault(); openExportModal(); }
+            }
+        });
+    </script>
+</body>
+</html>

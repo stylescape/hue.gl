@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description"
+        content="A perceptual colour system built on the LCH color space for visually consistent, accessible color palettes." />
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)" />
+    <title>{%- block title %}hue.gl{%- endblock %}</title>
+    <link rel="stylesheet" href="/css/hue.gl.css" />
+    <link rel="stylesheet" href="/css/hue.gl.docs.css" />
+    <script type="module" src="/js/hue.gl.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap"
+        rel="stylesheet">
+
+    {%- block styles %}
+    {%- endblock %}
+
+</head>
+
+<body>
+
+    <!-- Navigation -->
+    <div class="nav-wrapper">
+        <nav class="nav">
+            <div class="nav__inner">
+                <a href="index.html" class="nav__logo">
+                    <span class="nav__logo-text">hue.gl</span>
+                    <span class="nav__version">v0.0</span>
+                </a>
+                <div class="nav__right">
+
+                    <button type="button" class="theme-toggle" data-toggle="theme" title="Toggle dark mode"
+                        aria-label="Toggle dark mode">
+                        <svg class="theme-icon theme-icon--light" width="16" height="16" viewBox="0 0 16 16"
+                            fill="currentColor">
+                            <path
+                                d="M8 12a4 4 0 100-8 4 4 0 000 8zM8 0a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0V.75A.75.75 0 018 0zm0 13a.75.75 0 01.75.75v1.5a.75.75 0 01-1.5 0v-1.5A.75.75 0 018 13zm7-5a.75.75 0 00-.75-.75h-1.5a.75.75 0 000 1.5h1.5A.75.75 0 0015 8zM3 8a.75.75 0 00-.75-.75H.75a.75.75 0 000 1.5h1.5A.75.75 0 003 8zm9.536-4.536a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 001.06 1.061l1.061-1.06a.75.75 0 000-1.061zm-9.072 9.072a.75.75 0 00-1.06 0l-1.061 1.06a.75.75 0 101.06 1.061l1.061-1.06a.75.75 0 000-1.061zm9.072 0a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 101.061-1.06l-1.06-1.061zm-9.072-9.072a.75.75 0 00-1.06 1.06l1.06 1.061a.75.75 0 001.061-1.06l-1.06-1.061z" />
+                        </svg>
+                        <svg class="theme-icon theme-icon--dark" width="16" height="16" viewBox="0 0 16 16"
+                            fill="currentColor">
+                            <path d="M6.2 1A6.98 6.98 0 008 7a6.98 6.98 0 00-1.8 6A7 7 0 116.2 1z" />
+                        </svg>
+                    </button>
+
+                    <div class="nav__dropdown" id="nav-dropdown">
+                        <button type="button" class="nav__dropdown-toggle" aria-expanded="false" aria-haspopup="true">
+                            <span>Docs</span>
+                            <svg width="10" height="6" viewBox="0 0 10 6" fill="none" stroke="currentColor"
+                                stroke-width="1.5">
+                                <path d="M1 1l4 4 4-4" />
+                            </svg>
+                        </button>
+                        <div class="nav__dropdown-menu" role="menu">
+                            <div class="nav__dropdown-section">
+                                <span class="nav__dropdown-label">Learn</span>
+                                <a href="getting-started.html" role="menuitem">Getting Started</a>
+                                <a href="color-theory.html" role="menuitem">Color Theory</a>
+                                <a href="accessibility.html" role="menuitem">Accessibility</a>
+                            </div>
+                            <div class="nav__dropdown-section">
+                                <span class="nav__dropdown-label">Palette</span>
+                                <a href="palette.html" role="menuitem">Full Palette</a>
+                                <a href="hue-explorer.html" role="menuitem">Hue Explorer</a>
+                                <a href="contrast-checker.html" role="menuitem">Contrast Checker</a>
+                            </div>
+                            <div class="nav__dropdown-section">
+                                <span class="nav__dropdown-label">Formats</span>
+                                <a href="formats.html" role="menuitem">Export Formats</a>
+                                <a href="usage.html" role="menuitem">Usage Examples</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <a href="https://github.com/stylescape/hue.gl" class="nav__github" target="_blank"
+                        title="View on GitHub">
+                        <svg width="18" height="18" viewBox="0 0 16 16" fill="currentColor">
+                            <path
+                                d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z" />
+                        </svg>
+                    </a>
+
+                </div>
+            </div>
+        </nav>
+    </div>
+
+    <div class="container">
+        <header class="header {%- block header_class %}{%- endblock %}">
+            {%- block header %}
+            <p class="eyebrow">hue.gl</p>
+            <h1>Documentation</h1>
+            {%- endblock %}
+        </header>
+
+        <main>
+            {%- block content %}
+            <p>Replace this with your content.</p>
+            {%- endblock %}
+        </main>
+
+        <footer class="footer">
+            <div class="footer__content">
+                <div class="footer__left">
+                    <span class="footer__brand">hue.gl</span>
+                    <span class="footer__tagline">Perceptual Colour System</span>
+                </div>
+                <div class="footer__right">
+                    <div class="footer__links">
+                        <a href="https://github.com/stylescape/hue.gl" class="footer__link" target="_blank">GitHub</a>
+                        <a href="https://www.npmjs.com/package/hue.gl" class="footer__link" target="_blank">npm</a>
+                        <a href="https://www.scape.agency" class="footer__link" target="_blank">Scape Agency</a>
+                    </div>
+                    <span class="footer__copyright">© 2024 Scape Agency. MIT License.</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Theme toggle functionality
+        const themeToggle = document.querySelector('[data-toggle="theme"]');
+        const html = document.documentElement;
+
+        // Check for saved theme or system preference
+        const savedTheme = localStorage.getItem('theme');
+        const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+        } else if (systemPrefersDark) {
+            html.setAttribute('data-theme', 'dark');
+        }
+
+        themeToggle?.addEventListener('click', function () {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Dropdown menu functionality
+        const dropdown = document.getElementById('nav-dropdown');
+        const toggle = dropdown?.querySelector('.nav__dropdown-toggle');
+
+        toggle?.addEventListener('click', function (e) {
+            e.stopPropagation();
+            const isOpen = dropdown.classList.toggle('open');
+            this.setAttribute('aria-expanded', isOpen);
+        });
+
+        // Close dropdown when clicking outside
+        document.addEventListener('click', function (e) {
+            if (dropdown && !dropdown.contains(e.target)) {
+                dropdown.classList.remove('open');
+                toggle?.setAttribute('aria-expanded', 'false');
+            }
+        });
+
+        // Close dropdown when pressing Escape
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape' && dropdown?.classList.contains('open')) {
+                dropdown.classList.remove('open');
+                toggle?.setAttribute('aria-expanded', 'false');
+                toggle?.focus();
+            }
+        });
+    </script>
+
+</body>
+
+</html>

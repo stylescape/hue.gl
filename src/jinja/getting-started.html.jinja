@@ -1,0 +1,326 @@
+{% extends "base.html.jinja" %}
+
+{%- block title %}Getting Started — hue.gl{%- endblock %}
+
+{%- block header %}
+<p class="eyebrow">Learn</p>
+<h1>Getting Started</h1>
+<p class="lead">Get up and running with hue.gl in minutes. Available for SCSS, CSS, JavaScript, Python, and more.</p>
+{%- endblock %}
+
+{%- block content %}
+
+<!-- Installation -->
+<section>
+    <h2>Installation</h2>
+
+    <h3>npm</h3>
+    <div class="code-block">npm install hue.gl</div>
+
+    <h3>yarn</h3>
+    <div class="code-block">yarn add hue.gl</div>
+
+    <h3>pnpm</h3>
+    <div class="code-block">pnpm add hue.gl</div>
+</section>
+
+<!-- SCSS Usage -->
+<section>
+    <h2>SCSS / Sass</h2>
+    <p>Import the SCSS module to access color variables, maps, and functions.</p>
+
+    <div class="code-block"><span class="comment">// Import hue.gl</span>
+        @use "hue.gl" as hue;
+
+        <span class="comment">// Use color variables directly</span>
+        .button-primary {
+        background-color: <span class="color-value">hue.$N2405</span>; <span class="comment">// Blue shade 5</span>
+        color: <span class="color-value">hue.$N0001</span>; <span class="comment">// Light grey (for text)</span>
+        }
+
+        .alert-success {
+        background-color: <span class="color-value">hue.$N1201</span>; <span class="comment">// Light green</span>
+        border-color: <span class="color-value">hue.$N1205</span>; <span class="comment">// Mid green</span>
+        color: <span class="color-value">hue.$N1209</span>; <span class="comment">// Dark green</span>
+        }
+
+        <span class="comment">// Use the color map for dynamic access</span>
+        @each $name, $color in hue.$hue-colors {
+        .bg-#{$name} {
+        background-color: $color;
+        }
+        }
+    </div>
+</section>
+
+<!-- CSS Usage -->
+<section>
+    <h2>CSS Custom Properties</h2>
+    <p>Use the pre-built CSS file with custom properties for easy theming.</p>
+
+    <div class="code-block"><span class="comment">&lt;!-- Include the CSS file --&gt;</span>
+        &lt;link rel="stylesheet" href="node_modules/hue.gl/dist/css/hue.gl.css"&gt;
+
+        <span class="comment">&lt;!-- Use CSS custom properties --&gt;</span>
+        &lt;style&gt;
+        .card {
+        background: <span class="color-value">var(--n-0001)</span>; <span class="comment">/* Light grey */</span>
+        border-color: <span class="color-value">var(--n-2405)</span>; <span class="comment">/* Blue */</span>
+        }
+
+        .button {
+        background: <span class="color-value">var(--n-1205)</span>; <span class="comment">/* Green */</span>
+        color: <span class="color-value">var(--n-0001)</span>; <span class="comment">/* White-ish */</span>
+        }
+        &lt;/style&gt;
+    </div>
+</section>
+
+<!-- TypeScript/JavaScript Usage -->
+<section>
+    <h2>TypeScript / JavaScript</h2>
+    <p>Import colors and utilities for programmatic access.</p>
+
+    <div class="code-block"><span class="comment">// Import the library</span>
+        import { ColorSwatch, ColorScheme, hueConfig, hueNames } from 'hue.gl';
+
+        <span class="comment">// Create a custom color swatch</span>
+        const customBlue = new ColorSwatch(240, 50, 50, 'CustomBlue');
+        console.log(customBlue.hex()); <span class="comment">// '#4169E1'</span>
+        console.log(customBlue.rgb()); <span class="comment">// { r: 65, g: 105, b: 225 }</span>
+        console.log(customBlue.hcl()); <span class="comment">// { h: 240, c: 50, l: 50 }</span>
+
+        <span class="comment">// Generate the full palette</span>
+        const scheme = new ColorScheme(hueConfig, hueNames);
+        const colors = scheme.getColorList();
+        console.log(`Generated ${colors.length} colors`);
+
+        <span class="comment">// Access colors by group</span>
+        const blueGroup = scheme.getColorDict()['Blue'];
+        Object.entries(blueGroup).forEach(([name, color]) => {
+        console.log(`${name}: ${color.hex()}`);
+        });
+    </div>
+</section>
+
+<!-- Python Usage -->
+<section>
+    <h2>Python</h2>
+    <p>Use the generated Python module for data science, visualization, or backend applications.</p>
+
+    <div class="code-block"><span class="comment"># Import the library</span>
+        from hue_gl import HueGL, colors
+
+        <span class="comment"># Create a palette instance</span>
+        palette = HueGL()
+
+        <span class="comment"># Access colors by hue and shade</span>
+        blue5 = palette.get_color('Blue', 5)
+        print(blue5.hex) <span class="comment"># Hex value</span>
+        print(blue5.rgb) <span class="comment"># RGB tuple (r, g, b)</span>
+        print(blue5.css_rgb) <span class="comment"># 'rgb(0, 157, 223)'</span>
+
+        <span class="comment"># Access via dictionary</span>
+        grey = colors['Grey']['N0001']
+        print(grey.css_rgb) <span class="comment"># 'rgb(226, 226, 226)'</span>
+
+        <span class="comment"># Iterate over all colors</span>
+        for hue_name in palette:
+        print(f"{hue_name}: {len(palette[hue_name])} shades")
+    </div>
+</section>
+
+<!-- Color Naming Convention -->
+<section>
+    <h2>Color Naming Convention</h2>
+    <p>All colors follow a consistent naming pattern: <code>N{HUE}{SHADE}</code></p>
+
+    <div class="naming-diagram">
+        <div class="naming-example">
+            <span class="naming-prefix">N</span><span class="naming-hue">240</span><span class="naming-shade">5</span>
+        </div>
+        <div class="naming-legend">
+            <div class="naming-legend__item">
+                <span class="naming-legend__key" style="background: var(--color-primary);">N</span>
+                <span class="naming-legend__desc">Prefix (Niji = Rainbow)</span>
+            </div>
+            <div class="naming-legend__item">
+                <span class="naming-legend__key" style="background: var(--color-secondary);">240</span>
+                <span class="naming-legend__desc">Hue in degrees (0-360)</span>
+            </div>
+            <div class="naming-legend__item">
+                <span class="naming-legend__key" style="background: var(--color-accent);">5</span>
+                <span class="naming-legend__desc">Shade (1=light, 9=dark)</span>
+            </div>
+        </div>
+    </div>
+
+    <h3>Examples</h3>
+    <div class="naming-examples">
+        <div class="naming-example-row">
+            <code>N0001</code> → Grey, shade 1 (lightest)
+        </div>
+        <div class="naming-example-row">
+            <code>N2405</code> → Blue (hue 240°), shade 5 (middle)
+        </div>
+        <div class="naming-example-row">
+            <code>N3609</code> → Red (hue 360°), shade 9 (darkest)
+        </div>
+    </div>
+</section>
+
+<!-- Hue Reference -->
+<section>
+    <h2>Hue Reference</h2>
+    <p>25 hues at 15° intervals covering the full color wheel.</p>
+
+    <div class="hue-reference-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>Degrees</th>
+                    <th>Name</th>
+                    <th>Sample</th>
+                    <th>Degrees</th>
+                    <th>Name</th>
+                    <th>Sample</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>0°</td>
+                    <td>Grey</td>
+                    <td><span class="hue-sample" style="background: #8b8b8b;"></span></td>
+                    <td>195°</td>
+                    <td>Teal</td>
+                    <td><span class="hue-sample" style="background: #00a299;"></span></td>
+                </tr>
+                <tr>
+                    <td>15°</td>
+                    <td>Salmon</td>
+                    <td><span class="hue-sample" style="background: #c6727d;"></span></td>
+                    <td>210°</td>
+                    <td>Capri</td>
+                    <td><span class="hue-sample" style="background: #00a2b1;"></span></td>
+                </tr>
+                <tr>
+                    <td>30°</td>
+                    <td>Orange</td>
+                    <td><span class="hue-sample" style="background: #c4756e;"></span></td>
+                    <td>225°</td>
+                    <td>Sky</td>
+                    <td><span class="hue-sample" style="background: #00a0c9;"></span></td>
+                </tr>
+                <tr>
+                    <td>45°</td>
+                    <td>Amber</td>
+                    <td><span class="hue-sample" style="background: #be7960;"></span></td>
+                    <td>240°</td>
+                    <td>Blue</td>
+                    <td><span class="hue-sample" style="background: #009ddf;"></span></td>
+                </tr>
+                <tr>
+                    <td>60°</td>
+                    <td>Yellow</td>
+                    <td><span class="hue-sample" style="background: #b57f55;"></span></td>
+                    <td>255°</td>
+                    <td>Azure</td>
+                    <td><span class="hue-sample" style="background: #5c96eb;"></span></td>
+                </tr>
+                <tr>
+                    <td>75°</td>
+                    <td>Lime</td>
+                    <td><span class="hue-sample" style="background: #a8854d;"></span></td>
+                    <td>270°</td>
+                    <td>Indigo</td>
+                    <td><span class="hue-sample" style="background: #888dee;"></span></td>
+                </tr>
+                <tr>
+                    <td>90°</td>
+                    <td>Ecru</td>
+                    <td><span class="hue-sample" style="background: #9b8948;"></span></td>
+                    <td>285°</td>
+                    <td>Violet</td>
+                    <td><span class="hue-sample" style="background: #a982e8;"></span></td>
+                </tr>
+                <tr>
+                    <td>105°</td>
+                    <td>Olive</td>
+                    <td><span class="hue-sample" style="background: #878f47;"></span></td>
+                    <td>300°</td>
+                    <td>Magenta</td>
+                    <td><span class="hue-sample" style="background: #c377db;"></span></td>
+                </tr>
+                <tr>
+                    <td>120°</td>
+                    <td>Green</td>
+                    <td><span class="hue-sample" style="background: #729247;"></span></td>
+                    <td>315°</td>
+                    <td>Purple</td>
+                    <td><span class="hue-sample" style="background: #d66dc8;"></span></td>
+                </tr>
+                <tr>
+                    <td>135°</td>
+                    <td>Forest</td>
+                    <td><span class="hue-sample" style="background: #5a944a;"></span></td>
+                    <td>330°</td>
+                    <td>Rose</td>
+                    <td><span class="hue-sample" style="background: #e165b0;"></span></td>
+                </tr>
+                <tr>
+                    <td>150°</td>
+                    <td>Jade</td>
+                    <td><span class="hue-sample" style="background: #3b964e;"></span></td>
+                    <td>345°</td>
+                    <td>Pink</td>
+                    <td><span class="hue-sample" style="background: #e56096;"></span></td>
+                </tr>
+                <tr>
+                    <td>165°</td>
+                    <td>Mint</td>
+                    <td><span class="hue-sample" style="background: #009852;"></span></td>
+                    <td>360°</td>
+                    <td>Red</td>
+                    <td><span class="hue-sample" style="background: #e15f7b;"></span></td>
+                </tr>
+                <tr>
+                    <td>180°</td>
+                    <td>Cyan</td>
+                    <td><span class="hue-sample" style="background: #00985c;"></span></td>
+                    <td colspan="3"></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</section>
+
+<!-- Next Steps -->
+<section>
+    <h2>Next Steps</h2>
+    <div class="doc-sections">
+        <div class="doc-section">
+            <h3>Explore</h3>
+            <ul>
+                <li><a href="/palette.html">View Full Palette</a></li>
+                <li><a href="/hue-explorer.html">Hue Explorer</a></li>
+                <li><a href="/contrast-checker.html">Contrast Checker</a></li>
+            </ul>
+        </div>
+        <div class="doc-section">
+            <h3>Learn</h3>
+            <ul>
+                <li><a href="/color-theory.html">Color Theory</a></li>
+                <li><a href="/accessibility.html">Accessibility</a></li>
+            </ul>
+        </div>
+        <div class="doc-section">
+            <h3>Integrate</h3>
+            <ul>
+                <li><a href="/formats.html">Export Formats</a></li>
+                <li><a href="/usage.html">Usage Examples</a></li>
+            </ul>
+        </div>
+    </div>
+</section>
+
+{%- endblock %}

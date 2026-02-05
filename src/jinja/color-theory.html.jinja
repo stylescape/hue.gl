@@ -1,0 +1,369 @@
+{% extends "base.html.jinja" %}
+
+{% block title %}Color Theory — hue.gl{% endblock %}
+
+{% block content %}
+<section class="header">
+    <div class="container">
+        <p class="eyebrow">Theory</p>
+        <h1>Perceptual Color Science</h1>
+        <p class="lead">Understanding LCH color space and why it matters for design systems.</p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>The Problem with RGB & HSL</h2>
+        <p>Traditional color models like RGB and HSL don't account for human perception. Two colors with the same HSL
+            lightness value can appear drastically different in brightness.</p>
+
+        <div class="comparison-demo">
+            <div class="comparison-row">
+                <div class="comparison-item">
+                    <div class="comparison-swatch" style="background: hsl(60, 100%, 50%)"></div>
+                    <code>hsl(60, 100%, 50%)</code>
+                    <span>Yellow</span>
+                </div>
+                <div class="comparison-item">
+                    <div class="comparison-swatch" style="background: hsl(240, 100%, 50%)"></div>
+                    <code>hsl(240, 100%, 50%)</code>
+                    <span>Blue</span>
+                </div>
+            </div>
+            <p class="comparison-note">Both have 50% lightness in HSL, but yellow appears much brighter than blue.</p>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Enter LCH: Perceptually Uniform Color</h2>
+        <p>LCH (Lightness, Chroma, Hue) is a cylindrical representation of the CIELAB color space, designed to be
+            perceptually uniform—meaning equal changes in values produce equal changes in perceived color.</p>
+
+        <div class="lch-diagram">
+            <div class="lch-component">
+                <div class="lch-icon" style="background: linear-gradient(to right, #000, #fff)">L</div>
+                <div class="lch-info">
+                    <h3>Lightness (L)</h3>
+                    <p>0–100. Represents perceived luminosity, not mathematical brightness. L=50 always appears as a
+                        medium grey, regardless of hue.</p>
+                </div>
+            </div>
+            <div class="lch-component">
+                <div class="lch-icon" style="background: linear-gradient(to right, #888, #f00)">C</div>
+                <div class="lch-info">
+                    <h3>Chroma (C)</h3>
+                    <p>0–~230. The colorfulness or saturation relative to a neutral grey. Unlike HSL saturation, chroma
+                        respects perceptual limits.</p>
+                </div>
+            </div>
+            <div class="lch-component">
+                <div class="lch-icon" style="background: conic-gradient(red, yellow, lime, aqua, blue, magenta, red)">H
+                </div>
+                <div class="lch-info">
+                    <h3>Hue (H)</h3>
+                    <p>0°–360°. The angle on the color wheel. hue.gl uses 25 hues at 15° intervals for comprehensive
+                        coverage.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>The hue.gl Hue System</h2>
+        <p>We divide the 360° color wheel into 25 evenly-spaced hues at 15° intervals, starting at 0° (Red) and
+            progressing through the spectrum.</p>
+
+        <div class="hue-circle">
+            <div class="hue-circle__visual">
+                <svg viewBox="0 0 200 200" width="300" height="300">
+                    <!-- Outer circle with hue segments -->
+                    {% for hue in hues %}
+                    <path
+                        d="M 100 100 L {{ 100 + 80 * cos(hue.angle * pi / 180) }} {{ 100 - 80 * sin(hue.angle * pi / 180) }} A 80 80 0 0 1 {{ 100 + 80 * cos((hue.angle + 15) * pi / 180) }} {{ 100 - 80 * sin((hue.angle + 15) * pi / 180) }} Z"
+                        fill="{{ hue.color }}" />
+                    {% endfor %}
+                    <!-- Center circle -->
+                    <circle cx="100" cy="100" r="40" fill="var(--color-bg)" />
+                    <text x="100" y="105" text-anchor="middle" fill="var(--color-text)" font-size="12">360°</text>
+                </svg>
+            </div>
+        </div>
+
+        <div class="hue-reference-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Sample</th>
+                        <th>Name</th>
+                        <th>Hue Angle</th>
+                        <th>Token</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #ff6b6b"></span></td>
+                        <td>Red</td>
+                        <td>0°</td>
+                        <td><code>hue-red</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #ff8f5e"></span></td>
+                        <td>Vermilion</td>
+                        <td>15°</td>
+                        <td><code>hue-vermilion</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #ffa94d"></span></td>
+                        <td>Orange</td>
+                        <td>30°</td>
+                        <td><code>hue-orange</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #ffc233"></span></td>
+                        <td>Amber</td>
+                        <td>45°</td>
+                        <td><code>hue-amber</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #f7d800"></span></td>
+                        <td>Yellow</td>
+                        <td>60°</td>
+                        <td><code>hue-yellow</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #c5e100"></span></td>
+                        <td>Lime</td>
+                        <td>75°</td>
+                        <td><code>hue-lime</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #8dea00"></span></td>
+                        <td>Chartreuse</td>
+                        <td>90°</td>
+                        <td><code>hue-chartreuse</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #5bce45"></span></td>
+                        <td>Green</td>
+                        <td>120°</td>
+                        <td><code>hue-green</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #00c49a"></span></td>
+                        <td>Emerald</td>
+                        <td>150°</td>
+                        <td><code>hue-emerald</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #00b8b8"></span></td>
+                        <td>Teal</td>
+                        <td>180°</td>
+                        <td><code>hue-teal</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #00a8d6"></span></td>
+                        <td>Cyan</td>
+                        <td>195°</td>
+                        <td><code>hue-cyan</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #0096e8"></span></td>
+                        <td>Sky</td>
+                        <td>210°</td>
+                        <td><code>hue-sky</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #5c96eb"></span></td>
+                        <td>Azure</td>
+                        <td>225°</td>
+                        <td><code>hue-azure</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #6b7ff5"></span></td>
+                        <td>Blue</td>
+                        <td>240°</td>
+                        <td><code>hue-blue</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #8070f5"></span></td>
+                        <td>Indigo</td>
+                        <td>255°</td>
+                        <td><code>hue-indigo</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #9b5de5"></span></td>
+                        <td>Violet</td>
+                        <td>270°</td>
+                        <td><code>hue-violet</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #b84ed8"></span></td>
+                        <td>Purple</td>
+                        <td>285°</td>
+                        <td><code>hue-purple</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #d43fc0"></span></td>
+                        <td>Magenta</td>
+                        <td>300°</td>
+                        <td><code>hue-magenta</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #e83fa5"></span></td>
+                        <td>Pink</td>
+                        <td>315°</td>
+                        <td><code>hue-pink</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #f54f8c"></span></td>
+                        <td>Rose</td>
+                        <td>330°</td>
+                        <td><code>hue-rose</code></td>
+                    </tr>
+                    <tr>
+                        <td><span class="hue-sample" style="background: #ff5f78"></span></td>
+                        <td>Crimson</td>
+                        <td>345°</td>
+                        <td><code>hue-crimson</code></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>The Shade System</h2>
+        <p>Each hue is generated with 9 perceptually balanced shades using LCH lightness values:</p>
+
+        <div class="shade-scale">
+            <div class="shade-item" style="--shade-color: #f8f9fa">
+                <div class="shade-box"></div>
+                <div class="shade-info">
+                    <code>50</code>
+                    <span>L: 97</span>
+                </div>
+            </div>
+            <div class="shade-item" style="--shade-color: #e9ecef">
+                <div class="shade-box"></div>
+                <div class="shade-info">
+                    <code>100</code>
+                    <span>L: 93</span>
+                </div>
+            </div>
+            <div class="shade-item" style="--shade-color: #d1d8de">
+                <div class="shade-box"></div>
+                <div class="shade-info">
+                    <code>200</code>
+                    <span>L: 86</span>
+                </div>
+            </div>
+            <div class="shade-item" style="--shade-color: #a9b5bf">
+                <div class="shade-box"></div>
+                <div class="shade-info">
+                    <code>300</code>
+                    <span>L: 72</span>
+                </div>
+            </div>
+            <div class="shade-item" style="--shade-color: #868e96">
+                <div class="shade-box"></div>
+                <div class="shade-info">
+                    <code>400</code>
+                    <span>L: 57</span>
+                </div>
+            </div>
+            <div class="shade-item" style="--shade-color: #495057">
+                <div class="shade-box"></div>
+                <div class="shade-info">
+                    <code>500</code>
+                    <span>L: 36</span>
+                </div>
+            </div>
+            <div class="shade-item" style="--shade-color: #343a40">
+                <div class="shade-box"></div>
+                <div class="shade-info">
+                    <code>600</code>
+                    <span>L: 25</span>
+                </div>
+            </div>
+            <div class="shade-item" style="--shade-color: #212529">
+                <div class="shade-box"></div>
+                <div class="shade-info">
+                    <code>700</code>
+                    <span>L: 15</span>
+                </div>
+            </div>
+            <div class="shade-item" style="--shade-color: #0d0d0d">
+                <div class="shade-box"></div>
+                <div class="shade-info">
+                    <code>800</code>
+                    <span>L: 5</span>
+                </div>
+            </div>
+        </div>
+
+        <p>Unlike linear interpolation, LCH shades maintain consistent perceptual steps. The difference between shade
+            100 and 200 feels the same as between 600 and 700.</p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Gamut Mapping</h2>
+        <p>Not all LCH colors can be displayed on standard screens (sRGB gamut). When a requested chroma exceeds the
+            displayable range, hue.gl automatically maps the color to the nearest in-gamut equivalent while preserving
+            perceived hue and lightness.</p>
+
+        <div class="gamut-diagram">
+            <div class="gamut-visual">
+                <svg viewBox="0 0 200 200" width="200" height="200">
+                    <!-- sRGB gamut approximation -->
+                    <path d="M 100 20 L 170 90 L 150 170 L 50 170 L 30 90 Z" fill="none" stroke="var(--color-primary)"
+                        stroke-width="2" />
+                    <!-- Full LCH range -->
+                    <circle cx="100" cy="100" r="90" fill="none" stroke="var(--color-border)" stroke-width="1"
+                        stroke-dasharray="4,4" />
+                    <text x="100" y="195" text-anchor="middle" font-size="10" fill="var(--color-text-muted)">LCH gamut
+                        at L=50</text>
+                </svg>
+            </div>
+            <div class="gamut-legend">
+                <div class="gamut-legend__item">
+                    <div class="gamut-legend__line" style="background: var(--color-primary)"></div>
+                    <span>sRGB displayable colors</span>
+                </div>
+                <div class="gamut-legend__item">
+                    <div class="gamut-legend__line" style="background: var(--color-border)"></div>
+                    <span>Full LCH theoretical range</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>References</h2>
+        <ul class="reference-list">
+            <li>
+                <a href="https://lea.verou.me/2020/04/lch-colors-in-css-what-why-and-how/" target="_blank">LCH colors in
+                    CSS: what, why, and how?</a>
+                — Lea Verou
+            </li>
+            <li>
+                <a href="https://colorjs.io/" target="_blank">Color.js</a>
+                — The color library powering hue.gl
+            </li>
+            <li>
+                <a href="https://en.wikipedia.org/wiki/CIELAB_color_space" target="_blank">CIELAB color space</a>
+                — Wikipedia
+            </li>
+        </ul>
+    </div>
+</section>
+{% endblock %}

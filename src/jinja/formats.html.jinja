@@ -1,0 +1,374 @@
+{% extends "base.html.jinja" %}
+
+{% block title %}Export Formats — hue.gl{% endblock %}
+
+{% block content %}
+<section class="header">
+    <div class="container">
+        <p class="eyebrow">Formats</p>
+        <h1>Export Formats</h1>
+        <p class="lead">hue.gl exports to 15+ formats for seamless integration with any design or development workflow.
+        </p>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Web Development</h2>
+
+        <div class="format-cards">
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">📄</span>
+                    <h3>CSS Variables</h3>
+                </div>
+                <p>Modern CSS custom properties for use in any web project.</p>
+                <div class="code-block">:root {
+                    --hue-red-500: #e03131;
+                    --hue-orange-500: #e8590c;
+                    --hue-yellow-500: #fcc419;
+                    /* ... */
+                    }</div>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.css</span>
+                </div>
+            </div>
+
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">🎨</span>
+                    <h3>SCSS Variables</h3>
+                </div>
+                <p>Sass variables with full theming support.</p>
+                <div class="code-block">$hue-red-500: #e03131;
+                    $hue-orange-500: #e8590c;
+
+                    // Maps for iteration
+                    $hue-colors: (
+                    'red': $hue-red,
+                    'orange': $hue-orange,
+                    // ...
+                    );</div>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.scss</span>
+                </div>
+            </div>
+
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">📘</span>
+                    <h3>LESS Variables</h3>
+                </div>
+                <p>LESS variables for Bootstrap-based projects.</p>
+                <div class="code-block">@hue-red-500: #e03131;
+                    @hue-orange-500: #e8590c;
+                    @hue-yellow-500: #fcc419;</div>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.less</span>
+                </div>
+            </div>
+
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">✏️</span>
+                    <h3>Stylus</h3>
+                </div>
+                <p>Stylus variable definitions.</p>
+                <div class="code-block">$hue-red-500 = #e03131
+                    $hue-orange-500 = #e8590c
+                    $hue-yellow-500 = #fcc419</div>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.styl</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>JavaScript & TypeScript</h2>
+
+        <div class="format-cards">
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">⚡</span>
+                    <h3>JavaScript Module</h3>
+                </div>
+                <p>ES module with color constants and utility functions.</p>
+                <div class="code-block">export const hueRed500 = '#e03131';
+                    export const hueOrange500 = '#e8590c';
+
+                    export const colors = {
+                    red: {
+                    50: '#fff5f5',
+                    100: '#ffe3e3',
+                    // ...
+                    }
+                    };</div>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.js</span>
+                </div>
+            </div>
+
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">🔷</span>
+                    <h3>TypeScript</h3>
+                </div>
+                <p>Fully typed color definitions with HEX, RGB, and LCH support.</p>
+                <div class="code-block">export enum HueRed {
+                    Shade50 = '#fff5f5',
+                    Shade100 = '#ffe3e3',
+                    // ...
+                    }
+
+                    export type HueName = 'red' | 'orange' | ...;</div>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.d.ts</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Python</h2>
+
+        <div class="format-cards">
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">🐍</span>
+                    <h3>Python Module</h3>
+                </div>
+                <p>Type-annotated Python module with dataclass-based colors.</p>
+                <div class="code-block">from hue_gl import hue, HueGL
+
+                    # Access colors by name
+                    red_500 = hue.get_color('red', 500)
+
+                    # Iterate hue groups
+                    for color in hue.get_hue_group('blue'):
+                    print(color.hex)</div>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue_gl.py</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Design Tools</h2>
+
+        <div class="format-cards">
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">🎯</span>
+                    <h3>Sketch Palette</h3>
+                </div>
+                <p>Native Sketch palette file for the color picker.</p>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.sketchpalette</span>
+                </div>
+            </div>
+
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">🖌️</span>
+                    <h3>Adobe Swatch Exchange</h3>
+                </div>
+                <p>ASE format for Photoshop, Illustrator, and InDesign.</p>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.ase</span>
+                </div>
+            </div>
+
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">✒️</span>
+                    <h3>Inkscape</h3>
+                </div>
+                <p>Inkscape color palette for vector design.</p>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.gpl</span>
+                </div>
+            </div>
+
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">🎨</span>
+                    <h3>Open Color OCO</h3>
+                </div>
+                <p>Open Color format for cross-tool compatibility.</p>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.oco</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Print & CAD</h2>
+
+        <div class="format-cards">
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">📐</span>
+                    <h3>LaTeX</h3>
+                </div>
+                <p>LaTeX color definitions using xcolor package.</p>
+                <div class="code-block">\definecolor{hue-red-500}{HTML}{e03131}
+                    \definecolor{hue-orange-500}{HTML}{e8590c}</div>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.tex</span>
+                </div>
+            </div>
+
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">🏗️</span>
+                    <h3>Grasshopper</h3>
+                </div>
+                <p>Rhino Grasshopper gradients for architectural visualization.</p>
+                <div class="format-meta">
+                    <span class="format-meta__file">grasshopper_gradients.xml</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Developer Tools</h2>
+
+        <div class="format-cards">
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">💻</span>
+                    <h3>VS Code Snippets</h3>
+                </div>
+                <p>Code snippets for quick color insertion in Visual Studio Code.</p>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.code-snippets</span>
+                </div>
+            </div>
+
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">📊</span>
+                    <h3>JSON</h3>
+                </div>
+                <p>Raw JSON data for custom integrations.</p>
+                <div class="code-block">{
+                    "red": {
+                    "50": { "hex": "#fff5f5", "lch": [97, 10, 0] },
+                    "100": { "hex": "#ffe3e3", "lch": [93, 15, 0] }
+                    }
+                    }</div>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.json</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Visual Reference</h2>
+
+        <div class="format-cards">
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">📊</span>
+                    <h3>SVG Palette</h3>
+                </div>
+                <p>Vector SVG file showing all colors visually.</p>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.svg</span>
+                </div>
+            </div>
+
+            <div class="format-detail-card">
+                <div class="format-detail-card__header">
+                    <span class="format-detail-card__icon">📄</span>
+                    <h3>Markdown Table</h3>
+                </div>
+                <p>Markdown-formatted color reference table.</p>
+                <div class="format-meta">
+                    <span class="format-meta__file">hue.gl.md</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section>
+    <div class="container">
+        <h2>Format Comparison</h2>
+
+        <div class="format-comparison-table">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Format</th>
+                        <th>Use Case</th>
+                        <th>Color Spaces</th>
+                        <th>Type Support</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><code>CSS</code></td>
+                        <td>Web stylesheets</td>
+                        <td>HEX</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><code>SCSS</code></td>
+                        <td>Sass projects</td>
+                        <td>HEX, RGB, LCH</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><code>TypeScript</code></td>
+                        <td>JS/TS apps</td>
+                        <td>HEX, RGB</td>
+                        <td>Full</td>
+                    </tr>
+                    <tr>
+                        <td><code>Python</code></td>
+                        <td>Python apps</td>
+                        <td>HEX, RGB, LCH</td>
+                        <td>Type hints</td>
+                    </tr>
+                    <tr>
+                        <td><code>JSON</code></td>
+                        <td>Custom integrations</td>
+                        <td>All</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><code>Sketch</code></td>
+                        <td>Design</td>
+                        <td>RGB</td>
+                        <td>—</td>
+                    </tr>
+                    <tr>
+                        <td><code>ASE</code></td>
+                        <td>Adobe apps</td>
+                        <td>RGB, CMYK</td>
+                        <td>—</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</section>
+{% endblock %}

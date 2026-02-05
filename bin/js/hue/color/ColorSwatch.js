@@ -157,8 +157,10 @@ class ColorSwatch {
         return color.coords;
     }
     hex() {
+        var _a;
         let color = this.srgb();
-        let hex = convertRGBtoHex(Math.round(color.coords[0] * 255), Math.round(color.coords[1] * 255), Math.round(color.coords[2] * 255));
+        const coords = ((_a = color.coords) !== null && _a !== void 0 ? _a : [0, 0, 0]);
+        let hex = convertRGBtoHex(Math.round(coords[0] * 255), Math.round(coords[1] * 255), Math.round(coords[2] * 255));
         return hex;
     }
     hcl() {
@@ -170,11 +172,13 @@ class ColorSwatch {
         return hcl;
     }
     rgb() {
+        var _a;
         let color = this.srgb();
+        const coords = ((_a = color.coords) !== null && _a !== void 0 ? _a : [0, 0, 0]);
         let rgb = {
-            "r": Math.round(color.coords[0] * 255),
-            "g": Math.round(color.coords[1] * 255),
-            "b": Math.round(color.coords[2] * 255)
+            "r": Math.round(coords[0] * 255),
+            "g": Math.round(coords[1] * 255),
+            "b": Math.round(coords[2] * 255)
         };
         return rgb;
     }
