@@ -27,8 +27,14 @@ describe('ColorSwatch', () => {
             expect(() => new ColorSwatch(400, 50, 50)).toThrow('Invalid HCL values');
         });
 
-        it('should throw error for invalid chroma value', () => {
-            expect(() => new ColorSwatch(120, 150, 50)).toThrow('Invalid HCL values');
+        it('should throw error for invalid chroma value (negative)', () => {
+            expect(() => new ColorSwatch(120, -10, 50)).toThrow('Invalid HCL values');
+        });
+
+        it('should allow high chroma values (LCH supports chroma > 100)', () => {
+            // LCH chroma can exceed 100 for highly saturated colors
+            const swatch = new ColorSwatch(120, 150, 50);
+            expect(swatch.c).toBe(150);
         });
 
         it('should throw error for invalid luminance value', () => {

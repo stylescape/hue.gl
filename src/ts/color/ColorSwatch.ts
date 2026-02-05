@@ -3,13 +3,12 @@
 // ============================================================================
 
 import {
+    clamp,
     Color,
+    isInGamut,
     lchToSrgb,
     lchToSrgb255,
-    rgbToHex,
-    isInGamut,
-    clamp,
-    type RGB
+    rgbToHex
 } from "./ColorConverter";
 
 
@@ -89,15 +88,15 @@ export class ColorSwatch {
         const r = clamp(rgb[0], 0, 1);
         const g = clamp(rgb[1], 0, 1);
         const b = clamp(rgb[2], 0, 1);
-        
+
         const max = Math.max(r, g, b);
         const min = Math.min(r, g, b);
         const d = max - min;
-        
+
         let h = 0;
         const s = max === 0 ? 0 : d / max;
         const v = max;
-        
+
         if (max !== min) {
             switch (max) {
                 case r: h = ((g - b) / d + (g < b ? 6 : 0)) / 6; break;
@@ -105,7 +104,7 @@ export class ColorSwatch {
                 case b: h = ((r - g) / d + 4) / 6; break;
             }
         }
-        
+
         return [h * 360, s * 100, v * 100];
     }
 
@@ -115,10 +114,10 @@ export class ColorSwatch {
         const r = clamp(rgb[0], 0, 1);
         const g = clamp(rgb[1], 0, 1);
         const b = clamp(rgb[2], 0, 1);
-        
+
         const max = Math.max(r, g, b);
         const min = Math.min(r, g, b);
-        
+
         let h = 0;
         if (max !== min) {
             const d = max - min;
@@ -128,7 +127,7 @@ export class ColorSwatch {
                 case b: h = ((r - g) / d + 4) / 6; break;
             }
         }
-        
+
         return [h * 360, min * 100, (1 - max) * 100];
     }
 
