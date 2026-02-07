@@ -1,4 +1,3 @@
-import Color from 'colorjs.io';
 
 
 export type PackageJson = { [key: string]: any }; // Define a more specific type if possible

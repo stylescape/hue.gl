@@ -1,4 +1,4 @@
-import { clamp, Color, isInGamut, lchToSrgb, lchToSrgb255, rgbToHex } from "./ColorConverter";
+import { clamp, Color, isInGamut, lchToSrgb, lchToSrgb255, rgbToHex } from "./ColorConverter.js";
 export class ColorSwatch {
     constructor(h, c, l, name) {
         this.h = 0;

@@ -9,7 +9,7 @@ import {
     lchToSrgb,
     lchToSrgb255,
     rgbToHex
-} from "./ColorConverter";
+} from "./ColorConverter.js";
 
 
 // ============================================================================
