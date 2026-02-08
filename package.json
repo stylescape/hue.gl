@@ -68,7 +68,6 @@
         "eslint": "^9.39.2",
         "eslint-config-prettier": "^10.1.8",
         "kist": "^0.1.60",
-        "pack.gl": "^0.1.29",
         "prettier": "^3.8.1",
         "sass": "^1.97.3",
         "typescript": "^5.9.3",
