@@ -1,25 +1,12 @@
+# =============================================================================
+# hue.gl - Production Build Configuration
+# =============================================================================
 
 ---
 
-
-# =============================================================================
-# Options
-# =============================================================================
-
 options:
-
-    mode: development
-    live:
-        enabled: false
-        port: 3000
-        root: public
-        watchPaths:
-            - src/**
-            - config/**
-        ignoredPaths:
-            - node_modules/**
-    logLevel: debug
-
+    mode: production
+    logLevel: info
 
 # =============================================================================
 # Stages
@@ -27,122 +14,95 @@ options:
 
 stages:
 
-    # Preprocessing
-    # =========================================================================
-    -
-        name: Preprocessing
-        description: "Before starting a new build."
+    - name: Build
+      description: "Production build for hue.gl (color library)"
 
-        steps:
+      steps:
 
-            # # Dirs Clean
-            # # -----------------------------------------------------------------
-            # -
-            #     name: CleanBuildDirStep
-            #     action: DirectoryCleanAction
-            #     options:
-            #         dirPath: "./dist"
-
-            # # Dirs Clean
-            # # -----------------------------------------------------------------
-            # -   name: ProcessMainStyles
-            #     action: StyleProcessingAction
-            #     options:
-            #         inputFile: "./src/scss/index.scss"
-            #         outputFile: "./dist/css/unit.gl.min.css"
-            #         styleOption: "compressed"
-            # -
-            #     name: ProcessAdditionalStyles
-            #     action: StyleProcessingAction
-            #     options:
-            #         inputFile: "./src/scss/index.scss"
-            #         outputFile: "./dist/css/unit.gl.css"
-            #         styleOption: "expanded"
-
-            # # Copy Files
-            # # -----------------------------------------------------------------
-            # -
-            #     name: CopyLICENSE
-            #     action: FileCopyAction
-            #     options:
-            #         srcFile: "./LICENSE"
-            #         destDir: "./dist"
-            # -
-            #     name: CopyREADME
-            #     action: FileCopyAction
-            #     options:
-            #         srcFile: "./README.md"
-            #         destDir: "./dist"
-
-            # # Copy Dirs
-            # # -----------------------------------------------------------------
-            # -
-            #     name: CopySrcSCSS
-            #     action: DirectoryCopyAction
-            #     options:
-            #         srcDir: "./src/scss"
-            #         destDir: "./dist/scss"
-            # -
-            #     name: CopySrcTS
-            #     action: DirectoryCopyAction
-            #     options:
-            #         srcDir: "./src/ts"
-            #         destDir: "./dist/ts"
-
-            # Compile TS to JS
+            # Clean dist directory
             # -----------------------------------------------------------------
+            - name: CleanDistDirectory
+              action: DirectoryCleanAction
+              options:
+                  dirPath: "./dist"
 
-            # -
-            #     name: Compile TS to JS
-            #     action: TypeScriptCompilerAction
-            #     options:
-            #         tsConfigPath: "./tsconfig.json"
-            #         filePaths:
-            #             - "src/ts/index.ts"
-            #             # - "src/utils.ts"
-            #         outputDir: "./dist/js"
-            #         compilerOptions:
-            #             target: "ES2020"
-            #             module: "CommonJS"
-
-            # Package.json
+            # Process SCSS to CSS (compressed)
             # -----------------------------------------------------------------
-            -
-                name: Package.json
-                action: PackageManagerAction
-                options:
-                    packageJsonPath: "./package.json"
-                    outputDir: "./dist"
-                    fields:
-                        - name
-                        - version
-                        - bin
-                        - dependencies
-                        - description
-                        - keywords
-                        - license
-                        - homepage
-                        - author
-                        - contributors
-                        - repository
-                        - funding
-                        - exports
-                    # customConfig:
-                    #     private: true
-                    #     scripts:
-                    #     start: "node index.js"
-                    #     build: "npm run build"
-                    #     devDependencies:
-                    #     typescript: "^5.0.0"
+            - name: ProcessMainStylesMinified
+              action: StyleProcessingAction
+              options:
+                  inputFile: "./src/scss/index.scss"
+                  outputFile: "./dist/css/hue.gl.min.css"
+                  styleOption: "compressed"
 
-            # Replace Version
+            # Process SCSS to CSS (expanded)
             # -----------------------------------------------------------------
-            -
-                name: ReplaceVersion
-                action: VersionWriteAction
-                options:
-                    files:
-                    -   path: "./CITATION.cff"
+            - name: ProcessMainStylesExpanded
+              action: StyleProcessingAction
+              options:
+                  inputFile: "./src/scss/index.scss"
+                  outputFile: "./dist/css/hue.gl.css"
+                  styleOption: "expanded"
+
+            # Copy source SCSS files
+            # -----------------------------------------------------------------
+            - name: CopySrcSCSS
+              action: DirectoryCopyAction
+              options:
+                  srcDir: "./src/scss"
+                  destDir: "./dist/scss"
+
+            # Copy TypeScript source files
+            # -----------------------------------------------------------------
+            - name: CopySrcTS
+              action: DirectoryCopyAction
+              options:
+                  srcDir: "./src/ts"
+                  destDir: "./dist/ts"
+
+            # Copy license and readme
+            # -----------------------------------------------------------------
+            - name: CopyLICENSE
+              action: FileCopyAction
+              options:
+                  srcFile: "./LICENSE"
+                  destDir: "./dist"
+
+            - name: CopyREADME
+              action: FileCopyAction
+              options:
+                  srcFile: "./README.md"
+                  destDir: "./dist"
+
+            # Generate package.json for distribution
+            # -----------------------------------------------------------------
+            - name: GeneratePackageJSON
+              action: PackageManagerAction
+              options:
+                  packageJsonPath: "./package.json"
+                  outputDir: "./dist"
+                  fields:
+                      - name
+                      - version
+                      - description
+                      - keywords
+                      - license
+                      - homepage
+                      - author
+                      - contributors
+                      - repository
+                      - funding
+                      - sass
+                      - style
+                      - exports
+
+            # Version synchronization
+            # -----------------------------------------------------------------
+            - name: SyncVersion
+              action: VersionWriteAction
+              options:
+                  files:
+                      - path: "./CITATION.cff"
                         key: "version: "
-                    -   path: "./VERSION"
+                      - path: "./VERSION"
                         key: "v"

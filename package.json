@@ -41,18 +41,14 @@
     "module": "dist/js/hue.gl.js",
     "style": "dist/css/hue.gl.css",
     "scripts": {
-        "build": "npm run build-compile && npm run build-process && npm run kist-build",
-        "build-compile": "tsc -p bin/tsconfig.json",
-        "build-process": "node bin/js/index.js",
-        "kist-build": "npx kist --config ./kist.yml",
-        "kist-watch": "npx kist --config ./kist.yml --live",
+        "build": "npx kist --config ./kist.yml",
+        "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite",
         "test": "vitest run",
         "test:watch": "vitest",
         "test:coverage": "vitest run --coverage",
         "format": "npx prettier --write .",
-        "lint": "eslint 'src/**/*.ts' || true",
-        "prettify": "prettier --write 'src/**/*.ts'"
+        "lint": "eslint 'src/**/*.ts' || true"
     },
     "dependencies": {
         "@getkist/action-nunjucks": "^2.0.9",

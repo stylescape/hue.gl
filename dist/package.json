@@ -39,11 +39,6 @@
     "ts/**/*.ts",
     "!.DS_Store"
   ],
-  "dependencies": {
-    "@getkist/action-nunjucks": "^2.0.9",
-    "@getkist/action-sass": "^1.0.4",
-    "tslib": "^2.8.1"
-  },
   "author": "Lars van Vianen",
   "contributors": [
     "Scape Agency"
@@ -58,6 +53,8 @@
       "url": "https://github.com/sponsors/stylescape"
     }
   ],
+  "sass": "scss/index.scss",
+  "style": "dist/css/hue.gl.css",
   "exports": {
     ".": {
       "sass": "./src/scss/index.scss",
