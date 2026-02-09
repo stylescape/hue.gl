@@ -36,12 +36,14 @@
         }
     ],
     "type": "module",
-    "main": "src/ts/index.ts",
+    "main": "./dist/js/index.cjs",
+    "module": "./dist/js/index.mjs",
+    "types": "./dist/js/index.d.ts",
     "sass": "scss/index.scss",
-    "module": "dist/js/hue.gl.js",
     "style": "dist/css/hue.gl.css",
     "scripts": {
-        "build": "npx kist --config ./kist.yml",
+        "build": "npx kist --config ./kist.yml && npm run build:ts",
+        "build:ts": "tsup",
         "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite",
         "test": "vitest run",
@@ -66,6 +68,7 @@
         "kist": "^0.1.60",
         "prettier": "^3.8.1",
         "sass": "^1.97.3",
+        "tsup": "^8.5.1",
         "typescript": "^5.9.3",
         "vite": "^7.3.1",
         "vitest": "^4.0.18"
@@ -77,18 +80,12 @@
     "exports": {
         ".": {
             "sass": "./src/scss/index.scss",
-            "types": "./dist/ts/index.d.ts",
-            "import": "./dist/js/hue.gl.js",
-            "default": "./dist/js/hue.gl.js"
+            "types": "./dist/js/index.d.ts",
+            "import": "./dist/js/index.mjs",
+            "require": "./dist/js/index.cjs"
         },
+        "./scss": "./dist/scss/index.scss",
         "./css/hue.gl.css": "./dist/css/hue.gl.css",
         "./css/hue.gl.min.css": "./dist/css/hue.gl.min.css"
-    },
-    "typesVersions": {
-        "*": {
-            "*": [
-                "./dist/ts/index.d.ts"
-            ]
-        }
     }
 }
