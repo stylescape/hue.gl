@@ -4,13 +4,13 @@ version: 0.1.2
 date-released: 2022-12-01
 url: 'https://github.com/stylescape/hue.gl'
 message: >-
-    hue.gl is a colour palette developed by Scape Agency.
+    hue.gl is a colour palette developed by Scape Press.
 type: software
 authors:
     - given-names: Lars Bastiaan
       family-names: van Vianen
-      email: lars@scape.agency
-      affiliation: Scape Agency
+      email: lars@scape.press
+      affiliation: Scape Press
       orcid: 'https://orcid.org/0000-0002-8790-8630'
 
 

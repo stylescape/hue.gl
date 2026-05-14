@@ -1,6 +1,6 @@
 {
     "name": "hue.gl",
-    "description": "hue.gl is a colour palette developed by Scape Agency.",
+    "description": "hue.gl is a colour palette developed by Scape Press.",
     "version": "0.1.2",
     "config": {
         "version_short": "0.0"
@@ -19,7 +19,7 @@
     "homepage": "https://www.hue.gl/",
     "author": "Lars van Vianen",
     "contributors": [
-        "Scape Agency"
+        "Scape Press"
     ],
     "license": "MIT",
     "repository": {

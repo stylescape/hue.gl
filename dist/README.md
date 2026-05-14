@@ -95,14 +95,14 @@ npm i hue.gl
 
 ### Authors
 
-**hue.gl** is an open-source project by **[Scape Agency](https://www.scape.agency "Scape Agency website")**.
+**hue.gl** is an open-source project by **[Scape Press](https://www.scape.press "Scape Press website")**.
 
-#### Scape Agency
+#### Scape Press
 
-Scape Agency is a spatial innovation collective that dreams, discovers and designs the everyday of tomorrow. We blend design thinking with emerging technologies to create a brighter perspective for people and planet. Our products and services naturalise technology in liveable and sustainable –scapes that spark the imagination and inspire future generations.
+Scape Press is a spatial innovation collective that dreams, discovers and designs the everyday of tomorrow. We blend design thinking with emerging technologies to create a brighter perspective for people and planet. Our products and services naturalise technology in liveable and sustainable –scapes that spark the imagination and inspire future generations.
 
-- website: [scape.agency](https://www.scape.agency "Scape Agency website")
-- github: [github.com/stylescape](https://github.com/stylescape "Scape Agency GitHub")
+- website: [scape.press](https://www.scape.press "Scape Press website")
+- github: [github.com/stylescape](https://github.com/stylescape "Scape Press GitHub")
 
 ### Links
 
@@ -120,7 +120,7 @@ Please refer to the [contribution guidelines](.github/CONTRIBUTING.md) for infor
 
 #### Copyright
 
-Copyright &copy; 2025 [Scape Agency BV](https://www.scape.agency/ "Scape Agency website"). All Rights Reserved.
+Copyright &copy; 2025 [Scape Press BV](https://www.scape.press/ "Scape Press website"). All Rights Reserved.
 
 #### License
 
@@ -137,5 +137,5 @@ Also see [LICENSE](https://github.com/stylescape/community/blob/master/src/LICEN
 ---
 
 <p align="center">
-    <b>Made with ❤️ by <a href="https://www.scape.agency" target="_blank">Scape Agency</a></b>
+    <b>Made with ❤️ by <a href="https://www.scape.press" target="_blank">Scape Press</a></b>
 </p>

@@ -16,11 +16,11 @@
                 <h4>Version 2.0</h4>
                 <p>May 2023</p>
                 <br>
-                
+
                 <p>
-                    Staging System for 
+                    Staging System for
                     <a href="https://www.scape.style">Stylescape</a>
-                     by <a href="https://www.scape.agency">Scape Agency</a>
+                     by <a href="https://www.scape.press">Scape Press</a>
                      <sup>&reg;</sup>
                 </p>
                 <br>
@@ -46,7 +46,7 @@
             <br>
             <br>
             <!-- <footer class="niji_footer">
-                <a href="https://www.scape.agency">Scape Agency</a>
+                <a href="https://www.scape.press">Scape Press</a>
             </footer> --->
             <br>
         </div>
@@ -62,7 +62,7 @@
 
         import Color from "https://colorjs.io/dist/color.js";
         // import Chroma from "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js";
-    
+
 
         // Globals
         // ========================================================================
@@ -137,7 +137,7 @@
             "360": "Red"            // Fixed
           };
 
-          
+
         // Functions
         // ========================================================================
 
@@ -146,23 +146,23 @@
             var m = 1 - (g / 255);
             var y = 1 - (b / 255);
             var k = Math.min(c, Math.min(m, y));
-            
+
             c = (c - k) / (1 - k);
             m = (m - k) / (1 - k);
             y = (y - k) / (1 - k);
-            
+
             if(!normalized){
                 c = Math.round(c * 10000) / 100;
                 m = Math.round(m * 10000) / 100;
                 y = Math.round(y * 10000) / 100;
                 k = Math.round(k * 10000) / 100;
             }
-            
+
             c = isNaN(c) ? 0 : c;
             m = isNaN(m) ? 0 : m;
             y = isNaN(y) ? 0 : y;
             k = isNaN(k) ? 0 : k;
-            
+
             return {
                 c: c,
                 m: m,
@@ -241,10 +241,10 @@
                 l_list.push(l_cur);
             };
 
-            
+
             // Create HTML Elements
             // ================================================================
-        
+
             // Create Body
             //const body = document.body;
 
@@ -275,11 +275,11 @@
                 header_cell_day.appendChild(header_cell_div_day);
 
                 let day_text = "\n"
-                if (j == 1) { day_text = "<--"} 
-                if (j == 3) { day_text = "AM"} 
-                if (j == 5) { day_text = "-->  <--"} 
-                if (j == 7) { day_text = "PM"} 
-                if (j == 9) { day_text = "-->"} 
+                if (j == 1) { day_text = "<--"}
+                if (j == 3) { day_text = "AM"}
+                if (j == 5) { day_text = "-->  <--"}
+                if (j == 7) { day_text = "PM"}
+                if (j == 9) { day_text = "-->"}
 
                 header_cell_div_day.appendChild(document.createTextNode( day_text ));
                 header_row_day.appendChild(header_cell_day);
@@ -296,17 +296,17 @@
                 header_cell_day.appendChild(header_cell_div_day);
 
                 let day_text = "\n"
-                if (j == 1) { day_text = "<--"} 
-                if (j == 2) { day_text = "DAWN"} 
-                if (j == 3) { day_text = "-->"} 
-                if (j == 4) { day_text = "<--"} 
-                if (j == 5) { day_text = "DAY"} 
-                if (j == 6) { day_text = "-->"} 
-                if (j == 7) { day_text = "<--"} 
-                if (j == 8) { day_text = "DUSK"} 
-                if (j == 9) { day_text = "-->"} 
+                if (j == 1) { day_text = "<--"}
+                if (j == 2) { day_text = "DAWN"}
+                if (j == 3) { day_text = "-->"}
+                if (j == 4) { day_text = "<--"}
+                if (j == 5) { day_text = "DAY"}
+                if (j == 6) { day_text = "-->"}
+                if (j == 7) { day_text = "<--"}
+                if (j == 8) { day_text = "DUSK"}
+                if (j == 9) { day_text = "-->"}
 
-                //else {let day_text = "\n"} 
+                //else {let day_text = "\n"}
                 header_cell_div_day.appendChild(document.createTextNode( day_text ));
                 header_row_day2.appendChild(header_cell_day);
             }
@@ -400,10 +400,10 @@
                     // console.log(argb_in_gamut);
 
                     let in_gamut;
-                    if ( 
-                        lch_in_gamut == false || 
-                        srgb_in_gamut == false  || 
-                        argb_in_gamut == false 
+                    if (
+                        lch_in_gamut == false ||
+                        srgb_in_gamut == false  ||
+                        argb_in_gamut == false
                     ) {
                         in_gamut = false;
                         color_object = new Color("white");
@@ -464,11 +464,11 @@
                         color_srgb.coords[1],
                         color_srgb.coords[2]
                     );
-                    
+
 
                     // Create css styles for swatch
                     // ========================================================
-                    
+
                     let swatch_base_name = niji_prefix + niji_identifier
 
                     // Root styles
@@ -534,7 +534,7 @@
                         //label_div_hex.appendChild(document.createTextNode("HEX: " + color_string_hex));
                         label_div_hex.appendChild(document.createTextNode(color_string_hex));
                         label_div_hex.classList.add("niji_label_div_line")
-                        label_div.appendChild(label_div_hex);                    
+                        label_div.appendChild(label_div_hex);
                     }
 
                     // Add swatch and label div to table cell
@@ -574,7 +574,7 @@
 
 
 
-            
+
             // D3 Variables
 
             const SIZE         = 720;
@@ -590,8 +590,8 @@
                 .attr('height', SIZE)
                 .append('g')
                 .attr('transform', 'translate(' + (SIZE/2) + ',' + (SIZE/2) + ')');
-        
-                
+
+
 
 for (let j = 0; j <= l_list.length-1; j++) {
 
@@ -626,7 +626,7 @@ for (let j = 0; j <= l_list.length-1; j++) {
         }
 
     }
-  
+
 
 
 
