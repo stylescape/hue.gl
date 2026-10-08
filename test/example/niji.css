@@ -1,5 +1,4 @@
-
-* { 
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -38,7 +37,6 @@ h1 {
     color: white;
     width: 100px;
     margin: auto;
-
 }
 .niji_header {
     text-align: center;
@@ -47,8 +45,9 @@ h1 {
     text-align: center;
 }
 
-
-table, th, td {
+table,
+th,
+td {
     border: 1px solid white;
 }
 
@@ -59,7 +58,7 @@ table, th, td {
     border-collapse: collapse;
     table-layout: fixed;
 }
-.niji_table tbody{
+.niji_table tbody {
     /* position: relative;
     width: 100%;
     min-width: 100%; */
@@ -76,7 +75,8 @@ table, th, td {
     margin-bottom: 1px; */
 }
 
-.niji_cell, .niji_cell_header {
+.niji_cell,
+.niji_cell_header {
     position: relative;
     width: 10%;
     height: 10vw;
@@ -84,9 +84,6 @@ table, th, td {
     margin: 0;
     padding: 0;
 }
-
-
-
 
 /* .niji_swatch_div, .niji_cell_header_div { */
 .niji_swatch_div {
@@ -105,7 +102,6 @@ table, th, td {
     text-align: center;
     vertical-align: middle;
     font-size: 10px;
-
 }
 
 .niji_cell_header_div {
@@ -123,7 +119,6 @@ table, th, td {
     margin: 20px;
     opacity: 0.5;
 }
-
 
 .niji_label_div {
     position: relative;
@@ -147,7 +142,6 @@ table, th, td {
     justify-content: flex-end;
 }
 
-
 .niji_label_div_line_title {
     font-weight: 600;
     font-size: 10px;
@@ -162,5 +156,3 @@ table, th, td {
     width: 100%;
     height: 12px;
 }
-
-

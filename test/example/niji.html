@@ -1,8 +1,7 @@
 <html>
-
     <head>
         <title>NIJI</title>
-        <link rel="stylesheet" href="niji.css">
+        <link rel="stylesheet" href="niji.css" />
         <script src="chroma.min.js"></script>
         <script src="https://d3js.org/d3.v7.min.js"></script>
     </head>
@@ -11,236 +10,217 @@
         <div id="niji_wrapper">
             <header class="niji_header">
                 <h1>NIJI</h1>
-                <br>
-                <h3><b>Perceptual Color System</b></h3><br>
+                <br />
+                <h3><b>Perceptual Color System</b></h3>
+                <br />
                 <h4>Version 2.0</h4>
                 <p>May 2023</p>
-                <br>
+                <br />
 
                 <p>
                     Staging System for
                     <a href="https://www.scape.style">Stylescape</a>
-                     by <a href="https://www.scape.press">Scape Press</a>
-                     <sup>&reg;</sup>
+                    by <a href="https://www.scape.press">Scape Press</a>
+                    <sup>&reg;</sup>
                 </p>
-                <br>
-                <br>
-                <br>
-                <hr>
-                <br>
-                <br>
-                <br>
-                <div id='color_wheel'></div>
-                <br>
-                <div id='buttons'></div>
-                <br>
-                <br>
-                <br>
-                <hr>
-                <br>
+                <br />
+                <br />
+                <br />
+                <hr />
+                <br />
+                <br />
+                <br />
+                <div id="color_wheel"></div>
+                <br />
+                <div id="buttons"></div>
+                <br />
+                <br />
+                <br />
+                <hr />
+                <br />
             </header>
-            <br>
+            <br />
             <div id="niji_container"></div>
-            <br>
-            <br>
-            <br>
-            <br>
+            <br />
+            <br />
+            <br />
+            <br />
             <!-- <footer class="niji_footer">
                 <a href="https://www.scape.press">Scape Press</a>
             </footer> --->
-            <br>
+            <br />
         </div>
     </body>
 
-
-
-
     <script type="module">
-
         // Imports
         // ========================================================================
 
-        import Color from "https://colorjs.io/dist/color.js";
+        import Color from 'https://colorjs.io/dist/color.js'
         // import Chroma from "https://cdnjs.cloudflare.com/ajax/libs/chroma-js/2.4.2/chroma.min.js";
-
 
         // Globals
         // ========================================================================
 
         //const niji_prefix = "niji_"
-        const niji_prefix = "N"
-
+        const niji_prefix = 'N'
 
         const color_names_10 = {
-            "010": " ",
-            "020": " ",
-            "030": "Orange",
-            "040": " ",
-            "050": " ",
-            "060": "Yellow",
-            "070": " ",
-            "080": " ",
-            "090": " ",
-            "100": " ",
-            "110": " ",
-            "120": "Green",
-            "130": " ",
-            "140": " ",
-            "150": " ",
-            "160": " ",
-            "170": " ",
-            "180": "Cyan",
-            "190": " ",
-            "200": "Azure",
-            "210": " ",
-            "220": " ",
-            "230": " ",
-            "240": "Blue",
-            "250": " ",
-            "260": " ",
-            "270": "Violet",
-            "280": " ",
-            "290": " ",
-            "300": "Magenta",
-            "310": " ",
-            "320": "Pink",
-            "330": " ",
-            "340": " ",
-            "350": " ",
-            "360": "Red"
-          };
+            '010': ' ',
+            '020': ' ',
+            '030': 'Orange',
+            '040': ' ',
+            '050': ' ',
+            '060': 'Yellow',
+            '070': ' ',
+            '080': ' ',
+            '090': ' ',
+            100: ' ',
+            110: ' ',
+            120: 'Green',
+            130: ' ',
+            140: ' ',
+            150: ' ',
+            160: ' ',
+            170: ' ',
+            180: 'Cyan',
+            190: ' ',
+            200: 'Azure',
+            210: ' ',
+            220: ' ',
+            230: ' ',
+            240: 'Blue',
+            250: ' ',
+            260: ' ',
+            270: 'Violet',
+            280: ' ',
+            290: ' ',
+            300: 'Magenta',
+            310: ' ',
+            320: 'Pink',
+            330: ' ',
+            340: ' ',
+            350: ' ',
+            360: 'Red',
+        }
 
-          const color_names_15 = {
-            "015": "Salmon",
-            "030": "Orange",
-            "045": "Amber",
-            "060": "Yellow",        // Fixed
-            "075": "Lime",
-            "090": "Ecru",
-            "105": "Olive",
-            "120": "Green",         // Fixed
-            "135": "Forest",
-            "150": "Jade",
-            "165": "Mint",
-            "180": "Cyan",          // Fixed
-            "195": "Teal",
-            "210": "Capri",
-            "225": "Sky",
-            "240": "Blue",          // Fixed
-            "255": "Azure",
-            "270": "Indigo",
-            "285": "Violet",
-            "300": "Magenta",       // Fixed
-            "315": "Purple",
-            "330": "Rose",
-            "345": "Pink",
-            "360": "Red"            // Fixed
-          };
-
+        const color_names_15 = {
+            '015': 'Salmon',
+            '030': 'Orange',
+            '045': 'Amber',
+            '060': 'Yellow', // Fixed
+            '075': 'Lime',
+            '090': 'Ecru',
+            105: 'Olive',
+            120: 'Green', // Fixed
+            135: 'Forest',
+            150: 'Jade',
+            165: 'Mint',
+            180: 'Cyan', // Fixed
+            195: 'Teal',
+            210: 'Capri',
+            225: 'Sky',
+            240: 'Blue', // Fixed
+            255: 'Azure',
+            270: 'Indigo',
+            285: 'Violet',
+            300: 'Magenta', // Fixed
+            315: 'Purple',
+            330: 'Rose',
+            345: 'Pink',
+            360: 'Red', // Fixed
+        }
 
         // Functions
         // ========================================================================
 
-        var rgb2cmyk = function(r, g, b, normalized){
-            var c = 1 - (r / 255);
-            var m = 1 - (g / 255);
-            var y = 1 - (b / 255);
-            var k = Math.min(c, Math.min(m, y));
+        var rgb2cmyk = function (r, g, b, normalized) {
+            var c = 1 - r / 255
+            var m = 1 - g / 255
+            var y = 1 - b / 255
+            var k = Math.min(c, Math.min(m, y))
 
-            c = (c - k) / (1 - k);
-            m = (m - k) / (1 - k);
-            y = (y - k) / (1 - k);
+            c = (c - k) / (1 - k)
+            m = (m - k) / (1 - k)
+            y = (y - k) / (1 - k)
 
-            if(!normalized){
-                c = Math.round(c * 10000) / 100;
-                m = Math.round(m * 10000) / 100;
-                y = Math.round(y * 10000) / 100;
-                k = Math.round(k * 10000) / 100;
+            if (!normalized) {
+                c = Math.round(c * 10000) / 100
+                m = Math.round(m * 10000) / 100
+                y = Math.round(y * 10000) / 100
+                k = Math.round(k * 10000) / 100
             }
 
-            c = isNaN(c) ? 0 : c;
-            m = isNaN(m) ? 0 : m;
-            y = isNaN(y) ? 0 : y;
-            k = isNaN(k) ? 0 : k;
+            c = isNaN(c) ? 0 : c
+            m = isNaN(m) ? 0 : m
+            y = isNaN(y) ? 0 : y
+            k = isNaN(k) ? 0 : k
 
             return {
                 c: c,
                 m: m,
                 y: y,
-                k: k
+                k: k,
             }
         }
 
         function colorToHex(color) {
-            var hexadecimal = color.toString(16);
-            return hexadecimal.length == 1 ? "0" + hexadecimal : hexadecimal;
+            var hexadecimal = color.toString(16)
+            return hexadecimal.length == 1 ? '0' + hexadecimal : hexadecimal
         }
-
 
         function convertRGBtoHex(red, green, blue) {
-            return "#" + colorToHex(red) + colorToHex(green) + colorToHex(blue);
+            return '#' + colorToHex(red) + colorToHex(green) + colorToHex(blue)
         }
-
 
         function pad(num, size, char) {
-            num = num.toString();
-            while (num.length < size) num = char + num;
-            return num;
+            num = num.toString()
+            while (num.length < size) num = char + num
+            return num
         }
 
-
         function palletteCreate() {
-
-
-
             // Color Variables
             // ----------------------------------------------------------------
 
-            const p_count   =  9;
-            const l_count   =  Math.ceil(p_count / 2);
-            const d_count   =  Math.floor(p_count / 2);
+            const p_count = 9
+            const l_count = Math.ceil(p_count / 2)
+            const d_count = Math.floor(p_count / 2)
 
             // L Variables
-            const l_l_min     =  96;
-            const l_l_step    =  -6;
-            const d_l_step    =  -6;
-            const d_l_min     =  l_l_min + (l_l_step * (l_count-1));
+            const l_l_min = 96
+            const l_l_step = -6
+            const d_l_step = -6
+            const d_l_min = l_l_min + l_l_step * (l_count - 1)
             console.log(d_l_min)
 
             // C Variables
-            const l_c_min     =  12;
-            const l_c_step    =  +6;
-            const d_c_step    =  -6;
-            const d_c_min     =  l_c_min + (l_c_step * (l_count-1));
+            const l_c_min = 12
+            const l_c_step = +6
+            const d_c_step = -6
+            const d_c_min = l_c_min + l_c_step * (l_count - 1)
 
             // H Variables
-            const h_max     = 360;
-            const h_step    =  15;
-            const h_min     =  h_step;
-
-
-
-
-
-
+            const h_max = 360
+            const h_step = 15
+            const h_min = h_step
 
             // Create LC lists
             // ----------------------------------------------------------------
-            var l_list  = [];
-            var c_list  = [];
-            for (let i = 0; i < l_count; i ++) {
-                let c_cur = l_c_min + i * l_c_step;
-                c_list.push(c_cur);
-            };
-            for (let i = 0; i < d_count; i ++) {
-                let c_cur = d_c_min + d_c_step + i * d_c_step;
-                c_list.push(c_cur);
-            };
-            for (let i = 0; i < p_count; i ++) {
-                let l_cur = l_l_min + l_l_step + i * l_l_step -2*i;
-                l_list.push(l_cur);
-            };
-
+            var l_list = []
+            var c_list = []
+            for (let i = 0; i < l_count; i++) {
+                let c_cur = l_c_min + i * l_c_step
+                c_list.push(c_cur)
+            }
+            for (let i = 0; i < d_count; i++) {
+                let c_cur = d_c_min + d_c_step + i * d_c_step
+                c_list.push(c_cur)
+            }
+            for (let i = 0; i < p_count; i++) {
+                let l_cur = l_l_min + l_l_step + i * l_l_step - 2 * i
+                l_list.push(l_cur)
+            }
 
             // Create HTML Elements
             // ================================================================
@@ -249,222 +229,239 @@
             //const body = document.body;
 
             // Create Style Element
-            const style = document.createElement('style');
-            style.type = 'text/css';
-            let style_root = '';
-            let style_body = '';
+            const style = document.createElement('style')
+            style.type = 'text/css'
+            let style_root = ''
+            let style_body = ''
 
             // Create Palette Table
-            const palette = document.createElement('table');
-            palette.classList.add("niji_table");
-
-
-
-
+            const palette = document.createElement('table')
+            palette.classList.add('niji_table')
 
             // Create Palette Table
 
-            const header_row_day = palette.insertRow();
-            header_row_day.classList.add("niji_row");
-            for (let j = 0; j <= l_list.length; j ++) {
-                let header_cell_day = header_row_day.insertCell();
-                header_cell_day.classList.add("niji_cell_header_day");
+            const header_row_day = palette.insertRow()
+            header_row_day.classList.add('niji_row')
+            for (let j = 0; j <= l_list.length; j++) {
+                let header_cell_day = header_row_day.insertCell()
+                header_cell_day.classList.add('niji_cell_header_day')
 
-                let header_cell_div_day = document.createElement("div");
-                header_cell_div_day.classList.add("niji_cell_header_div_day");
-                header_cell_day.appendChild(header_cell_div_day);
+                let header_cell_div_day = document.createElement('div')
+                header_cell_div_day.classList.add('niji_cell_header_div_day')
+                header_cell_day.appendChild(header_cell_div_day)
 
-                let day_text = "\n"
-                if (j == 1) { day_text = "<--"}
-                if (j == 3) { day_text = "AM"}
-                if (j == 5) { day_text = "-->  <--"}
-                if (j == 7) { day_text = "PM"}
-                if (j == 9) { day_text = "-->"}
+                let day_text = '\n'
+                if (j == 1) {
+                    day_text = '<--'
+                }
+                if (j == 3) {
+                    day_text = 'AM'
+                }
+                if (j == 5) {
+                    day_text = '-->  <--'
+                }
+                if (j == 7) {
+                    day_text = 'PM'
+                }
+                if (j == 9) {
+                    day_text = '-->'
+                }
 
-                header_cell_div_day.appendChild(document.createTextNode( day_text ));
-                header_row_day.appendChild(header_cell_day);
+                header_cell_div_day.appendChild(document.createTextNode(day_text))
+                header_row_day.appendChild(header_cell_day)
             }
 
-            const header_row_day2 = palette.insertRow();
-            header_row_day2.classList.add("niji_row");
-            for (let j = 0; j <= l_list.length; j ++) {
-                let header_cell_day = header_row_day2.insertCell();
-                header_cell_day.classList.add("niji_cell_header_day");
+            const header_row_day2 = palette.insertRow()
+            header_row_day2.classList.add('niji_row')
+            for (let j = 0; j <= l_list.length; j++) {
+                let header_cell_day = header_row_day2.insertCell()
+                header_cell_day.classList.add('niji_cell_header_day')
 
-                let header_cell_div_day = document.createElement("div");
-                header_cell_div_day.classList.add("niji_cell_header_div_day");
-                header_cell_day.appendChild(header_cell_div_day);
+                let header_cell_div_day = document.createElement('div')
+                header_cell_div_day.classList.add('niji_cell_header_div_day')
+                header_cell_day.appendChild(header_cell_div_day)
 
-                let day_text = "\n"
-                if (j == 1) { day_text = "<--"}
-                if (j == 2) { day_text = "DAWN"}
-                if (j == 3) { day_text = "-->"}
-                if (j == 4) { day_text = "<--"}
-                if (j == 5) { day_text = "DAY"}
-                if (j == 6) { day_text = "-->"}
-                if (j == 7) { day_text = "<--"}
-                if (j == 8) { day_text = "DUSK"}
-                if (j == 9) { day_text = "-->"}
+                let day_text = '\n'
+                if (j == 1) {
+                    day_text = '<--'
+                }
+                if (j == 2) {
+                    day_text = 'DAWN'
+                }
+                if (j == 3) {
+                    day_text = '-->'
+                }
+                if (j == 4) {
+                    day_text = '<--'
+                }
+                if (j == 5) {
+                    day_text = 'DAY'
+                }
+                if (j == 6) {
+                    day_text = '-->'
+                }
+                if (j == 7) {
+                    day_text = '<--'
+                }
+                if (j == 8) {
+                    day_text = 'DUSK'
+                }
+                if (j == 9) {
+                    day_text = '-->'
+                }
 
                 //else {let day_text = "\n"}
-                header_cell_div_day.appendChild(document.createTextNode( day_text ));
-                header_row_day2.appendChild(header_cell_day);
+                header_cell_div_day.appendChild(document.createTextNode(day_text))
+                header_row_day2.appendChild(header_cell_day)
             }
 
-            const header_row = palette.insertRow();
-            header_row.classList.add("niji_row");
+            const header_row = palette.insertRow()
+            header_row.classList.add('niji_row')
 
-            let header_cell = header_row.insertCell();
-            header_cell.classList.add("niji_cell_header");
-            let header_cell_div = document.createElement("div");
-            header_cell_div.classList.add("niji_cell_header_div");
-            header_cell.appendChild(header_cell_div);
+            let header_cell = header_row.insertCell()
+            header_cell.classList.add('niji_cell_header')
+            let header_cell_div = document.createElement('div')
+            header_cell_div.classList.add('niji_cell_header_div')
+            header_cell.appendChild(header_cell_div)
 
+            for (let j = 0; j <= l_list.length - 1; j++) {
+                let header_cell = header_row.insertCell()
+                header_cell.classList.add('niji_cell_header')
+                let header_cell_div = document.createElement('div')
 
-            for (let j = 0; j <= l_list.length-1; j ++) {
-                let header_cell = header_row.insertCell();
-                header_cell.classList.add("niji_cell_header");
-                let header_cell_div = document.createElement("div");
+                header_cell_div.appendChild(document.createTextNode(pad(j + 1, 1, '0')))
+                header_cell_div.classList.add('niji_cell_header_div')
+                header_cell.appendChild(header_cell_div)
 
-                header_cell_div.appendChild(document.createTextNode( pad(j + 1, 1, "0") ));
-                header_cell_div.classList.add("niji_cell_header_div");
-                header_cell.appendChild(header_cell_div);
+                let header_cell_div_l = document.createElement('div')
+                header_cell_div_l.appendChild(document.createTextNode('L: ' + l_list[j]))
+                header_cell.appendChild(header_cell_div_l)
 
-                let header_cell_div_l = document.createElement("div");
-                header_cell_div_l.appendChild(document.createTextNode( "L: " + l_list[j] ));
-                header_cell.appendChild(header_cell_div_l);
-
-                let header_cell_div_c = document.createElement("div");
-                header_cell_div_c.appendChild(document.createTextNode( "C: " + c_list[j] ));
-                header_cell.appendChild(header_cell_div_c);
+                let header_cell_div_c = document.createElement('div')
+                header_cell_div_c.appendChild(document.createTextNode('C: ' + c_list[j]))
+                header_cell.appendChild(header_cell_div_c)
             }
-
 
             // Loop over Hue levels
             // ================================================================
             for (let i = h_min; i <= h_max; i += h_step) {
+                const niji_i_pad = pad(i / 1, 3, '0')
+                const swatch_row = palette.insertRow()
+                swatch_row.classList.add('niji_row')
 
-                const niji_i_pad = pad(i / 1, 3, "0");
-                const swatch_row = palette.insertRow();
-                swatch_row.classList.add("niji_row");
+                let header_cell = swatch_row.insertCell()
+                header_cell.classList.add('niji_cell_header')
+                let header_cell_div = document.createElement('div')
 
-                let header_cell = swatch_row.insertCell();
-                header_cell.classList.add("niji_cell_header");
-                let header_cell_div = document.createElement("div");
+                let header_cell_div_name = document.createElement('div')
+                header_cell_div_name.appendChild(
+                    document.createTextNode(color_names_15[niji_i_pad]),
+                )
+                header_cell.appendChild(header_cell_div_name)
 
-                let header_cell_div_name = document.createElement("div");
-                header_cell_div_name.appendChild(document.createTextNode(color_names_15[niji_i_pad] ));
-                header_cell.appendChild(header_cell_div_name);
+                header_cell_div.appendChild(document.createTextNode(pad(i / 1, 3, '0')))
+                header_cell_div.classList.add('niji_cell_header_div')
+                header_cell.appendChild(header_cell_div)
 
-                header_cell_div.appendChild(document.createTextNode( pad(i / 1, 3, "0") ));
-                header_cell_div.classList.add("niji_cell_header_div");
-                header_cell.appendChild(header_cell_div);
+                let header_cell_div_h = document.createElement('div')
+                header_cell_div_h.appendChild(document.createTextNode('H: ' + i))
+                header_cell.appendChild(header_cell_div_h)
 
-                let header_cell_div_h = document.createElement("div");
-                header_cell_div_h.appendChild(document.createTextNode( "H: " + i));
-                header_cell.appendChild(header_cell_div_h);
-
-
-                                // CSS Headers
-                                let css_header = "\n" + "  /* " + color_names_15[niji_i_pad] + " */"+ "\n" +"  /* ----------------------------------------------------------------------- */"+ "\n"
-                                style_root += css_header
-
+                // CSS Headers
+                let css_header =
+                    '\n' +
+                    '  /* ' +
+                    color_names_15[niji_i_pad] +
+                    ' */' +
+                    '\n' +
+                    '  /* ----------------------------------------------------------------------- */' +
+                    '\n'
+                style_root += css_header
 
                 // Loop over Luminosity levels
                 // ============================================================
-                for (let j = 0; j <= l_list.length-1; j ++) {
-
-                    const niji_j_pad = pad(j + 1, 1, "0");
-                    const niji_identifier =  niji_j_pad + niji_i_pad
-
+                for (let j = 0; j <= l_list.length - 1; j++) {
+                    const niji_j_pad = pad(j + 1, 1, '0')
+                    const niji_identifier = niji_j_pad + niji_i_pad
 
                     // Color Variables
                     // ========================================================
 
                     // Color Object
-                    const l = l_list[j];
-                    const c = c_list[j];
-                    const h = i;
-                    const color_constant = new Color("lch", [l, c, h]);
+                    const l = l_list[j]
+                    const c = c_list[j]
+                    const h = i
+                    const color_constant = new Color('lch', [l, c, h])
                     let color_object = color_constant
                     // let color_object = new Color("lch", [l, c, h]);
                     // console.log(color_object);
 
-
                     // Color Gamut Checks
                     // ========================================================
 
-                    let lch_in_gamut = (color_constant.to("lch")).inGamut();
-                    let srgb_in_gamut = (color_constant.to("srgb")).inGamut();
-                    let argb_in_gamut = (color_constant.to("a98rgb")).inGamut();
+                    let lch_in_gamut = color_constant.to('lch').inGamut()
+                    let srgb_in_gamut = color_constant.to('srgb').inGamut()
+                    let argb_in_gamut = color_constant.to('a98rgb').inGamut()
                     // console.log(argb_in_gamut);
 
-                    let in_gamut;
-                    if (
-                        lch_in_gamut == false ||
-                        srgb_in_gamut == false  ||
-                        argb_in_gamut == false
-                    ) {
-                        in_gamut = false;
-                        color_object = new Color("white");
+                    let in_gamut
+                    if (lch_in_gamut == false || srgb_in_gamut == false || argb_in_gamut == false) {
+                        in_gamut = false
+                        color_object = new Color('white')
                     } else {
-                        in_gamut = true;
-
+                        in_gamut = true
                     }
-
 
                     // Color Space Conversions
                     // ========================================================
 
                     // Color Spaces
                     // --------------------------------------------------------
-                    let color_argb              = color_constant.to("a98rgb");
-                    let color_argb_linear       = color_constant.to("a98rgb-linear");
-                    let color_acescg            = color_constant.to("acescg");
-                    let color_hsl               = color_constant.to("hsl");
-                    let color_hsv               = color_constant.to("hsv");
-                    let color_hwb               = color_constant.to("hwb");
-                    let color_ictcp             = color_constant.to("ictcp");
-                    let color_jzczhz            = color_constant.to("jzczhz");
-                    let color_jzazbz            = color_constant.to("jzazbz");
-                    let color_lab               = color_constant.to("lab");
-                    let color_lab_d65           = color_constant.to("lab-d65");
-                    let color_lch               = color_constant.to("lch");
-                    let color_oklch             = color_constant.to("oklch");
-                    let color_oklab             = color_constant.to("oklab");
-                    let color_p3                = color_constant.to("p3");
-                    let color_p3_linear         = color_constant.to("p3-linear");
-                    let color_prophoto          = color_constant.to("prophoto");
-                    let color_prophoto_linear   = color_constant.to("prophoto-linear");
-                    let color_rec2020           = color_constant.to("rec2020");
-                    let color_rec2020_linear    = color_constant.to("rec2020-linear");
-                    let color_rec2100hlg        = color_constant.to("rec2100hlg");
-                    let color_rec2100pq         = color_constant.to("rec2100pq");
-                    let color_xyz_abs_d65       = color_constant.to("xyz-abs-d65");
-                    let color_xyz_d50           = color_constant.to("xyz-d50");
-                    let color_xyz_d65           = color_constant.to("xyz-d65");
-                    let color_xyz               = color_constant.to("xyz");
-                    let color_srgb              = color_constant.to("srgb");
-                    let color_srgb_linear       = color_constant.to("srgb-linear");
+                    let color_argb = color_constant.to('a98rgb')
+                    let color_argb_linear = color_constant.to('a98rgb-linear')
+                    let color_acescg = color_constant.to('acescg')
+                    let color_hsl = color_constant.to('hsl')
+                    let color_hsv = color_constant.to('hsv')
+                    let color_hwb = color_constant.to('hwb')
+                    let color_ictcp = color_constant.to('ictcp')
+                    let color_jzczhz = color_constant.to('jzczhz')
+                    let color_jzazbz = color_constant.to('jzazbz')
+                    let color_lab = color_constant.to('lab')
+                    let color_lab_d65 = color_constant.to('lab-d65')
+                    let color_lch = color_constant.to('lch')
+                    let color_oklch = color_constant.to('oklch')
+                    let color_oklab = color_constant.to('oklab')
+                    let color_p3 = color_constant.to('p3')
+                    let color_p3_linear = color_constant.to('p3-linear')
+                    let color_prophoto = color_constant.to('prophoto')
+                    let color_prophoto_linear = color_constant.to('prophoto-linear')
+                    let color_rec2020 = color_constant.to('rec2020')
+                    let color_rec2020_linear = color_constant.to('rec2020-linear')
+                    let color_rec2100hlg = color_constant.to('rec2100hlg')
+                    let color_rec2100pq = color_constant.to('rec2100pq')
+                    let color_xyz_abs_d65 = color_constant.to('xyz-abs-d65')
+                    let color_xyz_d50 = color_constant.to('xyz-d50')
+                    let color_xyz_d65 = color_constant.to('xyz-d65')
+                    let color_xyz = color_constant.to('xyz')
+                    let color_srgb = color_constant.to('srgb')
+                    let color_srgb_linear = color_constant.to('srgb-linear')
 
                     // Color Strings
                     // --------------------------------------------------------
                     let color_css = color_object
 
-                    let color_string_rgb = color_srgb.toString({precision: 3, format: "rgb"});
-                    let color_string_rgba = color_srgb.toString({precision: 3, format: "rgba"});
-                    let color_string_hex = color_srgb.toString({precision: 3, format: "hex"});
-                    let color_string_color = color_srgb.toString({precision: 3, format: "color"});
-
+                    let color_string_rgb = color_srgb.toString({ precision: 3, format: 'rgb' })
+                    let color_string_rgba = color_srgb.toString({ precision: 3, format: 'rgba' })
+                    let color_string_hex = color_srgb.toString({ precision: 3, format: 'hex' })
+                    let color_string_color = color_srgb.toString({ precision: 3, format: 'color' })
 
                     // CMYK
                     // --------------------------------------------------------
                     let cmyk = rgb2cmyk(
                         color_srgb.coords[0],
                         color_srgb.coords[1],
-                        color_srgb.coords[2]
-                    );
-
+                        color_srgb.coords[2],
+                    )
 
                     // Create css styles for swatch
                     // ========================================================
@@ -472,187 +469,179 @@
                     let swatch_base_name = niji_prefix + niji_identifier
 
                     // Root styles
-                    let swatch_root_name = "--" + swatch_base_name
-                    let swatch_root_string = "  " + swatch_root_name + ": " + color_string_rgb + ";" + "\n"
+                    let swatch_root_name = '--' + swatch_base_name
+                    let swatch_root_string =
+                        '  ' + swatch_root_name + ': ' + color_string_rgb + ';' + '\n'
                     style_root += swatch_root_string
 
                     // Class styles
                     let swatch_class_name = swatch_base_name
-                    let swatch_class_string = "." + swatch_base_name + " { background-color: var(" + swatch_root_name + "); }" + "\n"
+                    let swatch_class_string =
+                        '.' +
+                        swatch_base_name +
+                        ' { background-color: var(' +
+                        swatch_root_name +
+                        '); }' +
+                        '\n'
                     style_body += swatch_class_string
-
 
                     // Create divs
                     // ========================================================
 
                     // Create swatch div
                     // --------------------------------------------------------
-                    const swatch_div = document.createElement("div");
-                    swatch_div.classList.add("niji_swatch_div");
-                    swatch_div.classList.add(swatch_class_name);
-
+                    const swatch_div = document.createElement('div')
+                    swatch_div.classList.add('niji_swatch_div')
+                    swatch_div.classList.add(swatch_class_name)
 
                     // Create label div
                     // --------------------------------------------------------
-                    const label_div = document.createElement("div");
-                    label_div.classList.add("niji_label_div");
+                    const label_div = document.createElement('div')
+                    label_div.classList.add('niji_label_div')
                     if (in_gamut) {
-
                         // Append rgb div to label div
-                        const label_div_title = document.createElement("div")
-                        label_div_title.appendChild(document.createTextNode(niji_prefix+niji_identifier));
-                        label_div_title.classList.add("niji_label_div_line_title")
-                        label_div.appendChild(label_div_title);
+                        const label_div_title = document.createElement('div')
+                        label_div_title.appendChild(
+                            document.createTextNode(niji_prefix + niji_identifier),
+                        )
+                        label_div_title.classList.add('niji_label_div_line_title')
+                        label_div.appendChild(label_div_title)
 
                         // Append lch div to label div
-                        const label_div_lch = document.createElement("div")
+                        const label_div_lch = document.createElement('div')
                         //label_div_lch.appendChild(document.createTextNode("LCH: " + color_lch));
-                        label_div_lch.appendChild(document.createTextNode(color_lch));
-                        label_div_lch.classList.add("niji_label_div_line")
-                        label_div.appendChild(label_div_lch);
+                        label_div_lch.appendChild(document.createTextNode(color_lch))
+                        label_div_lch.classList.add('niji_label_div_line')
+                        label_div.appendChild(label_div_lch)
 
                         // Append rgb div to label div
-                        const label_div_rgb = document.createElement("div")
+                        const label_div_rgb = document.createElement('div')
                         // label_div_rgb.appendChild(document.createTextNode("RGB: " + color_string_rgb));
-                        label_div_rgb.appendChild(document.createTextNode(color_string_rgb));
-                        label_div_rgb.classList.add("niji_label_div_line")
-                        label_div.appendChild(label_div_rgb);
+                        label_div_rgb.appendChild(document.createTextNode(color_string_rgb))
+                        label_div_rgb.classList.add('niji_label_div_line')
+                        label_div.appendChild(label_div_rgb)
 
                         // Append CMYK div to label div
-                        const label_div_cmyk = document.createElement("div")
-                        label_div_cmyk.appendChild(document.createTextNode("CMYK: "));
-                        label_div_cmyk.appendChild(document.createTextNode(cmyk.c + " "));
-                        label_div_cmyk.appendChild(document.createTextNode(cmyk.m + " "));
-                        label_div_cmyk.appendChild(document.createTextNode(cmyk.y + " "));
-                        label_div_cmyk.appendChild(document.createTextNode(cmyk.k + " "));
-                        label_div_cmyk.classList.add("niji_label_div_line")
-                        label_div.appendChild(label_div_cmyk);
-
+                        const label_div_cmyk = document.createElement('div')
+                        label_div_cmyk.appendChild(document.createTextNode('CMYK: '))
+                        label_div_cmyk.appendChild(document.createTextNode(cmyk.c + ' '))
+                        label_div_cmyk.appendChild(document.createTextNode(cmyk.m + ' '))
+                        label_div_cmyk.appendChild(document.createTextNode(cmyk.y + ' '))
+                        label_div_cmyk.appendChild(document.createTextNode(cmyk.k + ' '))
+                        label_div_cmyk.classList.add('niji_label_div_line')
+                        label_div.appendChild(label_div_cmyk)
 
                         // Append hex div to label div
-                        const label_div_hex = document.createElement("div")
+                        const label_div_hex = document.createElement('div')
                         //label_div_hex.appendChild(document.createTextNode("HEX: " + color_string_hex));
-                        label_div_hex.appendChild(document.createTextNode(color_string_hex));
-                        label_div_hex.classList.add("niji_label_div_line")
-                        label_div.appendChild(label_div_hex);
+                        label_div_hex.appendChild(document.createTextNode(color_string_hex))
+                        label_div_hex.classList.add('niji_label_div_line')
+                        label_div.appendChild(label_div_hex)
                     }
 
                     // Add swatch and label div to table cell
                     // --------------------------------------------------------
-                    const swatch_cell = swatch_row.insertCell();
-                    swatch_cell.appendChild(swatch_div);
-                    swatch_cell.appendChild(label_div);
-                    swatch_cell.classList.add("niji_cell");
-
+                    const swatch_cell = swatch_row.insertCell()
+                    swatch_cell.appendChild(swatch_div)
+                    swatch_cell.appendChild(label_div)
+                    swatch_cell.classList.add('niji_cell')
                 }
-
             }
 
             // Add elements to HTML
             // ================================================================
 
             const niji_wrapper = document.getElementById('niji_container')
-            niji_wrapper.appendChild(palette);
+            niji_wrapper.appendChild(palette)
 
             // Add Style elements to the HTML head section
             // ----------------------------------------------------------------
 
-            style.innerHTML += "/* Root Variables */" + "\n"
-            style.innerHTML += ":root {" + "\n"
+            style.innerHTML += '/* Root Variables */' + '\n'
+            style.innerHTML += ':root {' + '\n'
             style.innerHTML += style_root
-            style.innerHTML += "}" + "\n"
+            style.innerHTML += '}' + '\n'
 
-            style.innerHTML += "/* Classes */" + "\n"
-            style.innerHTML += "" + "\n"
+            style.innerHTML += '/* Classes */' + '\n'
+            style.innerHTML += '' + '\n'
             style.innerHTML += style_body
-            style.innerHTML += "" + "\n"
+            style.innerHTML += '' + '\n'
 
-            document.getElementsByTagName('head')[0].appendChild(style);
-
-
-
-
-
-
+            document.getElementsByTagName('head')[0].appendChild(style)
 
             // D3 Variables
 
-            const SIZE         = 720;
-            const SIZE_INNER   = 240;
-            const BANDS        = 9;
-            const BAND_WIDTH   = (SIZE - SIZE_INNER) / BANDS;
-            const MIN_OPACITY  = 0.1;
-            const OPACITY_STEP = (1 - MIN_OPACITY) / BANDS;
-            const COUNT        = 20;
-            const COLORS       = d3.range(COUNT).map( (d, i) => d3.interpolateRainbow(i/COUNT) );
-            const svg = d3.select('#color_wheel').append('svg')
+            const SIZE = 720
+            const SIZE_INNER = 240
+            const BANDS = 9
+            const BAND_WIDTH = (SIZE - SIZE_INNER) / BANDS
+            const MIN_OPACITY = 0.1
+            const OPACITY_STEP = (1 - MIN_OPACITY) / BANDS
+            const COUNT = 20
+            const COLORS = d3.range(COUNT).map((d, i) => d3.interpolateRainbow(i / COUNT))
+            const svg = d3
+                .select('#color_wheel')
+                .append('svg')
                 .attr('width', SIZE)
                 .attr('height', SIZE)
                 .append('g')
-                .attr('transform', 'translate(' + (SIZE/2) + ',' + (SIZE/2) + ')');
+                .attr('transform', 'translate(' + SIZE / 2 + ',' + SIZE / 2 + ')')
 
+            for (let j = 0; j <= l_list.length - 1; j++) {
+                const arc = d3
+                    .arc()
+                    .outerRadius((SIZE - j * BAND_WIDTH) / 2)
+                    .innerRadius((SIZE - (j + 1) * BAND_WIDTH) / 2)
+                    .startAngle(0)
+                    .endAngle((2 * Math.PI) / (COUNT + 4)) //something wrong here
+                //.endAngle((i*(360/(h_max))));
+                //console.log(((2*Math.PI) / COUNT));
+                for (let i = h_min; i <= h_max; i += h_step) {
+                    let d3_l = l_list[j]
+                    let d3_c = c_list[j]
+                    let d3_h = i
+                    let d3_color = d3.hcl(d3_h, d3_c, d3_l).toString()
+                    //console.log((i*(360/(h_max))));
+                    svg.append('g')
+                        .attr('class', 'band')
+                        //.selectAll('path').data(COLORS)
+                        //.enter()
+                        .append('path')
+                        .attr('fill', d3_color)
+                        //.attr("transform", 'rotate(' + ( i *((2*Math.PI) / COUNT)) + ')')
+                        .attr('transform', 'rotate(' + i * (360 / h_max) + ')')
 
+                        .attr('stroke', '#fff')
+                        .attr('stroke-width', 2)
+                        //.attr('transform', (d, i) => 'rotate(' + (i*(360/COUNT)) + ')')
+                        .attr('d', arc())
+                }
+            }
 
-for (let j = 0; j <= l_list.length-1; j++) {
-
-    const arc = d3.arc()
-        .outerRadius((SIZE - j*BAND_WIDTH) / 2)
-        .innerRadius((SIZE - (j+1)*BAND_WIDTH) / 2)
-        .startAngle(0)
-        .endAngle((2*Math.PI) / (COUNT+4));//something wrong here
-        //.endAngle((i*(360/(h_max))));
-    //console.log(((2*Math.PI) / COUNT));
-    for (let i = h_min; i <= h_max; i += h_step) {
-
-        let d3_l = l_list[j];
-        let d3_c = c_list[j];
-        let d3_h = i;
-        let d3_color = d3.hcl(d3_h, d3_c, d3_l).toString()
-        //console.log((i*(360/(h_max))));
-        svg.append('g')
-            .attr('class', 'band')
-            //.selectAll('path').data(COLORS)
-            //.enter()
-            .append('path')
-            .attr('fill',d3_color)
-            //.attr("transform", 'rotate(' + ( i *((2*Math.PI) / COUNT)) + ')')
-            .attr("transform", 'rotate(' + (i*(360/(h_max))) + ')')
-
-
-            .attr('stroke', '#fff')
-            .attr('stroke-width', 2)
-            //.attr('transform', (d, i) => 'rotate(' + (i*(360/COUNT)) + ')')
-            .attr('d', arc());
+            d3.select('#buttons')
+                .append('button')
+                .text('Scramble')
+                .on('click', () => {
+                    svg.selectAll('.band')
+                        .transition()
+                        .duration(1000)
+                        .attr(
+                            'transform',
+                            () =>
+                                'rotate(' + (360 / h_max) * Math.floor(h_max * Math.random()) + ')',
+                        )
+                })
+            d3.select('#buttons')
+                .append('button')
+                .text('Restore')
+                .on('click', () => {
+                    svg.selectAll('.band')
+                        .transition()
+                        .duration(1000)
+                        .attr('transform', 'rotate(0)')
+                })
         }
 
-    }
-
-
-
-
-
-
-            d3.select('#buttons').append('button')
-            .text('Scramble')
-            .on('click', () => {
-            svg.selectAll('.band')
-                .transition().duration(1000)
-                .attr('transform', () =>
-                'rotate(' + (360/h_max)*Math.floor(h_max * Math.random()) + ')'
-                );
-            });
-            d3.select('#buttons').append('button')
-            .text('Restore')
-            .on('click', () => {
-            svg.selectAll('.band')
-                .transition().duration(1000)
-                .attr('transform', 'rotate(0)');
-            });
-
-        }
-
-
-        palletteCreate();
-
+        palletteCreate()
     </script>
 </html>
