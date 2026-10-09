@@ -7,7 +7,7 @@ import { resolve } from 'node:path';
 import { describe, expect, it } from 'vitest';
 
 import * as lib from '../src/ts';
-import { buildContext, createEnvironment, FORMATS, paletteJson } from '../src/js/formats.js';
+import { buildContext, CONSTANTS, createEnvironment, cssRgbPercent, FORMATS, paletteJson } from '../src/js/formats.js';
 
 
 const ROOT = resolve(__dirname, '..');
@@ -51,19 +51,17 @@ describe('format templates', () => {
         expect(json.Blue.N2405).toEqual({ hex: '#3696c1', rgb: { r: 54, g: 150, b: 193 }, hcl: { h: 240, c: 36, l: 58 } });
     });
 
-    it.each([
-        ['hue.gl-hex-map.scss.jinja', 'src/scss/hue/_hue.gl-hex-map.scss'],
-        ['hue.gl-hex-var.scss.jinja', 'src/scss/hue/_hue.gl-hex-var.scss'],
-        ['hue.gl-hcl-map.scss.jinja', 'src/scss/hue/_hue.gl-hcl-map.scss'],
-        ['hue.gl-hcl-var.scss.jinja', 'src/scss/hue/_hue.gl-hcl-var.scss'],
-        ['hue.gl-hex-enum.ts.jinja', 'src/ts/constants/hue_hex.ts'],
-        ['hue.gl-rgb-enum.ts.jinja', 'src/ts/constants/hue_rgb.ts'],
-        ['hue.gl-hcl-enum.ts.jinja', 'src/ts/constants/hue_hcl.ts'],
-    ])('should reproduce the committed constants from %s', (template, file) => {
+    it.each(Object.entries(CONSTANTS))('should reproduce the committed constants from %s', (template, file) => {
         const committed = readFileSync(resolve(ROOT, file), 'utf8');
-        const expected = entries(committed);
-        expect(Object.keys(expected)).toHaveLength(225);
-        expect(entries(env.render(template, context))).toEqual(expected);
+        expect(Object.keys(entries(committed))).toHaveLength(225);
+        // Byte for byte, with the version written into the committed header
+        const version = committed.split('\n')[3].replace('// ', '');
+        expect(env.render(template, buildContext(lib, version))).toBe(committed);
+    });
+
+    it('should format sRGB like colorjs.io with 4 significant digits', () => {
+        expect(cssRgbPercent([0.887_6, 0.49, 1])).toBe('rgb(88.76% 49% 100%)');
+        expect(cssRgbPercent([0.051_234, 0.000_4, 0.999_99])).toBe('rgb(5.123% 0.04% 100%)');
     });
 
 });

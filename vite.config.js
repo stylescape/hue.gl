@@ -82,7 +82,7 @@ export default defineConfig({
     test: {
         globals: true,
         environment: 'node',
-        include: ['test/**/*.{test,spec}.{js,ts}'],
+        include: ['tst/**/*.{test,spec}.{js,ts}'],
         coverage: {
             provider: 'v8',
             reporter: ['text', 'json', 'html'],

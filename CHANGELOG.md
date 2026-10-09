@@ -31,6 +31,8 @@ Bug sweep of 2026-10-07/08. Open follow-ups are in `TODO.md`.
 ### Changed
 
 - The demo page reads the palette configuration, hue names and lightness/chroma steps from the library (`/dist/js/index.mjs`) instead of a copy of the formula; colorjs.io is kept only for gamut mapping. Checked in headless Chrome on 2026-10-08: all 225 swatches match `hue_hex`, no errors.
+- SCSS `rgb()` constants (`_hue.gl-rgb-var.scss`, `_hue.gl-rgb-map.scss`) are regenerated from the library's own sRGB conversion; 71 of 225 colors change in the last digit of a percentage (at most 0.043 points, about 0.1 on the 0-255 scale). Hex values are unchanged.
+- `.prettierignore` skips the `src/hbs/` and `src/jinja/` templates, which Prettier cannot parse.
 - `package-lock.json` is written by npm 10 (Node 22, as in CI), which drops the `libc` fields Dependabot's npm added; `npm ci --dry-run` accepts it.
 
 ### Added
@@ -39,4 +41,5 @@ Bug sweep of 2026-10-07/08. Open follow-ups are in `TODO.md`.
 - `ColorSwatch.to(space)`, the `ColorSpace`, `ColorKey`, `ColorSchemeConfig` types, and the converter functions exported from the package root.
 - SCSS: `hue_luminance`, `hue_contrast`, `hue_utility_classes`, and `generate-css-variables` as a real mixin.
 - `npm run typecheck`, `npm run generate`; lint and typecheck steps in the publish workflow.
+- `npm run generate:constants` writes `src/scss/hue/*` and `src/ts/constants/hue_*.ts` from the `src/jinja` templates and the built library (with the `package.json` version in the header); the tests check that the committed files match the templates byte for byte.
 - Tests for the converters, SCSS library and format templates (58 → 113).

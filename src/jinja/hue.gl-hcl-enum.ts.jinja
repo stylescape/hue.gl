@@ -5,22 +5,19 @@
 //
 // ============================================================================
 
-
 // General
 // ============================================================================
 
 export enum hue_hcl {
-
 {% for group_name, group in colors %}
+{% if not loop.first %}
+
+{% endif %}
     // {{ group_name }}
     // ------------------------------------------------------------------------
 
 {% for color_name, color in group %}
-    {{ color_name }} = "hcl({{ color.hcl().h }}, {{ color.hcl().c }}, {{ color.hcl().l }})",
+    {{ color_name }} = 'hcl({{ color.hcl().h }}, {{ color.hcl().c }}, {{ color.hcl().l }})',
 {% endfor %}
-
 {% endfor %}
-
 }
-
-

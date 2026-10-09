@@ -25,6 +25,41 @@ export const FORMATS = {
     'hue.gl.md.jinja': 'hue.gl.md',
 };
 
+// Template → generated constants (relative to the repository root), written
+// by `npm run generate:constants`
+export const CONSTANTS = {
+    'hue.gl-hex-var.scss.jinja': 'src/scss/hue/_hue.gl-hex-var.scss',
+    'hue.gl-hex-map.scss.jinja': 'src/scss/hue/_hue.gl-hex-map.scss',
+    'hue.gl-rgb-var.scss.jinja': 'src/scss/hue/_hue.gl-rgb-var.scss',
+    'hue.gl-rgb-map.scss.jinja': 'src/scss/hue/_hue.gl-rgb-map.scss',
+    'hue.gl-hcl-var.scss.jinja': 'src/scss/hue/_hue.gl-hcl-var.scss',
+    'hue.gl-hcl-map.scss.jinja': 'src/scss/hue/_hue.gl-hcl-map.scss',
+    'hue.gl-hex-enum.ts.jinja': 'src/ts/constants/hue_hex.ts',
+    'hue.gl-rgb-enum.ts.jinja': 'src/ts/constants/hue_rgb.ts',
+    'hue.gl-hcl-enum.ts.jinja': 'src/ts/constants/hue_hcl.ts',
+};
+
+
+/**
+ * Round to significant digits, the way colorjs.io's `toString({ precision })`
+ * does (the original generator for the rgb() constants used colorjs.io).
+ */
+function toPrecision(value, precision) {
+    const integerLength = String(Math.floor(Math.abs(value))).length;
+    if (precision > integerLength) {
+        return +value.toFixed(precision - integerLength);
+    }
+    const p10 = 10 ** (integerLength - precision);
+    return Math.round(value / p10) * p10;
+}
+
+
+/** CSS Color 4 `rgb(r% g% b%)` with 4 significant digits per channel */
+export function cssRgbPercent([r, g, b], precision = 4) {
+    const channel = (value) => `${toPrecision(value * 100, precision)}%`;
+    return `rgb(${channel(r)} ${channel(g)} ${channel(b)})`;
+}
+
 
 /**
  * Template context for the palette.
@@ -47,6 +82,8 @@ export function buildContext(lib, version) {
                 group,
                 hex: () => hex,
                 rgb: () => swatch.rgb(),
+                // Unrounded sRGB from the library's own conversion
+                srgb: () => cssRgbPercent(swatch.srgb()),
                 hcl: () => swatch.hcl(),
                 // From the published hex, so HSL matches ColorPicker.get('HSL', …)
                 hsl: () => lib.srgbToHsl(...lib.hexToRgb(hex)),

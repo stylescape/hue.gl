@@ -56,6 +56,7 @@
         "lint": "eslint src/ts src/js test",
         "typecheck": "tsc --noEmit",
         "generate": "npm run build:ts && npm run build:formats",
+        "generate:constants": "npm run build:ts && node src/js/constants.js",
         "build:formats": "node src/js/generator.js"
     },
     "dependencies": {
@@ -72,7 +73,7 @@
         "@vitest/coverage-v8": "^4.1.10",
         "eslint": "^10.8.1",
         "eslint-config-prettier": "^10.1.8",
-        "kist": "^0.1.60",
+        "kist": "^0.1.81",
         "prettier": "^3.9.6",
         "sass": "^1.103.1",
         "stylescape": "^0.4.1",

@@ -5,22 +5,19 @@
 //
 // ============================================================================
 
-
 // General
 // ============================================================================
 
 export enum hue_rgb {
-
 {% for group_name, group in colors %}
+{% if not loop.first %}
+
+{% endif %}
     // {{ group_name }}
     // ------------------------------------------------------------------------
 
 {% for color_name, color in group %}
-    {{ color_name }} = "rgb({{ color.rgb().r }}, {{ color.rgb().g }}, {{ color.rgb().b }})",
+    {{ color_name }} = 'rgb({{ color.rgb().r }}, {{ color.rgb().g }}, {{ color.rgb().b }})',
 {% endfor %}
-
 {% endfor %}
-
 }
-
-
