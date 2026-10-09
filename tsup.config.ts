@@ -5,7 +5,9 @@ export default defineConfig([
     {
         entry: { 'index': 'src/ts/index.ts' },
         format: ['esm', 'cjs'],
-        dts: true,
+        // tsup injects `baseUrl` into the declaration build, which TypeScript 6
+        // reports as deprecated and turns into a hard error.
+        dts: { compilerOptions: { ignoreDeprecations: '6.0' } },
         outDir: 'dist/js',
         outExtension({ format }) {
             return {

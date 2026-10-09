@@ -27,11 +27,12 @@ stages:
                   dirPath: "./dist"
 
             # Process SCSS to CSS (compressed)
+            # The bundle emits CSS custom properties and utility classes
             # -----------------------------------------------------------------
             - name: ProcessMainStylesMinified
               action: StyleProcessingAction
               options:
-                  inputFile: "./src/scss/index.scss"
+                  inputFile: "./src/scss/hue.gl.scss"
                   outputFile: "./dist/css/hue.gl.min.css"
                   styleOption: "compressed"
 
@@ -40,7 +41,7 @@ stages:
             - name: ProcessMainStylesExpanded
               action: StyleProcessingAction
               options:
-                  inputFile: "./src/scss/index.scss"
+                  inputFile: "./src/scss/hue.gl.scss"
                   outputFile: "./dist/css/hue.gl.css"
                   styleOption: "expanded"
 
@@ -73,28 +74,6 @@ stages:
               options:
                   srcFile: "./README.md"
                   destDir: "./dist"
-
-            # Generate package.json for distribution
-            # -----------------------------------------------------------------
-            - name: GeneratePackageJSON
-              action: PackageManagerAction
-              options:
-                  packageJsonPath: "./package.json"
-                  outputDir: "./dist"
-                  fields:
-                      - name
-                      - version
-                      - description
-                      - keywords
-                      - license
-                      - homepage
-                      - author
-                      - contributors
-                      - repository
-                      - funding
-                      - sass
-                      - style
-                      - exports
 
             # Version synchronization
             # -----------------------------------------------------------------

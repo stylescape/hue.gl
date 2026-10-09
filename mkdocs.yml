@@ -3,12 +3,12 @@ site_name: hue.gl
 site_url: https://www.hue.gl/
 site_description: Framework
 site_author: Scape Press
-lang: en
+docs_dir: doc
 
 # Repository
 repo_name: 'GitHub'
 repo_url: https://github.com/stylescape/hue.gl/
-edit_uri_template: 'docs/{path}'
+edit_uri_template: 'edit/dev/doc/{path}'
 
 dev_addr: 127.0.0.1:8888
 
@@ -23,7 +23,7 @@ copyright: >
 # Configuration
 theme:
   name: material
-  custom_dir: 'docs/overrides'
+  custom_dir: 'doc/overrides'
   locale: en
   language: en
   palette:
@@ -159,7 +159,7 @@ markdown_extensions:
       custom_fences:
         - name: mermaid
           class: mermaid
-          format: !!python/name:mermaid2.fence_mermaid_custom
+          format: !!python/name:pymdownx.superfences.fence_code_format
   # - pymdownx.tabbed:
   #     alternate_style: true
   # - pymdownx.tasklist:
@@ -174,8 +174,8 @@ nav:
   - Introduction: 'index.md'
   - Quick Start: 'quick_start.md'
   - Palette: 'palette.md'
+  - Examples: 'examples/index.md'
   - Specifications:
-      - 'Overview': 'specifications/index.md'
       - 'Features': 'specifications/features.md'
       - 'Formats': 'specifications/formats.md'
       - 'Standards': 'specifications/standards.md'

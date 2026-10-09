@@ -1,0 +1,20 @@
+// ============================================================================
+//
+// {{ name }}
+// {{ version }}
+//
+// Copyright (c) 2023-2026 Scape Press BV
+// Licensed under the MIT License
+// https://github.com/stylescape/hue.gl
+//
+// ============================================================================
+
+{% for group_name, group in colors %}
+// {{ group_name }}
+// ----------------------------------------------------------------------------
+
+{% for color_name, color in group %}
+@{{ color_name }}: {{ color.hex() }};
+{% endfor %}
+
+{% endfor %}

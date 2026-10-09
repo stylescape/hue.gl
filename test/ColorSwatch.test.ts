@@ -41,6 +41,12 @@ describe('ColorSwatch', () => {
             expect(() => new ColorSwatch(120, 50, 120)).toThrow('Invalid HCL values');
         });
 
+        it('should reject non-finite values', () => {
+            expect(() => new ColorSwatch(NaN, 50, 50)).toThrow('Invalid HCL values');
+            expect(() => new ColorSwatch(120, Infinity, 50)).toThrow('Invalid HCL values');
+            expect(() => new ColorSwatch(120, 50, NaN)).toThrow('Invalid HCL values');
+        });
+
         it('should create a ColorSwatch without a name', () => {
             const swatch = new ColorSwatch(180, 30, 70);
 
@@ -108,8 +114,8 @@ describe('ColorSwatch', () => {
         it('should convert to sRGB', () => {
             const srgb = swatch.srgb();
 
-            expect(srgb).toBeDefined();
-            expect(srgb.coords).toHaveLength(3);
+            expect(srgb).toHaveLength(3);
+            expect(srgb).toEqual(swatch.model.coords);
         });
 
     });
@@ -160,6 +166,14 @@ describe('ColorSwatch', () => {
             expect(() => swatch.setHCL(-10, 50, 50)).toThrow('Invalid HCL values');
         });
 
+        it('should keep conversions in sync with the new values', () => {
+            const swatch = new ColorSwatch(0, 0, 50);
+            swatch.setHCL(240, 40, 60);
+
+            expect(swatch.lch()).toEqual([60, 40, 240]);
+            expect(swatch.srgb()).toEqual(new ColorSwatch(240, 40, 60).srgb());
+        });
+
     });
 
 
@@ -167,7 +181,7 @@ describe('ColorSwatch', () => {
 
         it('should check if color is in gamut', () => {
             const swatch = new ColorSwatch(120, 30, 50);
-            const inGamut = swatch.checkGamut(swatch.model);
+            const inGamut = swatch.checkGamut();
 
             expect(typeof inGamut).toBe('boolean');
         });

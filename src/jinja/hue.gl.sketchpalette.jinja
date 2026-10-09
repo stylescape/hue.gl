@@ -1,0 +1,9 @@
+{
+    "compatibleVersion": "2.0",
+    "pluginVersion": "2.22",
+    "colors": [
+{% for swatch in swatches %}
+        { "name": "{{ swatch.name }}", "red": {{ (swatch.rgb().r / 255) | round(4) }}, "green": {{ (swatch.rgb().g / 255) | round(4) }}, "blue": {{ (swatch.rgb().b / 255) | round(4) }}, "alpha": 1 }{{ "," if not loop.last }}
+{% endfor %}
+    ]
+}

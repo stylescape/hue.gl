@@ -6,6 +6,7 @@ import { beforeEach, describe, expect, it } from 'vitest';
 import { ColorScheme } from '../src/ts/color/ColorScheme';
 import { hueConfig } from '../src/ts/config/hue.config';
 import { hueNames } from '../src/ts/config/hue.names';
+import { hue_hex, hue_rgb } from '../src/ts/constants';
 
 
 describe('ColorScheme', () => {
@@ -20,7 +21,7 @@ describe('ColorScheme', () => {
     describe('constructor', () => {
 
         it('should create a ColorScheme with config and names', () => {
-            expect(scheme.config).toBe(hueConfig);
+            expect(scheme.config).toEqual(hueConfig);
             expect(scheme.names).toBe(hueNames);
         });
 
@@ -158,6 +159,43 @@ describe('ColorScheme', () => {
             const expectedColors = expectedHues * customConfig.p_count;
 
             expect(customScheme.colorList.length).toBe(expectedColors);
+        });
+
+        it('should fall back to the defaults for omitted options', () => {
+            const customScheme = new ColorScheme({ p_count: 3 });
+
+            expect(customScheme.config).toEqual({ ...hueConfig, p_count: 3 });
+            expect(customScheme.getColorDict()).toHaveProperty('Blue');
+        });
+
+        it('should key unnamed hues by their angle', () => {
+            const customScheme = new ColorScheme({ ...hueConfig, h_step: 20 }, hueNames);
+            const groups = Object.keys(customScheme.getColorDict());
+
+            expect(groups).not.toContain('undefined');
+            expect(groups).toContain('20');
+            expect(groups).toContain('Red');
+        });
+
+        it('should reject a configuration that cannot terminate', () => {
+            expect(() => new ColorScheme({ ...hueConfig, h_step: 0 })).toThrow();
+            expect(() => new ColorScheme({ ...hueConfig, p_count: 0 })).toThrow();
+        });
+
+    });
+
+
+    describe('published palette', () => {
+
+        it('should reproduce every published hex and rgb constant', () => {
+            const scheme = new ColorScheme(hueConfig, hueNames);
+
+            expect(scheme.colorList).toHaveLength(Object.keys(hue_hex).length);
+            for (const swatch of scheme.colorList) {
+                const key = swatch.name as keyof typeof hue_hex;
+                expect(swatch.hex().toLowerCase(), key).toBe(hue_hex[key]);
+                expect(swatch.toString(), key).toBe(hue_rgb[key as keyof typeof hue_rgb]);
+            }
         });
 
     });

@@ -1,0 +1,7 @@
+GIMP Palette
+Name: {{ name }} {{ version }}
+Columns: 9
+#
+{% for swatch in swatches %}
+{{ swatch.rgb().r }} {{ swatch.rgb().g }} {{ swatch.rgb().b }}	{{ swatch.name }} ({{ swatch.group }})
+{% endfor %}

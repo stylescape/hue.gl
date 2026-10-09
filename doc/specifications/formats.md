@@ -1,40 +1,34 @@
 # Supported Formats and Environments
 
-| Category                    | Extension         | Description                               | Status         |
-| :-------------------------- | :---------------- | :---------------------------------------- | :------------- |
-| **Style Sheet Languages**   | `.css`            | CSS Style Sheets                          | Supported      |
-|                             | `.scss`           | Sass Style Sheets                         | Supported      |
-|                             | `.less`           | LESS Style Sheets                         | Supported      |
-|                             | `.stylus`         | Stylus Style Sheets                       | Supported      |
-|                             |                   | Tailwind CSS Framework                    | Supported      |
-| **Programming Languages**   | `.go`             | Go Language Environment                   | Supported      |
-|                             | `.jl`             | Julia Language Environment                | Supported      |
-|                             | `.py`             | Python Scripts                            | Supported      |
-|                             | `.d.ts`           | TypeScript Definitions                    | Supported      |
-|                             | `.js`             | JavaScript Files                          | Supported      |
-|                             | `.tex`            | LaTeX Documents                           | Supported      |
-| **Data Interchange**        | `.csv`            | Comma-Separated Values                    | Supported      |
-|                             | `.json`           | JavaScript Object Notation (JSON)         | Supported      |
-| **Image Formats**           | `.svg`            | Scalable Vector Graphics                  | Supported      |
-| **Desktop Applications**    | `.oco`            | Open Color Tools                          | Supported      |
-|                             | `.ptc`            | PANTONE Color File                        | Supported      |
-|                             | `.ase`            | Adobe Swatch Exchange Format              | Supported      |
-|                             | `.aco`            | Adobe Photoshop Color Swatches            | Supported      |
-|                             | `.acb`            | Adobe Photoshop Color Book                | Supported      |
-|                             | `.grd`            | Adobe Photoshop Gradient File             | Supported      |
-|                             | `.clr`            | Adobe Animate Color Set                   | Supported      |
-|                             | `.inx`            | Adobe InDesign Interchange Format         | Supported      |
-|                             | `.acbl`           | Adobe Color Book Legacy                   | Supported      |
-|                             | `.sketchpalette`  | Sketch Palette File                       | Supported      |
-|                             | `.gh`             | Rhino Grasshopper File                    | Supported      |
-|                             | `.gpl`            | GIMP and Inkscape Palette File            | Supported      |
-|                             | `.ggr`            | GIMP Gradient File                        | Supported      |
-|                             | `.rcpx`           | PowerPaint Palette File                   | Supported      |
-|                             | `.ctb`            | AutoCAD Color-Based Plot Style File       | Supported      |
-|                             | `.colorpicker`    | Apple Color Picker File                   | Supported      |
-|                             | `.bcp`            | BlackMagic Custom Palette                 | Supported      |
-|                             | `.mgk`            | ImageMagick Configuration File            | Supported      |
-|                             | `.cs`             | ColorSchemer Studio File                  | Supported      |
-|                             | `.style`          | Trimble SketchUp Style File               | Supported      |
-|                             | `.gdiagramstyle`  | OmniGraffle Diagram Style File            | Supported      |
-|                             | `.pal`            | Painter Custom Palettes File              | Supported      |
+Every format is generated from the same palette definition, so all of them
+carry identical colors. Paths are relative to the installed package
+(`node_modules/hue.gl/`).
+
+## Available
+
+| Category                  | File                                      | Description                                        |
+| :------------------------ | :---------------------------------------- | :------------------------------------------------- |
+| **Style Sheet Languages** | `dist/css/hue.gl.css`                     | CSS custom properties (`--color-N####`) and utility classes |
+|                           | `src/scss/index.scss` (`@use 'hue.gl'`)   | Sass variables, maps, functions and mixins         |
+|                           | `dist/formats/hue.gl.less`                | LESS variables (`@N####`)                          |
+|                           | `dist/formats/hue.gl.styl`                | Stylus variables                                   |
+| **Programming Languages** | `dist/js/index.mjs`, `dist/js/index.cjs`  | JavaScript library (ESM and CommonJS)              |
+|                           | `dist/js/index.d.ts`                      | TypeScript declarations                            |
+|                           | `dist/formats/hue_gl.py`                  | Python module (`HueGL`, `colors`)                  |
+|                           | `dist/formats/hue.gl.tex`                 | LaTeX `xcolor` definitions                         |
+| **Data Interchange**      | `dist/formats/hue.gl.json`                | JSON grouped by hue, with hex, RGB and HCL         |
+|                           | `src/hue.json`                            | Flat JSON map of name to hex                       |
+|                           | `dist/formats/hue.gl.md`                  | Markdown palette table                             |
+| **Desktop Applications**  | `dist/formats/hue.gl.sketchpalette`       | Sketch Palettes plugin                             |
+|                           | `dist/formats/hue.gl.gpl`                 | GIMP and Inkscape palette                          |
+|                           | `src/gh/hue_gl_to_gh.gh`                  | Rhino Grasshopper definition                       |
+
+## Planned
+
+Not generated yet: Go (`.go`), Julia (`.jl`), CSV (`.csv`), SVG swatches
+(`.svg`), Open Color Tools (`.oco`), PANTONE (`.ptc`), Adobe formats (`.ase`,
+`.aco`, `.acb`, `.acbl`, `.grd`, `.clr`, `.inx`), GIMP gradients (`.ggr`),
+PowerPaint (`.rcpx`), AutoCAD (`.ctb`), Apple Color Picker (`.colorpicker`),
+BlackMagic (`.bcp`), ImageMagick (`.mgk`), ColorSchemer (`.cs`), SketchUp
+(`.style`), OmniGraffle (`.gdiagramstyle`), Painter (`.pal`) and a Tailwind
+preset.

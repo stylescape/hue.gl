@@ -1,9 +1,23 @@
 import { exec } from 'child_process';
+import { createReadStream, existsSync } from 'fs';
+import { join, normalize, sep } from 'path';
 import { promisify } from 'util';
 import { defineConfig } from 'vite';
 
 
 const execAsync = promisify(exec);
+
+// The demo page is styled with stylescape (a devDependency). Its compiled CSS
+// is served from node_modules rather than copied into dist/, which is the
+// published package.
+const STYLESCAPE_CSS = join(process.cwd(), 'node_modules', 'stylescape', 'css');
+
+function serveStylescape(req, res, next) {
+    const file = normalize(join(STYLESCAPE_CSS, decodeURIComponent(req.url.split('?')[0])));
+    if (!file.startsWith(STYLESCAPE_CSS + sep) || !file.endsWith('.css') || !existsSync(file)) return next();
+    res.setHeader('Content-Type', 'text/css; charset=utf-8');
+    createReadStream(file).pipe(res);
+}
 
 let lastBuild = 0;
 
@@ -12,7 +26,7 @@ async function runKist(server) {
     if (now - lastBuild < 500) return;
     lastBuild = now;
 
-    console.log('[Kist] 🛠️ Running build...');
+    console.log('[Kist] Running build...');
     try {
         const { stdout, stderr } = await execAsync('npx kist --config ./kist.yml');
         if (stdout) console.log('[Kist] stdout:', stdout);
@@ -41,8 +55,19 @@ export default defineConfig({
     },
     plugins: [
         {
-            name: 'kist-watch',
+            name: 'stylescape-vendor',
+            apply: 'serve',
             configureServer(server) {
+                server.middlewares.use('/vendor/stylescape', serveStylescape);
+            },
+        },
+        {
+            name: 'kist-watch',
+            apply: 'serve',
+            configureServer(server) {
+                // Vitest also starts a Vite server; the build has no place in a test run.
+                if (process.env.VITEST) return;
+
                 runKist(server);
 
                 // Watch for file changes to trigger kist rebuild

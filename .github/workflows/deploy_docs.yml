@@ -39,12 +39,12 @@ jobs:
       - 
         name: PIP Install mkdocs-material
         run: |
-          pip install mkdocs-material
+          pip install "mkdocs<2" mkdocs-material
 
       - 
         name: PIP Install mkdocstrings
         run: |
-          pip install mkdocstrings[python]>=0.18
+          pip install "mkdocstrings[python]>=0.18"
 
       - 
         name: MKDocs Deploy

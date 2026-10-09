@@ -52,6 +52,13 @@ class RGB(NamedTuple):
     b: int
 
 
+class HSL(NamedTuple):
+    """HSL color representation (H: 0-360, S and L: 0-100)."""
+    h: float
+    s: float
+    l: float
+
+
 class HCL(NamedTuple):
     """HCL color representation (Hue, Chroma, Luminance)."""
     h: float
@@ -73,12 +80,14 @@ class Color:
         hue_name: The hue group name (e.g., 'Green')
         rgb: RGB values as a tuple (0-255 range)
         hcl: HCL values as a tuple
+        hsl: HSL values as a tuple
         hex: Hexadecimal color string
     """
     name: str
     hue_name: str
     rgb: RGB
     hcl: HCL
+    hsl: HSL
     hex: str
 
     def __str__(self) -> str:
@@ -94,12 +103,8 @@ class Color:
 
     @property
     def css_hsl(self) -> str:
-        """Returns CSS hsl() format (approximate)."""
-        # Convert HCL to HSL approximation
-        h = self.hcl.h
-        l = self.hcl.l
-        s = min(100, self.hcl.c * 1.5)  # Approximate saturation
-        return f"hsl({h:.0f}, {s:.0f}%, {l:.0f}%)"
+        """Returns CSS hsl() format."""
+        return f"hsl({self.hsl.h:.1f}, {self.hsl.s:.1f}%, {self.hsl.l:.1f}%)"
 
 
 # =============================================================================
@@ -152,6 +157,7 @@ colors["{{ group_name }}"] = {
         hue_name="{{ group_name }}",
         rgb=RGB({{ color.rgb().r }}, {{ color.rgb().g }}, {{ color.rgb().b }}),
         hcl=HCL({{ color.hcl().h }}, {{ color.hcl().c }}, {{ color.hcl().l }}),
+        hsl=HSL({{ color.hsl()[0] | round(2) }}, {{ color.hsl()[1] | round(2) }}, {{ color.hsl()[2] | round(2) }}),
         hex="{{ color.hex() }}",
     ),
 {%- endfor %}
@@ -183,7 +189,7 @@ class HueGL:
         >>> palette = HueGL()
         >>> blue5 = palette.get_color('Blue', 5)
         >>> print(blue5.hex)
-        '#4169E1'
+        '#3696c1'
     """
 
     def __init__(self) -> None:

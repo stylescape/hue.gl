@@ -16,12 +16,6 @@ These examples will provide your users with practical ways to implement the feat
 }
 ```
 
-```scss
-.element {
-  background-color: hue(N0155); // Using the 'Salmon' color
-}
-```
-
 Using the `hue-color` function to apply a specific color from the hue.gl color map:
 
 ```scss
@@ -37,7 +31,7 @@ Applying dynamic text color for better readability based on the background color
 ```scss
 .element {
   background-color: hue-color(N2551); // Azure color
-  color: dynamic-text-color(N2551); // Text color for best contrast
+  color: hue-contrast-text-color(N2551); // Black or white, whichever contrasts more
 }
 ```
 
@@ -48,7 +42,7 @@ Generating a complementary color for design harmony:
 ```scss
 .element {
   background-color: hue-color(N3001); // Magenta color
-  border-color: complementary-color(N3001); // Complementary color to Magenta
+  border-color: hue-complementary(N3001); // Complementary color to Magenta
 }
 ```
 

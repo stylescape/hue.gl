@@ -30,7 +30,7 @@ jobs:
         name: Setup Node
         uses: actions/setup-node@v7
         with:
-          node-version: 18.x
+          node-version: 22.x
 
       # - name: Check if version has been updated
       #   id: check
@@ -42,10 +42,15 @@ jobs:
         run: |
           npm clean-install
 
-      # - 
-      #   name: NPM Run Lint
-      #   run: |
-      #     npm run lint --if-present
+      - 
+        name: NPM Run Lint
+        run: |
+          npm run lint --if-present
+
+      - 
+        name: NPM Run Typecheck
+        run: |
+          npm run typecheck --if-present
 
       - 
         name: NPM Run Test
@@ -137,7 +142,7 @@ jobs:
         name: Setup Node
         uses: actions/setup-node@v7
         with:
-          node-version: 18.x
+          node-version: 22.x
           registry-url: https://registry.npmjs.org/
 
       - 
@@ -150,10 +155,11 @@ jobs:
         name: Unzip build.zip
         run: unzip -q -o build.zip
 
+      # Publish from the repository root: package.json there points main,
+      # module, types and exports at dist/, and "files" selects what ships.
       - 
         name: Publish NPM
         run: |
-          cd dist
           npm publish --access public
         env:
           NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}

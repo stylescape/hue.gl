@@ -14,7 +14,7 @@
 // ----------------------------------------------------------------------------
 
 {% for color_name, color in group -%}
-${{ color_name }}: {{ color.srgb().toString({precision: 4, format: "rgb"}) }};
+${{ color_name }}: hcl({{ color.hcl().h }}, {{ color.hcl().c }}, {{ color.hcl().l }});
 {% endfor %}
 
 {% endfor %}

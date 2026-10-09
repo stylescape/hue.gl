@@ -22,6 +22,9 @@
         "Scape Press"
     ],
     "license": "MIT",
+    "engines": {
+        "node": ">=20.19"
+    },
     "repository": {
         "type": "git",
         "url": "git+https://github.com/stylescape/hue.gl.git"
@@ -39,10 +42,10 @@
     "main": "./dist/js/index.cjs",
     "module": "./dist/js/index.mjs",
     "types": "./dist/js/index.d.ts",
-    "sass": "scss/index.scss",
+    "sass": "src/scss/index.scss",
     "style": "dist/css/hue.gl.css",
     "scripts": {
-        "build": "npx kist --config ./kist.yml && npm run build:ts",
+        "build": "npx kist --config ./kist.yml && npm run build:ts && npm run build:formats",
         "build:ts": "tsup",
         "watch": "npx kist --config ./kist.yml --live",
         "dev": "vite",
@@ -50,17 +53,21 @@
         "test:watch": "vitest",
         "test:coverage": "vitest run --coverage",
         "format": "npx prettier --write .",
-        "lint": "eslint 'src/**/*.ts' || true"
+        "lint": "eslint src/ts src/js test",
+        "typecheck": "tsc --noEmit",
+        "generate": "npm run build:ts && npm run build:formats",
+        "build:formats": "node src/js/generator.js"
     },
     "dependencies": {
-        "@getkist/action-nunjucks": "^2.0.9",
-        "@getkist/action-sass": "^1.0.4",
         "tslib": "^2.8.1"
     },
     "devDependencies": {
         "@babel/core": "^7.29.0",
         "@babel/preset-env": "^7.29.0",
         "@babel/preset-typescript": "^7.28.5",
+        "@eslint/js": "^10.0.1",
+        "@getkist/action-nunjucks": "^2.0.9",
+        "@getkist/action-sass": "^1.0.4",
         "@types/node": "^25.2.0",
         "@vitest/coverage-v8": "^4.1.10",
         "eslint": "^10.8.1",
@@ -68,8 +75,10 @@
         "kist": "^0.1.60",
         "prettier": "^3.9.6",
         "sass": "^1.103.1",
+        "stylescape": "^0.4.1",
         "tsup": "^8.5.1",
         "typescript": "^6.0.3",
+        "typescript-eslint": "^8.71.1",
         "vite": "^8.2.2",
         "vitest": "^4.0.18"
     },
@@ -84,8 +93,9 @@
             "import": "./dist/js/index.mjs",
             "require": "./dist/js/index.cjs"
         },
-        "./scss": "./dist/scss/index.scss",
+        "./scss": "./src/scss/index.scss",
         "./css/hue.gl.css": "./dist/css/hue.gl.css",
-        "./css/hue.gl.min.css": "./dist/css/hue.gl.min.css"
+        "./css/hue.gl.min.css": "./dist/css/hue.gl.min.css",
+        "./package.json": "./package.json"
     }
 }

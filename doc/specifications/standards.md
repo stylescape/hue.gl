@@ -21,10 +21,13 @@
 Here's an example of how to use a color from the RAL standard in your SCSS:
 
 ``` scss
-@import 'path/to/hue.gl/scss/standards/_ral_hex_map.scss';
+@use 'sass:map';
+@use 'hue.gl' as hue;
 
 .my-element {
-  background-color: map-get($ral, RAL 5002); // Ultramarine Blue
+  background-color: map.get(hue.$color_ral_hex, ral_5002); // Ultramarine Blue
 }
-
 ```
+
+Every map is forwarded by the main module as `$color_<standard>_hex`, for
+example `hue.$color_x11_hex` or `hue.$color_tailwind_design_hex`.

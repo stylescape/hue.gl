@@ -137,5 +137,5 @@ Also see [LICENSE](https://github.com/stylescape/community/blob/master/src/LICEN
 ---
 
 <p align="center">
-    <b>Made with ❤️ by <a href="https://www.scape.press" target="_blank">Scape Press</a></b>
+    <b>Made by <a href="https://www.scape.press" target="_blank">Scape Press</a></b>
 </p>

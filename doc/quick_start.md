@@ -38,11 +38,23 @@ Import the SCSS module to access color variables, maps, and mixins:
 }
 
 // Use the color map
-@each $name, $color in hue.$hue-colors {
+@each $name, $color in hue.$hue {
     .bg-#{$name} {
         background-color: $color;
     }
 }
+
+// Pick readable text for any palette color (WCAG contrast)
+.badge {
+    background-color: hue.hue_color(N2409);
+    color: hue.hue_contrast_text_color(N2409);
+}
+
+// Emit all colors as custom properties, or the utility classes
+:root {
+    @include hue.generate-css-variables;
+}
+@include hue.hue_utility_classes;
 ```
 
 ### TypeScript / JavaScript
@@ -50,13 +62,18 @@ Import the SCSS module to access color variables, maps, and mixins:
 Import colors and utilities for programmatic access:
 
 ```typescript
-import { ColorSwatch, ColorScheme, hueConfig, hueNames } from 'hue.gl'
+import { ColorPicker, ColorSwatch, ColorScheme, hueConfig, hueNames } from 'hue.gl'
 
 // Create a custom color swatch
 const customBlue = new ColorSwatch(240, 50, 50, 'CustomBlue')
-console.log(customBlue.hex()) // '#4169E1'
-console.log(customBlue.rgb()) // { r: 65, g: 105, b: 225 }
+console.log(customBlue.hex()) // '#0085C0'
+console.log(customBlue.rgb()) // { r: 0, g: 133, b: 192 }
 console.log(customBlue.hcl()) // { h: 240, c: 50, l: 50 }
+console.log(customBlue.oklch()) // [L, C, H] in OKLCH
+console.log(customBlue.p3()) // Display P3 coordinates (0-1)
+
+// Look up a published value
+ColorPicker.get('HSL', 'N2405') // 'hsl(198.6, 56.3%, 48.4%)'
 
 // Generate a full color scheme
 const scheme = new ColorScheme(hueConfig, hueNames)
@@ -78,14 +95,20 @@ Use the generated CSS file for easy theming:
 <link rel="stylesheet" href="node_modules/hue.gl/dist/css/hue.gl.css" />
 ```
 
+The stylesheet defines every color as a `--color-N####` custom property and
+ships `.text-N####`, `.bg-N####` and `.border-N####` utility classes.
+
 ```css
 .card {
-    background-color: var(--n-0001);
-    border-color: var(--n-2405);
+    background-color: var(--color-N0001);
+    border-color: var(--color-N2405);
 }
 ```
 
 ### Python
+
+Copy `dist/formats/hue_gl.py` from the npm package into your project. It has no
+dependencies.
 
 ```python
 from hue_gl import HueGL, colors
@@ -95,12 +118,12 @@ palette = HueGL()
 
 # Access colors by hue and shade
 blue5 = palette.get_color('Blue', 5)
-print(blue5.hex)    # Hex value
+print(blue5.hex)    # '#3696c1'
 print(blue5.rgb)    # RGB tuple (r, g, b)
 
 # Access via dictionary
 grey = colors['Grey']['N0001']
-print(grey.css_rgb)  # 'rgb(250, 250, 250)'
+print(grey.css_rgb)  # 'rgb(226, 226, 226)'
 ```
 
 ## Color System Overview
@@ -123,16 +146,19 @@ Colors follow the pattern `N{HUE}{SHADE}`:
 
 hue.gl exports colors in multiple formats:
 
-| Format           | File                   | Use Case                 |
-| ---------------- | ---------------------- | ------------------------ |
-| SCSS Variables   | `hue.gl.scss`          | Sass/SCSS projects       |
-| SCSS Maps        | `hue.gl-map.scss`      | Dynamic color access     |
-| CSS Variables    | `hue.gl.css`           | Modern CSS theming       |
-| TypeScript Enums | `hue.gl.ts`            | Type-safe JS/TS apps     |
-| Python           | `hue_gl.py`            | Python applications      |
-| JSON             | `hue.json`             | Data interchange         |
-| Sketch Palette   | `hue.gl.sketchpalette` | Sketch design tool       |
-| Inkscape         | `hue.gl.inkscape`      | Inkscape vector graphics |
+| Format           | File                                  | Use Case                 |
+| ---------------- | ------------------------------------- | ------------------------ |
+| SCSS             | `@use 'hue.gl'`                       | Sass/SCSS projects       |
+| CSS Variables    | `dist/css/hue.gl.css`                 | Modern CSS theming       |
+| JS / TypeScript  | `dist/js/index.mjs` + `index.d.ts`    | Type-safe JS/TS apps     |
+| LESS / Stylus    | `dist/formats/hue.gl.less`, `.styl`   | LESS and Stylus projects |
+| Python           | `dist/formats/hue_gl.py`              | Python applications      |
+| JSON             | `dist/formats/hue.gl.json`            | Data interchange         |
+| LaTeX            | `dist/formats/hue.gl.tex`             | Documents (`xcolor`)     |
+| Sketch Palette   | `dist/formats/hue.gl.sketchpalette`   | Sketch design tool       |
+| GIMP / Inkscape  | `dist/formats/hue.gl.gpl`             | GIMP and Inkscape        |
+
+See [Formats](specifications/formats.md) for the full list.
 
 ## Next Steps
 
