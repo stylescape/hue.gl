@@ -1,4 +1,5 @@
 <!-- @starling-agents GENERATED v0.1.0 — DO NOT EDIT INSIDE THIS BLOCK -->
+
 # GEMINI.md — hue.gl
 
 Shared guidance is maintained centrally and composed into `AGENTS.md`. Read

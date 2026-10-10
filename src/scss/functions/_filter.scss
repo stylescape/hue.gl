@@ -17,23 +17,20 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:color";
-@use "sass:list";
-@use "sass:math";
-@use "sass:meta";
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
 
-@use "base" as *;
+@use 'base' as *;
 
 // ============================================================================
 // Functions
 // ============================================================================
-
-
 
 ///
 /// Color Filter Function
@@ -64,11 +61,7 @@
 ///     color: hue_apply_filter(N1355, 'blur');
 ///   }
 ///
-@function hue_apply_filter(
-    $color_name,
-    $filter: 'sepia',
-    $amount: null
-) {
+@function hue_apply_filter($color_name, $filter: 'sepia', $amount: null) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -76,9 +69,9 @@
         @return null;
     }
 
-    $r: color.channel($color, "red", $space: rgb);
-    $g: color.channel($color, "green", $space: rgb);
-    $b: color.channel($color, "blue", $space: rgb);
+    $r: color.channel($color, 'red', $space: rgb);
+    $g: color.channel($color, 'green', $space: rgb);
+    $b: color.channel($color, 'blue', $space: rgb);
     $alpha: color.alpha($color);
 
     // Same channel math as the CSS sepia() and brightness() filter functions

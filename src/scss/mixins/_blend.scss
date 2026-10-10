@@ -17,20 +17,17 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:color";
+@use 'sass:color';
 
-@use "../functions" as *;
-
+@use '../functions' as *;
 
 // ============================================================================
 // Mixins
 // ============================================================================
-
 
 /// Gradient Mixin
 /// ---------------------------------------------------------------------------
@@ -47,12 +44,8 @@
 ///   }
 ///
 @mixin gradient_bg($start_color_name, $end_color_name) {
-    background: linear-gradient(
-        hue_color($start_color_name),
-        hue_color($end_color_name)
-    );
+    background: linear-gradient(hue_color($start_color_name), hue_color($end_color_name));
 }
-
 
 ///
 /// Color Blending Mixin
@@ -71,11 +64,7 @@
 ///     @include blend_colors('red', 'blue', 30%);
 ///   }
 ///
-@mixin blend_colors(
-    $color1_name,
-    $color2_name,
-    $percentage: 50%
-) {
+@mixin blend_colors($color1_name, $color2_name, $percentage: 50%) {
     $color1: hue_color($color1_name);
     $color2: hue_color($color2_name);
     background-color: color.mix($color1, $color2, $percentage);

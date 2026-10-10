@@ -17,21 +17,18 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:math";
-@use "sass:map";
+@use 'sass:math';
+@use 'sass:map';
 
-@use "../hue/hue.gl-hex-map" as *;
-
+@use '../hue/hue.gl-hex-map' as *;
 
 // ============================================================================
 // Functions
 // ============================================================================
-
 
 ///
 /// Color Getter Function
@@ -50,9 +47,7 @@
 ///         // color: hue_color('primary');
 ///     }
 ///
-@function hue_color(
-    $color_name
-) {
+@function hue_color($color_name) {
     @if map.has-key($hue, $color_name) {
         @return map.get($hue, $color_name);
     } @else {
@@ -60,7 +55,6 @@
         @return null;
     }
 }
-
 
 ///
 /// Random Color Generator
@@ -81,11 +75,7 @@
 ///     background-color: hue_random_color(100, 200, 40%);
 ///   }
 ///
-@function hue_random_color(
-    $hue_min: 0,
-    $hue_max: 360,
-    $luminance: 50%
-) {
+@function hue_random_color($hue_min: 0, $hue_max: 360, $luminance: 50%) {
     $hue_value: $hue_min;
     @if $hue_max > $hue_min {
         $hue_value: math.random($hue_max - $hue_min) + $hue_min;

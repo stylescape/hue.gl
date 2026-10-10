@@ -17,23 +17,20 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:color";
-@use "sass:list";
-@use "sass:math";
-@use "sass:meta";
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
 
-@use "base" as *;
+@use 'base' as *;
 
 // ============================================================================
 // Functions
 // ============================================================================
-
-
 
 ///
 /// Gradient Color
@@ -52,10 +49,7 @@
 ///     background: hue_gradient('red', 'blue');
 ///   }
 ///
-@function hue_gradient(
-    $start_color_name,
-    $end_color_name
-) {
+@function hue_gradient($start_color_name, $end_color_name) {
     $start_color: hue_color($start_color_name);
     $end_color: hue_color($end_color_name);
 
@@ -66,7 +60,6 @@
 
     @return linear-gradient($start_color, $end_color);
 }
-
 
 ///
 /// Color Blending Function
@@ -85,11 +78,7 @@
 ///     color: hue_blend_colors('red', 'blue', 25%);
 ///   }
 ///
-@function hue_blend_colors(
-    $color_name1,
-    $color_name2,
-    $weight: 50%
-) {
+@function hue_blend_colors($color_name1, $color_name2, $weight: 50%) {
     $color1: hue_color($color_name1);
     $color2: hue_color($color_name2);
 
@@ -100,7 +89,6 @@
 
     @return color.mix($color1, $color2, $weight);
 }
-
 
 ///
 /// Grayscale Color Variant
@@ -128,7 +116,6 @@
     @return color.grayscale($color);
 }
 
-
 ///
 /// Blend Colors
 /// ---------------------------------------------------------------------------
@@ -146,7 +133,6 @@
 
     @return color.mix($color1, $color2, $weight);
 }
-
 
 ///
 /// Background Gradient with Direction

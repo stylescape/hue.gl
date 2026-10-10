@@ -17,22 +17,20 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:color";
-@use "sass:list";
-@use "sass:math";
-@use "sass:meta";
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
 
-@use "base" as *;
+@use 'base' as *;
 
 // ============================================================================
 // Functions
 // ============================================================================
-
 
 ///
 /// Complementary Color Function
@@ -50,9 +48,7 @@
 ///     background-color: hue_complementary('primary');
 ///   }
 ///
-@function hue_complementary(
-    $color_name
-) {
+@function hue_complementary($color_name) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -62,7 +58,6 @@
 
     @return color.adjust($color, $hue: 180deg);
 }
-
 
 ///
 /// Color Inversion Function
@@ -79,9 +74,7 @@
 ///     color: hue_invert('primary');
 ///   }
 ///
-@function hue_invert(
-    $color_name
-) {
+@function hue_invert($color_name) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -91,7 +84,6 @@
 
     @return color.invert($color);
 }
-
 
 // Color Rotation Function
 // ----------------------------------------------------------------------------
@@ -109,10 +101,7 @@
 ///     background-color: hue_rotate('primary', 90deg);
 ///   }
 ///
-@function hue_rotate(
-    $color_name,
-    $degrees: 15deg
-) {
+@function hue_rotate($color_name, $degrees: 15deg) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -122,7 +111,6 @@
 
     @return color.adjust($color, $hue: $degrees);
 }
-
 
 ///
 /// Monochromatic Color Scheme Generator
@@ -142,11 +130,7 @@
 ///     background-color: nth($monochrome, 1);
 ///   }
 ///
-@function hue_monochromatic_scheme(
-    $base_color_name,
-    $variation: 5%,
-    $amount: 4
-) {
+@function hue_monochromatic_scheme($base_color_name, $variation: 5%, $amount: 4) {
     $base_color: hue_color($base_color_name);
     $color_scheme: ();
 
@@ -156,12 +140,15 @@
     }
 
     @for $i from 1 through $amount {
-        $color_scheme: list.append($color_scheme, color.adjust($base_color, $lightness: $variation * $i), comma);
+        $color_scheme: list.append(
+            $color_scheme,
+            color.adjust($base_color, $lightness: $variation * $i),
+            comma
+        );
     }
 
     @return $color_scheme;
 }
-
 
 ///
 ///  Color Scale Generator
@@ -179,10 +166,7 @@
 ///     background: linear-gradient(to bottom, nth($color_scale, 1), nth($color_scale, 10));
 ///   }
 ///
-@function hue_color_scale(
-    $base_color_name,
-    $steps: 5
-) {
+@function hue_color_scale($base_color_name, $steps: 5) {
     $base_color: hue_color($base_color_name);
     $scale: ();
 
@@ -205,7 +189,6 @@
     @return $scale;
 }
 
-
 ///
 /// Hue Rotation Scale
 /// ---------------------------------------------------------------------------
@@ -224,11 +207,7 @@
 ///     color: nth($hue_scale, 1);
 ///   }
 ///
-@function hue_rotation_scale(
-    $base_color_name,
-    $steps: 5,
-    $rotation_amount: 20deg
-) {
+@function hue_rotation_scale($base_color_name, $steps: 5, $rotation_amount: 20deg) {
     $base_color: hue_color($base_color_name);
     $rotation_scale: ();
 
@@ -238,12 +217,15 @@
     }
 
     @for $i from 1 through $steps {
-        $rotation_scale: list.append($rotation_scale, color.adjust($base_color, $hue: $rotation_amount * $i), comma);
+        $rotation_scale: list.append(
+            $rotation_scale,
+            color.adjust($base_color, $hue: $rotation_amount * $i),
+            comma
+        );
     }
 
     @return $rotation_scale;
 }
-
 
 /// Opacity Scale Generator
 /// ---------------------------------------------------------------------------
@@ -261,11 +243,7 @@
 ///     background-color: nth($opacity_scale, 1);
 ///   }
 ///
-@function hue_opacity_scale(
-    $color_name,
-    $steps: 5,
-    $max_opacity: 1
-) {
+@function hue_opacity_scale($color_name, $steps: 5, $max_opacity: 1) {
     $color: hue_color($color_name);
     $opacity_scale: ();
 

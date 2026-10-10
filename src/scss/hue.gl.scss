@@ -8,7 +8,7 @@
 // entry point (index.scss) emits no CSS of its own.
 // ============================================================================
 
-@use "index" as hue;
+@use 'index' as hue;
 
 :root {
     @include hue.generate-css-variables;

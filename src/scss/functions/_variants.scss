@@ -17,22 +17,20 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:color";
-@use "sass:list";
-@use "sass:math";
-@use "sass:meta";
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
 
-@use "base" as *;
+@use 'base' as *;
 
 // ============================================================================
 // Functions
 // ============================================================================
-
 
 ///
 /// Opacity Variants
@@ -51,11 +49,7 @@
 ///         // background-color: hue_color_opacity('primary', 0.5);
 ///     }
 ///
-@function hue_color_opacity(
-    $color_name,
-    $opacity: 1
-) {
-
+@function hue_color_opacity($color_name, $opacity: 1) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -64,9 +58,7 @@
     }
 
     @return color.change($color, $alpha: $opacity);
-
 }
-
 
 ///
 /// Color Transparency Function
@@ -84,10 +76,7 @@
 ///     color: hue_alpha('primary', 0.3);
 ///   }
 ///
-@function hue_alpha(
-    $color_name,
-    $alpha: 0.5
-) {
+@function hue_alpha($color_name, $alpha: 0.5) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -97,7 +86,6 @@
 
     @return color.change($color, $alpha: $alpha);
 }
-
 
 ///
 /// Color Shades and Tints
@@ -116,10 +104,7 @@
 ///     background-color: hue_shade('primary', 15%);
 ///   }
 ///
-@function hue_shade(
-    $color_name,
-    $amount: 10%
-) {
+@function hue_shade($color_name, $amount: 10%) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -143,10 +128,7 @@
 ///     background-color: hue_tint('primary', 15%);
 ///   }
 ///
-@function hue_tint(
-    $color_name,
-    $amount: 10%
-) {
+@function hue_tint($color_name, $amount: 10%) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -156,7 +138,6 @@
 
     @return color.adjust($color, $lightness: $amount);
 }
-
 
 ///
 /// Tint and Shade Function
@@ -180,7 +161,6 @@
     }
 }
 
-
 ///
 /// Saturated Color Variant
 /// ---------------------------------------------------------------------------
@@ -196,10 +176,7 @@
 ///     color: hue_saturate('primary', 30%);
 ///   }
 ///
-@function hue_saturate(
-    $color_name,
-    $amount: 20%
-) {
+@function hue_saturate($color_name, $amount: 20%) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -209,7 +186,6 @@
 
     @return color.adjust($color, $saturation: $amount);
 }
-
 
 ///
 /// Desaturated Color Variant
@@ -226,10 +202,7 @@
 ///     color: hue_desaturate('primary', 30%);
 ///   }
 ///
-@function hue_desaturate(
-    $color_name,
-    $amount: 20%
-) {
+@function hue_desaturate($color_name, $amount: 20%) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -239,7 +212,6 @@
 
     @return color.adjust($color, $saturation: -1 * ($amount));
 }
-
 
 ///
 /// Adjust Color Brightness
@@ -257,10 +229,7 @@
 ///     background-color: hue_adjust_brightness('primary', 20%);
 ///   }
 ///
-@function hue_adjust_brightness(
-    $color_name,
-    $percentage: 10%
-) {
+@function hue_adjust_brightness($color_name, $percentage: 10%) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -268,13 +237,12 @@
         @return null;
     }
 
-    @if color.channel($color, "lightness", $space: hsl) > 50% {
+    @if color.channel($color, 'lightness', $space: hsl) > 50% {
         @return color.adjust($color, $lightness: -1 * ($percentage));
     } @else {
         @return color.adjust($color, $lightness: $percentage);
     }
 }
-
 
 ///
 /// Color To Grayscale Function
@@ -293,10 +261,7 @@
 ///     color: hue_to_grayscale(N2405, 'average');
 ///   }
 ///
-@function hue_to_grayscale(
-    $color_name,
-    $method: 'luminosity'
-) {
+@function hue_to_grayscale($color_name, $method: 'luminosity') {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -304,9 +269,9 @@
         @return null;
     }
 
-    $r: color.channel($color, "red", $space: rgb);
-    $g: color.channel($color, "green", $space: rgb);
-    $b: color.channel($color, "blue", $space: rgb);
+    $r: color.channel($color, 'red', $space: rgb);
+    $g: color.channel($color, 'green', $space: rgb);
+    $b: color.channel($color, 'blue', $space: rgb);
 
     $grey: null;
     @if $method == 'luminosity' {

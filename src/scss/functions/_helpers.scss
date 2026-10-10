@@ -17,22 +17,20 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:color";
-@use "sass:list";
-@use "sass:math";
-@use "sass:meta";
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
 
-@use "base" as *;
+@use 'base' as *;
 
 // ============================================================================
 // Functions
 // ============================================================================
-
 
 ///
 /// Semi-Transparent Border Color
@@ -50,10 +48,7 @@
 ///     border-color: hue_border_color('primary', 0.75);
 ///   }
 ///
-@function hue_border_color(
-    $color_name,
-    $opacity: 0.5
-) {
+@function hue_border_color($color_name, $opacity: 0.5) {
     $color: hue_color($color_name);
 
     @if meta.type-of($color) != 'color' {
@@ -63,7 +58,6 @@
 
     @return color.change($color, $alpha: $opacity);
 }
-
 
 ///
 /// Box Shadow Generator

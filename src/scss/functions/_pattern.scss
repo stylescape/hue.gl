@@ -17,23 +17,20 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:color";
-@use "sass:list";
-@use "sass:math";
-@use "sass:meta";
+@use 'sass:color';
+@use 'sass:list';
+@use 'sass:math';
+@use 'sass:meta';
 
-@use "base" as *;
+@use 'base' as *;
 
 // ============================================================================
 // Functions
 // ============================================================================
-
-
 
 ///
 /// Striped Background Generator
@@ -51,11 +48,7 @@
 ///     background-image: hue_striped_background('primary', 'secondary');
 ///   }
 ///
-@function hue_striped_background(
-    $color_name1,
-    $color_name2,
-    $stripe_width: 10px
-) {
+@function hue_striped_background($color_name1, $color_name2, $stripe_width: 10px) {
     $color1: hue_color($color_name1);
     $color2: hue_color($color_name2);
 

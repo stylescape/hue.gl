@@ -6,13 +6,13 @@ These examples will provide your users with practical ways to implement the feat
 
 ```scss
 .element {
-  background-color: #c6727d; // Using the 'Salmon' color
+    background-color: #c6727d; // Using the 'Salmon' color
 }
 ```
 
 ```scss
 .element {
-  background-color: $N0155; // Using the 'Salmon' color
+    background-color: $N0155; // Using the 'Salmon' color
 }
 ```
 
@@ -20,7 +20,7 @@ Using the `hue-color` function to apply a specific color from the hue.gl color m
 
 ```scss
 .element {
-  background-color: hue-color(N1201); // Using the 'Green' color
+    background-color: hue-color(N1201); // Using the 'Green' color
 }
 ```
 
@@ -30,8 +30,8 @@ Applying dynamic text color for better readability based on the background color
 
 ```scss
 .element {
-  background-color: hue-color(N2551); // Azure color
-  color: hue-contrast-text-color(N2551); // Black or white, whichever contrasts more
+    background-color: hue-color(N2551); // Azure color
+    color: hue-contrast-text-color(N2551); // Black or white, whichever contrasts more
 }
 ```
 
@@ -41,8 +41,8 @@ Generating a complementary color for design harmony:
 
 ```scss
 .element {
-  background-color: hue-color(N3001); // Magenta color
-  border-color: hue-complementary(N3001); // Complementary color to Magenta
+    background-color: hue-color(N3001); // Magenta color
+    border-color: hue-complementary(N3001); // Complementary color to Magenta
 }
 ```
 
@@ -52,7 +52,7 @@ Creating color variants with different opacities:
 
 ```scss
 .element {
-  background-color: hue-color-opacity(N1951, 0.5); // 50% opacity Teal color
+    background-color: hue-color-opacity(N1951, 0.5); // 50% opacity Teal color
 }
 ```
 
@@ -62,10 +62,10 @@ Applying shades and tints for hover states, disabled states, or gradients:
 
 ```scss
 .element {
-  background-color: hue-shade(N0751, 15%); // Darker Lime color
+    background-color: hue-shade(N0751, 15%); // Darker Lime color
 }
 .hover-element:hover {
-  background-color: hue-tint(N0751, 15%); // Lighter Lime color
+    background-color: hue-tint(N0751, 15%); // Lighter Lime color
 }
 ```
 
@@ -75,7 +75,7 @@ Ensuring text color contrasts well with its background:
 
 ```scss
 .element {
-  @include accessible-text-color(N2701); // Accessible text color based on Indigo background
+    @include accessible-text-color(N2701); // Accessible text color based on Indigo background
 }
 ```
 
@@ -85,7 +85,7 @@ Creating a linear gradient background:
 
 ```scss
 .element {
-  @include gradient-bg(N2251, N2401); // Gradient from Sky to Blue
+    @include gradient-bg(N2251, N2401); // Gradient from Sky to Blue
 }
 ```
 
@@ -95,7 +95,7 @@ Applying themes to components like buttons:
 
 ```scss
 .button {
-  @include button-theme(N3601, N0001); // Red background with Grey text
+    @include button-theme(N3601, N0001); // Red background with Grey text
 }
 ```
 
@@ -105,7 +105,7 @@ Blending two colors for a unique background:
 
 ```scss
 .element {
-  @include blend-colors(N0151, N3001, 50%); // Blend of Salmon and Magenta
+    @include blend-colors(N0151, N3001, 50%); // Blend of Salmon and Magenta
 }
 ```
 
@@ -114,9 +114,7 @@ Blending two colors for a unique background:
 Using generated utility classes for quick styling:
 
 ```html
-<div class="text-N1201 bg-N3301"> // Green text on Rose background
-  Sample Text
-</div>
+<div class="text-N1201 bg-N3301">// Green text on Rose background Sample Text</div>
 ```
 
 ### Using CSS Variables
@@ -124,7 +122,5 @@ Using generated utility classes for quick styling:
 Applying CSS variables in your HTML:
 
 ```html
-<div style="color: var(--color-N1201); background-color: var(--color-N3301);">
-  Sample Text
-</div>
+<div style="color: var(--color-N1201); background-color: var(--color-N3301);">Sample Text</div>
 ```

@@ -146,17 +146,17 @@ Colors follow the pattern `N{HUE}{SHADE}`:
 
 hue.gl exports colors in multiple formats:
 
-| Format           | File                                  | Use Case                 |
-| ---------------- | ------------------------------------- | ------------------------ |
-| SCSS             | `@use 'hue.gl'`                       | Sass/SCSS projects       |
-| CSS Variables    | `dist/css/hue.gl.css`                 | Modern CSS theming       |
-| JS / TypeScript  | `dist/js/index.mjs` + `index.d.ts`    | Type-safe JS/TS apps     |
-| LESS / Stylus    | `dist/formats/hue.gl.less`, `.styl`   | LESS and Stylus projects |
-| Python           | `dist/formats/hue_gl.py`              | Python applications      |
-| JSON             | `dist/formats/hue.gl.json`            | Data interchange         |
-| LaTeX            | `dist/formats/hue.gl.tex`             | Documents (`xcolor`)     |
-| Sketch Palette   | `dist/formats/hue.gl.sketchpalette`   | Sketch design tool       |
-| GIMP / Inkscape  | `dist/formats/hue.gl.gpl`             | GIMP and Inkscape        |
+| Format          | File                                | Use Case                 |
+| --------------- | ----------------------------------- | ------------------------ |
+| SCSS            | `@use 'hue.gl'`                     | Sass/SCSS projects       |
+| CSS Variables   | `dist/css/hue.gl.css`               | Modern CSS theming       |
+| JS / TypeScript | `dist/js/index.mjs` + `index.d.ts`  | Type-safe JS/TS apps     |
+| LESS / Stylus   | `dist/formats/hue.gl.less`, `.styl` | LESS and Stylus projects |
+| Python          | `dist/formats/hue_gl.py`            | Python applications      |
+| JSON            | `dist/formats/hue.gl.json`          | Data interchange         |
+| LaTeX           | `dist/formats/hue.gl.tex`           | Documents (`xcolor`)     |
+| Sketch Palette  | `dist/formats/hue.gl.sketchpalette` | Sketch design tool       |
+| GIMP / Inkscape | `dist/formats/hue.gl.gpl`           | GIMP and Inkscape        |
 
 See [Formats](specifications/formats.md) for the full list.
 

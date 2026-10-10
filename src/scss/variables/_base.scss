@@ -2,8 +2,7 @@
 // Use
 // ============================================================================
 
-@use "../hue/hue.gl-hex-map" as *;
-
+@use '../hue/hue.gl-hex-map' as *;
 
 ///
 /// CSS Variables Generator
@@ -22,10 +21,7 @@
 ///     @include generate-css-variables; // --color-N0001: #e2e2e2; …
 ///   }
 ///
-@mixin generate-css-variables(
-    $colors: $hue,
-    $prefix: "color"
-) {
+@mixin generate-css-variables($colors: $hue, $prefix: 'color') {
     @each $color_name, $color_value in $colors {
         --#{$prefix}-#{$color_name}: #{$color_value};
     }

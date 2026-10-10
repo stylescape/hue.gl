@@ -1,9 +1,9 @@
-import { defineConfig } from 'tsup';
+import { defineConfig } from 'tsup'
 
 export default defineConfig([
     // Main library build (ESM + CJS)
     {
-        entry: { 'index': 'src/ts/index.ts' },
+        entry: { index: 'src/ts/index.ts' },
         format: ['esm', 'cjs'],
         // tsup injects `baseUrl` into the declaration build, which TypeScript 6
         // reports as deprecated and turns into a hard error.
@@ -12,7 +12,7 @@ export default defineConfig([
         outExtension({ format }) {
             return {
                 js: format === 'esm' ? '.mjs' : '.cjs',
-            };
+            }
         },
         target: 'es2020',
         splitting: false,
@@ -20,4 +20,4 @@ export default defineConfig([
         clean: false,
         minify: false,
     },
-]);
+])

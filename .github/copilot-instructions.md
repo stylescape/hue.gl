@@ -1,4 +1,5 @@
 <!-- @starling-agents GENERATED v0.1.0 — DO NOT EDIT INSIDE THIS BLOCK -->
+
 # Copilot instructions — hue.gl
 
 ## Identity & context
@@ -28,13 +29,14 @@ repositories** grouped by owner and family — there is no monorepo.
    otherwise pick the conventional default, state it, and proceed.
 
 ### Git & changes
+
 ## Coding standards
 
 - **Match the surrounding code**: idioms, naming, file structure, and comment
   density of the file you are editing take precedence over personal style.
 - **Names** describe intent; avoid abbreviations that aren't already used in the
   repo. Kebab-case for repo/package names, the language's norm for identifiers.
-- **Comments** explain *why*, not *what*. Don't narrate obvious code.
+- **Comments** explain _why_, not _what_. Don't narrate obvious code.
 - **No dead code**: no commented-out blocks, unused imports, or speculative
   abstractions "for later".
 - **Errors**: fail loudly in dev, degrade gracefully at trust boundaries
@@ -47,7 +49,7 @@ repositories** grouped by owner and family — there is no monorepo.
 - **Branches**: never commit directly to the default branch; branch as
   `feat/…`, `fix/…`, `chore/…`, `docs/…`.
 - **Commits**: Conventional Commits (`type(scope): summary`). Keep them atomic
-  and explain *why* in the body when non-obvious.
+  and explain _why_ in the body when non-obvious.
 - **Co-authorship**: when an AI assistant produces a commit, add the assistant's
   `Co-Authored-By` trailer.
 - **PRs**: describe the change, the rationale, and how it was verified. Link the
@@ -78,7 +80,7 @@ Before reporting work complete:
   skipped a step, say which and why. Don't claim verification you didn't do.
 - **Prefer the dedicated task/skill** the repo ships (e.g. a contract test or a
   run script) over ad-hoc commands.
-- A change that touches behaviour without a corresponding test run is *not*
+- A change that touches behaviour without a corresponding test run is _not_
   done.
 
 ## Organisation
@@ -99,4 +101,5 @@ Before reporting work complete:
   documents.
 - Build with the repo's documented command (e.g. `mkdocs build`) and fix
   warnings (broken links, missing nav entries).
+
 <!-- @starling-agents END GENERATED -->

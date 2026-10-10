@@ -17,21 +17,19 @@
 ///
 ////
 
-
 // ============================================================================
 // Use
 // ============================================================================
 
-@use "sass:color";
-@use "sass:math";
-@use "sass:meta";
+@use 'sass:color';
+@use 'sass:math';
+@use 'sass:meta';
 
-@use "base" as *;
+@use 'base' as *;
 
 // ============================================================================
 // Functions
 // ============================================================================
-
 
 ///
 /// Relative Luminance
@@ -46,11 +44,13 @@
 /// @example scss - Usage
 ///   $l: hue_luminance(#777); // 0.184
 ///
-@function hue_luminance(
-    $color
-) {
+@function hue_luminance($color) {
     $luminance: 0;
-    $weights: ("red": 0.2126, "green": 0.7152, "blue": 0.0722);
+    $weights: (
+        'red': 0.2126,
+        'green': 0.7152,
+        'blue': 0.0722,
+    );
 
     @each $channel, $weight in $weights {
         $value: math.div(color.channel($color, $channel, $space: rgb), 255);
@@ -64,7 +64,6 @@
 
     @return $luminance;
 }
-
 
 ///
 /// Contrast Between Colors
@@ -80,15 +79,11 @@
 /// @example scss - Usage
 ///   $ratio: hue_contrast(#fff, #000); // 21
 ///
-@function hue_contrast(
-    $color1,
-    $color2
-) {
+@function hue_contrast($color1, $color2) {
     $l1: hue_luminance($color1);
     $l2: hue_luminance($color2);
     @return math.div(math.max($l1, $l2) + 0.05, math.min($l1, $l2) + 0.05);
 }
-
 
 ///
 /// Contrast Function
@@ -104,16 +99,13 @@
 /// @example scss - Usage
 ///   color: color_contrast(#fff); // Returns 'black'
 ///
-@function color_contrast(
-    $background-color
-) {
+@function color_contrast($background-color) {
     @if hue_contrast($background-color, black) >= hue_contrast($background-color, white) {
         @return black; // Dark text on light background
     } @else {
         @return white; // Light text on dark background
     }
 }
-
 
 ///
 /// Contrast Checker
@@ -130,13 +122,9 @@
 /// @example scss - Usage
 ///   $contrast: color_contrast_checker(N2409, N0001);
 ///
-@function color_contrast_checker(
-    $color1_name,
-    $color2_name
-) {
+@function color_contrast_checker($color1_name, $color2_name) {
     @return hue_contrast_ratio($color1_name, $color2_name);
 }
-
 
 ///
 /// Color Contrast Ratio
@@ -152,10 +140,7 @@
 /// @example scss - Usage
 ///   @if hue_contrast_ratio(N2409, N0001) < 4.5 { @warn "Low contrast"; }
 ///
-@function hue_contrast_ratio(
-    $color_name1,
-    $color_name2
-) {
+@function hue_contrast_ratio($color_name1, $color_name2) {
     $color1: hue_color($color_name1);
     $color2: hue_color($color_name2);
 
@@ -166,7 +151,6 @@
 
     @return hue_contrast($color1, $color2);
 }
-
 
 ///
 /// Dynamic Text Color
@@ -185,7 +169,6 @@
     @return hue_contrast_text_color($background_color_name);
 }
 
-
 ///
 /// Contrast Text Color
 /// ---------------------------------------------------------------------------
@@ -200,9 +183,7 @@
 ///   color: hue_contrast_text_color(N0001); // Returns 'black'
 ///
 ///
-@function hue_contrast_text_color(
-    $background_color_name
-) {
+@function hue_contrast_text_color($background_color_name) {
     $background_color: hue_color($background_color_name);
 
     @if meta.type-of($background_color) != 'color' {
@@ -212,7 +193,6 @@
 
     @return color_contrast($background_color);
 }
-
 
 ///
 /// Readable Overlay Text Color
