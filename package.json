@@ -69,7 +69,7 @@
         "@eslint/js": "^10.0.1",
         "@getkist/action-nunjucks": "^2.0.9",
         "@getkist/action-sass": "^1.0.4",
-        "@types/node": "^25.2.0",
+        "@types/node": "^26.6.4",
         "@vitest/coverage-v8": "^4.1.10",
         "eslint": "^10.8.1",
         "eslint-config-prettier": "^10.1.8",
