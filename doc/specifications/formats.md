@@ -16,6 +16,8 @@ carry identical colors. Paths are relative to the installed package
 | **Programming Languages** | `dist/js/index.mjs`, `dist/js/index.cjs` | JavaScript library (ESM and CommonJS)                       |
 |                           | `dist/js/index.d.ts`                     | TypeScript declarations                                     |
 |                           | `dist/formats/hue_gl.py`                 | Python module (`HueGL`, `colors`)                           |
+|                           | `dist/formats/huegl.go`                  | Go package `huegl` (`Colors`, `Groups`), gofmt-clean        |
+|                           | `dist/formats/HueGL.jl`                  | Julia module `HueGL` (`COLORS`, `GROUPS`)                   |
 |                           | `dist/formats/hue.gl.tex`                | LaTeX `xcolor` definitions                                  |
 | **Data Interchange**      | `dist/formats/hue.gl.json`               | JSON grouped by hue, with hex, RGB and HCL                  |
 |                           | `src/hue.json`                           | Flat JSON map of name to hex                                |
@@ -28,9 +30,9 @@ carry identical colors. Paths are relative to the installed package
 
 ## Planned
 
-Not generated yet: Go (`.go`), Julia (`.jl`), Open Color Tools (`.oco`),
-PANTONE (`.ptc`), Adobe formats (`.ase`, `.aco`, `.acb`, `.acbl`, `.grd`,
-`.clr`, `.inx`), GIMP gradients (`.ggr`), PowerPaint (`.rcpx`), AutoCAD
-(`.ctb`), Apple Color Picker (`.colorpicker`), BlackMagic (`.bcp`),
-ImageMagick (`.mgk`), ColorSchemer (`.cs`), SketchUp (`.style`), OmniGraffle
-(`.gdiagramstyle`) and Painter (`.pal`).
+Not generated yet: Open Color Tools (`.oco`), PANTONE (`.ptc`), Adobe formats
+(`.ase`, `.aco`, `.acb`, `.acbl`, `.grd`, `.clr`, `.inx`), GIMP gradients
+(`.ggr`), PowerPaint (`.rcpx`), AutoCAD (`.ctb`), Apple Color Picker
+(`.colorpicker`), BlackMagic (`.bcp`), ImageMagick (`.mgk`), ColorSchemer
+(`.cs`), SketchUp (`.style`), OmniGraffle (`.gdiagramstyle`) and Painter
+(`.pal`).

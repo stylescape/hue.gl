@@ -14,7 +14,9 @@ import {
     cssRgbPercent,
     FORMATS,
     paletteCsv,
+    paletteGo,
     paletteJson,
+    paletteJulia,
     paletteSvg,
     tailwindPreset,
 } from '../src/js/formats.js'
@@ -92,6 +94,25 @@ describe('format templates', () => {
         )
         expect(Object.keys(colors)).toHaveLength(225)
         expect(colors.N2405).toBe('#3696c1')
+    })
+
+    it('should export a Go package with every color', () => {
+        const source = paletteGo(context)
+        expect(source).toMatch(/^package huegl$/m)
+        expect(source).toContain(
+            'N2405 = Color{Name: "N2405", Group: "Blue", Hex: "#3696c1", R: 54, G: 150, B: 193}',
+        )
+        expect(source.match(/^\t"N\d{4}": N\d{4},$/gm)).toHaveLength(225)
+        expect(source.match(/^\t"\w+": +\{/gm)).toHaveLength(25)
+        expect(source).toContain('\t"Grey":    {N0001, N0002,')
+    })
+
+    it('should export a Julia module with every color', () => {
+        const source = paletteJulia(context)
+        expect(source).toMatch(/^module HueGL$/m)
+        expect(source).toContain('const N2405 = Color("N2405", "Blue", "#3696c1", 54, 150, 193)')
+        expect(source.match(/^ {4}"N\d{4}" => N\d{4},$/gm)).toHaveLength(225)
+        expect(source.match(/^ {4}"\w+" => \[/gm)).toHaveLength(25)
     })
 
     it.each(Object.entries(CONSTANTS))(

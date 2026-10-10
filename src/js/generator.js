@@ -2,8 +2,9 @@
 // hue.gl format generator
 // ----------------------------------------------------------------------------
 // Writes the palette in the downloadable formats (LESS, Stylus, Python,
-// LaTeX, Sketch, Inkscape/GIMP, Markdown, JSON, CSV, SVG, Tailwind) to dist/formats. Colors come
-// from the built library, so every format matches the published constants.
+// LaTeX, Sketch, Inkscape/GIMP, Markdown, JSON, CSV, SVG, Tailwind, Go and
+// Julia) to dist/formats. Colors come from the built library, so every format
+// matches the published constants.
 //
 // Usage: npm run generate [-- <output directory>]
 // ============================================================================
@@ -18,7 +19,9 @@ import {
     createEnvironment,
     FORMATS,
     paletteCsv,
+    paletteGo,
     paletteJson,
+    paletteJulia,
     paletteSvg,
     tailwindPreset,
 } from './formats.js'
@@ -39,8 +42,10 @@ await writeFile(resolve(outputDir, 'hue.gl.json'), paletteJson(context), 'utf8')
 await writeFile(resolve(outputDir, 'hue.gl.csv'), paletteCsv(context), 'utf8')
 await writeFile(resolve(outputDir, 'hue.gl.svg'), paletteSvg(context), 'utf8')
 await writeFile(resolve(outputDir, 'hue.gl.tailwind.js'), tailwindPreset(context), 'utf8')
+await writeFile(resolve(outputDir, 'huegl.go'), paletteGo(context), 'utf8')
+await writeFile(resolve(outputDir, 'HueGL.jl'), paletteJulia(context), 'utf8')
 
 // eslint-disable-next-line no-console -- CLI status output
 console.log(
-    `Wrote ${Object.keys(FORMATS).length + 4} formats (${context.swatches.length} colors) to ${outputDir}`,
+    `Wrote ${Object.keys(FORMATS).length + 6} formats (${context.swatches.length} colors) to ${outputDir}`,
 )
