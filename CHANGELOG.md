@@ -2,7 +2,7 @@
 
 ## [0.2.0] - 2026-10-10
 
-Released 2026-10-10 (tag `v0.2.0`; version in `package.json`, `package-lock.json`, `VERSION` and `CITATION.cff`, `date-released` 2026-10-10). Also drops the build tools `@getkist/action-nunjucks` and `@getkist/action-sass` from the published `dependencies`.
+Tagged 2026-10-10 (`v0.2.0`; version in `package.json`, `package-lock.json`, `VERSION` and `CITATION.cff`, `date-released` 2026-10-10). Also drops the build tools `@getkist/action-nunjucks` and `@getkist/action-sass` from the published `dependencies`. The npm publish of the tag failed (see `TODO.md`); the GitHub release was created.
 
 Bug sweep of 2026-10-07/08. Open follow-ups are in `TODO.md`.
 
