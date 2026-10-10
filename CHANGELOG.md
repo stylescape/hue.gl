@@ -1,6 +1,8 @@
 # Changelog
 
-## Unreleased
+## [0.2.0] - 2026-10-10
+
+Released 2026-10-10 (tag `v0.2.0`; version in `package.json`, `package-lock.json`, `VERSION` and `CITATION.cff`, `date-released` 2026-10-10). Also drops the build tools `@getkist/action-nunjucks` and `@getkist/action-sass` from the published `dependencies`.
 
 Bug sweep of 2026-10-07/08. Open follow-ups are in `TODO.md`.
 
@@ -37,9 +39,19 @@ Bug sweep of 2026-10-07/08. Open follow-ups are in `TODO.md`.
 
 ### Added
 
+- Formats in `dist/formats/`: CSV (`hue.gl.csv`), SVG swatch sheet (`hue.gl.svg`) and Tailwind preset (`hue.gl.tailwind.js`), rendered by `src/js/generator.js` and covered by `tst/formats.test.ts`.
+- Formats in `dist/formats/`: Go package `huegl` (`huegl.go`, gofmt-clean, checked with `go vet`) and Julia module `HueGL` (`HueGL.jl`, loaded in Julia 2026-10-10).
 - Format files in `dist/formats/`: LESS, Stylus, Python (`hue_gl.py`), LaTeX, JSON, Sketch palette, GIMP/Inkscape (`.gpl`) and Markdown, rendered from `src/jinja` by `src/js/generator.js` during `npm run build`.
 - `ColorSwatch.to(space)`, the `ColorSpace`, `ColorKey`, `ColorSchemeConfig` types, and the converter functions exported from the package root.
 - SCSS: `hue_luminance`, `hue_contrast`, `hue_utility_classes`, and `generate-css-variables` as a real mixin.
 - `npm run typecheck`, `npm run generate`; lint and typecheck steps in the publish workflow.
 - `npm run generate:constants` writes `src/scss/hue/*` and `src/ts/constants/hue_*.ts` from the `src/jinja` templates and the built library (with the `package.json` version in the header); the tests check that the committed files match the templates byte for byte.
 - Tests for the converters, SCSS library and format templates (58 → 113).
+
+### Decisions (2026-10-10)
+
+- License: MIT everywhere (`LICENSE`, `package.json`, templates); the README no longer claims Apache 2.0 for code.
+- `dist/` is ignored (`.gitignore`) and removed from the index; build output comes from CI. The files stay on disk.
+- Unused templates: deleted the empty and stub templates in `src/jinja` (`_config.yml`, `hue.gl.js`, `hue.gl.oco`, `hue.gl.code-snippets`, `hue.gl.d.ts`, `hue.gl.svg`, `square.svg`, `hue.gl_rgb.scss`, `hue.gl.rcpx`, `hue.gl.css`) and the unadapted open-color copy `src/hbs/`. The HTML templates stay for the docs. `.prettierignore` no longer lists `src/hbs/`.
+- `npm run lint` pointed at a nonexistent `test` directory; it now lints `tst`.
+- Prettier pass (`npm run format`) run as a separate step and committed on its own (`style: apply Prettier formatting pass`); files that also had content edits were split so that commit is formatting only.

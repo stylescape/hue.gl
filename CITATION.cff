@@ -1,7 +1,7 @@
 cff-version: 1.2.0
 title: hue.gl
-version: 0.1.2
-date-released: 2022-12-01
+version: 0.2.0
+date-released: 2026-10-10
 url: 'https://github.com/stylescape/hue.gl'
 message: >-
     hue.gl is a colour palette developed by Scape Press.

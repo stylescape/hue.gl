@@ -1,7 +1,7 @@
 {
     "name": "hue.gl",
     "description": "hue.gl is a colour palette developed by Scape Press.",
-    "version": "0.1.2",
+    "version": "0.2.0",
     "config": {
         "version_short": "0.0"
     },
@@ -53,7 +53,7 @@
         "test:watch": "vitest",
         "test:coverage": "vitest run --coverage",
         "format": "npx prettier --write .",
-        "lint": "eslint src/ts src/js test",
+        "lint": "eslint src/ts src/js tst",
         "typecheck": "tsc --noEmit",
         "generate": "npm run build:ts && npm run build:formats",
         "generate:constants": "npm run build:ts && node src/js/constants.js",
