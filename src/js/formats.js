@@ -115,3 +115,44 @@ export function paletteJson(context) {
     }
     return JSON.stringify(json, null, 4) + '\n'
 }
+
+/** CSV export: one row per color */
+export function paletteCsv(context) {
+    const rows = context.swatches.map((color) => {
+        const { r, g, b } = color.rgb()
+        const { h, c, l } = color.hcl()
+        return [color.name, color.group, color.hex(), r, g, b, h, c, l].join(',')
+    })
+    return ['name,group,hex,r,g,b,h,c,l', ...rows].join('\n') + '\n'
+}
+
+/** SVG swatch sheet: one row per hue, one square per color */
+export function paletteSvg(context, size = 24) {
+    const groups = Object.entries(context.colors)
+    const width = Math.max(...groups.map(([, group]) => Object.keys(group).length)) * size
+    const rects = groups.flatMap(([group, groupColors], row) =>
+        Object.entries(groupColors).map(
+            ([name, color], column) =>
+                `    <rect x="${column * size}" y="${row * size}" width="${size}" height="${size}" ` +
+                `fill="${color.hex()}"><title>${name} ${group} ${color.hex()}</title></rect>`,
+        ),
+    )
+    return (
+        [
+            `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${width} ${groups.length * size}" ` +
+                `width="${width}" height="${groups.length * size}">`,
+            `    <title>hue.gl ${context.version}</title>`,
+            ...rects,
+            '</svg>',
+        ].join('\n') + '\n'
+    )
+}
+
+/** Tailwind preset: `presets: [hue]` gives `bg-N2405`, `text-N2405`, ... */
+export function tailwindPreset(context) {
+    const colors = Object.fromEntries(context.swatches.map((color) => [color.name, color.hex()]))
+    return (
+        `// hue.gl ${context.version}: Tailwind preset\n` +
+        `export default { theme: { extend: { colors: ${JSON.stringify(colors, null, 4)} } } };\n`
+    )
+}

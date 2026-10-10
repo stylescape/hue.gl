@@ -13,7 +13,10 @@ import {
     createEnvironment,
     cssRgbPercent,
     FORMATS,
+    paletteCsv,
     paletteJson,
+    paletteSvg,
+    tailwindPreset,
 } from '../src/js/formats.js'
 
 const ROOT = resolve(__dirname, '..')
@@ -65,6 +68,30 @@ describe('format templates', () => {
             rgb: { r: 54, g: 150, b: 193 },
             hcl: { h: 240, c: 36, l: 58 },
         })
+    })
+
+    it('should export CSV with one row per color', () => {
+        const lines = paletteCsv(context).trim().split('\n')
+        expect(lines[0]).toBe('name,group,hex,r,g,b,h,c,l')
+        expect(lines).toHaveLength(226)
+        expect(lines.find((line) => line.startsWith('N2405,'))).toBe(
+            'N2405,Blue,#3696c1,54,150,193,240,36,58',
+        )
+    })
+
+    it('should export an SVG sheet with a swatch per color', () => {
+        const svg = paletteSvg(context)
+        expect(svg.match(/<rect /g)).toHaveLength(225)
+        expect(svg).toContain('fill="#3696c1"')
+    })
+
+    it('should export a Tailwind preset with every color', async () => {
+        const source = tailwindPreset(context)
+        const colors = JSON.parse(
+            source.slice(source.indexOf('colors: ') + 8, source.lastIndexOf(' } } };')),
+        )
+        expect(Object.keys(colors)).toHaveLength(225)
+        expect(colors.N2405).toBe('#3696c1')
     })
 
     it.each(Object.entries(CONSTANTS))(
