@@ -126,9 +126,7 @@ Copyright &copy; 2025 [Scape Press BV](https://www.scape.press/ 'Scape Press web
 
 Except as otherwise noted, the content in this repository is licensed under the
 [Creative Commons Attribution 4.0 International (CC BY 4.0) License](https://creativecommons.org/licenses/by/4.0/), and
-code samples are licensed under the [Apache 2.0 License](http://www.apache.org/licenses/LICENSE-2.0).
-
-Also see [LICENSE](https://github.com/stylescape/community/blob/master/src/LICENSE) and [LICENSE-CODE](https://github.com/stylescape/community/blob/master/src/LICENSE-CODE).
+code (including the generated palette formats) is licensed under the [MIT License](LICENSE).
 
 #### Disclaimer
 
