@@ -11,5 +11,4 @@ settings.json
 .vscode/
 *.yaml
 ./dist
-src/hbs/
 src/jinja/
