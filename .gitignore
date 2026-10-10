@@ -702,7 +702,8 @@ __pycache__/
 .Python
 build/
 develop-eggs/
-# dist/
+# Build output is generated in CI (decided 2026-10-10); not tracked
+/dist/
 downloads/
 eggs/
 .eggs/
