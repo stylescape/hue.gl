@@ -101,12 +101,20 @@ jobs:
     # Publish to NPM
     # =============================================================================
 
+    # npm trusted publishing (OIDC, with provenance): no token secret.
+    # One-time setup on npmjs.com: package hue.gl > Settings > Trusted
+    # publishing > GitHub Actions: organization `stylescape`, repository
+    # `hue.gl`, workflow filename `publish_package.yml`, no environment.
     publish-npm:
         name: Publish NPM
 
         needs: build
 
         runs-on: ubuntu-latest
+
+        permissions:
+            contents: read
+            id-token: write
 
         steps:
             - name: Checkout
@@ -117,6 +125,9 @@ jobs:
               with:
                   node-version: 22.x
                   registry-url: https://registry.npmjs.org/
+
+            - name: Upgrade npm CLI (trusted publishing needs >= 11.5.1)
+              run: npm install --global npm@^11.5.1
 
             - name: Download build.zip
               uses: actions/download-artifact@v8
@@ -130,9 +141,7 @@ jobs:
             # module, types and exports at dist/, and "files" selects what ships.
             - name: Publish NPM
               run: |
-                  npm publish --access public
-              env:
-                  NODE_AUTH_TOKEN: ${{secrets.PUBLISH_NPM_TOKEN}}
+                  npm publish --provenance --access public
 
 # =============================================================================
 # Publish to GitHub Packages

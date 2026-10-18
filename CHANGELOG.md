@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Changed
+
+- The npm publish job uses npm trusted publishing (OIDC) with provenance instead of the dead `PUBLISH_NPM_TOKEN` secret: job-level `id-token: write`, npm >= 11.5.1, `npm publish --provenance`. One-time setup on npmjs.com: hue.gl > Settings > Trusted publishing > GitHub Actions, organization `stylescape`, repository `hue.gl`, workflow `publish_package.yml`.
+
 ## [0.2.0] - 2026-10-10
 
 Tagged 2026-10-10 (`v0.2.0`; version in `package.json`, `package-lock.json`, `VERSION` and `CITATION.cff`, `date-released` 2026-10-10). Also drops the build tools `@getkist/action-nunjucks` and `@getkist/action-sass` from the published `dependencies`. The npm publish of the tag failed (see `TODO.md`); the GitHub release was created.
