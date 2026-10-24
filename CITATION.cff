@@ -1,6 +1,6 @@
 cff-version: 1.2.0
 title: hue.gl
-version: 0.2.0
+version: "0.2.1"
 date-released: 2026-10-10
 url: 'https://github.com/stylescape/hue.gl'
 message: >-

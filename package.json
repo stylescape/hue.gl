@@ -3,7 +3,7 @@
     "description": "hue.gl is a colour palette developed by Scape Press.",
     "version": "0.2.0",
     "config": {
-        "version_short": "0.0"
+        "version_short": "0.2"
     },
     "keywords": [
         "hue.gl",
